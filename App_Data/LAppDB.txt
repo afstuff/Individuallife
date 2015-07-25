@@ -1,1 +1,1 @@
-﻿Data Source=BELSHAZZAR-V;Initial Catalog=ABS_LIFE;User ID=sa;Password=skyblue9000;
+﻿Data Source=ACER;Initial Catalog=ABS_LIFE;User ID=sa;Password=sa234

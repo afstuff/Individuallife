@@ -2387,4 +2387,8 @@ PUpdate_Date1:
     Protected Sub cmdNew_ASP_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdNew_ASP.Click
 
     End Sub
+
+    Protected Sub DoProc_Validate_Agency(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtAgcyNum.TextChanged
+
+    End Sub
 End Class
