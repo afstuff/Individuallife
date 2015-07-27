@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 ﻿Data Source=ACER;Initial Catalog=ABS_LIFE;User ID=sa;Password=sa234;
+=======
+﻿Data Source=.;Initial Catalog=ABS_LIFE;User ID=sa;Password=FemiCustodian;
+>>>>>>> a3cdf2e64bf95951c69d76f139ad44f7bb434f3e
