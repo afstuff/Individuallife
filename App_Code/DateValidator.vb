@@ -1,15 +1,17 @@
 ﻿Imports Microsoft.VisualBasic
+Imports System.Reflection
 
 Public Class DateValidator
     Shared _rtnMessage As String
+    Shared rtnMessage As String
 
-    Public Shared Function ValidateDate(ByVal sentDate As String) As String
+    Public Shared Function ValidateDate(ByVal sentDate As String) As Boolean
 
         'Validate date
         Dim sentDate_ As String() = Split(sentDate, "/")
         If sentDate_.Count <> 3 Then
-            '_rtnMessage = "Missing or Invalid Expecting full date in dd/mm/yyyy format ..."
-            _rtnMessage = "Javascript:alert('Missing or Invalid Expecting full date in dd/mm/yyyy format ...')"
+            rtnMessage = "Missing or Invalid Expecting full date in dd/mm/yyyy format ..."
+            _rtnMessage = "Javascript:alert('" + rtnMessage + "')"
             Return _rtnMessage
             'Exit Function
         End If
@@ -27,10 +29,9 @@ Public Class DateValidator
         End If
 
         Dim strMyDte = Trim(strMyDay) & "/" & Trim(strMyMth) & "/" & Trim(strMyYear)
-        _rtnMessage = Trim(strMyDte)
+        Dim dateResult As Boolean = MOD_GEN.gnTest_TransDate(strMyDte)
 
-
-        Return _rtnMessage
+        Return dateResult
     End Function
 
 End Class
