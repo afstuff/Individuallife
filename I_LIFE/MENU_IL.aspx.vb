@@ -498,6 +498,10 @@ Partial Class I_LIFE_MENU_IL
                 'AddMenuItem("", "", "") 'blank link
                 'AddMenuItem("Operations", "Policy Maturity Process", "")
                 AddMenuItem("", "", "") 'blank link
+                AddMenuItem("Entries", "Claim Request Entry", "PRG_LI_REQ_ENTRY.aspx?optid=NEW")
+                AddMenuItem("", "Waiver of Premium", "PRG_LI_CLM_WAIVER.aspx?optid=NEW")
+
+                AddMenuItem("", "", "") 'blank link
                 AddMenuItem("Reports", "List of Surrendered Policies", "")
                 AddMenuItem("", "List of Paid-Up Policies", "")
                 AddMenuItem("", "List of Policies Maturiting", "")
