@@ -77,7 +77,10 @@
                                     onblur="if (this.value == '') {this.value = 'Search...';}" />
                                 &nbsp;<%--<asp:Button ID="cmdSearch" Text="Search" runat="server" />--%><asp:Button
                                     ID="cmdSearch1" runat="server" Text="Search" />
-    	                        &nbsp;<asp:DropDownList ID="cboSearch" Width="150px" runat="server"></asp:DropDownList>
+    	                        &nbsp;<asp:DropDownList ID="cboSearch" Width="150px" runat="server" 
+                                    AppendDataBoundItems="True">
+                                    <asp:ListItem>* Select Insured *</asp:ListItem>
+                                </asp:DropDownList>
                             </td>
                         </tr>
                                     <tr>
@@ -122,7 +125,7 @@
                             <asp:Label ID="Label2" runat="server" Text="Policy Number: "></asp:Label>
                         </td>
                         <td align="left" valign="top">
-                            <asp:TextBox ID="txtPolicyNumber" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtPolicyNumber" runat="server" Width="221px"></asp:TextBox>
                         </td>
                         <td>
                             &nbsp;</td>
@@ -140,7 +143,7 @@
                             <asp:Label ID="Label4" runat="server" Text="Assured Name:"></asp:Label>
                         </td>
                         <td align="left" valign="top">
-                            <asp:TextBox ID="txtAssuredName" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtAssuredName" runat="server" Width="260px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -154,7 +157,7 @@
                             <asp:Label ID="Label6" runat="server" Text="Production Description: "></asp:Label>
                         </td>
                         <td align="left" valign="top">
-                            <asp:TextBox ID="txtProdDesc" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtProdDesc" runat="server" Width="260px" style="height: 22px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -163,14 +166,14 @@
                         </td>
                         <td align="left" valign="top">
                             <asp:TextBox ID="txtPolicyStartDate" runat="server"></asp:TextBox>
-                            <asp:Label ID="Label11" runat="server" Text="dd/mm/yyyy"></asp:Label>
+                            <asp:Label ID="Label11" runat="server" Text="dd/mm/yyyy" Font-Size="9pt"></asp:Label>
                         </td>
                         <td align="left" valign="top">
                             <asp:Label ID="Label8" runat="server" Text="Policy End Date: "></asp:Label>
                         </td>
                         <td align="left" valign="top">
                             <asp:TextBox ID="txtPolicyEndDate" runat="server"></asp:TextBox>
-                            <asp:Label ID="Label12" runat="server" Text="dd/mm/yyyy"></asp:Label>
+                            <asp:Label ID="Label12" runat="server" Text="dd/mm/yyyy" Font-Size="9pt"></asp:Label>
                         </td>
                     </tr>
                     <tr>
@@ -213,7 +216,9 @@
                             <asp:HiddenField ID="HidProdDesc" runat="server" />
                         </td>
                         <td>
-                            &nbsp;</td>
+                            <asp:HiddenField ID="HidPolStartDate" runat="server" />
+                            <asp:HiddenField ID="HidPolEndDate" runat="server" />
+                            </td>
                         <td>
                             &nbsp;</td>
                     </tr>

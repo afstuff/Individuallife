@@ -3,8 +3,6 @@
         e.preventDefault();
         if ($("#txtPolicyNumber").val() != "") {
             RetrieveAssuredCode();
-            //   RetrieveProductCode();
-            //RetrieveTBIL_POLY_STATUS()
         }
     })
     $("#cmdSearch").click(function(e) {
@@ -38,50 +36,10 @@
         }
     });
 
-
-    $('#txtPolicyStartDate').blur(function(e) {
-      /*  e.preventDefault();
-        if ($('#txtPolicyStartDate').val() != "") {
-            var res = CheckDate($('#txtPolicyStartDate').val());
-            if (res == true) {
-                $('#ans').text("");
-                return true
-            }
-            else {
-                $('#ans').text("Not a valid Policy start date format");
-                $('#txtPolicyStartDate').focus();
-                return false;
-            }
-        }*/
-    });
-
-
-    $('#txtPolicyEndDate').blur(function(e) {
-       /* e.preventDefault();
-        if ($('#txtPolicyEndDate').val() != "") {
-            var res = CheckPolicyEndDate($('#txtPolicyEndDate').val());
-            if (res == "Valid") {
-                $('#ans').text("");
-                return true
-            }
-            else if (res == "Invalid") {
-                $('#ans').text("Not a valid Policy end date format");
-                $('#txtPolicyEndDate').focus();
-                return false;
-            }
-            else if (res == "Invalid1") {
-                $('#ans').text("Policy end date must be a future date");
-                $('#txtPolicyEndDate').focus();
-                return false;
-            }
-        }*/
-    });
-
     $('#txtWaiverEffectiveDate').blur(function(e) {
         e.preventDefault();
         if ($('#txtWaiverEffectiveDate').val() != "") {
             var res = CheckDate($('#txtWaiverEffectiveDate').val());
-            alert(res);
             if (res == true) {
                 $('#ans').text("");
                 return true
@@ -135,11 +93,14 @@ function retrieve_AdminCodeInfoValues(admobjects) {
         $('#HidAssuredName').
                 val($(this).find("TBIL_INSRD_SURNAME").text() + '  ' + $(this).find("TBIL_INSRD_FIRSTNAME").text())
         $('#txtPolicyProCode').val($(this).find("TBIL_POL_PRM_PRDCT_CD").text())
+        
         $('#txtPolicyStartDate').val(formatDate($(this).find("TBIL_POL_PRM_FROM").text()));
+        $('#HidPolStartDate').val(formatDate($(this).find("TBIL_POL_PRM_FROM").text()));
+        
         $('#txtPolicyEndDate').val(formatDate($(this).find("TBIL_POL_PRM_TO").text()));
+        $('#HidPolEndDate').val(formatDate($(this).find("TBIL_POL_PRM_TO").text()));
         $('#txtProdDesc').val($(this).find("TBIL_PRDCT_DTL_DESC").text())
         $('#HidProdDesc').val($(this).find("TBIL_PRDCT_DTL_DESC").text())
-       
         var status = $('#txtPolyStatus').val();
         if (status == "W") {
             $("#chkConfirmWaiver").prop("checked", true);
@@ -178,163 +139,10 @@ function OnFailure_RetrieveAssuredCode(response) {
     var errorText = response.responseText;
     alert('Failure!!!' + '<br/>' + errorText);
 }
-
-function RetrieveInsuredDetails() {
-    var assuredCode = $("#txtAssuredCode").val();
-    //alert("This is the class code: " + document.getElementById('txtClassCod').value + " and Item code :" + document.getElementById('txtTransNum').value);
-    $.ajax({
-        type: "POST",
-        url: "PRG_LI_CLM_WAIVER.aspx/GetInsuredDetails",
-        data: JSON.stringify({ _assuredCode: assuredCode }),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: OnSuccess_RetrieveInsuredDetails,
-        failure: OnFailure_RetrieveInsuredDetails,
-        error: OnError_RetrieveInsuredDetails
-    });
-    // this avoids page refresh on button click
-    return false;
-}
-function OnSuccess_RetrieveInsuredDetails(response) {
-    //debugger;
-    var xmlDoc = $.parseXML(response.d);
-    var xml = $(xmlDoc);
-    var admobjects = xml.find("Table");
-    retrieve_RetrieveInsuredDetails(admobjects);
-
-}
-// retrieve the values for branch
-function retrieve_RetrieveInsuredDetails(admobjects) {
-    //debugger;
-    $.each(admobjects, function() {
-        var admobject = $(this);
-        $('#txtAssuredName').
-                val($(this).find("TBIL_INSRD_SURNAME").text() + '  ' + $(this).find("TBIL_INSRD_FIRSTNAME").text())
-        $('#HidAssuredName').
-                val($(this).find("TBIL_INSRD_SURNAME").text() + '  ' + $(this).find("TBIL_INSRD_FIRSTNAME").text())
-    });
-
-}
-function OnError_RetrieveInsuredDetails(response) {
-    //debugger;
-    var errorText = response.responseText;
-    //alert('Error! Policy Number does not exist');
-    // $("#txtAssuredCode").focus();
-    $("#txtPolicyNumber").focus();
-    //$("#txtPolicyNumber").focus();
-
-}
-
-function OnFailure_RetrieveInsuredDetails(response) {
-    //debugger;
-    var errorText = response.responseText;
-    alert('Failure!!!' + '<br/>' + errorText);
-}
-
-function RetrieveProductCode() {
-    var policyNo = $("#txtPolicyNumber").val();
-    //alert("This is the class code: " + document.getElementById('txtClassCod').value + " and Item code :" + document.getElementById('txtTransNum').value);
-    $.ajax({
-        type: "POST",
-        url: "PRG_LI_CLM_WAIVER.aspx/GetProductCode",
-        data: JSON.stringify({ _policyNo: policyNo }),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: OnSuccess_RetrieveProductCode,
-        failure: OnFailure_RetrieveProductCode,
-        error: OnError_RetrieveProductCode
-    });
-    // this avoids page refresh on button click
-    return false;
-}
-function OnSuccess_RetrieveProductCode(response) {
-    //debugger;
-    var xmlDoc = $.parseXML(response.d);
-    var xml = $(xmlDoc);
-    var admobjects = xml.find("Table");
-    retrieve_RetrieveProductCode(admobjects);
-
-}
-// retrieve the values for branch
-function retrieve_RetrieveProductCode(admobjects) {
-    //debugger;
-    $.each(admobjects, function() {
-        var admobject = $(this);
-        $('#txtPolicyProCode').val($(this).find("TBIL_POL_PRM_PRDCT_CD").text())
-
-        $('#txtPolicyStartDate').val(formatDate($(this).find("TBIL_POL_PRM_FROM").text()));
-        $('#txtPolicyEndDate').val(formatDate($(this).find("TBIL_POL_PRM_TO").text()));
-       // RetrieveProductDetails();
-    });
-
-}
-function OnError_RetrieveProductCode(response) {
-    //debugger;
-    var errorText = response.responseText;
-    alert('Error! Product code not found in Policy Premium Information Table');
-}
-
-function OnFailure_RetrieveProductCode(response) {
-    //debugger;
-    var errorText = response.responseText;
-    alert('Failure!!!' + '<br/>' + errorText);
-}
-function RetrieveProductDetails() {
-    var policyProductCode = $("#txtPolicyProCode").val();
-    $.ajax({
-        type: "POST",
-        url: "PRG_LI_CLM_WAIVER.aspx/GetProductDetails",
-        data: JSON.stringify({ _policyProductCode: policyProductCode }),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: OnSuccess_RetrieveProductDetails,
-        failure: OnFailure_RetrieveProductDetails,
-        error: OnError_RetrieveProductDetails
-    });
-    // this avoids page refresh on button click
-    return false;
-}
-function OnSuccess_RetrieveProductDetails(response) {
-    //debugger;
-    var xmlDoc = $.parseXML(response.d);
-    var xml = $(xmlDoc);
-    var admobjects = xml.find("Table");
-    retrieve_RetrieveProductDetails(admobjects);
-
-}
-// retrieve the values for branch
-function retrieve_RetrieveProductDetails(admobjects) {
-    //debugger;
-    $.each(admobjects, function() {
-        var admobject = $(this);
-        $('#txtProdDesc').val($(this).find("TBIL_PRDCT_DTL_DESC").text())
-        $('#HidProdDesc').val($(this).find("TBIL_PRDCT_DTL_DESC").text())
-        //  alert($(this).find("TBIL_INSRD_SURNAME").text())
-    });
-
-}
-function OnError_RetrieveProductDetails(response) {
-    //debugger;
-    var errorText = response.responseText;
-    alert('Error! Prodouct code not found');
-    //$("#txtPolicyProCode").focus();
-
-}
-
-function OnFailure_RetrieveProductDetails(response) {
-    //debugger;
-    var errorText = response.responseText;
-    alert('Failure!!!' + '<br/>' + errorText);
-}
-
-
 function GetCoverCodes() {
     $.ajax({
-    
         type: "POST",
-        //  url: "PRG_LI_CLM_WAIVER.aspx/GetCoverCodes",
         url: "PRG_LI_CLM_WAIVER.aspx/GetCoverCodes",
-        //data: JSON.stringify({ param_value: param_value }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: OnSuccess_GetCoverCodes,
@@ -371,6 +179,7 @@ function retrieve_GetCoverCodes(admobjects) {
 function OnError_GetCoverCodes(response) {
     //debugger;
     var errorText = response.responseText;
+    alert(errorText)
 }
 
 function OnFailure_GetCoverCodes(response) {
@@ -489,63 +298,11 @@ function ValidateOnClient() {
     }
 }
 
-function Retrieve_Policy_Nos() {
-    //var _search = $("#txtsearch").val();
-    var _search = $("#txtSearch").val();
-    $.ajax({
-        type: "POST",
-        url: "PRG_LI_CLM_WAIVER.aspx/GetPolicyNos",
-        data: JSON.stringify({ _search: _search }),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: OnSuccess_Retrieve_Policy_Nos,
-        failure: OnFailure_Retrieve_Policy_Nos,
-        error: OnError_Retrieve_Policy_Nos
-    });
-    // this avoids page refresh on button click
-    return false;
-}
-function OnSuccess_Retrieve_Policy_Nos(response) {
-    //debugger;
-    var xmlDoc = $.parseXML(response.d);
-    var xml = $(xmlDoc);
-    var admobjects = xml.find("Table");
-    retrieve_Retrieve_Policy_Nos(admobjects);
-}
-// retrieve the values for branch
-function retrieve_Retrieve_Policy_Nos(admobjects) {
-    //debugger;
-    $('#cboSearch').empty();
-    $('#cboSearch')
-            .append('<option value=' + "" + '>' + "" + ";" + "" + '</option>')
-
-    $.each(admobjects, function() {
-        var admobject = $(this);
-
-        $('#cboSearch')
-            .append('<option value=' + $(this).find("TBIL_POLY_POLICY_NO").text() + '>' +
-             $(this).find("TBIL_INSRD_SURNAME").text() + ";" + $(this).find("TBIL_POLY_POLICY_NO").text() + '</option>')
-        //  alert($(this).find("TBIL_INSRD_SURNAME").text())
-    });
-
-}
-function OnError_Retrieve_Policy_Nos(response) {
-    //debugger;
-    var errorText = response.responseText;
-}
-
-function OnFailure_Retrieve_Policy_Nos(response) {
-    //debugger;
-    var errorText = response.responseText;
-    alert('Failure!!!' + '<br/>' + errorText);
-}
-
-
-
 function GetPolicyNoFromDpList() {
     //             $('cboSearch').change(function() {
     var details = $('#cboSearch').val();
     $('#txtPolicyNumber').val(details)
+    $('#txtAssuredCode').focus()
     RetrieveAssuredCode();
     //RetrieveTBIL_POLY_STATUS()
 }

@@ -16,15 +16,19 @@ Partial Class PRG_LI_CLM_WAIVER
     Dim strSQL As String
     Protected strTableName As String
     Dim strErrMsg As String
+    Protected blnStatusX As Boolean
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         txtAssuredName.Attributes.Add("disabled", "disabled")
         txtProdDesc.Attributes.Add("disabled", "disabled")
         txtPolicyStartDate.Attributes.Add("disabled", "disabled")
         txtPolicyEndDate.Attributes.Add("disabled", "disabled")
+        strTableName = "TBIL_POLICY_DET"
         If Not IsPostBack Then
         Else
             txtAssuredName.Text = HidAssuredName.Value
             txtProdDesc.Text = HidProdDesc.Value
+            txtPolicyStartDate.Text = HidPolStartDate.Value
+            txtPolicyEndDate.Text = HidPolEndDate.Value
         End If
     End Sub
     Protected Sub cboSearch_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboSearch.SelectedIndexChanged
@@ -46,7 +50,12 @@ Partial Class PRG_LI_CLM_WAIVER
     Protected Sub cmdSearch1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdSearch1.Click
         If LTrim(RTrim(Me.txtSearch.Value)) = "Search..." Then
         ElseIf LTrim(RTrim(Me.txtSearch.Value)) <> "" Then
-            Call gnProc_Populate_Box("IL_ASSURED_HELP_SP", "001", Me.cboSearch, RTrim(Me.txtSearch.Value))
+            'Call gnProc_Populate_Box("IL_ASSURED_HELP_SP", "001", Me.cboSearch, RTrim(Me.txtSearch.Value))
+            Dim dt As DataTable = GET_INSURED(txtSearch.Value.Trim()).Tables(0)
+            cboSearch.DataSource = dt
+            cboSearch.DataValueField = "TBIL_POLY_POLICY_NO"
+            cboSearch.DataTextField = "MyFld_Text"
+            cboSearch.DataBind()
         End If
     End Sub
     Protected Sub cmdSave_ASP_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdSave_ASP.Click
@@ -57,10 +66,10 @@ Partial Class PRG_LI_CLM_WAIVER
         If ErrorInd = "Y" Then
             Exit Sub
         End If
-
-        WaiverEffectiveDate = CDate(txtWaiverEffectiveDate.Text)
-        WaiverEffectiveDate = Format(WaiverEffectiveDate, "yyyy/MM/dd")
-        lblMsg.Text = waiverRep.EffectWaiver(drpWaiverCodes.Text, txtPolicyNumber.Text, WaiverEffectiveDate)
+        Proc_DoSave()
+        'WaiverEffectiveDate = CDate(txtWaiverEffectiveDate.Text)
+        'WaiverEffectiveDate = Format(WaiverEffectiveDate, "yyyy/MM/dd")
+        'lblMsg.Text = waiverRep.EffectWaiver(drpWaiverCodes.Text, txtPolicyNumber.Text, WaiverEffectiveDate)
         lblMsg.Visible = True
         initializeFields()
     End Sub
@@ -180,91 +189,15 @@ Public Shared Function GetPolicyPerInfo(ByVal _policyNo As String) As String
                 Throw New Exception()
             End If
         End Try
-
     End Function
-
     <System.Web.Services.WebMethod()> _
-Public Shared Function GetInsuredDetails(ByVal _assuredCode As String) As String
+    Public Shared Function GetCoverCodes() As String
         Dim codeinfo As String = String.Empty
-        Dim waiverRepo As New PRG_LI_CLM_WAIVER_REPOSITORY()
-        Try
-            codeinfo = waiverRepo.GetInsuredDetails(_assuredCode)
-            Return codeinfo
-        Finally
-            If codeinfo = "<NewDataSet />" Then
-                Throw New Exception()
-            End If
-        End Try
-    End Function
-
-    <System.Web.Services.WebMethod()> _
-Public Shared Function GetProductCode(ByVal _policyNo As String) As String
-        Dim codeinfo As String = String.Empty
-        Dim waiverRepo As New PRG_LI_CLM_WAIVER_REPOSITORY()
-        Try
-            codeinfo = waiverRepo.GetProductCode(_policyNo)
-            Return codeinfo
-        Finally
-            If codeinfo = "<NewDataSet />" Then
-                Throw New Exception()
-            End If
-        End Try
-    End Function
-
-    <System.Web.Services.WebMethod()> _
-Public Shared Function GetProductDetails(ByVal _policyProductCode As String) As String
-        Dim codeinfo As String = String.Empty
-        Dim waiverRepo As New PRG_LI_CLM_WAIVER_REPOSITORY()
-        Try
-            codeinfo = waiverRepo.GetProductDetails(_policyProductCode)
-            Return codeinfo
-        Finally
-            If codeinfo = "<NewDataSet />" Then
-                Throw New Exception()
-            End If
-        End Try
-    End Function
-
-    <System.Web.Services.WebMethod()> _
-Public Shared Function GetCoverCodes() As String
-        Dim codeinfo As String = String.Empty
-        '  Dim admRepo As New AdminCodeRepository()
         Dim waiverRepo As New PRG_LI_CLM_WAIVER_REPOSITORY()
         Try
             codeinfo = waiverRepo.GetCoverCodes()
             Dim i As Integer
             i = 8
-            Return codeinfo
-        Finally
-            If codeinfo = "<NewDataSet />" Then
-                Throw New Exception()
-            End If
-        End Try
-    End Function
-
-    '<System.Web.Services.WebMethod()> _
-    'Public Shared Function GetTBIL_POLY_STATUS(ByVal _status As String) As String
-    '        Dim codeinfo As String = String.Empty
-    '        '   Dim admRepo As New AdminCodeRepository()
-    '        Dim waiverRepo As New PRG_LI_CLM_WAIVER_REPOSITORY()
-    '        'Dim crit As String = 
-
-    '        Try
-    '            'codeinfo = admRepo.GetMiscAdminInfo(_classcode, _itemcode)
-    '            codeinfo = waiverRepo.GetPoly_Status(_status)
-    '            Return codeinfo
-    '        Finally
-    '            If codeinfo = "<NewDataSet />" Then
-    '                Throw New Exception()
-    '            End If
-    '        End Try
-    '    End Function
-    <System.Web.Services.WebMethod()> _
-    Public Shared Function GetPolicyNos(ByVal _search As String) As String
-        Dim codeinfo As String = String.Empty
-        Dim waiverRepo As New PRG_LI_CLM_WAIVER_REPOSITORY()
-        Try
-            codeinfo = waiverRepo.GetPoly_Nos(_search)
             Return codeinfo
         Finally
             If codeinfo = "<NewDataSet />" Then
@@ -288,7 +221,6 @@ Public Shared Function VerifyAdditionalCover(ByVal _WaiverCodes As String, ByVal
     <System.Web.Services.WebMethod()> _
 Public Shared Function GetEffectedWaiverDsc(ByVal waiverCode As String) As String
         Dim codeinfo As String = String.Empty
-        '   Dim admRepo As New AdminCodeRepository()
         Dim waiverRepo As New PRG_LI_CLM_WAIVER_REPOSITORY()
         Try
             codeinfo = waiverRepo.GetEffectedWaiverDsc(waiverCode)
@@ -299,4 +231,169 @@ Public Shared Function GetEffectedWaiverDsc(ByVal waiverCode As String) As Strin
             End If
         End Try
     End Function
+   
+
+    Private Sub Proc_DoSave()
+        Dim strMyYear As String = ""
+        Dim strMyMth As String = ""
+        Dim strMyDay As String = ""
+        Dim strMyDte As String = ""
+        Dim strMyDteX As String = ""
+        Dim mydteX As String = ""
+        Dim Dte_System As Date = Now
+        Dim mydte As Date = Now
+        Dim Dte_Waiver As Date = Now
+
+        'Validate date
+        Dim myarrData = Split(Me.txtWaiverEffectiveDate.Text, "/")
+        If myarrData.Count <> 3 Then
+            Me.lblMsg.Text = "Missing or Invalid Waiver Effective Date. Expecting full date in ddmmyyyy format ..."
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            Exit Sub
+        End If
+        strMyDay = myarrData(0)
+        strMyMth = myarrData(1)
+        strMyYear = myarrData(2)
+
+        strMyDay = CType(Format(Val(strMyDay), "00"), String)
+        strMyMth = CType(Format(Val(strMyMth), "00"), String)
+        strMyYear = CType(Format(Val(strMyYear), "0000"), String)
+        If Val(strMyYear) < 1999 Then
+            Me.lblMsg.Text = "Error. Proposal year date is less than 1999 ..."
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            Exit Sub
+        End If
+
+        strMyDte = Trim(strMyDay) & "/" & Trim(strMyMth) & "/" & Trim(strMyYear)
+        Me.txtWaiverEffectiveDate.Text = Trim(strMyDte)
+
+        If RTrim(Me.txtWaiverEffectiveDate.Text) = "" Or Len(Trim(Me.txtWaiverEffectiveDate.Text)) <> 10 Then
+            Me.lblMsg.Text = "Missing or Invalid date - Proposal Date..."
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            Exit Sub
+        End If
+
+        'Validate date
+        myarrData = Split(Me.txtWaiverEffectiveDate.Text, "/")
+        If myarrData.Count <> 3 Then
+            Me.lblMsg.Text = "Missing or Invalid " & Me.txtWaiverEffectiveDate.Text & ". Expecting full date in ddmmyyyy format ..."
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            Exit Sub
+        End If
+        strMyDay = myarrData(0)
+        strMyMth = myarrData(1)
+        strMyYear = myarrData(2)
+
+        strMyDay = CType(Format(Val(strMyDay), "00"), String)
+        strMyMth = CType(Format(Val(strMyMth), "00"), String)
+        strMyYear = CType(Format(Val(strMyYear), "0000"), String)
+
+        strMyDte = Trim(strMyDay) & "/" & Trim(strMyMth) & "/" & Trim(strMyYear)
+
+        blnStatusX = MOD_GEN.gnTest_TransDate(strMyDte)
+        If blnStatusX = False Then
+            Me.lblMsg.Text = "Please enter valid date..."
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
+            Exit Sub
+        End If
+        Me.txtWaiverEffectiveDate.Text = RTrim(strMyDte)
+        'mydteX = Mid(Me.txtStartDate.Text, 4, 2) & "/" & Left(Me.txtStartDate.Text, 2) & "/" & Right(Me.txtStartDate.Text, 4)
+        'mydteX = Trim(strMyMth) & "/" & Trim(strMyDay) & "/" & Trim(strMyYear)
+        mydteX = Trim(strMyDay) & "/" & Trim(strMyMth) & "/" & Trim(strMyYear)
+        mydte = CDate(mydteX)
+        'Dte_Waiver = Format(mydte, "MM/dd/yyyy")
+        Dte_Waiver = Format(mydte, "yyyy/MM/dd")
+
+        'mydte = Format(CDate(mydteX), "yyyy/MM/dd")
+        'Dte_Waiver = Format(mydte, "yyyy/MM/dd")
+
+        Dim myUserIDX As String = ""
+        Try
+            myUserIDX = CType(Session("MyUserIDX"), String)
+        Catch ex As Exception
+            myUserIDX = ""
+        End Try
+
+
+        Dim mystrCONN As String = CType(Session("connstr"), String)
+        Dim objOLEConn As New OleDbConnection()
+        objOLEConn.ConnectionString = mystrCONN
+
+        Try
+            'open connection to database
+            objOLEConn.Open()
+        Catch ex As Exception
+            Me.lblMsg.Text = "Unable to connect to database. Reason: " & ex.Message
+            'FirstMsg = "Javascript:alert('" & Me.txtMsg.Text & "')"
+            objOLEConn = Nothing
+            Exit Sub
+        End Try
+
+
+
+        strTable = strTableName
+
+        strSQL = ""
+        strSQL = "SELECT TOP 1 * FROM " & strTable
+        strSQL = strSQL & " WHERE TBIL_POLY_POLICY_NO = '" & RTrim(txtPolicyNumber.Text) & "'"
+        'strSQL = strSQL & "AND TBIL_POLY_POLICY_NO='" & RTrim(txtPolicyProCode.Text) & "'"
+
+        Dim objDA As System.Data.OleDb.OleDbDataAdapter
+        objDA = New System.Data.OleDb.OleDbDataAdapter(strSQL, objOLEConn)
+        Dim m_cbCommandBuilder As System.Data.OleDb.OleDbCommandBuilder
+        m_cbCommandBuilder = New System.Data.OleDb.OleDbCommandBuilder(objDA)
+
+        Dim obj_DT As New System.Data.DataTable
+        Dim intC As Integer = 0
+
+        Try
+
+            objDA.Fill(obj_DT)
+
+            If obj_DT.Rows.Count = 0 Then
+                '   Creating a new record
+                Dim drNewRow As System.Data.DataRow
+                drNewRow = obj_DT.NewRow()
+                drNewRow = Nothing
+                Me.lblMsg.Text = "New Record Saved to Database Successfully."
+            Else
+                '   Update existing record
+                With obj_DT
+                    .Rows(0)("TBIL_POLY_WAIVER_DT") = Dte_Waiver
+                    .Rows(0)("TBIL_POLY_STATUS") = "W"
+                    .Rows(0)("TBIL_POLY_KEYDTE") = Now
+                    .Rows(0)("TBIL_POLY_FLAG") = "A"
+                End With
+
+                'obj_DT.AcceptChanges()
+                intC = objDA.Update(obj_DT)
+
+                Me.lblMsg.Text = "Record Saved to Database Successfully."
+
+            End If
+
+
+        Catch ex As Exception
+            Me.lblMsg.Text = ex.Message.ToString
+            Exit Sub
+        End Try
+
+        obj_DT.Dispose()
+        obj_DT = Nothing
+
+        m_cbCommandBuilder.Dispose()
+        m_cbCommandBuilder = Nothing
+
+        If objDA.SelectCommand.Connection.State = ConnectionState.Open Then
+            objDA.SelectCommand.Connection.Close()
+        End If
+        objDA.Dispose()
+        objDA = Nothing
+
+        If objOLEConn.State = ConnectionState.Open Then
+            objOLEConn.Close()
+        End If
+        objOLEConn = Nothing
+        FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
+    End Sub
 End Class
