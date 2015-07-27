@@ -86,7 +86,6 @@
                                 &nbsp;
                                 <asp:Button ID="cmdPrint_ASP" CssClass="cmd_butt" Enabled="False" runat="server"
                                     Text="Print"></asp:Button>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             </td>
                         </tr>
                     </table>
@@ -107,7 +106,7 @@
                     <table align="center" border="0" class="tbl_menu_new">
                         <tr>
                             <td align="left" colspan="4" valign="top">
-                                <asp:Label ID="lblMsg" ForeColor="Red" Font-Size="Small" runat="server"></asp:Label>
+                                <asp:Label ID="lblMsg" ForeColor="Red" Font-Size="Small" runat="server">Status:</asp:Label>
                             </td>
                         </tr>
                         <tr style="display: none;">
@@ -122,7 +121,8 @@
                             </td>
                             <td align="left" valign="top" class="style2">
                                 <asp:TextBox ID="txtClaimsNo" runat="server" Enabled="False"></asp:TextBox>
-                                <asp:Button ID="cmdClaimNoGet" Enabled="false" Text="Get Record" runat="server" />
+                                <asp:Button ID="cmdClaimNoGet" Enabled="false" Text="Get Record" runat="server" 
+                                    style="height: 26px" />
                                 <asp:TextBox ID="txtRecNo" Visible="false" Enabled="false" MaxLength="18" Width="40"
                                     runat="server"></asp:TextBox>
                             </td>
@@ -142,14 +142,16 @@
                                 <asp:Label ID="Label1" runat="server" Text="Under Writing Year:"></asp:Label>
                             </td>
                             <td align="left" valign="top" class="style2">
-                                <asp:TextBox ID="txtUWY" runat="server" Width="80px"></asp:TextBox>
+                                <asp:TextBox ID="txtUWY" runat="server" Width="80px" Enabled="False"></asp:TextBox>
                             </td>
                             <td align="left" valign="top" class="style3">
                                 <asp:Label ID="Label2" runat="server" Text="Product Code:"></asp:Label>
                             </td>
                             <td align="left" valign="top" class="style2">
                                 <asp:TextBox ID="txtProductCode" runat="server" Enabled="False"></asp:TextBox>
-                                <asp:DropDownList ID="ddnProductDesc" runat="server">
+                                <%--<br />--%>
+                                <asp:DropDownList ID="ddnProductDesc" runat="server" Visible="False" 
+                                    Width="200px">
                                 </asp:DropDownList>
                             </td>
                         </tr>
@@ -158,7 +160,7 @@
                                 <asp:Label ID="Label3" runat="server" Text="Policy Start Date: "></asp:Label>
                             </td>
                             <td align="left" valign="top" class="style2">
-                                <asp:TextBox ID="txtPolicyStartDate" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtPolicyStartDate" runat="server" Enabled="False"></asp:TextBox>
                                 <asp:ImageButton ID="butCal" runat="server" OnClientClick="OpenModal_Cal('../Calendar1.aspx?popup=YES',this.form.name,'txtTrans_Date','txtTrans_Date')"
                                     ImageUrl="~/I_LIFE/img/cal.gif" Height="17" />
                                 <asp:Label ID="lblTrans_Date_Format" Text="dd/mm/yyyy" runat="server"></asp:Label>
@@ -167,7 +169,7 @@
                                 <asp:Label ID="Label4" runat="server" Text="Policy End Date:"></asp:Label>
                             </td>
                             <td align="left" valign="top" class="style2">
-                                <asp:TextBox ID="txtPolicyEndDate" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtPolicyEndDate" runat="server" Enabled="False"></asp:TextBox>
                                 <asp:ImageButton ID="butCal1" runat="server" OnClientClick="OpenModal_Cal('../Calendar1.aspx?popup=YES',this.form.name,'txtTrans_Date','txtTrans_Date')"
                                     ImageUrl="~/I_LIFE/img/cal.gif" Height="17" />
                                 <asp:Label ID="lblTrans_Date_Format1" Text="dd/mm/yyyy" runat="server"></asp:Label>
@@ -178,7 +180,7 @@
                                 <asp:Label ID="Label5" runat="server" Text="Claims Effective Date:"></asp:Label>
                             </td>
                             <td align="left" valign="top" class="style2">
-                                <asp:TextBox ID="txtClaimsEffectiveDate" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtClaimsEffectiveDate" runat="server" Enabled="False"></asp:TextBox>
                                 <asp:ImageButton ID="butCal0" runat="server" OnClientClick="OpenModal_Cal('../Calendar1.aspx?popup=YES',this.form.name,'txtTrans_Date','txtTrans_Date')"
                                     ImageUrl="~/I_LIFE/img/cal.gif" Height="17" />
                                 <asp:Label ID="lblTrans_Date_Format0" Text="dd/mm/yyyy" runat="server"></asp:Label>
@@ -191,6 +193,9 @@
                                 <asp:ImageButton ID="butCal2" runat="server" OnClientClick="OpenModal_Cal('../Calendar1.aspx?popup=YES',this.form.name,'txtTrans_Date','txtTrans_Date')"
                                     ImageUrl="~/I_LIFE/img/cal.gif" Height="17" />
                                 <asp:Label ID="lblTrans_Date_Format2" Text="dd/mm/yyyy" runat="server"></asp:Label>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                                    ControlToValidate="txtNotificationDate" 
+                                    ErrorMessage="Notification Date Required!" SetFocusOnError="True"></asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>
@@ -262,11 +267,8 @@
                                 <asp:Label ID="Label14" runat="server" Text="Loss Type:"></asp:Label>
                             </td>
                             <td align="left" valign="top" class="style2">
-                                <asp:DropDownList ID="DdnLossType" runat="server">
-                                    <%--<asp:ListItem Value="0">--- Select ---</asp:ListItem>
-                                    <asp:ListItem Value="I">Individual Life</asp:ListItem>
-                                    <asp:ListItem Value="G">Group Life</asp:ListItem>
-                                    <asp:ListItem Value="A">Annuity</asp:ListItem>--%>
+                                <asp:DropDownList ID="DdnLossType" runat="server" AppendDataBoundItems="True">
+                                    <asp:ListItem>-- Select --</asp:ListItem>
                                 </asp:DropDownList>
                             </td>
                         </tr>
@@ -275,7 +277,8 @@
                                 <asp:Label ID="Label15" runat="server" Text="Claims Description:"></asp:Label>
                             </td>
                             <td align="left" valign="top" class="style2" rowspan="2">
-                                <asp:TextBox ID="TextBox12" runat="server" Height="59px" TextMode="MultiLine" Width="271px"></asp:TextBox>
+                                <asp:TextBox ID="txtProductDec" runat="server" Height="59px" 
+                                    TextMode="MultiLine" Width="271px"></asp:TextBox>
                             </td>
                             <td align="left" valign="top" class="style2">
                                 &nbsp;
