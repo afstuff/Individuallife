@@ -1,4 +1,4 @@
-﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="PRG_LI_CLM_WAIVER.aspx.vb" Inherits="PRG_LI_CLM_WAIVER" %>
+﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="PRG_LI_CLM_WAIVER.aspx.vb" Inherits="PRG_LI_CLM_WAIVER" enableEventValidation="false" %>
 
 <%@ Register src="../UC_BANT.ascx" tagname="UC_BANT" tagprefix="uc1" %>
 
@@ -15,19 +15,37 @@
     <script language="javascript" type="text/javascript" src="../Script/SJS_02.js">
     </script>
     <script src="../jquery.min.js" type="text/javascript"></script>
+
+    <script src="../Script/jquery-1.11.0.js" type="text/javascript"></script>
     <script src="../jquery.simplemodal.js" type="text/javascript"></script>
-
     <script src="../Script/WaiverScript.js" type="text/javascript"></script>
+       <script type="text/javascript" src="../Script/WaiverScript.js"></script>
     <script language="javascript" type="text/javascript">
-
-
-            // calling jquery functions once document is ready
-            $(document).ready(function() {
-            });
-        
-        
-        
+// calling jquery functions once document is ready
     </script>
+    <style type="text/css">
+        #drpWaiverCodes
+ {
+ 	display:none;
+ }
+ #lblWaiverCode
+ {
+ 	display:none;
+ }
+ #lblWaiverEffDate
+ {
+ 	display:none;
+ }
+ #txtWaiverEffectiveDate
+ {
+ 	display:none;
+ }
+ 
+ #lblWaiverEffFormat
+ {
+ 	display:none;
+ }
+    </style>
 
     </head>
 
@@ -59,7 +77,7 @@
                                     onblur="if (this.value == '') {this.value = 'Search...';}" />
                                 &nbsp;<%--<asp:Button ID="cmdSearch" Text="Search" runat="server" />--%><asp:Button
                                     ID="cmdSearch1" runat="server" Text="Search" />
-    	                        &nbsp;<asp:DropDownList ID="cboSearch" AutoPostBack="true" Width="150px" runat="server"></asp:DropDownList>
+    	                        &nbsp;<asp:DropDownList ID="cboSearch" Width="150px" runat="server"></asp:DropDownList>
                             </td>
                         </tr>
                                     <tr>
@@ -69,7 +87,7 @@
                                     <tr>
                                         <td align="center" colspan="4" valign="top">
                                             &nbsp;&nbsp;<a href="#" onclick="javascript:JSDO_RETURN('PRG_LI_PROP_POLICY.aspx?menu=IL_QUOTE')">Go to Menu</a>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:button id="cmdSave_ASP" CssClass="cmd_butt" runat="server" text="Save Data"></asp:button>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:button id="cmdSave_ASP" CssClass="cmd_butt" runat="server" text="Save Data" OnClientClick="return ValidateOnClient()"></asp:button>
                                             &nbsp;&nbsp;<asp:button id="cmdDelete_ASP" CssClass="cmd_butt" Enabled="false"  runat="server" text="Delete Data" OnClientClick="JSDelete_ASP();"></asp:button>
                                             &nbsp;&nbsp;<asp:button id="cmdPrint_ASP" CssClass="cmd_butt" Enabled="False" runat="server" text="Print"></asp:button>
                                             &nbsp;&nbsp;&nbsp;&nbsp;

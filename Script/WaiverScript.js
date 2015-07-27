@@ -21,7 +21,6 @@
 
     $('#chkConfirmWaiver').change(function(e) {
         e.preventDefault();
-
         if ($(this).is(":checked")) {
             // it is checked
             GetCoverCodes();
@@ -74,7 +73,6 @@
                 return false;
             }
             else if (res == "Invalid1") {
-                alert("Future Date")
                 $('#ans').text("Policy end date must be a future date");
                 $('#txtPolicyEndDate').focus();
                 return false;
@@ -113,7 +111,7 @@ function RetrieveAssuredCode() {
     //alert("This is the class code: " + document.getElementById('txtClassCod').value + " and Item code :" + document.getElementById('txtTransNum').value);
     $.ajax({
         type: "POST",
-        url: "Pol_Per_Det_Retrieval.aspx/GetPolicyPerInfo",
+        url: "PRG_LI_CLM_WAIVER.aspx/GetPolicyPerInfo",
         data: JSON.stringify({ _policyNo: policyNo }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -184,7 +182,7 @@ function RetrieveInsuredDetails() {
     //alert("This is the class code: " + document.getElementById('txtClassCod').value + " and Item code :" + document.getElementById('txtTransNum').value);
     $.ajax({
         type: "POST",
-        url: "Pol_Per_Det_Retrieval.aspx/GetInsuredDetails",
+        url: "PRG_LI_CLM_WAIVER.aspx/GetInsuredDetails",
         data: JSON.stringify({ _assuredCode: assuredCode }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -236,7 +234,7 @@ function RetrieveProductCode() {
     //alert("This is the class code: " + document.getElementById('txtClassCod').value + " and Item code :" + document.getElementById('txtTransNum').value);
     $.ajax({
         type: "POST",
-        url: "Pol_Per_Det_Retrieval.aspx/GetProductCode",
+        url: "PRG_LI_CLM_WAIVER.aspx/GetProductCode",
         data: JSON.stringify({ _policyNo: policyNo }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -283,7 +281,7 @@ function RetrieveProductDetails() {
     var policyProductCode = $("#txtPolicyProCode").val();
     $.ajax({
         type: "POST",
-        url: "Pol_Per_Det_Retrieval.aspx/GetProductDetails",
+        url: "PRG_LI_CLM_WAIVER.aspx/GetProductDetails",
         data: JSON.stringify({ _policyProductCode: policyProductCode }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -330,8 +328,10 @@ function OnFailure_RetrieveProductDetails(response) {
 
 function GetCoverCodes() {
     $.ajax({
+    
         type: "POST",
-        url: "Pol_Per_Det_Retrieval.aspx/GetCoverCodes",
+        //  url: "PRG_LI_CLM_WAIVER.aspx/GetCoverCodes",
+        url: "PRG_LI_CLM_WAIVER.aspx/GetCoverCodes",
         //data: JSON.stringify({ param_value: param_value }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -376,62 +376,6 @@ function OnFailure_GetCoverCodes(response) {
     var errorText = response.responseText;
     alert('Failure!!!' + '<br/>' + errorText);
 }
-
-//function CheckDate(my, id) {
-//    var d = new Date();
-//    var userdate = new Date(my)
-//    // var date_regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(18|20)\d{2}$/; //mm/dd/yyyy
-//     var date_regex=/^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/
-//     
-//     if (id == "txtPolicyStartDate") {
-//         if (!(date_regex.test(my)))
-//          {
-//             $('#ans').text("Not a valid Policy start date format");
-//             $('#txtPolicyStartDate').focus();
-//            return;
-//          }
-//         else {
-//             $('#ans').text("");
-//             return true
-//          }
-//      }
-
-
-//      if (id == "txtPolicyEndDate") {
-//          if (!(date_regex.test(my))) 
-//          {
-//             $('#ans').text("Not a valid Policy end date format");
-//             $('#txtPolicyEndDate').focus();
-//             return;
-//         }
-//         else {
-//               if (userdate <= d) {
-//                 //document.getElementById("ans").innerHTML = "Date must be greater than today";
-//                 $('#ans').text("Policy End Date must be greater than today");
-//                 $('#txtPolicyEndDate').focus();
-//                return;
-//                }
-//               else {
-//                 $('#ans').text("");
-//                 return true
-//                }
-//             }
-//      }
-
-//      if (id == "txtWaiverEffectiveDate") {
-//          if (!(date_regex.test(my))) {
-//              $('#ans').text("Not a valid Waiver Effective Date format");
-//              $('#txtWaiverEffectiveDate').focus();
-//             return;
-//          }
-//          else {
-//              $('#ans').text("");
-//              return true
-//          }
-//      }
-
-//  }
-
 function CheckDate(my) {
     var returnMsg;
       var d = new Date();
@@ -548,7 +492,7 @@ function Retrieve_Policy_Nos() {
     var _search = $("#txtSearch").val();
     $.ajax({
         type: "POST",
-        url: "Pol_Per_Det_Retrieval.aspx/GetPolicyNos",
+        url: "PRG_LI_CLM_WAIVER.aspx/GetPolicyNos",
         data: JSON.stringify({ _search: _search }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -609,7 +553,7 @@ function VerifyAdditionalPolicyCover() {
     var _PolicyNumber = $("#txtPolicyNumber").val();
     $.ajax({
         type: "POST",
-        url: "Pol_Per_Det_Retrieval.aspx/VerifyAdditionalCover",
+        url: "PRG_LI_CLM_WAIVER.aspx/VerifyAdditionalCover",
         data: JSON.stringify({ _WaiverCodes: _WaiverCodes, _PolicyNumber: _PolicyNumber }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -692,7 +636,7 @@ function formatDate(dateValue) {
 function Get_Effected_Waiver_Dsc(waiverCode) {
     $.ajax({
         type: "POST",
-        url: "Pol_Per_Det_Retrieval.aspx/GetEffectedWaiverDsc",
+        url: "PRG_LI_CLM_WAIVER.aspx/GetEffectedWaiverDsc",
         data: JSON.stringify({ waiverCode: waiverCode }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
