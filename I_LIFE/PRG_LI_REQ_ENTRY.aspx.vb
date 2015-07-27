@@ -39,6 +39,11 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
 
     Dim strErrMsg As String
 
+    Dim basicLc As Decimal
+    Dim basicFc As Decimal
+    Dim addLc As Decimal
+    Dim addFc As Decimal
+    Dim newDateToDb As Date
 
     Shared _rtnMessage As String
 
@@ -166,7 +171,17 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
     Protected Sub cmdSearch_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdSearch.Click
         If LTrim(RTrim(Me.txtSearch.Value)) = "Search..." Then
         ElseIf LTrim(RTrim(Me.txtSearch.Value)) <> "" Then
-            Call gnProc_Populate_Box("IL_ASSURED_HELP_SP", "001", Me.cboSearch, RTrim(Me.txtSearch.Value))
+            'Call gnProc_Populate_Box("IL_ASSURED_HELP_SP", "001", Me.cboSearch, RTrim(Me.txtSearch.Value))
+
+            Dim dt As DataTable = GET_INSURED(txtSearch.Value.Trim()).Tables(0)
+
+            cboSearch.DataSource = dt
+            cboSearch.DataValueField = "TBIL_POLY_POLICY_NO"
+            cboSearch.DataTextField = "MyFld_Text"
+            cboSearch.DataBind()
+
+            'Call GET_INSURED(txtSearch.Value.Trim())
+
         End If
 
     End Sub
@@ -366,7 +381,17 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
             Dim ds As DataSet = New DataSet()
             adapter.Fill(ds)
             conn.Close()
-            Return ds.GetXml()
+
+            Dim dt As DataTable = ds.Tables(0)
+            For Each dr As DataRow In dt.Rows
+                Dim msg = dr("Msg").ToString()
+                If msg = 1 Then
+                    _rtnMessage = "Data Entry Successful!"
+
+                Else
+                    _rtnMessage = "Data entry failed, record already exist!"
+                End If
+            Next
 
 
         Catch ex As Exception
@@ -378,12 +403,87 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
 
     End Function
 
+
     Protected Sub cmdSave_ASP_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdSave_ASP.Click
+
 
         'Checking fields for empty values
         If txtPolicyNumber.Text = "" Then
             lblMsg.Text = ""
         End If
+
+
+        If txtBasicSumClaimsLC.Text = "" Then
+            lblMsg.Text = "Basic Sum Claimed LC field is required!"
+            txtBasicSumClaimsLC.Focus()
+            'Exit Sub
+        Else
+            basicLc = Convert.ToDecimal((txtBasicSumClaimsLC.Text).Replace(",", ""))
+
+        End If
+
+        If txtBasicSumClaimsFC.Text = "" Then
+            lblMsg.Text = "Basic Sum Claimed FC field is required!"
+            txtBasicSumClaimsFC.Focus()
+        Else
+            basicFc = Convert.ToDecimal((txtBasicSumClaimsFC.Text).Replace(",", ""))
+
+            'Exit Sub
+        End If
+
+        If txtAdditionalSumClaimsLC.Text = "" Then
+            lblMsg.Text = "Additional Sum Claimed LC field is required!"
+            txtAdditionalSumClaimsLC.Focus()
+
+        Else
+            addLc = Convert.ToDecimal((txtAdditionalSumClaimsLC.Text).Replace(",", ""))
+
+            'Exit Sub
+        End If
+
+        If txtAdditionalSumClaimsFC.Text = "" Then
+            lblMsg.Text = "Additional Sum Claimed FC field is required!"
+            txtAdditionalSumClaimsFC.Focus()
+            'Exit Sub
+        Else
+
+            addFc = Convert.ToDecimal((txtAdditionalSumClaimsFC.Text).Replace(",", ""))
+
+        End If
+
+        If txtAssuredAge.Text = "" Then
+            lblMsg.Text = "Assured Age field is required!"
+            txtAssuredAge.Focus()
+            Exit Sub
+        End If
+
+        If DdnSysModule.SelectedIndex = 0 Then
+            lblMsg.Text = "System Module field is required!"
+            DdnSysModule.Focus()
+            Exit Sub
+        End If
+
+        If DdnClaimType.SelectedIndex = 0 Then
+            lblMsg.Text = "Claims Type field is required!"
+            DdnClaimType.Focus()
+            Exit Sub
+        End If
+
+        If DdnLossType.SelectedIndex = 0 Then
+            lblMsg.Text = "Claims Type field is required!"
+            DdnLossType.Focus()
+            Exit Sub
+        End If
+
+
+        If txtProductDec.Text = "" Then
+            lblMsg.Text = "Product Description field is required!"
+            txtProductDec.Focus()
+            Exit Sub
+        End If
+
+
+
 
         If txtNotificationDate.Text = "" Then
             lblMsg.Text = "Notification Date field is required!"
@@ -434,6 +534,7 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
             strMyYear = CType(Format(Val(strMyYear), "0000"), String)
 
             strMyDte = Trim(strMyDay) & "/" & Trim(strMyMth) & "/" & Trim(strMyYear)
+            newDateToDb = Convert.ToDateTime(Trim(strMyYear) & "-" & Trim(strMyMth) & "-" & Trim(strMyDay))
 
             blnStatusX = MOD_GEN.gnTest_TransDate(strMyDte)
             If blnStatusX = False Then
@@ -442,75 +543,23 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
                 Exit Sub
             End If
             Me.txtNotificationDate.Text = RTrim(strMyDte)
-            Exit Sub
+            'Exit Sub
         End If
 
-        If txtBasicSumClaimsLC.Text = "" Then
-            lblMsg.Text = "Basic Sum Claimed LC field is required!"
-            txtBasicSumClaimsLC.Focus()
-            Exit Sub
-        End If
-
-        If txtBasicSumClaimsFC.Text = "" Then
-            lblMsg.Text = "Basic Sum Claimed FC field is required!"
-            txtBasicSumClaimsFC.Focus()
-            Exit Sub
-        End If
-
-        If txtAdditionalSumClaimsLC.Text = "" Then
-            lblMsg.Text = "Additional Sum Claimed LC field is required!"
-            txtAdditionalSumClaimsLC.Focus()
-            Exit Sub
-        End If
-
-        If txtAdditionalSumClaimsFC.Text = "" Then
-            lblMsg.Text = "Additional Sum Claimed FC field is required!"
-            txtAdditionalSumClaimsFC.Focus()
-            Exit Sub
-        End If
-
-        If txtAssuredAge.Text = "" Then
-            lblMsg.Text = "Assured Age field is required!"
-            txtAdditionalSumClaimsFC.Focus()
-            Exit Sub
-        End If
-
-        If DdnSysModule.SelectedIndex = 0 Then
-            lblMsg.Text = "System Module field is required!"
-            DdnSysModule.Focus()
-            Exit Sub
-        End If
-
-        If DdnClaimType.SelectedIndex = 0 Then
-            lblMsg.Text = "Claims Type field is required!"
-            DdnClaimType.Focus()
-            Exit Sub
-        End If
-
-        If DdnLossType.SelectedIndex = 0 Then
-            lblMsg.Text = "Claims Type field is required!"
-            DdnLossType.Focus()
-            Exit Sub
-        End If
-
-
-        If txtProductDec.Text = "" Then
-            lblMsg.Text = "Product Description field is required!"
-            txtProductDec.Focus()
-            Exit Sub
-        End If
 
         Dim flag As String = "A"
         Dim dateAdded As DateTime = Now
-        Dim operatorId As String = "10"
+        Dim operatorId As String = CType(Session("MyUserIDX"), String)
 
-        AddNewClaimsRequest(Convert.ToString(DdnSysModule.SelectedValue), _
+
+
+        lblMsg.Text = AddNewClaimsRequest(Convert.ToString(DdnSysModule.SelectedValue.ToString), _
                                 Convert.ToString(txtPolicyNumber.Text), Convert.ToString(txtClaimsNo.Text), _
                                 Convert.ToString(txtUWY.Text), txtProductCode.Text, DdnLossType.SelectedValue, _
-                                Convert.ToDateTime(txtPolicyStartDate), Convert.ToDateTime(txtPolicyEndDate), _
-                                Convert.ToDateTime(txtClaimsEffectiveDate.Text), Convert.ToDateTime(txtNotificationDate.Text), _
-                                Convert.ToDecimal(txtBasicSumClaimsLC.Text), Convert.ToDecimal(txtBasicSumClaimsFC.Text), _
-                                Convert.ToDecimal(txtAdditionalSumClaimsLC.Text), Convert.ToDecimal(txtAdditionalSumClaimsFC.Text), _
+                                Convert.ToDateTime(newDateToDb), Convert.ToDateTime(newDateToDb), _
+                                Convert.ToDateTime(newDateToDb), Convert.ToDateTime(newDateToDb), _
+                                Convert.ToDecimal(basicLc), Convert.ToDecimal(basicFc), _
+                                Convert.ToDecimal(addLc), Convert.ToDecimal(addFc), _
                                 Convert.ToString(txtProductDec.Text), Convert.ToInt16(txtAssuredAge.Text), _
                                 Convert.ToString(DdnLossType.SelectedValue), flag, dateAdded, operatorId)
 

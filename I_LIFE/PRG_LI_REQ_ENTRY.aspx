@@ -63,7 +63,9 @@
                                 <input type="text" id="txtSearch" name="txtSearch" value="Search..." runat="server"
                                     onfocus="if (this.value == 'Search...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search...';}" />
                                 &nbsp;<asp:Button ID="cmdSearch" Text="Search" runat="server" />
-                                &nbsp;<asp:DropDownList ID="cboSearch" AutoPostBack="true" Width="150px" runat="server">
+                                &nbsp;<asp:DropDownList ID="cboSearch" AutoPostBack="true" Width="150px" 
+                                    runat="server" AppendDataBoundItems="True">
+                                    <asp:ListItem>** Select Item **</asp:ListItem>
                                 </asp:DropDownList>
                             </td>
                         </tr>
