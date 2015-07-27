@@ -7,9 +7,6 @@
             //RetrieveTBIL_POLY_STATUS()
         }
     })
-    $("#txtAssuredCode").blur(function(e) {
-        // RetrieveInsuredDetails();
-    })
     $("#cmdSearch").click(function(e) {
         e.preventDefault();
         Retrieve_Policy_Nos()
@@ -43,7 +40,7 @@
 
 
     $('#txtPolicyStartDate').blur(function(e) {
-        e.preventDefault();
+      /*  e.preventDefault();
         if ($('#txtPolicyStartDate').val() != "") {
             var res = CheckDate($('#txtPolicyStartDate').val());
             if (res == true) {
@@ -55,12 +52,12 @@
                 $('#txtPolicyStartDate').focus();
                 return false;
             }
-        }
+        }*/
     });
 
 
     $('#txtPolicyEndDate').blur(function(e) {
-        e.preventDefault();
+       /* e.preventDefault();
         if ($('#txtPolicyEndDate').val() != "") {
             var res = CheckPolicyEndDate($('#txtPolicyEndDate').val());
             if (res == "Valid") {
@@ -77,7 +74,7 @@
                 $('#txtPolicyEndDate').focus();
                 return false;
             }
-        }
+        }*/
     });
 
     $('#txtWaiverEffectiveDate').blur(function(e) {
@@ -96,11 +93,6 @@
             }
         }
     });
-
-    //            $('#btnSave').click(function(e) {
-    //                e.preventDefault();
-    //              ValidateOnClient();
-    //            });
 });
 
 
@@ -138,6 +130,16 @@ function retrieve_AdminCodeInfoValues(admobjects) {
         var admobject = $(this);
         $('#txtAssuredCode').val($(this).find("TBIL_POLY_ASSRD_CD").text())
         $('#txtPolyStatus').val($(this).find("TBIL_POLY_STATUS").text())
+        $('#txtAssuredName').
+                val($(this).find("TBIL_INSRD_SURNAME").text() + '  ' + $(this).find("TBIL_INSRD_FIRSTNAME").text())
+        $('#HidAssuredName').
+                val($(this).find("TBIL_INSRD_SURNAME").text() + '  ' + $(this).find("TBIL_INSRD_FIRSTNAME").text())
+        $('#txtPolicyProCode').val($(this).find("TBIL_POL_PRM_PRDCT_CD").text())
+        $('#txtPolicyStartDate').val(formatDate($(this).find("TBIL_POL_PRM_FROM").text()));
+        $('#txtPolicyEndDate').val(formatDate($(this).find("TBIL_POL_PRM_TO").text()));
+        $('#txtProdDesc').val($(this).find("TBIL_PRDCT_DTL_DESC").text())
+        $('#HidProdDesc').val($(this).find("TBIL_PRDCT_DTL_DESC").text())
+       
         var status = $('#txtPolyStatus').val();
         if (status == "W") {
             $("#chkConfirmWaiver").prop("checked", true);
@@ -161,8 +163,8 @@ function retrieve_AdminCodeInfoValues(admobjects) {
             $('#lblWaiverEffFormat').hide();
         }
     });
-    RetrieveInsuredDetails();
-    RetrieveProductCode();
+    //RetrieveInsuredDetails();
+   // RetrieveProductCode();
 }
 function OnError_RetrieveAssuredCode(response) {
     //debugger;
@@ -262,7 +264,7 @@ function retrieve_RetrieveProductCode(admobjects) {
 
         $('#txtPolicyStartDate').val(formatDate($(this).find("TBIL_POL_PRM_FROM").text()));
         $('#txtPolicyEndDate').val(formatDate($(this).find("TBIL_POL_PRM_TO").text()));
-        RetrieveProductDetails();
+       // RetrieveProductDetails();
     });
 
 }
