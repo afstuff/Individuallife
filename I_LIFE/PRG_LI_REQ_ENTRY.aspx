@@ -65,7 +65,7 @@
                                 &nbsp;<asp:Button ID="cmdSearch" Text="Search" runat="server" />
                                 &nbsp;<asp:DropDownList ID="cboSearch" AutoPostBack="true" Width="150px" 
                                     runat="server" AppendDataBoundItems="True">
-                                    <asp:ListItem>** Select Item **</asp:ListItem>
+                                    <asp:ListItem>** Select Insured **</asp:ListItem>
                                 </asp:DropDownList>
                             </td>
                         </tr>
@@ -151,8 +151,8 @@
                             </td>
                             <td align="left" valign="top" class="style2">
                                 <asp:TextBox ID="txtProductCode" runat="server" Enabled="False"></asp:TextBox>
-                                <%--<br />--%>
-                                <asp:DropDownList ID="ddnProductDesc" runat="server" Visible="False" Width="200px">
+                                <%--<br />--%><asp:TextBox ID="txtProductCode0" runat="server" Enabled="False"></asp:TextBox>
+                                &nbsp;<asp:DropDownList ID="ddnProductDesc" runat="server" Visible="False" Width="200px">
                                 </asp:DropDownList>
                             </td>
                         </tr>

@@ -2573,7 +2573,7 @@ MyTestDate_Err1:
 
         'Checking fields for empty values
         If dateValue = "" Then
-            rtnMsg_ = "Field is required!"
+            rtnMsg_ = " Field is required!"
             rtnMsg(0) = rtnMsg_
             rtnMsg(1) = ctrlId.ID
             Return rtnMsg
@@ -2581,7 +2581,7 @@ MyTestDate_Err1:
             'Validate date
             Dim myarrData = Split(dateValue, "/")
             If myarrData.Count <> 3 Then
-                rtnMsg_ = "Missing or Invalid. Expecting full date in ddmmyyyy format ..."
+                rtnMsg_ = " Expecting full date in ddmmyyyy format ..."
                 rtnMsg_ = "Javascript:alert('" & rtnMsg_ & "')"
                 rtnMsg(0) = rtnMsg_
                 rtnMsg(1) = ctrlId.ID
@@ -2597,7 +2597,7 @@ MyTestDate_Err1:
             strMyYear = CType(Format(Val(strMyYear), "0000"), String)
 
             If Val(strMyYear) < 1999 Then
-                rtnMsg_ = "Error. Proposal year date is less than 1999 ..."
+                rtnMsg_ = " year part is less than 1999 ..."
                 rtnMsg_ = "Javascript:alert('" & rtnMsg_ & "')"
                 rtnMsg(0) = rtnMsg_
                 rtnMsg(1) = ctrlId.ID
@@ -2611,8 +2611,8 @@ MyTestDate_Err1:
 
             Dim blnStatusX = MOD_GEN.gnTest_TransDate(strMyDte)
             If blnStatusX = False Then
-                'rtnMsg_ = "Please enter valid date..."
-                rtnMsg_ = "Javascript:alert('Please enter valid date...');"
+                rtnMsg_ = " is not a valid date..."
+                rtnMsg_ = "Javascript:alert('" & rtnMsg_ & "');"
                 rtnMsg(0) = rtnMsg_
                 rtnMsg(1) = ctrlId.ID
                 Return rtnMsg

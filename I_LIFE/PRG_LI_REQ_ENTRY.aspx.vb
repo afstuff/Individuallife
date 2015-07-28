@@ -242,6 +242,8 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
                 txtPolicyNumber.Text = RTrim(CType(objOledr("TBIL_POLY_POLICY_NO") & vbNullString, String))
                 txtUWY.Text = CType(objOledr("TBIL_POLY_UNDW_YR") & vbNullString, String)
                 txtProductCode.Text = CType(objOledr("TBIL_POLY_PRDCT_CD") & vbNullString, String)
+                txtProductCode0.Text = CType(objOledr("TBIL_PRDCT_DTL_DESC") & vbNullString, String)
+
                 If IsDate(objOledr("TBIL_POL_PRM_FROM")) Then
                     txtPolicyStartDate.Text = Format(CType(objOledr("TBIL_POL_PRM_FROM"), DateTime), "dd/MM/yyyy")
                 End If
@@ -293,6 +295,8 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
                 txtPolicyNumber.Text = RTrim(CType(objOledr("TBIL_CLM_RPTD_POLY_NO") & vbNullString, String))
                 txtUWY.Text = CType(objOledr("TBIL_CLM_RPTD_UNDW_YR") & vbNullString, String)
                 txtProductCode.Text = CType(objOledr("TBIL_CLM_RPTD_PRDCT_CD") & vbNullString, String)
+                txtProductCode0.Text = CType(objOledr("TBIL_PRDCT_DTL_DESC") & vbNullString, String)
+
 
                 If IsDate(objOledr("TBIL_CLM_RPTD_POLY_FROM_DT")) Then
                     txtPolicyStartDate.Text = Format(CType(objOledr("TBIL_CLM_RPTD_POLY_FROM_DT"), DateTime), "dd/MM/yyyy")
@@ -486,7 +490,7 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
             str = MOD_GEN.DoDate_Process(txtNotificationDate.Text, ctrlId)
 
             If str(2) = Nothing Then
-                Dim errMsg = str(0).Insert(36, " Notification ")
+                Dim errMsg = str(0).Insert(18, " Notification date, ")
                 lblMsg.Text = errMsg.Replace("Javascript:alert('", "").Replace("');", "")
                 FirstMsg = errMsg
                 txtNotificationDate.Focus()
@@ -503,7 +507,7 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
             str = MOD_GEN.DoDate_Process(txtClaimsEffectiveDate.Text, ctrlId)
 
             If str(2) = Nothing Then
-                Dim errMsg = str(0).Insert(36, " Notification ")
+                Dim errMsg = str(0).Insert(18, " Claims Effective Date, ")
                 lblMsg.Text = errMsg.Replace("Javascript:alert('", "").Replace("');", "")
                 FirstMsg = errMsg
                 txtClaimsEffectiveDate.Focus()
@@ -520,7 +524,7 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
             str = MOD_GEN.DoDate_Process(txtPolicyStartDate.Text, ctrlId)
 
             If str(2) = Nothing Then
-                Dim errMsg = str(0).Insert(36, " Notification ")
+                Dim errMsg = str(0).Insert(18, " Policy Start Date, ")
                 lblMsg.Text = errMsg.Replace("Javascript:alert('", "").Replace("');", "")
                 FirstMsg = errMsg
                 txtPolicyStartDate.Focus()
@@ -537,7 +541,7 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
             str = MOD_GEN.DoDate_Process(txtPolicyEndDate.Text, ctrlId)
 
             If str(2) = Nothing Then
-                Dim errMsg = str(0).Insert(36, " Notification ")
+                Dim errMsg = str(0).Insert(18, " Policy End Date, ")
                 lblMsg.Text = errMsg.Replace("Javascript:alert('", "").Replace("');", "")
                 FirstMsg = errMsg
                 txtPolicyEndDate.Focus()
