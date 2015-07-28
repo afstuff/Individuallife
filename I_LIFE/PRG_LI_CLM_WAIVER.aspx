@@ -19,7 +19,6 @@
     <script src="../Script/jquery-1.11.0.js" type="text/javascript"></script>
     <script src="../jquery.simplemodal.js" type="text/javascript"></script>
     <script src="../Script/WaiverScript.js" type="text/javascript"></script>
-       <script type="text/javascript" src="../Script/WaiverScript.js"></script>
     <script language="javascript" type="text/javascript">
 // calling jquery functions once document is ready
     </script>
@@ -89,7 +88,7 @@
                                     
                                     <tr>
                                         <td align="center" colspan="4" valign="top">
-                                            &nbsp;&nbsp;<a href="#" onclick="javascript:JSDO_RETURN('PRG_LI_PROP_POLICY.aspx?menu=IL_QUOTE')">Go to Menu</a>
+                                            &nbsp;&nbsp;<a href="#" onclick="javascript:JSDO_RETURN('MENU_IL.aspx?menu=IL_CLAIM')">Go to Menu</a>
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:button id="cmdSave_ASP" CssClass="cmd_butt" runat="server" text="Save Data" OnClientClick="return ValidateOnClient()"></asp:button>
                                             &nbsp;&nbsp;<asp:button id="cmdDelete_ASP" CssClass="cmd_butt" Enabled="false"  runat="server" text="Delete Data" OnClientClick="JSDelete_ASP();"></asp:button>
                                             &nbsp;&nbsp;<asp:button id="cmdPrint_ASP" CssClass="cmd_butt" Enabled="False" runat="server" text="Print"></asp:button>
@@ -143,7 +142,7 @@
                             <asp:Label ID="Label4" runat="server" Text="Assured Name:"></asp:Label>
                         </td>
                         <td align="left" valign="top">
-                            <asp:TextBox ID="txtAssuredName" runat="server" Width="260px"></asp:TextBox>
+                            <asp:TextBox ID="txtAssuredName" runat="server" Width="270px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -157,7 +156,7 @@
                             <asp:Label ID="Label6" runat="server" Text="Production Description: "></asp:Label>
                         </td>
                         <td align="left" valign="top">
-                            <asp:TextBox ID="txtProdDesc" runat="server" Width="260px" style="height: 22px"></asp:TextBox>
+                            <asp:TextBox ID="txtProdDesc" runat="server" Width="270px" style="height: 22px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -220,7 +219,9 @@
                             <asp:HiddenField ID="HidPolEndDate" runat="server" />
                             </td>
                         <td>
-                            &nbsp;</td>
+                            <asp:HiddenField ID="HidAssuredCode" runat="server" />
+                            <asp:HiddenField ID="HidPolicyProCode" runat="server" />
+                            </td>
                     </tr>
                 </table>
                     </td>                                                                                    

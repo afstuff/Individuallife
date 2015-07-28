@@ -2,12 +2,9 @@
     $("#txtPolicyNumber").blur(function(e) {
         e.preventDefault();
         if ($("#txtPolicyNumber").val() != "") {
+            console.log('RetrieveAssuredCode init');
             RetrieveAssuredCode();
         }
-    })
-    $("#cmdSearch").click(function(e) {
-        e.preventDefault();
-        Retrieve_Policy_Nos()
     })
     $('#cboSearch').change(function(e) {
         e.preventDefault();
@@ -41,11 +38,11 @@
         if ($('#txtWaiverEffectiveDate').val() != "") {
             var res = CheckDate($('#txtWaiverEffectiveDate').val());
             if (res == true) {
-                $('#ans').text("");
+                $('#lblMsg').text("");
                 return true
             }
             else {
-                $('#ans').text("Not a valid Waiver effective date format");
+                $('#lblMsg').text("Not a valid Waiver effective date format");
                 $('#txtWaiverEffectiveDate').focus();
                 return false;
             }
@@ -56,9 +53,11 @@
 
 
 function RetrieveAssuredCode() {
+    console.log('RetrieveAssuredCode init1');
+    $('#lblMsg').text("");
     InitializeClientControls()
     var policyNo = $("#txtPolicyNumber").val();
-    //alert("This is the class code: " + document.getElementById('txtClassCod').value + " and Item code :" + document.getElementById('txtTransNum').value);
+    //alert("This is the class code: " + document.getElementById('txtClassCod').value + " and Item code :" + document.getElementById('txtTrlblMsgNum').value);
     $.ajax({
         type: "POST",
         url: "PRG_LI_CLM_WAIVER.aspx/GetPolicyPerInfo",
@@ -87,12 +86,14 @@ function retrieve_AdminCodeInfoValues(admobjects) {
     $.each(admobjects, function() {
         var admobject = $(this);
         $('#txtAssuredCode').val($(this).find("TBIL_POLY_ASSRD_CD").text())
+        $('#HidAssuredCode').val($(this).find("TBIL_POLY_ASSRD_CD").text())
         $('#txtPolyStatus').val($(this).find("TBIL_POLY_STATUS").text())
         $('#txtAssuredName').
                 val($(this).find("TBIL_INSRD_SURNAME").text() + '  ' + $(this).find("TBIL_INSRD_FIRSTNAME").text())
         $('#HidAssuredName').
                 val($(this).find("TBIL_INSRD_SURNAME").text() + '  ' + $(this).find("TBIL_INSRD_FIRSTNAME").text())
         $('#txtPolicyProCode').val($(this).find("TBIL_POL_PRM_PRDCT_CD").text())
+        $('#HidPolicyProCode').val($(this).find("TBIL_POL_PRM_PRDCT_CD").text())
         
         $('#txtPolicyStartDate').val(formatDate($(this).find("TBIL_POL_PRM_FROM").text()));
         $('#HidPolStartDate').val(formatDate($(this).find("TBIL_POL_PRM_FROM").text()));
@@ -110,7 +111,7 @@ function retrieve_AdminCodeInfoValues(admobjects) {
             $('#txtWaiverEffectiveDate').show();
             $('#lblWaiverEffFormat').show();
             $('#txtWaiverEffectiveDate').val(formatDate($(this).find("WAIVER_DT").text()));
-
+            $('#lblMsg').text("Waiver has already been processed");
             GetCoverCodes()
             var waiverCode = $(this).find("WAIVERCODE").text();
             Get_Effected_Waiver_Dsc(waiverCode)
@@ -122,6 +123,7 @@ function retrieve_AdminCodeInfoValues(admobjects) {
             $('#lblWaiverEffDate').hide();
             $('#txtWaiverEffectiveDate').hide();
             $('#lblWaiverEffFormat').hide();
+            $('#lblMsg').text("");
         }
     });
     //RetrieveInsuredDetails();
@@ -224,65 +226,65 @@ function CheckDate(my) {
 
 function ValidateOnClient() {
     if ($("#txtPolicyNumber").val() == "") {
-        $("#ans").text("Please enter a policy number");
+        $("#lblMsg").text("Please enter a policy number");
         return false;
     }
     else if ($("#txtAssuredCode").val() == "") {
-        $("#ans").text("Please enter a assurance code");
+        $("#lblMsg").text("Please enter a assurance code");
         return false;
     }
     else if ($("#txtPolicyProCode").val() == "") {
-        $("#ans").text("Please enter policy product code");
+        $("#lblMsg").text("Please enter policy product code");
         return false;
     }
     else if ($("#txtPolicyStartDate").val() == "") {
-        $("#ans").text("Please enter policy start date");
+        $("#lblMsg").text("Please enter policy start date");
         return false;
     }
 
     else if (CheckDate($('#txtPolicyStartDate').val())==false) {
-                $('#ans').text("Not a valid Policy start date format");
+                $('#lblMsg').text("Not a valid Policy start date format");
                 $('#txtPolicyStartDate').focus();
                 return false;
     }
     else if ($("#txtPolicyEndDate").val() == "") {
-        $("#ans").text("Please enter policy end date");
+        $("#lblMsg").text("Please enter policy end date");
         return false;
     }
     else if (CheckPolicyEndDate($('#txtPolicyEndDate').val()) == "Invalid") {
-        $('#ans').text("Not a valid policy end date format");
+        $('#lblMsg').text("Not a valid policy end date format");
         $('#txtPolicyEndDate').focus();
         return false;
     }
     else if (CheckPolicyEndDate($('#txtPolicyEndDate').val()) == "Invalid1") {
-    $('#ans').text("Policy end date must be a future date");
+    $('#lblMsg').text("Policy end date must be a future date");
         $('#txtPolicyEndDate').focus();
         return false;
     }
     else if (!$('#chkConfirmWaiver').is(":checked")) {
-        // $("#ans").text("");
-        $("#ans").text("Please confirm waiver");
+        // $("#lblMsg").text("");
+        $("#lblMsg").text("Please confirm waiver");
         return false
     }
     else if ($("#drpWaiverCodes").val() == "Select") {
-        $("#ans").text("Please select a waiver code");
+        $("#lblMsg").text("Please select a waiver code");
         return false;
     }
     else if ($("#txtWaiverEffectiveDate").val() == "") {
-        $("#ans").text("Please enter waiver effective date");
+        $("#lblMsg").text("Please enter waiver effective date");
         return false;
     }
     else if (CheckDate($('#txtWaiverEffectiveDate').val()) == false) {
-        $('#ans').text("Not a valid waiver effective date format");
+        $('#lblMsg').text("Not a valid waiver effective date format");
         $('#txtPolicyStartDate').focus();
         return false;
     }
     else if ($("#txtPolyStatus").val() == "") {
-        $("#ans").text("Waiver cannot be process because status is null");
+        $("#lblMsg").text("Waiver cannot be process because status is null");
         return false;
     }
     else if ($("#txtPolyStatus").val() == "W") {
-        $("#ans").text("Waiver has already been processed");
+        $("#lblMsg").text("Waiver has already been processed");
         return false;
     }
 //    else if (CheckDate($("#txtPolicyStartDate").val(), 'txtPolicyStartDate')) {
@@ -295,16 +297,16 @@ function ValidateOnClient() {
         $('#lblWaiverEffDate').hide();
         $('#txtWaiverEffectiveDate').hide();
         $('#lblWaiverEffFormat').hide();
+        InitializeClientControls() 
     }
 }
 
 function GetPolicyNoFromDpList() {
-    //             $('cboSearch').change(function() {
+    console.log('GetPolicyNoFromDpList init');
     var details = $('#cboSearch').val();
     $('#txtPolicyNumber').val(details)
-    $('#txtAssuredCode').focus()
+   // $('#txtAssuredCode').focus()
     RetrieveAssuredCode();
-    //RetrieveTBIL_POLY_STATUS()
 }
 
 function VerifyAdditionalPolicyCover() {
@@ -363,8 +365,8 @@ function OnFailure_VerifyAdditionalPolicyCover(response) {
 }
 
 function InitializeClientControls() {
-    $('#lblMsg').text("");
-    $('#ans').text("");
+    //$('#lblMsg').text("");
+    //$('#lblMsg').text("");
     $('#txtAssuredCode').val("");
     $('#txtAssuredName').val("");
     $('#drpWaiverCodes').empty();
@@ -380,6 +382,10 @@ function InitializeClientControls() {
     $('#lblWaiverEffDate').hide();
     $('#txtWaiverEffectiveDate').hide();
     $('#lblWaiverEffFormat').hide();
+    $('#HidAssuredName').val("");
+    $('#HidPolStartDate').val("");     
+    $('#HidPolEndDate').val("");
+    $('#HidProdDesc').val("");
 }
 
 

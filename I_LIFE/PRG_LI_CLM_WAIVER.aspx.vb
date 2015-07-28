@@ -22,6 +22,8 @@ Partial Class PRG_LI_CLM_WAIVER
         txtProdDesc.Attributes.Add("disabled", "disabled")
         txtPolicyStartDate.Attributes.Add("disabled", "disabled")
         txtPolicyEndDate.Attributes.Add("disabled", "disabled")
+        txtAssuredCode.Attributes.Add("disabled", "disabled")
+        txtPolicyProCode.Attributes.Add("disabled", "disabled")
         strTableName = "TBIL_POLICY_DET"
         If Not IsPostBack Then
         Else
@@ -29,6 +31,8 @@ Partial Class PRG_LI_CLM_WAIVER
             txtProdDesc.Text = HidProdDesc.Value
             txtPolicyStartDate.Text = HidPolStartDate.Value
             txtPolicyEndDate.Text = HidPolEndDate.Value
+            txtPolicyProCode.Text = HidPolicyProCode.Value
+            txtAssuredCode.Text = HidAssuredCode.Value
         End If
     End Sub
     Protected Sub cboSearch_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboSearch.SelectedIndexChanged
@@ -51,6 +55,8 @@ Partial Class PRG_LI_CLM_WAIVER
         If LTrim(RTrim(Me.txtSearch.Value)) = "Search..." Then
         ElseIf LTrim(RTrim(Me.txtSearch.Value)) <> "" Then
             'Call gnProc_Populate_Box("IL_ASSURED_HELP_SP", "001", Me.cboSearch, RTrim(Me.txtSearch.Value))
+            cboSearch.Items.Clear()
+            cboSearch.Items.Add("* Select Insured *")
             Dim dt As DataTable = GET_INSURED(txtSearch.Value.Trim()).Tables(0)
             cboSearch.DataSource = dt
             cboSearch.DataValueField = "TBIL_POLY_POLICY_NO"
@@ -176,6 +182,13 @@ Partial Class PRG_LI_CLM_WAIVER
         txtPolicyStartDate.Text = String.Empty
         txtPolicyEndDate.Text = String.Empty
         txtWaiverEffectiveDate.Text = String.Empty
+        chkConfirmWaiver.Checked = False
+        HidAssuredName.Value = String.Empty
+        HidProdDesc.Value = String.Empty
+        HidPolStartDate.Value = String.Empty
+        HidPolEndDate.Value = String.Empty
+        HidPolicyProCode.Value = String.Empty
+        HidAssuredCode.Value = String.Empty
     End Sub
     <System.Web.Services.WebMethod()> _
 Public Shared Function GetPolicyPerInfo(ByVal _policyNo As String) As String
@@ -234,78 +247,17 @@ Public Shared Function GetEffectedWaiverDsc(ByVal waiverCode As String) As Strin
    
 
     Private Sub Proc_DoSave()
-        Dim strMyYear As String = ""
-        Dim strMyMth As String = ""
-        Dim strMyDay As String = ""
-        Dim strMyDte As String = ""
-        Dim strMyDteX As String = ""
-        Dim mydteX As String = ""
-        Dim Dte_System As Date = Now
-        Dim mydte As Date = Now
-        Dim Dte_Waiver As Date = Now
-
-        'Validate date
-        Dim myarrData = Split(Me.txtWaiverEffectiveDate.Text, "/")
-        If myarrData.Count <> 3 Then
-            Me.lblMsg.Text = "Missing or Invalid Waiver Effective Date. Expecting full date in ddmmyyyy format ..."
-            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+        Dim str() As String
+        str = DoDate_Process(txtWaiverEffectiveDate.Text, txtWaiverEffectiveDate)
+        If (str(2) = Nothing) Then
+            Dim errMsg = str(0).Insert(18, " Waiver Effective Date, ")
+            lblMsg.Text = errMsg.Replace("Javascript:alert('", "").Replace("');", "")
+            txtWaiverEffectiveDate.Focus()
             Exit Sub
-        End If
-        strMyDay = myarrData(0)
-        strMyMth = myarrData(1)
-        strMyYear = myarrData(2)
-
-        strMyDay = CType(Format(Val(strMyDay), "00"), String)
-        strMyMth = CType(Format(Val(strMyMth), "00"), String)
-        strMyYear = CType(Format(Val(strMyYear), "0000"), String)
-        If Val(strMyYear) < 1999 Then
-            Me.lblMsg.Text = "Error. Proposal year date is less than 1999 ..."
-            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
-            Exit Sub
+        Else
+            txtWaiverEffectiveDate.Text = str(2).ToString()
         End If
 
-        strMyDte = Trim(strMyDay) & "/" & Trim(strMyMth) & "/" & Trim(strMyYear)
-        Me.txtWaiverEffectiveDate.Text = Trim(strMyDte)
-
-        If RTrim(Me.txtWaiverEffectiveDate.Text) = "" Or Len(Trim(Me.txtWaiverEffectiveDate.Text)) <> 10 Then
-            Me.lblMsg.Text = "Missing or Invalid date - Proposal Date..."
-            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
-            Exit Sub
-        End If
-
-        'Validate date
-        myarrData = Split(Me.txtWaiverEffectiveDate.Text, "/")
-        If myarrData.Count <> 3 Then
-            Me.lblMsg.Text = "Missing or Invalid " & Me.txtWaiverEffectiveDate.Text & ". Expecting full date in ddmmyyyy format ..."
-            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
-            Exit Sub
-        End If
-        strMyDay = myarrData(0)
-        strMyMth = myarrData(1)
-        strMyYear = myarrData(2)
-
-        strMyDay = CType(Format(Val(strMyDay), "00"), String)
-        strMyMth = CType(Format(Val(strMyMth), "00"), String)
-        strMyYear = CType(Format(Val(strMyYear), "0000"), String)
-
-        strMyDte = Trim(strMyDay) & "/" & Trim(strMyMth) & "/" & Trim(strMyYear)
-
-        blnStatusX = MOD_GEN.gnTest_TransDate(strMyDte)
-        If blnStatusX = False Then
-            Me.lblMsg.Text = "Please enter valid date..."
-            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
-            Exit Sub
-        End If
-        Me.txtWaiverEffectiveDate.Text = RTrim(strMyDte)
-        'mydteX = Mid(Me.txtStartDate.Text, 4, 2) & "/" & Left(Me.txtStartDate.Text, 2) & "/" & Right(Me.txtStartDate.Text, 4)
-        'mydteX = Trim(strMyMth) & "/" & Trim(strMyDay) & "/" & Trim(strMyYear)
-        mydteX = Trim(strMyDay) & "/" & Trim(strMyMth) & "/" & Trim(strMyYear)
-        mydte = CDate(mydteX)
-        'Dte_Waiver = Format(mydte, "MM/dd/yyyy")
-        Dte_Waiver = Format(mydte, "yyyy/MM/dd")
-
-        'mydte = Format(CDate(mydteX), "yyyy/MM/dd")
-        'Dte_Waiver = Format(mydte, "yyyy/MM/dd")
 
         Dim myUserIDX As String = ""
         Try
@@ -359,7 +311,7 @@ Public Shared Function GetEffectedWaiverDsc(ByVal waiverCode As String) As Strin
             Else
                 '   Update existing record
                 With obj_DT
-                    .Rows(0)("TBIL_POLY_WAIVER_DT") = Dte_Waiver
+                    .Rows(0)("TBIL_POLY_WAIVER_DT") = Convert.ToDateTime(DoConvertToDbDateFormat(txtWaiverEffectiveDate.Text))
                     .Rows(0)("TBIL_POLY_STATUS") = "W"
                     .Rows(0)("TBIL_POLY_KEYDTE") = Now
                     .Rows(0)("TBIL_POLY_FLAG") = "A"
