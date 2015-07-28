@@ -76,7 +76,7 @@
                         </tr>
                         <tr>
                             <td align="center" colspan="4" valign="top">
-                                &nbsp;&nbsp;<a href="#" onclick="javascript:JSDO_RETURN('PRG_LI_PROP_POLICY.aspx?menu=IL_QUOTE')">Go
+                                &nbsp;&nbsp;<a href="#" onclick="javascript:JSDO_RETURN('MENU_IL.aspx?menu=IL_CLAIM')">Go
                                     to Menu</a> &nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="cmdNew_ASP" CssClass="cmd_butt"
                                         runat="server" Text="New Data" OnClientClick="JSNew_ASP();"></asp:Button>
                                 &nbsp;
