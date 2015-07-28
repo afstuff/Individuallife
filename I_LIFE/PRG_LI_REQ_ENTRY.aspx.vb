@@ -168,9 +168,9 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
     End Function
 
 
-    Protected Sub cmdSearch_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdSearch.Click
-        If LTrim(RTrim(Me.txtSearch.Value)) = "Search..." Then
-        ElseIf LTrim(RTrim(Me.txtSearch.Value)) <> "" Then
+    Protected Sub cmdSearch_Click(ByVal sender As Object, ByVal e As EventArgs) Handles cmdSearch.Click
+        If LTrim(RTrim(txtSearch.Value)) = "Search..." Then
+        ElseIf LTrim(RTrim(txtSearch.Value)) <> "" Then
             'Call gnProc_Populate_Box("IL_ASSURED_HELP_SP", "001", Me.cboSearch, RTrim(Me.txtSearch.Value))
 
             Dim dt As DataTable = GET_INSURED(txtSearch.Value.Trim()).Tables(0)
@@ -208,17 +208,16 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
 
     End Sub
 
-    Protected Sub cboSearch_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboSearch.SelectedIndexChanged
+    Protected Sub cboSearch_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles cboSearch.SelectedIndexChanged
         Try
-            If Me.cboSearch.SelectedIndex = -1 Or Me.cboSearch.SelectedIndex = 0 Or _
-            Me.cboSearch.SelectedItem.Value = "" Or Me.cboSearch.SelectedItem.Value = "*" Then
+            If cboSearch.SelectedIndex = -1 Or cboSearch.SelectedIndex = 0 Or cboSearch.SelectedItem.Value = "" Or cboSearch.SelectedItem.Value = "*" Then
 
             Else
-                Dim cboValue As String = Me.cboSearch.SelectedItem.Value
+                Dim cboValue As String = cboSearch.SelectedItem.Value
                 strStatus = GetPolicyDetailsByNumber(cboValue.Trim())
             End If
         Catch ex As Exception
-            Me.lblMsg.Text = "Error. Reason: " & ex.Message.ToString
+            lblMsg.Text = "Error. Reason: " & ex.Message.ToString
         End Try
     End Sub
 
@@ -261,17 +260,20 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
                     txtClaimsEffectiveDate.Text = Format(CType(objOledr("TBIL_POLICY_EFF_DT"), DateTime), "dd/MM/yyyy")
                 End If
 
+            Else
+                _rtnMessage = "Unable to retrieve record. Invalid CLAIMS NUMBER!"
             End If
             conn.Close()
         Catch ex As Exception
-
+            _rtnMessage = "Error retrieving data! " + ex.Message
         End Try
 
-        Return Nothing
+        Return _rtnMessage
+
     End Function
 
     Private Function GetClaimsDetailsByNumber(ByVal claimNumber As String) As String
-
+        'Dim rtnString As String
         Dim mystrConn As String = CType(Session("connstr"), String)
         Dim conn As OleDbConnection
         conn = New OleDbConnection(mystrConn)
@@ -316,16 +318,17 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
                 DdnSysModule.SelectedValue = CType(objOledr("TBIL_CLM_RPTD_MDLE") & vbNullString, String)
                 DdnLossType.SelectedValue = CType(objOledr("TBIL_CLM_RPTD_LOSS_TYPE") & vbNullString, String)
                 txtProductDec.Text = CType(objOledr("TBIL_CLM_RPTD_DESC") & vbNullString, String)
-
+            Else
+                _rtnMessage = "Unable to retrieve record. Invalid POLICY NUMBER!"
             End If
             conn.Close()
         Catch ex As Exception
-
+            _rtnMessage = "Error retrieving data! " + ex.Message
         End Try
 
-        Return Nothing
+        Return _rtnMessage
     End Function
-    Protected Sub cmdPolyNoGet_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdPolyNoGet.Click
+    Protected Sub cmdPolyNoGet_Click(ByVal sender As Object, ByVal e As EventArgs) Handles cmdPolyNoGet.Click
         If txtPolicyNumber.Text <> "" Then
             strStatus = GetPolicyDetailsByNumber(txtPolicyNumber.Text.Trim())
         End If
@@ -387,13 +390,10 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
                 Dim msg = dr("Msg").ToString()
                 If msg = 1 Then
                     _rtnMessage = "Data Entry Successful!"
-
                 Else
                     _rtnMessage = "Data entry failed, record already exist!"
                 End If
             Next
-
-
         Catch ex As Exception
             _rtnMessage = "Entry failed! " + ex.Message.ToString()
         End Try
@@ -403,20 +403,158 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
 
     End Function
 
+    'Function DoDate_Process(ByVal dateValue As String, ByVal ctrlId As Control) As String()
+    '    Dim rtnMsg(3) As String
+    '    Dim rtnMsg_ As String = Nothing
+
+    '    'Checking fields for empty values
+    '    If dateValue = "" Then
+    '        rtnMsg_ = "Field is required!"
+    '        rtnMsg(0) = rtnMsg_
+    '        rtnMsg(1) = ctrlId.ID
+    '        Return rtnMsg
+    '    Else
+    '        'Validate date
+    '        myarrData = Split(dateValue, "/")
+    '        If myarrData.Count <> 3 Then
+    '            rtnMsg_ = "Missing or Invalid. Expecting full date in ddmmyyyy format ..."
+    '            rtnMsg_ = "Javascript:alert('" & rtnMsg_ & "')"
+    '            rtnMsg(0) = rtnMsg_
+    '            rtnMsg(1) = ctrlId.ID
+    '            Return rtnMsg
+    '            'Exit Function
+    '        End If
+    '        Dim strMyDay = myarrData(0)
+    '        Dim strMyMth = myarrData(1)
+    '        Dim strMyYear = myarrData(2)
+
+    '        strMyDay = CType(Format(Val(strMyDay), "00"), String)
+    '        strMyMth = CType(Format(Val(strMyMth), "00"), String)
+    '        strMyYear = CType(Format(Val(strMyYear), "0000"), String)
+
+    '        If Val(strMyYear) < 1999 Then
+    '            rtnMsg_ = "Error. Proposal year date is less than 1999 ..."
+    '            rtnMsg_ = "Javascript:alert('" & rtnMsg_ & "')"
+    '            rtnMsg(0) = rtnMsg_
+    '            rtnMsg(1) = ctrlId.ID
+    '            Return rtnMsg
+    '            'Exit Function
+    '        End If
+
+    '        Dim strMyDte = Trim(strMyDay) & "/" & Trim(strMyMth) & "/" & Trim(strMyYear)
+    '        'dateValue = Trim(strMyDte)
+
+
+    '        blnStatusX = MOD_GEN.gnTest_TransDate(strMyDte)
+    '        If blnStatusX = False Then
+    '            'rtnMsg_ = "Please enter valid date..."
+    '            rtnMsg_ = "Javascript:alert('Please enter valid date...');"
+    '            rtnMsg(0) = rtnMsg_
+    '            rtnMsg(1) = ctrlId.ID
+    '            Return rtnMsg
+    '            'Exit Function
+    '        Else
+    '            rtnMsg(2) = CType(strMyDte, String)
+    '            Return rtnMsg
+    '        End If
+    '        dateValue = RTrim(strMyDte)
+    '        'Exit Sub
+    '    End If
+
+
+
+    '    Return rtnMsg
+    'End Function
+
+    'Public Function DoConvertToDbDateFormat(ByVal dateValue As String) As String
+    '    Dim dDate = dateValue.Split(CType("/", Char))
+    '    Dim newDate = dDate(2) + "-" + dDate(1) + "-" + dDate(0)
+    '    Return newDate
+    'End Function
 
     Protected Sub cmdSave_ASP_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdSave_ASP.Click
 
+        Dim str() As String
 
         'Checking fields for empty values
         If txtPolicyNumber.Text = "" Then
             lblMsg.Text = ""
         End If
 
+        If txtNotificationDate.Text <> "" Then
+            Dim ctrlId As Control = FindControl("txtNotificationDate")
+            str = MOD_GEN.DoDate_Process(txtNotificationDate.Text, ctrlId)
+
+            If str(2) = Nothing Then
+                Dim errMsg = str(0).Insert(36, " Notification ")
+                lblMsg.Text = errMsg.Replace("Javascript:alert('", "").Replace("');", "")
+                FirstMsg = errMsg
+                txtNotificationDate.Focus()
+                Exit Sub
+
+            Else
+                txtNotificationDate.Text = str(2).ToString()
+            End If
+
+        End If
+
+        If txtClaimsEffectiveDate.Text <> "" Then
+            Dim ctrlId As Control = FindControl("txtClaimsEffectiveDate")
+            str = MOD_GEN.DoDate_Process(txtClaimsEffectiveDate.Text, ctrlId)
+
+            If str(2) = Nothing Then
+                Dim errMsg = str(0).Insert(36, " Notification ")
+                lblMsg.Text = errMsg.Replace("Javascript:alert('", "").Replace("');", "")
+                FirstMsg = errMsg
+                txtClaimsEffectiveDate.Focus()
+                Exit Sub
+
+            Else
+                txtClaimsEffectiveDate.Text = str(2).ToString()
+            End If
+
+        End If
+
+        If txtPolicyStartDate.Text <> "" Then
+            Dim ctrlId As Control = FindControl("txtPolicyStartDate")
+            str = MOD_GEN.DoDate_Process(txtPolicyStartDate.Text, ctrlId)
+
+            If str(2) = Nothing Then
+                Dim errMsg = str(0).Insert(36, " Notification ")
+                lblMsg.Text = errMsg.Replace("Javascript:alert('", "").Replace("');", "")
+                FirstMsg = errMsg
+                txtPolicyStartDate.Focus()
+                Exit Sub
+
+            Else
+                txtPolicyStartDate.Text = str(2).ToString()
+            End If
+
+        End If
+
+        If txtPolicyEndDate.Text <> "" Then
+            Dim ctrlId As Control = FindControl("txtPolicyEndDate")
+            str = MOD_GEN.DoDate_Process(txtPolicyEndDate.Text, ctrlId)
+
+            If str(2) = Nothing Then
+                Dim errMsg = str(0).Insert(36, " Notification ")
+                lblMsg.Text = errMsg.Replace("Javascript:alert('", "").Replace("');", "")
+                FirstMsg = errMsg
+                txtPolicyEndDate.Focus()
+                Exit Sub
+
+            Else
+                txtPolicyEndDate.Text = str(2).ToString()
+            End If
+
+        End If
+
+        'end date validation
 
         If txtBasicSumClaimsLC.Text = "" Then
             lblMsg.Text = "Basic Sum Claimed LC field is required!"
             txtBasicSumClaimsLC.Focus()
-            'Exit Sub
+            Exit Sub
         Else
             basicLc = Convert.ToDecimal((txtBasicSumClaimsLC.Text).Replace(",", ""))
 
@@ -425,28 +563,25 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
         If txtBasicSumClaimsFC.Text = "" Then
             lblMsg.Text = "Basic Sum Claimed FC field is required!"
             txtBasicSumClaimsFC.Focus()
+            Exit Sub
         Else
             basicFc = Convert.ToDecimal((txtBasicSumClaimsFC.Text).Replace(",", ""))
-
-            'Exit Sub
         End If
 
         If txtAdditionalSumClaimsLC.Text = "" Then
             lblMsg.Text = "Additional Sum Claimed LC field is required!"
             txtAdditionalSumClaimsLC.Focus()
-
+            Exit Sub
         Else
             addLc = Convert.ToDecimal((txtAdditionalSumClaimsLC.Text).Replace(",", ""))
 
-            'Exit Sub
         End If
 
         If txtAdditionalSumClaimsFC.Text = "" Then
             lblMsg.Text = "Additional Sum Claimed FC field is required!"
             txtAdditionalSumClaimsFC.Focus()
-            'Exit Sub
+            Exit Sub
         Else
-
             addFc = Convert.ToDecimal((txtAdditionalSumClaimsFC.Text).Replace(",", ""))
 
         End If
@@ -482,71 +617,6 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
             Exit Sub
         End If
 
-
-
-
-        If txtNotificationDate.Text = "" Then
-            lblMsg.Text = "Notification Date field is required!"
-            txtNotificationDate.Focus()
-        Else
-            'Validate date
-            myarrData = Split(Me.txtNotificationDate.Text, "/")
-            If myarrData.Count <> 3 Then
-                Me.lblMsg.Text = "Missing or Invalid. Expecting full date in ddmmyyyy format ..."
-                FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
-                Exit Sub
-            End If
-            Dim strMyDay = myarrData(0)
-            Dim strMyMth = myarrData(1)
-            Dim strMyYear = myarrData(2)
-
-            strMyDay = CType(Format(Val(strMyDay), "00"), String)
-            strMyMth = CType(Format(Val(strMyMth), "00"), String)
-            strMyYear = CType(Format(Val(strMyYear), "0000"), String)
-            If Val(strMyYear) < 1999 Then
-                Me.lblMsg.Text = "Error. Proposal year date is less than 1999 ..."
-                FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
-                Exit Sub
-            End If
-
-            Dim strMyDte = Trim(strMyDay) & "/" & Trim(strMyMth) & "/" & Trim(strMyYear)
-            Me.txtNotificationDate.Text = Trim(strMyDte)
-
-            If RTrim(Me.txtNotificationDate.Text) = "" Or Len(Trim(Me.txtNotificationDate.Text)) <> 10 Then
-                Me.lblMsg.Text = "Missing or Invalid date - Proposal Date..."
-                FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
-                Exit Sub
-            End If
-
-            'Validate date
-            myarrData = Split(Me.txtNotificationDate.Text, "/")
-            If myarrData.Count <> 3 Then
-                Me.lblMsg.Text = "Missing or Invalid. Expecting full date in ddmmyyyy format ..."
-                FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
-                Exit Sub
-            End If
-            strMyDay = myarrData(0)
-            strMyMth = myarrData(1)
-            strMyYear = myarrData(2)
-
-            strMyDay = CType(Format(Val(strMyDay), "00"), String)
-            strMyMth = CType(Format(Val(strMyMth), "00"), String)
-            strMyYear = CType(Format(Val(strMyYear), "0000"), String)
-
-            strMyDte = Trim(strMyDay) & "/" & Trim(strMyMth) & "/" & Trim(strMyYear)
-            newDateToDb = Convert.ToDateTime(Trim(strMyYear) & "-" & Trim(strMyMth) & "-" & Trim(strMyDay))
-
-            blnStatusX = MOD_GEN.gnTest_TransDate(strMyDte)
-            If blnStatusX = False Then
-                Me.lblMsg.Text = "Please enter valid date..."
-                FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
-                Exit Sub
-            End If
-            Me.txtNotificationDate.Text = RTrim(strMyDte)
-            'Exit Sub
-        End If
-
-
         Dim flag As String = "A"
         Dim dateAdded As DateTime = Now
         Dim operatorId As String = CType(Session("MyUserIDX"), String)
@@ -556,8 +626,10 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
         lblMsg.Text = AddNewClaimsRequest(Convert.ToString(DdnSysModule.SelectedValue.ToString), _
                                 Convert.ToString(txtPolicyNumber.Text), Convert.ToString(txtClaimsNo.Text), _
                                 Convert.ToString(txtUWY.Text), txtProductCode.Text, DdnLossType.SelectedValue, _
-                                Convert.ToDateTime(newDateToDb), Convert.ToDateTime(newDateToDb), _
-                                Convert.ToDateTime(newDateToDb), Convert.ToDateTime(newDateToDb), _
+                                Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtPolicyStartDate.Text)), _
+                                Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtPolicyEndDate.Text)), _
+                                Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtClaimsEffectiveDate.Text)), _
+                                Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtNotificationDate.Text)), _
                                 Convert.ToDecimal(basicLc), Convert.ToDecimal(basicFc), _
                                 Convert.ToDecimal(addLc), Convert.ToDecimal(addFc), _
                                 Convert.ToString(txtProductDec.Text), Convert.ToInt16(txtAssuredAge.Text), _
