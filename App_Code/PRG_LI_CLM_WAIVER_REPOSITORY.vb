@@ -85,24 +85,4 @@ Public Class PRG_LI_CLM_WAIVER_REPOSITORY
         conn.Close()
         Return Ds
     End Function
-    Public Function EffectWaiver(ByVal waiverCode As String, ByVal policyNo As String, ByVal waiverEffectiveDate As Date) As String
-        Dim msg As String
-        'msg = ""
-        mystr_conn = gnGET_CONN_STRING()
-        mystr_conn = "Provider=SQLOLEDB;" & mystr_conn
-        conn = New OleDbConnection(mystr_conn)
-        cmd.Connection = conn
-        conn.Open()
-        cmd.CommandText = "SPIL_POLICY_DET_WAIVER_UPDATE"
-        cmd.CommandType = CommandType.StoredProcedure
-        cmd.Parameters.AddWithValue("@PARAM_WAIVER_DT", waiverEffectiveDate)
-        cmd.Parameters.AddWithValue("@PARAM_POLY_STATUS", "W")
-        cmd.Parameters.AddWithValue("@PARAM_POLY_POLICY_NO", policyNo)
-        cmd.Parameters.AddWithValue("@PARAM_POLY_KEYDTE", Now)
-        cmd.ExecuteNonQuery()
-        msg = "Waiver effected succssfully"
-        'End If
-        conn.Close()
-        Return msg
-    End Function
 End Class
