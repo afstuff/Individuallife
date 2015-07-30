@@ -49,19 +49,27 @@
                             <table class="tbl_menu_new">
                                 <tr>
                                     <td colspan="2" class="myMenu_Title" align="center">
-                                        <asp:Label ID="lblDesc1" runat="server" Text="List Print"></asp:Label>
+                                        <asp:Label ID="lblDesc1" runat="server" Text="List Print" Visible="False"></asp:Label>
+                                        <br />
+                                        <br />
                                     </td>
+                                </tr>
+                                <tr>
                                     <td>
-                                    </td>
+                                        Filter Option:</td>
                                     <td>
-                                    </td>
-                                    <td>
+                                        <asp:DropDownList ID="pFilterOption" runat="server">
+                                            <asp:ListItem>-- Select Option --</asp:ListItem>
+                                            <asp:ListItem Value="1">Effective Date</asp:ListItem>
+                                            <asp:ListItem Value="2">Notification Date</asp:ListItem>
+                                            <asp:ListItem Value="3">Entry Date</asp:ListItem>
+                                        </asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
                                         Start Date
-                                    </td>
+                                        :</td>
                                     <td>
                                         <asp:TextBox ID="sStartDate" runat="server" Width="150px" MaxLength="10"></asp:TextBox>
 
@@ -74,7 +82,7 @@
                                 <tr>
                                     <td>
                                         End Date
-                                    </td>
+                                        :</td>
                                     <td>
                                         <asp:TextBox ID="sEndDate" runat="server" Width="150px" MaxLength="10"></asp:TextBox>
 
@@ -84,8 +92,8 @@
                                         dd/mm/yyyy
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
+                                <tr style="display: none;">
+                                    <td >
                                         Report Type
                                     </td>
                                     <td>
@@ -93,6 +101,12 @@
                                             <asp:ListItem Text="Claims List" Value="PRG_LI_REQ_ENTRY_1"></asp:ListItem>
                                         </asp:RadioButtonList>
                                     </td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <td colspan="2" >
+                                        <p>
+                                            &nbsp;
+                                        </p></td>
                                 </tr>
                                 <tr>
                                     <td>

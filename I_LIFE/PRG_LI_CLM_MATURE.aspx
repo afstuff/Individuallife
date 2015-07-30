@@ -1,12 +1,13 @@
-﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="PRG_LI_REQ_ENTRY.aspx.vb"
-    Inherits="I_LIFE_PRG_LI_REQ_ENTRY" %>
+﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="PRG_LI_CLM_MATURE.aspx.vb" Inherits="I_LIFE_PRG_LI_CLM_MATURE" %>
 
 <%@ Register Src="../UC_BANT.ascx" TagName="UC_BANT" TagPrefix="uc1" %>
 <%@ Register Src="../UC_FOOT.ascx" TagName="UC_FOOT" TagPrefix="uc2" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
-    <title>Individual Life Module</title>
+<head runat="server">
+       <title>Individual Life Module</title>
     <link rel="Stylesheet" href="../SS_ILIFE.css" type="text/css" />
 
     <script language="javascript" type="text/javascript" src="../Script/ScriptJS.js">
@@ -27,14 +28,12 @@
     <style type="text/css">
         .style1
         {
-            width: 164px;
         }
         .style2
         {
         }
         .style3
         {
-            width: 162px;
         }
     </style>
 </head>
@@ -62,8 +61,7 @@
                                 &nbsp;&nbsp;Find Insured Name:&nbsp;
                                 <input type="text" id="txtSearch" name="txtSearch" value="Search..." runat="server"
                                     onfocus="if (this.value == 'Search...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search...';}" />
-                                &nbsp;<asp:Button ID="cmdSearch" Text="Search" runat="server" 
-                                    style="height: 26px" />
+                                &nbsp;<asp:Button ID="cmdSearch" Text="Search" runat="server" />
                                 &nbsp;<asp:DropDownList ID="cboSearch" AutoPostBack="true" Width="150px" 
                                     runat="server" AppendDataBoundItems="True" EnableViewState="False">
                                     <asp:ListItem>** Select Insured **</asp:ListItem>
@@ -101,8 +99,7 @@
         <table class="tbl_cont" align="center">
             <tr>
                 <td nowrap class="myheader">
-                    Claims Request Entry
-                </td>
+                    Maturity Claim Process</td>
             </tr>
             <tr>
                 <td align="center" valign="top" class="td_menu">
@@ -120,22 +117,24 @@
                         </tr>
                         <tr>
                             <td align="left" valign="top" class="style1">
-                                <asp:CheckBox ID="chkPolyNum" AutoPostBack="true" Text="Policy #:" runat="server" />
-                            </td>
-                            <td align="left" valign="top" class="style2">
-                                <asp:TextBox ID="txtPolicyNumber" runat="server" Enabled="False" TabIndex="2"></asp:TextBox>
-                                <asp:Button ID="cmdPolyNoGet" Enabled="false" Text="Get Record" runat="server" />
-                                <asp:TextBox ID="txtRecNo0" Visible="false" Enabled="false" MaxLength="18" Width="40px"
-                                    runat="server" Height="22px"></asp:TextBox>
-                            </td>
-                            <td align="left" valign="top" class="style3">
                                 <asp:CheckBox ID="chkClaimNum" AutoPostBack="true" Text="Claim #:" runat="server" />
                             </td>
                             <td align="left" valign="top" class="style2">
-                                <asp:TextBox ID="txtClaimsNo" runat="server" Enabled="False" TabIndex="1"></asp:TextBox>
+                                <asp:TextBox ID="txtClaimsNo" runat="server" Enabled="False" TabIndex="1" 
+                                    AutoPostBack="True"></asp:TextBox>
                                 <asp:Button ID="cmdClaimNoGet" Enabled="false" Text="Get Record" runat="server" Style="height: 26px" />
                                 <asp:TextBox ID="txtRecNo" Visible="false" Enabled="false" MaxLength="18" Width="40"
                                     runat="server"></asp:TextBox>
+                            </td>
+                            <td align="left" valign="top" class="style3">
+                                <asp:CheckBox ID="chkPolyNum" AutoPostBack="true" Text="Policy #:" runat="server" />
+                            </td>
+                            <td align="left" valign="top" class="style2">
+                                <asp:TextBox ID="txtPolicyNumber" runat="server" Enabled="False" TabIndex="2" 
+                                    AutoPostBack="True"></asp:TextBox>
+                                <asp:Button ID="cmdPolyNoGet" Enabled="false" Text="Get Record" runat="server" />
+                                <asp:TextBox ID="txtRecNo0" Visible="false" Enabled="false" MaxLength="18" Width="40px"
+                                    runat="server" Height="22px"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -146,105 +145,11 @@
                                 <asp:TextBox ID="txtUWY" runat="server" Width="80px" Enabled="False"></asp:TextBox>
                             </td>
                             <td align="left" valign="top" class="style3">
-                                <asp:Label ID="Label2" runat="server" Text="Product Code:"></asp:Label>
+                                <asp:Label ID="Label17" runat="server" Text="Claim Type:"></asp:Label>
                             </td>
                             <td align="left" valign="top" class="style2">
-                                <asp:TextBox ID="txtProductCode" runat="server" Enabled="False"></asp:TextBox>
-                                <%--<br />--%>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td align="left" valign="top">
-                                <asp:Label ID="Label3" runat="server" Text="Policy Start Date: "></asp:Label>
-                            </td>
-                            <td align="left" valign="top" class="style2">
-                                <asp:TextBox ID="txtPolicyStartDate" runat="server" Enabled="False"></asp:TextBox>
-                                <asp:ImageButton ID="butCal" runat="server" OnClientClick="OpenModal_Cal('../Calendar1.aspx?popup=YES',this.form.name,'txtTrans_Date','txtTrans_Date')"
-                                    ImageUrl="~/I_LIFE/img/cal.gif" Height="17" Visible="False" />
-                                <asp:Label ID="lblTrans_Date_Format" Text="dd/mm/yyyy" runat="server"></asp:Label>
-                            </td>
-                            <td align="left" valign="top" class="style3">
-                                <asp:Label ID="Label4" runat="server" Text="Policy End Date:"></asp:Label>
-                            </td>
-                            <td align="left" valign="top" class="style2">
-                                <asp:TextBox ID="txtPolicyEndDate" runat="server" Enabled="False"></asp:TextBox>
-                                <asp:ImageButton ID="butCal1" runat="server" OnClientClick="OpenModal_Cal('../Calendar1.aspx?popup=YES',this.form.name,'txtTrans_Date','txtTrans_Date')"
-                                    ImageUrl="~/I_LIFE/img/cal.gif" Height="17" Visible="False" />
-                                <asp:Label ID="lblTrans_Date_Format1" Text="dd/mm/yyyy" runat="server"></asp:Label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="left" valign="top" class="style1">
-                                <asp:Label ID="Label5" runat="server" Text="Notification Date:"></asp:Label>
-                            </td>
-                            <td align="left" valign="top" class="style2">
-                                <asp:TextBox ID="txtNotificationDate" runat="server" TabIndex="3"></asp:TextBox>
-                                <asp:ImageButton ID="butCal0" runat="server" OnClientClick="OpenModal_Cal('../Calendar1.aspx?popup=YES',this.form.name,'txtTrans_Date','txtTrans_Date')"
-                                    ImageUrl="~/I_LIFE/img/cal.gif" Height="17" Visible="False" />
-                                <asp:Label ID="lblTrans_Date_Format0" Text="dd/mm/yyyy" runat="server"></asp:Label>
-                            </td>
-                            <td align="left" valign="top" class="style3">
-                                <asp:Label ID="Label6" runat="server" Text="Claims Effective Date:"></asp:Label>
-                            </td>
-                            <td align="left" valign="top" class="style2">
-                                <asp:TextBox ID="txtClaimsEffectiveDate" runat="server" TabIndex="4"></asp:TextBox>
-                                <asp:ImageButton ID="butCal2" runat="server" OnClientClick="OpenModal_Cal('../Calendar1.aspx?popup=YES',this.form.name,'txtTrans_Date','txtTrans_Date')"
-                                    ImageUrl="~/I_LIFE/img/cal.gif" Height="17" Visible="False" />
-                                <asp:Label ID="lblTrans_Date_Format2" Text="dd/mm/yyyy" runat="server"></asp:Label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="left" valign="top" class="style1">
-                                <asp:Label ID="Label7" runat="server" Text="Basic Sum Claimed LC:"></asp:Label>
-                            </td>
-                            <td align="left" valign="top" class="style2">
-                                <asp:TextBox ID="txtBasicSumClaimsLC" runat="server" TabIndex="5"></asp:TextBox>
-                            </td>
-                            <td align="left" valign="top" class="style3">
-                                <asp:Label ID="Label8" runat="server" Text="Basic Sum Claimed FC:"></asp:Label>
-                            </td>
-                            <td align="left" valign="top">
-                                <asp:TextBox ID="txtBasicSumClaimsFC" runat="server" TabIndex="6"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="left" valign="top" class="style1">
-                                <asp:Label ID="Label9" runat="server" Text="Add Sum Claimed LC:"></asp:Label>
-                            </td>
-                            <td align="left" valign="top" class="style2">
-                                <asp:TextBox ID="txtAdditionalSumClaimsLC" runat="server" TabIndex="7"></asp:TextBox>
-                            </td>
-                            <td align="left" valign="top" class="style3">
-                                <asp:Label ID="Label10" runat="server" Text="Add. Sum Claimed FC:"></asp:Label>
-                            </td>
-                            <td align="left" valign="top" class="style2">
-                                <asp:TextBox ID="txtAdditionalSumClaimsFC" runat="server" TabIndex="8"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="left" valign="top" class="style1">
-                                <asp:Label ID="Label11" runat="server" Text="Assured Age:"></asp:Label>
-                            </td>
-                            <td align="left" valign="top" class="style2">
-                                <asp:TextBox ID="txtAssuredAge" runat="server" TabIndex="9"></asp:TextBox>
-                            </td>
-                            <td align="left" valign="top" class="style3">
-                                <asp:Label ID="Label12" runat="server" Text="System Module:"></asp:Label>
-                            </td>
-                            <td align="left" valign="top" class="style2">
-                                <asp:DropDownList ID="DdnSysModule" runat="server" TabIndex="10">
-                                    <asp:ListItem Value="0">--- Select ---</asp:ListItem>
-                                    <asp:ListItem Value="I">Individual Life</asp:ListItem>
-                                    <asp:ListItem Value="G">Group Life</asp:ListItem>
-                                    <asp:ListItem Value="A">Annuity</asp:ListItem>
-                                </asp:DropDownList>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="left" valign="top" class="style1">
-                                <asp:Label ID="Label13" runat="server" Text="Claims Type:"></asp:Label>
-                            </td>
-                            <td align="left" valign="top" class="style2">
-                                <asp:DropDownList ID="DdnClaimType" runat="server" TabIndex="11">
+                                <asp:DropDownList ID="DdnClaimType" runat="server" TabIndex="11" 
+                                    Enabled="False">
                                     <asp:ListItem Value="0">--- Select ---</asp:ListItem>
                                     <asp:ListItem Value="1">Full Maturity</asp:ListItem>
                                     <asp:ListItem Value="2">Patial Maturity</asp:ListItem>
@@ -257,55 +162,170 @@
                                     <asp:ListItem Value="9">Full Withdrawal</asp:ListItem>
                                 </asp:DropDownList>
                             </td>
-                            <td align="left" valign="top" class="style3">
-                                <asp:Label ID="Label14" runat="server" Text="Loss Type:"></asp:Label>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="top" class="style1">
+                                <asp:Label ID="Label3" runat="server" Text="Policy Start Date: "></asp:Label>
                             </td>
                             <td align="left" valign="top" class="style2">
-                                <asp:DropDownList ID="DdnLossType" runat="server" 
-                                    TabIndex="12" AppendDataBoundItems="True" EnableViewState="False">
-                                    <asp:ListItem>-- Select --</asp:ListItem>
+                                <asp:TextBox ID="txtPolicyStartDate" runat="server" Enabled="False"></asp:TextBox>
+                                <asp:ImageButton ID="butCal" runat="server" OnClientClick="OpenModal_Cal('../Calendar1.aspx?popup=YES',this.form.name,'txtTrans_Date','txtTrans_Date')"
+                                    ImageUrl="~/I_LIFE/img/cal.gif" Height="17" Visible="False" />
+                                <asp:Label ID="lblTrans_Date_Format" Text="dd/mm/yyyy" runat="server"></asp:Label>
+                            </td>
+                            <td align="left" valign="top" class="style3">
+                                <asp:Label ID="Label2" runat="server" Text="Product Code:"></asp:Label>
+                            </td>
+                            <td align="left" valign="top" class="style2">
+                                <asp:TextBox ID="txtProductCode" runat="server" Enabled="False"></asp:TextBox>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="top">
+                                <asp:Label ID="Label4" runat="server" Text="Policy End Date:"></asp:Label>
+                            </td>
+                            <td align="left" valign="top" class="style2">
+                                <asp:TextBox ID="txtPolicyEndDate" runat="server" Enabled="False"></asp:TextBox>
+                                <asp:ImageButton ID="butCal1" runat="server" OnClientClick="OpenModal_Cal('../Calendar1.aspx?popup=YES',this.form.name,'txtTrans_Date','txtTrans_Date')"
+                                    ImageUrl="~/I_LIFE/img/cal.gif" Height="17" Visible="False" />
+                                <asp:Label ID="lblTrans_Date_Format1" Text="dd/mm/yyyy" runat="server"></asp:Label>
+                            </td>
+                            <td align="left" valign="top" class="style3" rowspan="2">
+                                <asp:Label ID="Label16" runat="server" Text="Product Name:"></asp:Label>
+                            </td>
+                            <td align="left" valign="top" class="style2" rowspan="2">
+                                <asp:TextBox ID="txtProductName" runat="server" Enabled="False" 
+                                    TextMode="MultiLine"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="top">
+                                <asp:Label ID="Label12" runat="server" Text="System Module:"></asp:Label>
+                            </td>
+                            <td align="left" valign="top" class="style2">
+                                <asp:DropDownList ID="DdnSysModule" runat="server" TabIndex="10" 
+                                    Enabled="False">
+                                    <asp:ListItem Value="0">--- Select ---</asp:ListItem>
+                                    <asp:ListItem Value="I">Individual Life</asp:ListItem>
+                                    <asp:ListItem Value="G">Group Life</asp:ListItem>
+                                    <asp:ListItem Value="A">Annuity</asp:ListItem>
                                 </asp:DropDownList>
                             </td>
                         </tr>
                         <tr>
-                            <td align="left" valign="top" class="style1">
-                                <asp:Label ID="Label15" runat="server" Text="Claims Description:"></asp:Label>
-                            </td>
-                            <td align="left" valign="top" class="style2" rowspan="2">
-                                <asp:TextBox ID="txtProductDec" runat="server" Height="59px" TextMode="MultiLine"
-                                    Width="271px" TabIndex="13"></asp:TextBox>
-                            </td>
-                            <td align="left" valign="top" class="style2">
-                                &nbsp;
-                            </td>
-                            <td align="left" valign="top" class="style2">
-                                &nbsp;
+                            <td align="left" valign="top" colspan="4">
+                                <hr />
                             </td>
                         </tr>
                         <tr>
-                            <td align="left" valign="top" class="style1">
-                                &nbsp;
+                            <td align="left" valign="top">
+                                <asp:Label ID="Label18" runat="server" Text="Claims Calculated Date:"></asp:Label>
                             </td>
                             <td align="left" valign="top" class="style2">
-                                &nbsp;
-                            </td>
-                            <td align="left" valign="top" class="style2">
-                                &nbsp;
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="left" valign="top" class="style1">
-                                &nbsp;
-                            </td>
-                            <td align="left" valign="top" class="style2">
-                                &nbsp;
+                                <asp:TextBox ID="txtClaimsCalculatedDate" runat="server"></asp:TextBox>
+                                <asp:ImageButton ID="butCal2" runat="server" OnClientClick="OpenModal_Cal('../Calendar1.aspx?popup=YES',this.form.name,'txtTrans_Date','txtTrans_Date')"
+                                    ImageUrl="~/I_LIFE/img/cal.gif" Height="17" Visible="False" />
+                                <asp:Label ID="lblTrans_Date_Format2" Text="dd/mm/yyyy" runat="server"></asp:Label>
                             </td>
                             <td align="left" valign="top" class="style3">
-                                &nbsp;
+                                &nbsp;</td>
+                            <td align="left" valign="top" class="style2">
+                                &nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="top" class="style1">
+                                <asp:Label runat="server" Text="Contribution Claims LC:"></asp:Label>
                             </td>
                             <td align="left" valign="top" class="style2">
-                                &nbsp;
+                                <asp:TextBox ID="txtContributionClaimsLC" runat="server" TabIndex="5"></asp:TextBox>
                             </td>
+                            <td align="left" valign="top" class="style3">
+                                <asp:Label ID="Label9" runat="server" Text="Sum Assured Claims LC:"></asp:Label>
+                            </td>
+                            <td align="left" valign="top">
+                                <asp:TextBox ID="txtSumAssuredClaimLC" runat="server" TabIndex="7"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="top" class="style1">
+                                <asp:Label runat="server" Text="Contribution Claims FC:"></asp:Label>
+                            </td>
+                            <td align="left" valign="top" class="style2">
+                                <asp:TextBox ID="txtContributionClaimsFC" runat="server" TabIndex="6"></asp:TextBox>
+                            </td>
+                            <td align="left" valign="top" class="style3">
+                                <asp:Label ID="Label10" runat="server" Text="Sum Assured Claims FC:"></asp:Label>
+                            </td>
+                            <td align="left" valign="top" class="style2">
+                                <asp:TextBox ID="txtSumAssuredClaimFC" runat="server" TabIndex="8"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="top" class="style1">
+                                <asp:Label ID="Label19" runat="server" Text="Bonus Claims LC:"></asp:Label>
+                            </td>
+                            <td align="left" valign="top" class="style2">
+                                <asp:TextBox ID="txtBonusClaimsLC" runat="server" TabIndex="6"></asp:TextBox>
+                            </td>
+                            <td align="left" valign="top" class="style3">
+                                <asp:Label ID="Label21" runat="server" Text="Loan Balance LC:"></asp:Label>
+                            </td>
+                            <td align="left" valign="top" class="style2">
+                                <asp:TextBox ID="txtLoanBalanceLC" runat="server" TabIndex="6"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="top" class="style1">
+                                <asp:Label ID="Label20" runat="server" Text="Bonus Claims FC:"></asp:Label>
+                            </td>
+                            <td align="left" valign="top" class="style2">
+                                <asp:TextBox ID="txtBonusClaimsFC" runat="server" TabIndex="6"></asp:TextBox>
+                            </td>
+                            <td align="left" valign="top" class="style3">
+                                <asp:Label ID="Label22" runat="server" Text="Loan Balance FC:"></asp:Label>
+                            </td>
+                            <td align="left" valign="top" class="style2">
+                                <asp:TextBox ID="txtLoanBalanceFC" runat="server" TabIndex="6"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="top" class="style1" colspan="4">
+                                <hr />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="top" class="style1">
+                                <asp:Label ID="Label23" runat="server" Text="Total Claim Amount LC:"></asp:Label>
+                            </td>
+                            <td align="left" valign="top" class="style2">
+                                <asp:TextBox ID="txtTotalClaimAmtLC" runat="server" TabIndex="6"></asp:TextBox>
+                            </td>
+                            <td align="left" valign="top" class="style3">
+                                &nbsp;</td>
+                            <td align="left" valign="top" class="style2">
+                                &nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="top" class="style1">
+                                <asp:Label ID="Label24" runat="server" Text="Total Claim Amount FC:"></asp:Label>
+                            </td>
+                            <td align="left" valign="top" class="style2">
+                                <asp:TextBox ID="txtTotalClaimAmtFC" runat="server" TabIndex="6"></asp:TextBox>
+                            </td>
+                            <td align="left" valign="top" class="style3" colspan="2">
+                                <asp:CheckBox ID="chkClaimNum0" AutoPostBack="true" Text="Calculate Claims?" 
+                                    runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="#FF3300" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="top" class="style1">
+                                &nbsp;</td>
+                            <td align="left" valign="top" class="style2">
+                                &nbsp;</td>
+                            <td align="left" valign="top" class="style3">
+                                &nbsp;</td>
+                            <td align="left" valign="top" class="style2">
+                                &nbsp;</td>
                         </tr>
                     </table>
                 </td>
@@ -380,4 +400,5 @@
     </script>
 
 </body>
+
 </html>
