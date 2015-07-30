@@ -37,10 +37,10 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS_RPT
             txtEndDate.Text = str(2).ToString()
         End If
 
-        'Dim startDate As DateTime = Convert.ToDateTime(DoConvertToDbDateFormat(txtStartDate.Text))
-        'Dim endDate As DateTime = Convert.ToDateTime(DoConvertToDbDateFormat(txtEndDate.Text))
-        Dim startDate As DateTime = DoConvertToDbDateFormat(txtStartDate.Text)
-        Dim endDate As DateTime = DoConvertToDbDateFormat(txtEndDate.Text)
+        Dim startDate As DateTime = Convert.ToDateTime(DoConvertToDbDateFormat(txtStartDate.Text))
+        Dim endDate As DateTime = Convert.ToDateTime(DoConvertToDbDateFormat(txtEndDate.Text))
+        'Dim startDate As DateTime = DoConvertToDbDateFormat(txtStartDate.Text)
+        'Dim endDate As DateTime = DoConvertToDbDateFormat(txtEndDate.Text)
 
         rParams(0) = "RPT_PAIDUP_PROCESS"
         rParams(1) = "pSTART_DATE="
