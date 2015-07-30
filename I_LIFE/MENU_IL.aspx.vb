@@ -500,6 +500,7 @@ Partial Class I_LIFE_MENU_IL
                 AddMenuItem("", "", "") 'blank link
                 AddMenuItem("Entries", "Claim Request Entry", "PRG_LI_REQ_ENTRY.aspx?optid=NEW")
                 AddMenuItem("", "Waiver of Premium", "PRG_LI_CLM_WAIVER.aspx?optid=NEW")
+                AddMenuItem("", "Paid-Up Policies", "PRG_PAIDUP_PROCESS.aspx?optid=NEW")
 
                 AddMenuItem("", "", "") 'blank link
                 AddMenuItem("Reports", "List of Surrendered Policies", "")

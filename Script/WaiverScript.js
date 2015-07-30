@@ -8,7 +8,14 @@
     })
     $('#cboSearch').change(function(e) {
         e.preventDefault();
-        GetPolicyNoFromDpList();
+        if ($("#cboSearch").val() != "* Select Insured *") {
+            GetPolicyNoFromDpList();
+        }
+        else {
+            alert("Please select insured")
+            InitializeClientControls()
+            $("#txtPolicyNumber").val("")
+        }
     });
 
     $('#chkConfirmWaiver').change(function(e) {
@@ -54,7 +61,7 @@
 
 function RetrieveAssuredCode() {
     console.log('RetrieveAssuredCode init1');
-    $('#lblMsg').text("");
+    //$('#lblMsg').text("");
     InitializeClientControls()
     var policyNo = $("#txtPolicyNumber").val();
     //alert("This is the class code: " + document.getElementById('txtClassCod').value + " and Item code :" + document.getElementById('txtTrlblMsgNum').value);
@@ -287,9 +294,11 @@ function ValidateOnClient() {
         $("#lblMsg").text("Waiver has already been processed");
         return false;
     }
-//    else if (CheckDate($("#txtPolicyStartDate").val(), 'txtPolicyStartDate')) {
-//    return;
-//    }
+    else if (getYear($("#txtWaiverEffectiveDate").val()) < getYear($("#txtPolicyStartDate").val())
+     || getYear($("#txtWaiverEffectiveDate").val()) > getYear($("#txtPolicyEndDate").val()) ){
+       $("#lblMsg").text("Waiver effective date must be within policy year");
+        return false;
+       }
     else {
         return true;
         $('#drpWaiverCodes').hide();
@@ -395,6 +404,12 @@ function formatDate(dateValue) {
     var formattedDate = final_dateValue_array[2] + '/' +
                  final_dateValue_array[1] + '/' + final_dateValue_array[0];
     return formattedDate
+}
+
+function getYear(dateValue) {
+    var dateValue_array = dateValue.split('/');
+    var myYear = Number(dateValue_array[2]);
+    return myYear
 }
 
 

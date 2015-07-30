@@ -1,4 +1,4 @@
-﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="RPT_LI_CLM_WAIVER.aspx.vb" Inherits="I_LIFE_RPT_LI_CLM_WAIVER" %>
+﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="PRG_LI_CLM_WAIVER_RPT.aspx.vb" Inherits="I_LIFE_RPT_LI_CLM_WAIVER" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -31,14 +31,14 @@
      <div class="grid">
             <div class="rounded">
                 <div class="top-outer"><div class="top-inner"><div class="top">
-                    <h2>PRINT: Individual Life Report Listing</h2>
+                    <h2>PRINT: Waiver of Premium Report Listing</h2>
                 </div></div></div>
                 <div class="mid-outer"><div class="mid-inner">
                 <div class="mid">     
                 	
 
                 <table class="tbl_menu_new">
-			        <tr><td colspan="2" class="myMenu_Title" align="center"><asp:Label ID="lblDesc1" runat="server" Text="Receipt Print"> </asp:Label> </td><td></td><td></td><td></td></tr>
+			        <tr><td colspan="2" class="myMenu_Title" align="center">&nbsp;</td><td></td><td></td><td></td></tr>
 				    <tr>
 					    <td>Waiver Effective Start Date</td>
 					    <td><asp:TextBox ID="txtStartDate" runat="server" Width="150px" MaxLength=10 ></asp:TextBox>
@@ -54,12 +54,11 @@
 				    </tr>
 
 				    
-				    <tr>
-					    <td>Report Type</td>
-					    <td><asp:RadioButtonList ID="rblTransType" runat="server" >
-                <asp:ListItem Text="Waiver Report" Value="RPT_LI_CLM_WAIVER"></asp:ListItem>
-                </asp:RadioButtonList></td>
-				    </tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td>
+                        &nbsp;</td>
+				</tr>
 
 				<tr>
 					<td></td>
