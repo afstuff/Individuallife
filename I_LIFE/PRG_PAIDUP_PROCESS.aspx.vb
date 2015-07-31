@@ -384,10 +384,12 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS
             txtPaidUpEffectiveDate.Visible = True
             lblPaidUpEffDate.Visible = True
             lblPaidUpEffFormat.Visible = True
+            Panel1.Visible = True
         Else
             txtPaidUpEffectiveDate.Visible = False
             lblPaidUpEffDate.Visible = False
             lblPaidUpEffFormat.Visible = False
+            Panel1.Visible = False
         End If
     End Sub
 

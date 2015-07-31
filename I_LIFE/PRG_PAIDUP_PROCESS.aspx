@@ -119,7 +119,9 @@
                         <td>
                             &nbsp;</td>
                         <td>
-                            &nbsp;</td>
+                            <asp:Panel ID="panel" runat="server">
+                            </asp:Panel>
+                        </td>
                     </tr>
                     <tr>
                         <td align="left" valign="top">
@@ -181,8 +183,7 @@
                         </td>
                         <td align="left">
                             <asp:TextBox ID="txtPaidUpEffectiveDate" runat="server" Visible="False"></asp:TextBox>
-                            <script language="JavaScript" type="text/javascript">
-                                new tcal({ 'formname': 'PRG_PAIDUP_PROCESS', 'controlname': 'txtPaidUpEffectiveDate' });</script>
+                            
                             <asp:Label ID="lblPaidUpEffFormat" runat="server" Text="dd/mm/yyyy" 
                                 Visible="False"></asp:Label>
                         </td>
