@@ -17,7 +17,10 @@
     <script src="../Script/jquery-1.11.0.js" type="text/javascript"></script>
     <script src="../jquery.simplemodal.js" type="text/javascript"></script>
     <script language="javascript" type="text/javascript"> </script>
-    
+
+    <script src="../calendar_eu.js" type="text/javascript"></script>
+
+    <link href="../calendar.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
   /*      #lblPaidUpEffDate
  {
@@ -38,7 +41,7 @@
     </style>
 </head>
 <body onload="<%= FirstMsg %>">
-    <form id="form1" runat="server">
+    <form id="PRG_PAIDUP_PROCESS" runat="server">
    <!-- start banner -->
     <div id="div_banner" align="center">
     
@@ -153,14 +156,15 @@
                         </td>
                         <td align="left" valign="top">
                             <asp:TextBox ID="txtPolicyStartDate" runat="server" Enabled="False"></asp:TextBox>
-                            <asp:Label ID="Label11" runat="server" Text="dd/mm/yyyy" Font-Size="9pt"></asp:Label>
+  
+                            <asp:Label ID="Label13" runat="server" Text="dd/mm/yyyy"></asp:Label>
                         </td>
                         <td align="left" valign="top">
                             <asp:Label ID="Label8" runat="server" Text="Policy End Date: "></asp:Label>
                         </td>
                         <td align="left" valign="top">
                             <asp:TextBox ID="txtPolicyEndDate" runat="server" Enabled="False"></asp:TextBox>
-                            <asp:Label ID="Label12" runat="server" Text="dd/mm/yyyy" Font-Size="9pt"></asp:Label>
+                            <asp:Label ID="Label12" runat="server" Text="dd/mm/yyyy"></asp:Label>
                         </td>
                     </tr>
                     <tr>
@@ -177,6 +181,8 @@
                         </td>
                         <td align="left">
                             <asp:TextBox ID="txtPaidUpEffectiveDate" runat="server" Visible="False"></asp:TextBox>
+                            <script language="JavaScript" type="text/javascript">
+                                new tcal({ 'formname': 'PRG_PAIDUP_PROCESS', 'controlname': 'txtPaidUpEffectiveDate' });</script>
                             <asp:Label ID="lblPaidUpEffFormat" runat="server" Text="dd/mm/yyyy" 
                                 Visible="False"></asp:Label>
                         </td>

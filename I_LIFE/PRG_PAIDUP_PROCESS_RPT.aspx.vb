@@ -52,4 +52,8 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS_RPT
         Response.Redirect("../PrintView.aspx")
         ' Response.Redirect("PrintView.aspx")
     End Sub
+
+    Protected Sub butClose_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles butClose.Click
+        Response.Redirect("PRG_PAIDUP_PROCESS.aspx")
+    End Sub
 End Class

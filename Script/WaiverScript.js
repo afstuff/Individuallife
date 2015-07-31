@@ -139,8 +139,9 @@ function retrieve_AdminCodeInfoValues(admobjects) {
 function OnError_RetrieveAssuredCode(response) {
     //debugger;
     var errorText = response.responseText;
+    $("#txtPolicyNumber").focus();
     alert('Error! Policy Number does not exist');
-    $("#txtPolicyNumber.").focus();
+   
 }
 
 function OnFailure_RetrieveAssuredCode(response) {
