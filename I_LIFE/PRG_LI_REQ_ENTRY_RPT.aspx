@@ -22,7 +22,8 @@
     <form id="LifeReportsPrint" runat="server">
     <div>
     </div>
-    <div class="newpage" style="margin-left: 20%!important; margin-right: 20%!important; width: 100%;">
+    <div class="newpage" style="margin-left: 20%!important; margin-right: 20%!important;
+        width: 100%;">
         <table align="center" width="100%">
             <tr>
                 <td>
@@ -33,7 +34,7 @@
                 </td>
             </tr>
         </table>
-        <div class="grid"  style="width: 60%!important;">
+        <div class="grid" style="width: 60%!important;">
             <div class="rounded">
                 <div class="top-outer">
                     <div class="top-inner">
@@ -56,7 +57,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        Filter Option:</td>
+                                        Filter Option:
+                                    </td>
                                     <td>
                                         <asp:DropDownList ID="pFilterOption" runat="server">
                                             <asp:ListItem>-- Select Option --</asp:ListItem>
@@ -68,8 +70,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        Start Date
-                                        :</td>
+                                        Start Date :
+                                    </td>
                                     <td>
                                         <asp:TextBox ID="sStartDate" runat="server" Width="150px" MaxLength="10"></asp:TextBox>
 
@@ -81,8 +83,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        End Date
-                                        :</td>
+                                        End Date :
+                                    </td>
                                     <td>
                                         <asp:TextBox ID="sEndDate" runat="server" Width="150px" MaxLength="10"></asp:TextBox>
 
@@ -93,7 +95,7 @@
                                     </td>
                                 </tr>
                                 <tr style="display: none;">
-                                    <td >
+                                    <td>
                                         Report Type
                                     </td>
                                     <td>
@@ -103,10 +105,11 @@
                                     </td>
                                 </tr>
                                 <tr style="display: none;">
-                                    <td colspan="2" >
+                                    <td colspan="2">
                                         <p>
                                             &nbsp;
-                                        </p></td>
+                                        </p>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>
