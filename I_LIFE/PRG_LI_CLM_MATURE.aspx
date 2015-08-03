@@ -134,8 +134,8 @@
                             <td align="left" valign="top" class="style2">
                                 <asp:TextBox ID="txtPolicyNumber" runat="server" Enabled="False" TabIndex="2" 
                                     AutoPostBack="True"></asp:TextBox>
-                                <asp:Button ID="cmdPolyNoGet" Enabled="false" Text="Get Record" runat="server" 
-                                    style="height: 26px" />
+                                <asp:Button ID="cmdPolyNoGet" Enabled="false" Text="Get Record" 
+                                    runat="server" />
                                 <asp:TextBox ID="txtRecNo0" Visible="false" Enabled="false" MaxLength="18" Width="40px"
                                     runat="server" Height="22px"></asp:TextBox>
                             </td>
@@ -316,8 +316,9 @@
                                 <asp:TextBox ID="txtTotalClaimAmtFC" runat="server" TabIndex="6"></asp:TextBox>
                             </td>
                             <td align="left" valign="top" class="style3" colspan="2">
-                                <asp:CheckBox ID="chkClaimNum0" AutoPostBack="true" Text="Calculate Claims?" 
-                                    runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="#FF3300" />
+                                <asp:CheckBox ID="recalcClaimsCbx" AutoPostBack="true" Text="Re-Calculate Claims?" 
+                                    runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="#FF3300" 
+                                    Visible="False" />
                             </td>
                         </tr>
                         <tr>

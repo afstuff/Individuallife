@@ -2,6 +2,7 @@
 Imports System.Data.OleDb
 Imports System.Data
 Imports NHibernate.Hql.Ast.ANTLR
+Imports System.Runtime.Remoting.Proxies
 
 Partial Class I_LIFE_PRG_LI_CLM_MATURE
     Inherits System.Web.UI.Page
@@ -59,24 +60,26 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE
     End Sub
 
     Protected Sub cmdClaimNoGet_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdClaimNoGet.Click
-        'ClearAllFields()
+        'clear all fields first
+        ClearAllFields()
         'by ClaimNo(CLAIMNUM)
         If txtClaimsNo.Text <> "" Then
-            lblMsg.Text = GET_CLMS_RPTD_MATURITY("CLAIMNUM", txtClaimsNo.Text)
+            lblMsg.Text = GET_CLMS_RPTD_MATURITY("CLAIMNUM", txtClaimsNo.Text.Trim())
 
-            If lblMsg.Text = "Maturity claim paid does not exist!" Then
+            If lblMsg.Text = "Claims paid does not exist!" Then
                 FirstMsg = "Javascript:return confirm('" + lblMsg.Text + "')"
 
-                'If FirstMsg = True Then
-                '    lblMsg.Text = "ok"
-                'End If
-
+                'FirstMsg = "Javascript:alert('" + lblMsg.Text + "')"
+                recalcClaimsCbx.Visible = True
                 Exit Sub
+            Else
+
             End If
-            FirstMsg = "Javascript:alert('" + lblMsg.Text + "')"
+
         Else
             lblMsg.Text = "Enter Claim #, to retrieve reported claims!"
             FirstMsg = "Javascript:alert('" + lblMsg.Text + "')"
+            txtClaimsNo.Focus()
             Exit Sub
         End If
 
@@ -94,8 +97,6 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE
         cmd.Parameters.AddWithValue("@pQUERY_TYPE", pQueryType)
         cmd.Parameters.AddWithValue("@pQUERY_VALUE", pQueryValue)
 
-        'clear all fields first
-        ClearAllFields()
 
         Try
             conn.Open()
@@ -127,23 +128,22 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE
                 txtClaimsCalculatedDate.Text = sDate1(1) + "/" + sDate1(0) + "/" + sDate1(2)
 
                 Dim _rtnMsg = "Claims record retrieved!"
-                If _rtnMsg = "Claims record retrieved!" Then
-                    Dim res As Boolean
-                    res = MOVESELECTDATA_FROM_CLAIMRPTD_TO_CLAIMPAID(RTrim(CType(objOledr("TBIL_CLM_RPTD_MDLE") & vbNullString, String)), _
-                                                                     RTrim(CType(objOledr("TBIL_CLM_RPTD_POLY_NO") & vbNullString, String)), _
-                                                                     RTrim(CType(objOledr("TBIL_CLM_RPTD_CLM_NO") & vbNullString, String)), _
-                                                                     RTrim(CType(objOledr("TBIL_CLM_RPTD_PRDCT_CD") & vbNullString, String)), _
-                                                                     RTrim(CType(objOledr("TBIL_CLM_RPTD_UNDW_YR") & vbNullString, String)), _
-                                                                     RTrim(CType(objOledr("TBIL_CLM_RPTD_CLM_TYPE") & vbNullString, String)), _
-                                                                     Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtPolicyStartDate.Text)), _
-                                                                     Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtPolicyEndDate.Text)), _
-                                                                     Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtClaimsCalculatedDate.Text)))
+                'If _rtnMsg = "Claims record retrieved!" Then
+                Dim res As String = MOVESELECTDATA_FROM_CLAIMRPTD_TO_CLAIMPAID(RTrim(CType(objOledr("TBIL_CLM_RPTD_MDLE") & vbNullString, String)), _
+                                                                 RTrim(CType(objOledr("TBIL_CLM_RPTD_POLY_NO") & vbNullString, String)), _
+                                                                 RTrim(CType(objOledr("TBIL_CLM_RPTD_CLM_NO") & vbNullString, String)), _
+                                                                 RTrim(CType(objOledr("TBIL_CLM_RPTD_PRDCT_CD") & vbNullString, String)), _
+                                                                 RTrim(CType(objOledr("TBIL_CLM_RPTD_UNDW_YR") & vbNullString, String)), _
+                                                                 RTrim(CType(objOledr("TBIL_CLM_RPTD_CLM_TYPE") & vbNullString, String)), _
+                                                                 Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtPolicyStartDate.Text)), _
+                                                                 Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtPolicyEndDate.Text)), _
+                                                                 Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtClaimsCalculatedDate.Text)))
 
-                    If lblMsg.Text = "empty data" Then
-                        _rtnMessage = "Maturity claim paid does not exist!"
-                    End If
 
-                End If
+
+                _rtnMessage = res
+
+                'End If
 
             Else
                 _rtnMessage = "Claims record does not exist!"
@@ -156,10 +156,10 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE
         Return _rtnMessage
     End Function
 
-    Public Function MOVESELECTDATA_FROM_CLAIMRPTD_TO_CLAIMPAID(ByVal systemModule As String, ByVal claimNumber As String, _
-                                                               ByVal polyNumber As String, ByVal uwy As String, ByVal prodCode As String, _
+    Public Function MOVESELECTDATA_FROM_CLAIMRPTD_TO_CLAIMPAID(ByVal systemModule As String, ByVal polyNumber As String, ByVal claimNumber As String, _
+                                                                ByVal uwy As String, ByVal prodCode As String, _
                                                                ByVal claimType As String, ByVal polyStartDate As DateTime, _
-                                                               ByVal polyEndDate As DateTime, ByVal claimsCalcDate As DateTime) As Boolean
+                                                               ByVal polyEndDate As DateTime, ByVal claimsCalcDate As DateTime) As String
         Dim mystrConn As String = CType(Session("connstr"), String)
         Dim conn1 As OleDbConnection
         conn1 = New OleDbConnection(mystrConn)
@@ -183,25 +183,27 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE
             Dim objOledr1 As OleDbDataReader
             objOledr1 = cmd1.ExecuteReader()
             If (objOledr1.Read()) Then
-                'check if claim is calculated before, by checking if for 0.00 (default) value
-                Dim contribAmtLc As String = CType(objOledr1("TBIL_CLM_PAID_CONTRIB_AMT_LC") & vbNullString, String).Trim()
-                If contribAmtLc = "0.00" Then
-                    'call DO_CALC_CLAIMS_INTO_TBIL_CLAIM_PAID
-                    'lblMsg.Text = contribAmtLc
-                    Dim prodCategory As String = CType(objOledr1("TBIL_PRDCT_DTL_CAT") & vbNullString, String).Trim()
 
-                    If prodCategory = "I" Then
+                Dim contribAmtLc As String = CType((objOledr1("TBIL_CLM_PAID_CONTRIB_AMT_LC") & vbNullString), String)
 
-
-                    End If
-
+                If contribAmtLc <> "0.00" Then
+                    lblMsg.Text = "Record does not exist!, click 'Re-Calculate' to recalculate claims!"
+                    'FirstMsg = "javascript:alert('" + lblMsg.Text + "');"
+                    recalcClaimsCbx.Visible = True
+                    'Exit Function
                 Else
+                    recalcClaimsCbx.Checked = False
+                    recalcClaimsCbx.Visible = False
+                    Dim prodCategory As String = CType(objOledr1("TBIL_PRDCT_DTL_CAT") & vbNullString, String).Trim()
+                    If prodCategory = "I" Then
+                        Call Do_CLM_MATURE_INVESTMENT(polyNumber)
+                        'ElseIf prodCategory = "E" Then
+                        Call Do_CLM_MATURE_ENDOWMENT(polyNumber, 2015, CType(objOledr1("TBIL_CLM_PAID_PRDCT_CD") & vbNullString, String).Trim())
+                    End If
                     lblMsg.Text = "Not a string"
                 End If
 
 
-
-                Return True
             Else
                 _rtnMessage = "Unable to read data!"
             End If
@@ -209,8 +211,75 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE
             _rtnMessage = "Error calculating maturity claim! " + ex.Message
         End Try
 
-        Return False
+        Return _rtnMessage
 
+    End Function
+
+    Public Function Do_CLM_MATURE_INVESTMENT(ByVal policyNumber As String) As String
+
+        Dim mystrConn As String = CType(Session("connstr"), String)
+        Dim conn2 As OleDbConnection
+        conn2 = New OleDbConnection(mystrConn)
+        Dim cmd2 As OleDbCommand = New OleDbCommand()
+        cmd2.Connection = conn2
+        cmd2.CommandText = "SPIL_PRG_LI_CLM_MATURE_INVESTMENT"
+        cmd2.CommandType = CommandType.StoredProcedure
+
+        cmd2.Parameters.AddWithValue("@pPOLICY_NUMBER", policyNumber)
+        Try
+            conn2.Open()
+            Dim objOledr2 As OleDbDataReader
+            objOledr2 = cmd2.ExecuteReader()
+            If (objOledr2.Read()) Then
+                txtContributionClaimsLC.Text = Format(CType(objOledr2("CONTRIBUTION_CLAIM"), Decimal), "N2")
+                txtContributionClaimsFC.Text = Format(CType(objOledr2("CONTRIBUTION_CLAIM"), Decimal), "N2")
+                txtLoanBalanceLC.Text = Format(CType(objOledr2("LOAN_BALANCE"), Decimal), "N2")
+                txtLoanBalanceFC.Text = Format(CType(objOledr2("LOAN_BALANCE"), Decimal), "N2")
+                txtTotalClaimAmtLC.Text = Format(CType(objOledr2("TOTAL_CLAIM_AMOUNT"), Decimal), "N2")
+                txtTotalClaimAmtFC.Text = Format(CType(objOledr2("TOTAL_CLAIM_AMOUNT"), Decimal), "N2")
+
+                '_rtnMessage = "MATURE_INVESTMENT"
+            End If
+
+        Catch ex As Exception
+            _rtnMessage = "Error calculating maturity claim! " + ex.Message
+        End Try
+
+        Return _rtnMessage
+    End Function
+
+
+    Public Function Do_CLM_MATURE_ENDOWMENT(ByVal policyNumber As String, ByVal bonusYear As Int16, ByVal prodCode As String) As String
+        Dim mystrConn As String = CType(Session("connstr"), String)
+        Dim conn2 As OleDbConnection
+        conn2 = New OleDbConnection(mystrConn)
+        Dim cmd2 As OleDbCommand = New OleDbCommand()
+        cmd2.Connection = conn2
+        cmd2.CommandText = "SPIL_PRG_LI_CLM_MATURE_ENDOWMENT"
+        cmd2.CommandType = CommandType.StoredProcedure
+
+        cmd2.Parameters.AddWithValue("@pPOLICY_NUMBER", policyNumber)
+        cmd2.Parameters.AddWithValue("@pPRODUCT_CODE", prodCode)
+        cmd2.Parameters.AddWithValue("@pBONUS_RT_YEAR", bonusYear)
+
+        Try
+            conn2.Open()
+            Dim objOledr2 As OleDbDataReader
+            objOledr2 = cmd2.ExecuteReader()
+            If (objOledr2.Read()) Then
+                txtSumAssuredClaimLC.Text = Format(CType(objOledr2("SUM_ASSURED"), Decimal), "N2")
+                txtSumAssuredClaimFC.Text = Format(CType(objOledr2("SUM_ASSURED"), Decimal), "N2")
+                txtBonusClaimsLC.Text = Format(CType(objOledr2("BONUS_AMOUNT"), Decimal), "N2")
+                txtBonusClaimsFC.Text = Format(CType(objOledr2("BONUS_AMOUNT"), Decimal), "N2")
+
+                '_rtnMessage = "MATURE_ENDOWMENT"
+            End If
+
+        Catch ex As Exception
+            _rtnMessage = "Error calculating maturity claim! " + ex.Message
+        End Try
+
+        Return _rtnMessage
     End Function
     'method to calculate claims into TBIL_CLAIM_PAID
     Public Function DO_CALC_CLAIMS_INTO_TBIL_CLAIM_PAID() As Boolean
@@ -222,32 +291,40 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE
 
 
     Protected Sub txtClaimsNo_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtClaimsNo.TextChanged
-        'ClearAllFields()
-        'by ClaimNo(CLAIMNUM)
+        'clear all fields first
+        ClearAllFields()
         If txtClaimsNo.Text <> "" Then
             lblMsg.Text = GET_CLMS_RPTD_MATURITY("CLAIMNUM", txtClaimsNo.Text)
             If lblMsg.Text = "Maturity claim paid does not exist!" Then
                 FirstMsg = "Javascript:confirm('" + lblMsg.Text + "')"
                 Exit Sub
             End If
-            FirstMsg = "Javascript:alert('" + lblMsg.Text + "')"
-        Else
-            'lblMsg.Text = "Enter Claim #, to retrieve reported claims!"
             'FirstMsg = "Javascript:alert('" + lblMsg.Text + "')"
-            'Exit Sub
+        Else
+            lblMsg.Text = "Enter Claim #, to retrieve reported claims!"
+            FirstMsg = "Javascript:alert('" + lblMsg.Text + "')"
+            txtClaimsNo.Focus()
+            Exit Sub
         End If
     End Sub
 
     Protected Sub txtPolicyNumber_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtPolicyNumber.TextChanged
-        'ClearAllFields()
-        'by PolyNo(POLUNUM)
+        'clear all fields first
+        ClearAllFields()
         If txtPolicyNumber.Text <> "" Then
             lblMsg.Text = GET_CLMS_RPTD_MATURITY("POLYNUM", txtPolicyNumber.Text)
-            FirstMsg = "Javascript:alert('" + lblMsg.Text + "')"
+            If lblMsg.Text = "Claims paid does not exist!" Then
+                FirstMsg = "Javascript:return confirm('" + lblMsg.Text + "')"
+                'FirstMsg = "Javascript:alert('" + lblMsg.Text + "')"
+                recalcClaimsCbx.Visible = True
+                Exit Sub
+            End If
         Else
-            'lblMsg.Text = "Enter Claim #, to retrieve reported claims!"
-            'FirstMsg = "Javascript:alert('" + lblMsg.Text + "')"
-            'Exit Sub
+            lblMsg.Text = "Enter Claim #, to retrieve reported claims!"
+            FirstMsg = "Javascript:alert('" + lblMsg.Text + "')"
+
+            txtPolicyNumber.Focus()
+            Exit Sub
         End If
     End Sub
 
@@ -262,21 +339,30 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE
     End Sub
 
     Protected Sub cmdPolyNoGet_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdPolyNoGet.Click
-        'ClearAllFields()
+
+        ClearAllFields()
 
         'by PolyNo(POLUNUM)
         If txtPolicyNumber.Text <> "" Then
-            lblMsg.Text = GET_CLMS_RPTD_MATURITY("POLYNUM", txtPolicyNumber.Text)
-            FirstMsg = "Javascript:alert('" + lblMsg.Text + "')"
+            lblMsg.Text = GET_CLMS_RPTD_MATURITY("POLYNUM", txtPolicyNumber.Text.Trim())
+            If lblMsg.Text = "Claims paid does not exist!" Then
+                FirstMsg = "Javascript:return confirm('" + lblMsg.Text + "')"
+                'FirstMsg = "Javascript:alert('" + lblMsg.Text + "')"
+                recalcClaimsCbx.Visible = True
+                Exit Sub
+            End If
         Else
-            'lblMsg.Text = "Enter Claim #, to retrieve reported claims!"
-            'FirstMsg = "Javascript:alert('" + lblMsg.Text + "')"
-            'Exit Sub
+            lblMsg.Text = "Enter Claim #, to retrieve reported claims!"
+            FirstMsg = "Javascript:alert('" + lblMsg.Text + "')"
+
+            txtPolicyNumber.Focus()
+            Exit Sub
         End If
     End Sub
 
     Protected Sub cboSearch_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboSearch.SelectedIndexChanged
-        'ClearAllFields()
+
+        ClearAllFields()
 
         'by PolyNo(POLUNUM)
         lblMsg.Text = GET_CLMS_RPTD_MATURITY("POLYNUM", cboSearch.SelectedValue)
@@ -298,8 +384,8 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE
     End Sub
 
     Sub ClearAllFields()
-        txtClaimsNo.Text = ""
-        txtPolicyNumber.Text = ""
+        'txtClaimsNo.Text = ""
+        'txtPolicyNumber.Text = ""
         txtPolicyStartDate.Text = ""
         txtPolicyEndDate.Text = ""
         txtProductCode.Text = ""
@@ -308,6 +394,17 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE
         DdnSysModule.SelectedIndex = 0
         DdnClaimType.SelectedIndex = 0
 
+        txtClaimsCalculatedDate.Text = ""
+        txtContributionClaimsLC.Text = ""
+        txtContributionClaimsFC.Text = ""
+        txtSumAssuredClaimLC.Text = ""
+        txtSumAssuredClaimFC.Text = ""
+        txtBonusClaimsLC.Text = ""
+        txtBonusClaimsFC.Text = ""
+
+        txtTotalClaimAmtLC.Text = ""
+        txtTotalClaimAmtFC.Text = ""
+
     End Sub
 
     Protected Sub txtClaimsCalculatedDate_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtClaimsCalculatedDate.TextChanged
@@ -315,6 +412,19 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE
         'Dim msg = CHECK_IF_CLAIM_EXIST(txtClaimsNo.Text.Trim())
         'lblMsg.Text = msg
         'FirstMsg = "javascript:confirm('" + lblMsg.Text + "')"
+
+    End Sub
+
+    Protected Sub recalcClaimsCbx_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles recalcClaimsCbx.CheckedChanged
+        Dim res As String = MOVESELECTDATA_FROM_CLAIMRPTD_TO_CLAIMPAID(RTrim(DdnSysModule.SelectedItem.Value), _
+                                                                    RTrim(txtPolicyNumber.Text.Trim()), _
+                                                                    RTrim(txtClaimsNo.Text.Trim()), _
+                                                                    RTrim(txtProductCode.Text.Trim()), _
+                                                                    RTrim(txtUWY.Text), _
+                                                                    RTrim(DdnClaimType.SelectedItem.Value), _
+                                                                    Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtPolicyStartDate.Text)), _
+                                                                    Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtPolicyEndDate.Text)), _
+                                                                    Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtClaimsCalculatedDate.Text)))
 
     End Sub
 End Class
