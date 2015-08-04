@@ -37,6 +37,10 @@
         .style3
         {
         }
+        .style4
+        {
+            height: 22px;
+        }
     </style>
 </head>
 <body onload="<%= FirstMsg %>">
@@ -107,7 +111,7 @@
                 <td align="center" valign="top" class="td_menu">
                     <table align="center" border="0" class="tbl_menu_new">
                         <tr>
-                            <td align="left" colspan="4" valign="top">
+                            <td align="left" colspan="4" valign="top" class="style4">
                                 <asp:Label ID="lblMsg0" ForeColor="Red" Font-Size="Small" runat="server">Status:</asp:Label>
                                 <asp:Label ID="lblMsg" ForeColor="Red" Font-Size="Small" runat="server"></asp:Label>
                             </td>
