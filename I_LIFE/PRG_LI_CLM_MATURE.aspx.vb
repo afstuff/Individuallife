@@ -128,7 +128,7 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE
                 txtClaimsCalculatedDate.Text = sDate1(1) + "/" + sDate1(0) + "/" + sDate1(2)
 
                 Dim _rtnMsg = "Claims record retrieved!"
-                'If _rtnMsg = "Claims record retrieved!" Then  
+                'If _rtnMsg = "Claims record retrieved!" Then
                 Dim res As String = MOVESELECTDATA_FROM_CLAIMRPTD_TO_CLAIMPAID(RTrim(CType(objOledr("TBIL_CLM_RPTD_MDLE") & vbNullString, String)), _
                                                                  RTrim(CType(objOledr("TBIL_CLM_RPTD_POLY_NO") & vbNullString, String)), _
                                                                  RTrim(CType(objOledr("TBIL_CLM_RPTD_CLM_NO") & vbNullString, String)), _
@@ -138,9 +138,6 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE
                                                                  Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtPolicyStartDate.Text)), _
                                                                  Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtPolicyEndDate.Text)), _
                                                                  Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtClaimsCalculatedDate.Text)))
-
-
-
 
 
 
@@ -159,48 +156,7 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE
         Return _rtnMessage
     End Function
 
-    Sub GetCalcClaim(ByVal policyNumber As String)
-
-        Dim mystrConn As String = CType(Session("connstr"), String)
-        Dim conn As OleDbConnection
-        conn = New OleDbConnection(mystrConn)
-        Dim cmd As OleDbCommand = New OleDbCommand()
-        cmd.Connection = conn
-        cmd.CommandText = "SPIL_PRG_LI_CLM_MATURE"
-        cmd.CommandType = CommandType.StoredProcedure
-        cmd.Parameters.AddWithValue("@pTBIL_CLM_PAID_POLY_NO", policyNumber)
-
-        Try
-            conn.Open()
-            Dim objOledr As OleDbDataReader
-            objOledr = cmd.ExecuteReader()
-            If (objOledr.Read()) Then
-                txtContributionClaimsLC.Text = Format(CType(objOledr("TBIL_CLM_PAID_CONTRIB_AMT_LC"), Decimal), "N2")
-                txtContributionClaimsFC.Text = Format(CType(objOledr("TBIL_CLM_PAID_CONTRIB_AMT_LC"), Decimal), "N2")
-                txtLoanBalanceLC.Text = Format(CType(objOledr("TBIL_CLM_PAID_LOAN_BAL_AMT_LC"), Decimal), "N2")
-                txtLoanBalanceFC.Text = Format(CType(objOledr("TBIL_CLM_PAID_LOAN_BAL_AMT_LC"), Decimal), "N2")
-                txtTotalClaimAmtLC.Text = Format(CType(objOledr("TBIL_CLM_PAID_TOT_AMT_LC"), Decimal), "N2")
-                txtTotalClaimAmtFC.Text = Format(CType(objOledr("TBIL_CLM_PAID_TOT_AMT_LC"), Decimal), "N2")
-
-
-                txtSumAssuredClaimLC.Text = Format(CType(objOledr("TBIL_CLM_PAID_SA_AMT_LC"), Decimal), "N2")
-                txtSumAssuredClaimFC.Text = Format(CType(objOledr("TBIL_CLM_PAID_SA_AMT_LC"), Decimal), "N2")
-                txtBonusClaimsLC.Text = Format(CType(objOledr("TBIL_CLM_PAID_BONUS_AMT_LC"), Decimal), "N2")
-                txtBonusClaimsFC.Text = Format(CType(objOledr("TBIL_CLM_PAID_BONUS_AMT_LC"), Decimal), "N2")
-
-
-
-            End If
-            conn.Close()
-        Catch ex As Exception
-            _rtnMessage = "Error retrieving data! " + ex.Message
-        End Try
-
-
-
-    End Sub
-
-    Public Function MOVESELECTDATA_FROM_CLAIMRPTD_TO_CLAIMPAID(ByVal systemModule As String, ByVal claimNumber As String, ByVal polyNumber As String, _
+    Public Function MOVESELECTDATA_FROM_CLAIMRPTD_TO_CLAIMPAID(ByVal systemModule As String, ByVal polyNumber As String, ByVal claimNumber As String, _
                                                                 ByVal uwy As String, ByVal prodCode As String, _
                                                                ByVal claimType As String, ByVal polyStartDate As DateTime, _
                                                                ByVal polyEndDate As DateTime, ByVal claimsCalcDate As DateTime) As String
@@ -231,23 +187,20 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE
                 Dim contribAmtLc As String = CType((objOledr1("TBIL_CLM_PAID_CONTRIB_AMT_LC") & vbNullString), String)
 
                 If contribAmtLc <> "0.00" Then
-                    lblMsg.Text = "Maturity already calculated!, click 'Re-Calculate' to recalculate maturity!"
-                    FirstMsg = "javascript:alert('" + lblMsg.Text + "');"
+                    lblMsg.Text = "Record does not exist!, click 'Re-Calculate' to recalculate claims!"
+                    'FirstMsg = "javascript:alert('" + lblMsg.Text + "');"
                     recalcClaimsCbx.Visible = True
-
-                    GetCalcClaim(CType((objOledr1("TBIL_CLM_PAID_POLY_NO") & vbNullString), String))
-
-                    Exit Function
+                    'Exit Function
                 Else
                     recalcClaimsCbx.Checked = False
                     recalcClaimsCbx.Visible = False
                     Dim prodCategory As String = CType(objOledr1("TBIL_PRDCT_DTL_CAT") & vbNullString, String).Trim()
                     If prodCategory = "I" Then
-                        Call Do_CLM_MATURE_INVESTMENT(CType((objOledr1("TBIL_CLM_PAID_POLY_NO") & vbNullString), String))
-                    ElseIf prodCategory = "E" Then
-                        Call Do_CLM_MATURE_ENDOWMENT(CType((objOledr1("TBIL_CLM_PAID_POLY_NO") & vbNullString), String), 2015, CType(objOledr1("TBIL_CLM_PAID_PRDCT_CD") & vbNullString, String).Trim())
+                        Call Do_CLM_MATURE_INVESTMENT(polyNumber)
+                        'ElseIf prodCategory = "E" Then
+                        Call Do_CLM_MATURE_ENDOWMENT(polyNumber, 2015, CType(objOledr1("TBIL_CLM_PAID_PRDCT_CD") & vbNullString, String).Trim())
                     End If
-                    'lblMsg.Text = "Not a string"
+                    lblMsg.Text = "Not a string"
                 End If
 
 
@@ -278,27 +231,12 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE
             Dim objOledr2 As OleDbDataReader
             objOledr2 = cmd2.ExecuteReader()
             If (objOledr2.Read()) Then
-                ''CONTRIBUTION_CLAIM LOAN_BALANCE TOTAL_CLAIM_AMOUNT
-                If IsNumeric(objOledr2("TBIL_CLM_PAID_CONTRIB_AMT_LC")) Then
-                    txtContributionClaimsLC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_CONTRIB_AMT_LC") & vbNullString, Decimal), "N2")
-                    txtContributionClaimsFC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_CONTRIB_AMT_FC") & vbNullString, Decimal), "N2")
-                End If 
-
-                If IsNumeric(objOledr2("TBIL_CLM_PAID_LOAN_BAL_AMT_LC")) Then
-                    txtLoanBalanceLC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_LOAN_BAL_AMT_LC") & vbNullString, Decimal), "N2")
-                    txtLoanBalanceFC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_LOAN_BAL_AMT_FC") & vbNullString, Decimal), "N2")
-
-                End If
-
-                If IsNumeric(objOledr2("TBIL_CLM_PAID_TOT_AMT_LC")) Then
-                    txtTotalClaimAmtLC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_TOT_AMT_LC") & vbNullString, Decimal), "N2")
-                    txtTotalClaimAmtFC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_TOT_AMT_FC") & vbNullString, Decimal), "N2")
-                End If
-
-                 txtSumAssuredClaimLC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_SA_AMT_LC"), Decimal), "N2")
-                txtSumAssuredClaimFC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_SA_AMT_FC"), Decimal), "N2")
-                txtBonusClaimsLC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_BONUS_AMT_LC"), Decimal), "N2")
-                txtBonusClaimsFC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_BONUS_AMT_FC"), Decimal), "N2")
+                txtContributionClaimsLC.Text = Format(CType(objOledr2("CONTRIBUTION_CLAIM"), Decimal), "N2")
+                txtContributionClaimsFC.Text = Format(CType(objOledr2("CONTRIBUTION_CLAIM"), Decimal), "N2")
+                txtLoanBalanceLC.Text = Format(CType(objOledr2("LOAN_BALANCE"), Decimal), "N2")
+                txtLoanBalanceFC.Text = Format(CType(objOledr2("LOAN_BALANCE"), Decimal), "N2")
+                txtTotalClaimAmtLC.Text = Format(CType(objOledr2("TOTAL_CLAIM_AMOUNT"), Decimal), "N2")
+                txtTotalClaimAmtFC.Text = Format(CType(objOledr2("TOTAL_CLAIM_AMOUNT"), Decimal), "N2")
 
                 '_rtnMessage = "MATURE_INVESTMENT"
             End If
@@ -329,32 +267,10 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE
             Dim objOledr2 As OleDbDataReader
             objOledr2 = cmd2.ExecuteReader()
             If (objOledr2.Read()) Then
-                'txtSumAssuredClaimLC.Text = Format(CType(objOledr2("SUM_ASSURED"), Decimal), "N2")
-                'txtSumAssuredClaimFC.Text = Format(CType(objOledr2("SUM_ASSURED"), Decimal), "N2")
-                'txtBonusClaimsLC.Text = Format(CType(objOledr2("BONUS_AMOUNT"), Decimal), "N2")
-                'txtBonusClaimsFC.Text = Format(CType(objOledr2("BONUS_AMOUNT"), Decimal), "N2")
-
-                 If IsNumeric(objOledr2("TBIL_CLM_PAID_CONTRIB_AMT_LC")) Then
-                    txtContributionClaimsLC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_CONTRIB_AMT_LC") & vbNullString, Decimal), "N2")
-                    txtContributionClaimsFC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_CONTRIB_AMT_FC") & vbNullString, Decimal), "N2")
-                End If 
-
-                If IsNumeric(objOledr2("TBIL_CLM_PAID_LOAN_BAL_AMT_LC")) Then
-                    txtLoanBalanceLC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_LOAN_BAL_AMT_LC") & vbNullString, Decimal), "N2")
-                    txtLoanBalanceFC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_LOAN_BAL_AMT_FC") & vbNullString, Decimal), "N2")
-
-                End If
-
-                If IsNumeric(objOledr2("TBIL_CLM_PAID_TOT_AMT_LC")) Then
-                    txtTotalClaimAmtLC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_TOT_AMT_LC") & vbNullString, Decimal), "N2")
-                    txtTotalClaimAmtFC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_TOT_AMT_FC") & vbNullString, Decimal), "N2")
-                End If
-
-                txtSumAssuredClaimLC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_SA_AMT_LC"), Decimal), "N2")
-                txtSumAssuredClaimFC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_SA_AMT_FC"), Decimal), "N2")
-                txtBonusClaimsLC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_BONUS_AMT_LC"), Decimal), "N2")
-                txtBonusClaimsFC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_BONUS_AMT_FC"), Decimal), "N2")
-
+                txtSumAssuredClaimLC.Text = Format(CType(objOledr2("SUM_ASSURED"), Decimal), "N2")
+                txtSumAssuredClaimFC.Text = Format(CType(objOledr2("SUM_ASSURED"), Decimal), "N2")
+                txtBonusClaimsLC.Text = Format(CType(objOledr2("BONUS_AMOUNT"), Decimal), "N2")
+                txtBonusClaimsFC.Text = Format(CType(objOledr2("BONUS_AMOUNT"), Decimal), "N2")
 
                 '_rtnMessage = "MATURE_ENDOWMENT"
             End If
@@ -502,7 +418,7 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE
     Protected Sub recalcClaimsCbx_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles recalcClaimsCbx.CheckedChanged
         Dim res As String = MOVESELECTDATA_FROM_CLAIMRPTD_TO_CLAIMPAID(RTrim(DdnSysModule.SelectedItem.Value), _
                                                                     RTrim(txtPolicyNumber.Text.Trim()), _
-                                                                    RTrim(txtClaimsNo.Text.Trim()), _                                                                    
+                                                                    RTrim(txtClaimsNo.Text.Trim()), _
                                                                     RTrim(txtProductCode.Text.Trim()), _
                                                                     RTrim(txtUWY.Text), _
                                                                     RTrim(DdnClaimType.SelectedItem.Value), _
@@ -511,6 +427,4 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE
                                                                     Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtClaimsCalculatedDate.Text)))
 
     End Sub
-
-
 End Class

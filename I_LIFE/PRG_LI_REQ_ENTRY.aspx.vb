@@ -52,11 +52,8 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         'load loss type into combobox
-        'If not IsPostBack Then
-            LoadLossTypeCmb()
-            'LoadProductsDescCmb()
-        'End If
-
+        LoadLossTypeCmb()
+        'LoadProductsDescCmb()
 
         strTableName = "TBIL_INS_CLASS"
 
