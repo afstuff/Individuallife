@@ -73,10 +73,6 @@ Partial Class PRG_LI_CLM_WAIVER
             Exit Sub
         End If
         Proc_DoSave()
-        'WaiverEffectiveDate = CDate(txtWaiverEffectiveDate.Text)
-        'WaiverEffectiveDate = Format(WaiverEffectiveDate, "yyyy/MM/dd")
-        'lblMsg.Text = waiverRep.EffectWaiver(drpWaiverCodes.Text, txtPolicyNumber.Text, WaiverEffectiveDate)
-        lblMsg.Visible = True
         initializeFields()
     End Sub
     Private Sub ValidateControls(ByRef ErrorInd As String)
@@ -170,6 +166,28 @@ Partial Class PRG_LI_CLM_WAIVER
             Exit Sub
         End If
 
+        Dim str() As String
+        str = DoDate_Process(txtWaiverEffectiveDate.Text, txtWaiverEffectiveDate)
+        If (str(2) = Nothing) Then
+            Dim errMsg = str(0).Insert(18, " Waiver Effective Date, ")
+            lblMsg.Text = errMsg.Replace("Javascript:alert('", "").Replace("');", "")
+            txtWaiverEffectiveDate.Focus()
+            ErrorInd = "Y"
+            Exit Sub
+        Else
+            txtWaiverEffectiveDate.Text = str(2).ToString()
+        End If
+
+        Dim PolicyStartYear = Year(Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyStartDate.Text)))
+        Dim PolicyEndYear = Year(Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyEndDate.Text)))
+        Dim WaiverYear = Year(Convert.ToDateTime(DoConvertToDbDateFormat(txtWaiverEffectiveDate.Text)))
+
+        If WaiverYear < PolicyStartYear Or WaiverYear > PolicyEndYear Then
+            lblMsg.Text = "Waiver effective date must be within policy year"
+            lblMsg.Visible = True
+            ErrorInd = "Y"
+            Exit Sub
+        End If
     End Sub
 
     Private Sub initializeFields()
@@ -247,18 +265,6 @@ Public Shared Function GetEffectedWaiverDsc(ByVal waiverCode As String) As Strin
    
 
     Private Sub Proc_DoSave()
-        Dim str() As String
-        str = DoDate_Process(txtWaiverEffectiveDate.Text, txtWaiverEffectiveDate)
-        If (str(2) = Nothing) Then
-            Dim errMsg = str(0).Insert(18, " Waiver Effective Date, ")
-            lblMsg.Text = errMsg.Replace("Javascript:alert('", "").Replace("');", "")
-            txtWaiverEffectiveDate.Focus()
-            Exit Sub
-        Else
-            txtWaiverEffectiveDate.Text = str(2).ToString()
-        End If
-
-
         Dim myUserIDX As String = ""
         Try
             myUserIDX = CType(Session("MyUserIDX"), String)
@@ -315,6 +321,7 @@ Public Shared Function GetEffectedWaiverDsc(ByVal waiverCode As String) As Strin
                     .Rows(0)("TBIL_POLY_STATUS") = "W"
                     .Rows(0)("TBIL_POLY_KEYDTE") = Now
                     .Rows(0)("TBIL_POLY_FLAG") = "A"
+                    .Rows(0)("TBIL_POLY_OPERID") = myUserIDX
                 End With
 
                 'obj_DT.AcceptChanges()
@@ -347,5 +354,9 @@ Public Shared Function GetEffectedWaiverDsc(ByVal waiverCode As String) As Strin
         End If
         objOLEConn = Nothing
         FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
+    End Sub
+
+    Protected Sub cmdPrint_ASP_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdPrint_ASP.Click
+        Response.Redirect("PRG_LI_CLM_WAIVER_RPT.aspx")
     End Sub
 End Class

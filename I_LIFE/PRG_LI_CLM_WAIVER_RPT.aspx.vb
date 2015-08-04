@@ -4,7 +4,7 @@
 
     Protected Sub butOK_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles butOK.Click
         Dim str() As String
-        Dim reportname As String
+        '  Dim reportname As String
         If (txtStartDate.Text = "") Then
             Status.Text = "Waiver effective start date must not be empty"
             Exit Sub
@@ -14,10 +14,7 @@
             Exit Sub
         End If
 
-        If (rblTransType.SelectedValue = "") Then
-            Status.Text = "Please select a report type"
-            Exit Sub
-        End If
+        
 
         str = DoDate_Process(txtStartDate.Text, txtStartDate)
         If (str(2) = Nothing) Then
@@ -44,8 +41,8 @@
         Dim endDate As DateTime = Convert.ToDateTime(DoConvertToDbDateFormat(txtEndDate.Text))
 
 
-        reportname = rblTransType.SelectedValue.Trim
-        rParams(0) = rblTransType.SelectedValue.Trim
+
+        rParams(0) = "RPT_LI_CLM_WAIVER"
         rParams(1) = "RPT_ST_DATE="
         rParams(2) = startDate + "&"
         rParams(3) = "RPT_END_DATE="

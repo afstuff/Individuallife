@@ -1,15 +1,13 @@
-﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="PRG_LI_CLM_WAIVER.aspx.vb" Inherits="PRG_LI_CLM_WAIVER" enableEventValidation="false" %>
-
+﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="PRG_LI_REVIVE_POLICY.aspx.vb" Inherits="I_LIFE_PRG_LI_REVIVE_POLICY" %>
 <%@ Register src="../UC_BANT.ascx" tagname="UC_BANT" tagprefix="uc1" %>
 
 <%@ Register src="../UC_FOOT.ascx" tagname="UC_FOOT" tagprefix="uc2" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>Waiver Processing</title>
-    <link rel="Stylesheet" href="../SS_ILIFE.css" type="text/css" />
+    <title>Policy Reactivation</title>
+     <link rel="Stylesheet" href="../SS_ILIFE.css" type="text/css" />
     <script language="javascript" type="text/javascript" src="../Script/ScriptJS.js">
     </script>
     <script language="javascript" type="text/javascript" src="../Script/SJS_02.js">
@@ -18,38 +16,17 @@
 
     <script src="../Script/jquery-1.11.0.js" type="text/javascript"></script>
     <script src="../jquery.simplemodal.js" type="text/javascript"></script>
-    <script src="../Script/WaiverScript.js" type="text/javascript"></script>
-    <script language="javascript" type="text/javascript">
-// calling jquery functions once document is ready
-    </script>
+    <script language="javascript" type="text/javascript"> </script>
+    
     <style type="text/css">
-        #drpWaiverCodes
- {
- 	display:none;
- }
- #lblWaiverCode
- {
- 	display:none;
- }
- #lblWaiverEffDate
- {
- 	display:none;
- }
- #txtWaiverEffectiveDate
- {
- 	display:none;
- }
- 
- #lblWaiverEffFormat
- {
- 	display:none;
- }
+        .style1
+        {
+            width: 1181px;
+        }
     </style>
-
-    </head>
-
+</head>
 <body onload="<%= FirstMsg %>">
-    <form id="form1" runat="server">
+    <form id="PRG_LI_REVIVE_POLICY" runat="server">
    <!-- start banner -->
     <div id="div_banner" align="center">
     
@@ -75,9 +52,9 @@
                                     onfocus="if (this.value == 'Search...') {this.value = '';}"
                                     onblur="if (this.value == '') {this.value = 'Search...';}" />
                                 &nbsp;<%--<asp:Button ID="cmdSearch" Text="Search" runat="server" />--%><asp:Button
-                                    ID="cmdSearch1" runat="server" Text="Search" />
+                                    ID="cmdSearch" runat="server" Text="Search" />
     	                        &nbsp;<asp:DropDownList ID="cboSearch" Width="150px" runat="server" 
-                                    AppendDataBoundItems="True">
+                                    AppendDataBoundItems="True" AutoPostBack="True">
                                     <asp:ListItem>* Select Insured *</asp:ListItem>
                                 </asp:DropDownList>
                             </td>
@@ -105,7 +82,7 @@
     <div id="div_content" align="center">
      <table class="tbl_cont">
                 <tr>
-                    <td nowrap class="myheader">Waiver of Premium Processing</td>
+                    <td nowrap class="myheader">&nbsp;Policy Reactivation Process</td>
                 </tr>
                 <tr>
                     <td align="center" valign="top" class="td_menu">
@@ -114,10 +91,6 @@
                         <td colspan="4">
                             <center>
                                 <asp:Label ID="lblMsg" runat="server" Font-Size="13pt" ForeColor="#FF3300"></asp:Label></center>
-                            <center>
-                                <div id="ans" style="text-align: center; width: 500px; color: Red;">
-                                </div>
-                            </center>
                         </td>
                     </tr>
                     <tr>
@@ -125,7 +98,8 @@
                             <asp:Label ID="Label2" runat="server" Text="Policy Number: "></asp:Label>
                         </td>
                         <td align="left" valign="top">
-                            <asp:TextBox ID="txtPolicyNumber" runat="server" Width="221px"></asp:TextBox>
+                            <asp:TextBox ID="txtPolicyNumber" runat="server" Width="221px" 
+                                AutoPostBack="True"></asp:TextBox>
                         </td>
                         <td>
                             &nbsp;</td>
@@ -137,27 +111,28 @@
                             <asp:Label ID="Label3" runat="server" Text="Assured Code:"></asp:Label>
                         </td>
                         <td align="left" valign="top">
-                            <asp:TextBox ID="txtAssuredCode" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtAssuredCode" runat="server" Enabled="False"></asp:TextBox>
                         </td>
                         <td align="left" valign="top">
                             <asp:Label ID="Label4" runat="server" Text="Assured Name:"></asp:Label>
                         </td>
                         <td align="left" valign="top">
-                            <asp:TextBox ID="txtAssuredName" runat="server" Width="270px"></asp:TextBox>
+                            <asp:TextBox ID="txtAssuredName" runat="server" Width="270px" Enabled="False"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td align="left" valign="top">
-                            <asp:Label ID="Label5" runat="server" Text="Policy Product Code: "></asp:Label>
+                            <asp:Label ID="Label5" runat="server" Text="Product Code: "></asp:Label>
                         </td>
                         <td align="left" valign="top">
-                            <asp:TextBox ID="txtPolicyProCode" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtPolicyProCode" runat="server" Enabled="False"></asp:TextBox>
                         </td>
                         <td align="left" valign="top">
-                            <asp:Label ID="Label6" runat="server" Text="Product Description: "></asp:Label>
+                            <asp:Label ID="Label6" runat="server" Text="Product Name: "></asp:Label>
                         </td>
                         <td align="left" valign="top">
-                            <asp:TextBox ID="txtProdDesc" runat="server" Width="270px" style="height: 22px"></asp:TextBox>
+                            <asp:TextBox ID="txtProdDesc" runat="server" Width="270px" style="height: 22px" 
+                                Enabled="False"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -165,66 +140,49 @@
                             <asp:Label ID="Label7" runat="server" Text="Policy Start Date: "></asp:Label>
                         </td>
                         <td align="left" valign="top">
-                            <asp:TextBox ID="txtPolicyStartDate" runat="server"></asp:TextBox>
-                            <asp:Label ID="Label13" runat="server" Text="dd/mm/yyyy"></asp:Label>
+                            <asp:TextBox ID="txtPolicyStartDate" runat="server" Enabled="False"></asp:TextBox>
+                            <asp:Label ID="lblPaidUpEffFormat0" runat="server" Text="dd/mm/yyyy"></asp:Label>
                         </td>
                         <td align="left" valign="top">
                             <asp:Label ID="Label8" runat="server" Text="Policy End Date: "></asp:Label>
                         </td>
                         <td align="left" valign="top">
-                            <asp:TextBox ID="txtPolicyEndDate" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtPolicyEndDate" runat="server" Enabled="False"></asp:TextBox>
                             <asp:Label ID="Label14" runat="server" Text="dd/mm/yyyy"></asp:Label>
                         </td>
                     </tr>
                     <tr>
                         <td align="left" valign="top">
-                            &nbsp;</td>
-                        <td>
-                            <asp:CheckBox ID="chkConfirmWaiver" runat="server" Text="WAIVER?" />
+                            <asp:Label ID="Label16" runat="server" Text="Policy Lapse Date: "></asp:Label>
                         </td>
-                        <td>
+                        <td align="left" valign="top">
+                            <asp:TextBox ID="txtPolLapseDate" runat="server" Enabled="False"></asp:TextBox>
+                            <asp:Label ID="lblPaidUpEffFormat1" runat="server" Text="dd/mm/yyyy"></asp:Label>
+                        </td>
+                        <td  align="left" valign="top">
                             &nbsp;</td>
-                        <td>
+                        <td align="left">
                             &nbsp;</td>
                     </tr>
                     <tr>
                         <td align="left" valign="top">
-                            <asp:Label ID="lblWaiverCode" runat="server" Text="Waiver Cover: "></asp:Label>
+                            <asp:HiddenField ID="HidPolyStatus" runat="server" />
                         </td>
                         <td>
-                            <asp:DropDownList ID="drpWaiverCodes" runat="server" Height="25px" Width="307px">
-                            </asp:DropDownList>
+                            <asp:CheckBox ID="chkRevivePolicy" runat="server" Text="Reactivate Policy?" 
+                                AutoPostBack="True" />
                         </td>
-                        <td align="left" valign="top">
-                            <asp:Label ID="lblWaiverEffDate" runat="server" Text="Waiver Effective Date: "></asp:Label>
+                        <td  align="left" valign="top">
+                            <asp:Label ID="lblRevive" runat="server" Text="Policy Revive Date: " 
+                                Visible="False"></asp:Label>
                         </td>
-                        <td align="left" valign="top">
-                            <asp:TextBox ID="txtWaiverEffectiveDate" runat="server"></asp:TextBox>
-                            <asp:Label ID="lblWaiverEffFormat" runat="server" Text="dd/mm/yyyy"></asp:Label>
+                        <td align="left">
+                            <asp:TextBox ID="txtPolReviveDate" runat="server" Visible="False"></asp:TextBox>
+                            <asp:Label ID="lblReviveFormat" runat="server" Text="dd/mm/yyyy" 
+                                Visible="False"></asp:Label>
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            &nbsp;
-                            <asp:HiddenField ID="txtPolyStatus" runat="server" />
-                            <asp:HiddenField ID="HidWaiverDesc" runat="server" />
-                            <asp:HiddenField ID="HidWaiverCode" runat="server" />
-                        </td>
-                        <td>
-                            &nbsp;
-                            <asp:HiddenField ID="HidAssuredName" runat="server" />
-                            <asp:HiddenField ID="HidProdDesc" runat="server" />
-                        </td>
-                        <td>
-                            <asp:HiddenField ID="HidPolStartDate" runat="server" />
-                            <asp:HiddenField ID="HidPolEndDate" runat="server" />
-                            </td>
-                        <td>
-                            <asp:HiddenField ID="HidAssuredCode" runat="server" />
-                            <asp:HiddenField ID="HidPolicyProCode" runat="server" />
-                            </td>
-                    </tr>
-                </table>
+                    </table>
                     </td>                                                                                    
                 </tr>
         </table>
@@ -244,7 +202,7 @@
             <td valign="top">
                 <table align="center" border="0" class="footer" style=" background-color: Black;">
                     <tr>
-                        <td colspan="4">                                                        
+                        <td colspan="4" class="style1">                                                        
                             <uc2:UC_FOOT ID="UC_FOOT1" runat="server" />                            
                         </td>
                     </tr>
