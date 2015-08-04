@@ -20,6 +20,8 @@
 
     <script src="../jquery.simplemodal.js" type="text/javascript"></script>
 
+    <%--<script src="js/JScript.js" type="text/javascript"></script>--%>
+    
     <script language="javascript" type="text/javascript">
        
         
@@ -132,7 +134,8 @@
                             <td align="left" valign="top" class="style2">
                                 <asp:TextBox ID="txtPolicyNumber" runat="server" Enabled="False" TabIndex="2" 
                                     AutoPostBack="True"></asp:TextBox>
-                                <asp:Button ID="cmdPolyNoGet" Enabled="false" Text="Get Record" runat="server" />
+                                <asp:Button ID="cmdPolyNoGet" Enabled="false" Text="Get Record" 
+                                    runat="server" />
                                 <asp:TextBox ID="txtRecNo0" Visible="false" Enabled="false" MaxLength="18" Width="40px"
                                     runat="server" Height="22px"></asp:TextBox>
                             </td>
@@ -222,7 +225,7 @@
                                 <asp:Label ID="Label18" runat="server" Text="Claims Calculated Date:"></asp:Label>
                             </td>
                             <td align="left" valign="top" class="style2">
-                                <asp:TextBox ID="txtClaimsCalculatedDate" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtClaimsCalculatedDate" runat="server" AutoPostBack="True"></asp:TextBox>
                                 <asp:ImageButton ID="butCal2" runat="server" OnClientClick="OpenModal_Cal('../Calendar1.aspx?popup=YES',this.form.name,'txtTrans_Date','txtTrans_Date')"
                                     ImageUrl="~/I_LIFE/img/cal.gif" Height="17" Visible="False" />
                                 <asp:Label ID="lblTrans_Date_Format2" Text="dd/mm/yyyy" runat="server"></asp:Label>
@@ -313,8 +316,9 @@
                                 <asp:TextBox ID="txtTotalClaimAmtFC" runat="server" TabIndex="6"></asp:TextBox>
                             </td>
                             <td align="left" valign="top" class="style3" colspan="2">
-                                <asp:CheckBox ID="chkClaimNum0" AutoPostBack="true" Text="Calculate Claims?" 
-                                    runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="#FF3300" />
+                                <asp:CheckBox ID="recalcClaimsCbx" AutoPostBack="true" Text="Re-Calculate Claims?" 
+                                    runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="#FF3300" 
+                                    Visible="False" />
                             </td>
                         </tr>
                         <tr>
@@ -344,6 +348,10 @@
                 Yes</div>
         </div>
     </div>
+    <div id="customModal">
+        
+    </div>
+    
     <div id="div_footer" align="center">
         <table id="tbl_footer" align="center">
             <tr>
@@ -362,41 +370,7 @@
     </form>
 
     <script>
-        $("#txtBasicSumClaimsLC").keypress(function(e) {
-            //if the letter is not digit then display error and don't type anything
-            if (e.which != 8 && e.which != 46 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-                //display error message
-                alert("Invalid keyboard entry!");
-                return false;
-            }
-        })
-
-        $("#txtBasicSumClaimsFC").keypress(function(e) {
-            //if the letter is not digit then display error and don't type anything
-            if (e.which != 8 && e.which != 46 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-                //display error message
-                alert("Invalid keyboard entry!");
-                return false;
-            }
-        })
-
-        $("#txtAdditionalSumClaimsLC").keypress(function(e) {
-            //if the letter is not digit then display error and don't type anything
-            if (e.which != 8 && e.which != 46 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-                //display error message
-                alert("Invalid keyboard entry!");
-                return false;
-            }
-        })
-
-        $("#txtAdditionalSumClaimsFC").keypress(function(e) {
-            //if the letter is not digit then display error and don't type anything
-            if (e.which != 8 && e.which != 46 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-                //display error message
-                alert("Invalid keyboard entry!");
-                return false;
-            }
-        })
+        
     </script>
 
 </body>

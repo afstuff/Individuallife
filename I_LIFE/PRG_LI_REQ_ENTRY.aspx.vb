@@ -187,6 +187,12 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
     End Sub
 
     Sub LoadLossTypeCmb()
+        'DdnLossType.Items.Clear()
+        'Dim newListItem As ListItem
+        'newListItem = New ListItem("-- Select Loss Type --", "")
+        'newListItem.Selected = True
+        'DdnLossType.Items.Add(newListItem)
+
         Dim ds As DataSet = GetAllLossTypeCode()
         'Dim dt As DataTable = ds.Tables(0)
 
@@ -250,6 +256,10 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
                 If IsDate(objOledr("TBIL_POL_PRM_TO")) Then
                     txtPolicyEndDate.Text = Format(CType(objOledr("TBIL_POL_PRM_TO"), DateTime), "dd/MM/yyyy")
                 End If
+
+                'If IsDate(objOledr("TBIL_CLM_RPTD_NOTIF_DT")) Then
+                '    txtNotificationDate.Text = Format(CType(objOledr("TBIL_CLM_RPTD_NOTIF_DT"), DateTime), "dd/MM/yyyy")
+                'End If
 
                 txtBasicSumClaimsLC.Text = Format(CType(objOledr("TBIL_POL_PRM_ANN_CONTRIB_LC"), Decimal), "N2")
                 txtBasicSumClaimsFC.Text = Format(CType(objOledr("TBIL_POL_PRM_ANN_CONTRIB_FC"), Decimal), "N2")
@@ -408,7 +418,7 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
     End Function
 
     Private Function ChangeClaims(ByVal systemModule As String, ByVal polNumber As String, ByVal claimNo As String, ByVal uwy As String, _
-                     ByVal productCode As String, ByVal lossType As String, ByVal polStartDate As DateTime, _
+                     ByVal productCode As String, ByVal claimsType As String, ByVal polStartDate As DateTime, _
                      ByVal polEndDate As DateTime, ByVal notificationDate As DateTime, ByVal claimEffectiveDate As DateTime, ByVal basicSumClc As Decimal, _
                      ByVal basicSumCfc As Decimal, ByVal addSumClc As Decimal, ByVal addSumCfc As Decimal, _
                      ByVal claimDescription As String, ByVal assuredAge As Int16, ByVal lossType2 As String, ByVal flag As String, ByVal dDate As DateTime, ByVal userId As String) As String
@@ -425,7 +435,7 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
         cmd.Parameters.AddWithValue("@TBIL_CLM_RPTD_CLM_NO", claimNo)
         cmd.Parameters.AddWithValue("@TBIL_CLM_RPTD_UNDW_YR", uwy)
         cmd.Parameters.AddWithValue("@TBIL_CLM_RPTD_PRDCT_CD", productCode)
-        cmd.Parameters.AddWithValue("@TBIL_CLM_RPTD_CLM_TYPE", lossType)
+        cmd.Parameters.AddWithValue("@TBIL_CLM_RPTD_CLM_TYPE", claimsType)
         cmd.Parameters.AddWithValue("@TBIL_CLM_RPTD_POLY_FROM_DT", polStartDate)
         cmd.Parameters.AddWithValue("@TBIL_CLM_RPTD_POLY_TO_DT", polEndDate)
         cmd.Parameters.AddWithValue("@TBIL_CLM_RPTD_LOSS_DT", claimEffectiveDate)
@@ -623,7 +633,7 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
         End If
 
         If DdnLossType.SelectedIndex = 0 Then
-            lblMsg.Text = "Claims Type field is required!"
+            lblMsg.Text = "Loss Type field is required!"
             DdnLossType.Focus()
             Exit Sub
         End If
@@ -665,16 +675,16 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
             Dim operatorId As String = CType(Session("MyUserIDX"), String)
 
             lblMsg.Text = AddNewClaimsRequest(Convert.ToString(DdnSysModule.SelectedValue.ToString), _
-                                           Convert.ToString(txtPolicyNumber.Text), Convert.ToString(txtClaimsNo.Text), _
-                                           Convert.ToString(txtUWY.Text), txtProductCode.Text, DdnLossType.SelectedValue, _
-                                           Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtPolicyStartDate.Text)), _
-                                           Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtPolicyEndDate.Text)), _
-                                           Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtClaimsEffectiveDate.Text)), _
-                                           Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtNotificationDate.Text)), _
-                                           Convert.ToDecimal(basicLc), Convert.ToDecimal(basicFc), _
-                                           Convert.ToDecimal(addLc), Convert.ToDecimal(addFc), _
-                                           Convert.ToString(txtProductDec.Text), Convert.ToInt16(txtAssuredAge.Text), _
-                                           Convert.ToString(DdnLossType.SelectedValue), flag, dateAdded, operatorId)
+                                          Convert.ToString(txtPolicyNumber.Text), Convert.ToString(txtClaimsNo.Text), _
+                                          Convert.ToString(txtUWY.Text), txtProductCode.Text, DdnClaimType.SelectedValue, _
+                                          Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtPolicyStartDate.Text)), _
+                                          Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtPolicyEndDate.Text)), _
+                                          Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtClaimsEffectiveDate.Text)), _
+                                          Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtNotificationDate.Text)), _
+                                          Convert.ToDecimal(basicLc), Convert.ToDecimal(basicFc), _
+                                          Convert.ToDecimal(addLc), Convert.ToDecimal(addFc), _
+                                          Convert.ToString(txtProductDec.Text), Convert.ToInt16(txtAssuredAge.Text), _
+                                          Convert.ToString(DdnLossType.SelectedValue), flag, dateAdded, operatorId)
 
         Else
             Dim flag As String = "C"
@@ -682,7 +692,7 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
             Dim operatorId As String = CType(Session("MyUserIDX"), String)
             lblMsg.Text = ChangeClaims(Convert.ToString(DdnSysModule.SelectedValue.ToString), _
                                           Convert.ToString(txtPolicyNumber.Text), Convert.ToString(txtClaimsNo.Text), _
-                                          Convert.ToString(txtUWY.Text), txtProductCode.Text, DdnLossType.SelectedValue, _
+                                          Convert.ToString(txtUWY.Text), txtProductCode.Text, DdnClaimType.SelectedValue, _
                                           Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtPolicyStartDate.Text)), _
                                           Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtPolicyEndDate.Text)), _
                                           Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtClaimsEffectiveDate.Text)), _
@@ -857,7 +867,7 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
         End If
 
         If DdnLossType.SelectedIndex = 0 Then
-            lblMsg.Text = "Claims Type field is required!"
+            lblMsg.Text = "Loss Type field is required!"
             DdnLossType.Focus()
             Exit Sub
         End If

@@ -65,7 +65,7 @@
                                 &nbsp;<asp:Button ID="cmdSearch" Text="Search" runat="server" 
                                     style="height: 26px" />
                                 &nbsp;<asp:DropDownList ID="cboSearch" AutoPostBack="true" Width="150px" 
-                                    runat="server" AppendDataBoundItems="True" EnableViewState="False">
+                                    runat="server" AppendDataBoundItems="True">
                                     <asp:ListItem>** Select Insured **</asp:ListItem>
                                 </asp:DropDownList>
                             </td>
@@ -262,7 +262,7 @@
                             </td>
                             <td align="left" valign="top" class="style2">
                                 <asp:DropDownList ID="DdnLossType" runat="server" 
-                                    TabIndex="12" AppendDataBoundItems="True" EnableViewState="False">
+                                    TabIndex="12" AppendDataBoundItems="True">
                                     <asp:ListItem>-- Select --</asp:ListItem>
                                 </asp:DropDownList>
                             </td>
