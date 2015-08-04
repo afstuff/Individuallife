@@ -17,24 +17,16 @@
     <script src="../Script/jquery-1.11.0.js" type="text/javascript"></script>
     <script src="../jquery.simplemodal.js" type="text/javascript"></script>
     <script language="javascript" type="text/javascript"> </script>
-     <script src="../calendar_eu.js" type="text/javascript"></script>
-
-    <link href="../calendar.css" rel="stylesheet" type="text/css" />
+    
     <style type="text/css">
         .style1
         {
             width: 1181px;
         }
-        .linkStyle
-        {
-        	background-color:red;
-            color:#fff;
-        	
-        }
     </style>
 </head>
 <body onload="<%= FirstMsg %>">
-    <form id="PRG_PAIDUP_PROCESS" runat="server">
+    <form id="form1" runat="server">
    <!-- start banner -->
     <div id="div_banner" align="center">
     
@@ -109,19 +101,18 @@
                              <Columns>
                         <asp:TemplateField ShowHeader="False">
                             <ItemTemplate>
-                                <asp:Button ID="lnkPrint" runat="server"  CssClass="linkStyle"
-                                   Text="Print"  CausesValidation="false" CommandName=""
-                                    CommandArgument='<%#  Eval("POLICY NO") & "-" & Eval("LAST PREMIUM") %>' OnClick="PrintLapsePolicy" OnClientClick="return PrintLapsePolicy()"></asp:Button>
+                                <asp:LinkButton ID="lnkPrint" runat="server" 
+                                   Text="Print" BorderStyle="Solid" CausesValidation="false" CommandName=""
+                                    CommandArgument='<%# Eval("POLICY_NO") %>' OnClick="PrintLapsePolicy" OnClientClick="return PrintLapsePolicy()"></asp:LinkButton>
                             </ItemTemplate>
                             <ItemStyle HorizontalAlign="Left" Width="25px" />
                         </asp:TemplateField>
                         
                         <asp:TemplateField ShowHeader="False">
                             <ItemTemplate>
-                            <asp:Button ID="lnkUpdate" runat="server" CssClass="linkStyle"
-                                   Text="Update" CausesValidation="false" CommandName=""
-                                    CommandArgument='<%# Eval("POLICY NO") & "-" & Eval("LAST PREMIUM") %>' OnClick="UpdateLapse" OnClientClick="return ClientUpdateLapse()"></asp:Button>
-                         
+                                <asp:LinkButton ID="lnkUpdate" runat="server"
+                                   Text="Update" BorderStyle="Solid" CausesValidation="false" CommandName=""
+                                    CommandArgument='<%# Eval("POLICY_NO") %>' OnClick="UpdateLapse" OnClientClick="return ClientUpdateLapse()"></asp:LinkButton>
                             </ItemTemplate>
                             <ItemStyle HorizontalAlign="Left" Width="25px" />
                         </asp:TemplateField>
