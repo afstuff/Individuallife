@@ -82,7 +82,7 @@
                                     <tr>
                                         <td align="center" colspan="4" valign="top">
                                             &nbsp;&nbsp;<a href="#" onclick="javascript:JSDO_RETURN('MENU_IL.aspx?menu=IL_CLAIM')">Go to Menu</a>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:button id="cmdSave_ASP" CssClass="cmd_butt" runat="server" text="Save Data" OnClientClick="return ValidateOnClient()"></asp:button>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:button id="cmdSave_ASP" CssClass="cmd_butt" runat="server" text="Save Data"></asp:button>
                                             &nbsp;&nbsp;<asp:button id="cmdDelete_ASP" CssClass="cmd_butt" Enabled="false"  runat="server" text="Delete Data" OnClientClick="JSDelete_ASP();"></asp:button>
                                             &nbsp;&nbsp;<asp:button id="cmdPrint_ASP" CssClass="cmd_butt" runat="server" 
                                                 text="Print"></asp:button>
@@ -235,9 +235,7 @@
     </table>
 </div>    
 
-    </form></body>
-     <script language="javascript" type="text/javascript"> </script>
-    
+    </form></body>    
   <script language="javascript" type="text/javascript">
 function CheckDate(my) {
     var returnMsg;

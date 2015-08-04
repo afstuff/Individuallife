@@ -75,12 +75,13 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS
                     End If
                     chkPaidUp.Checked = True
                     lblMsg.Text = "Paid UP has already been processed"
+
                     lblMsg.Visible = True
                 End If
-
             Else
-                lblMsg.Text = "Policy No does not exist"
+                lblMsg.Text = txtPolicyNumber.Text & " is not a valid policy number"
                 lblMsg.Visible = True
+                txtPolicyNumber.Text = ""
                 FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
                 txtPolicyNumber.Focus()
                 Exit Sub
@@ -380,16 +381,23 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS
     End Sub
 
     Protected Sub chkPaidUp_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles chkPaidUp.CheckedChanged
-        If chkPaidUp.Checked Then
-            txtPaidUpEffectiveDate.Visible = True
-            lblPaidUpEffDate.Visible = True
-            lblPaidUpEffFormat.Visible = True
-            Panel1.Visible = True
+        lblMsg.Text = ""
+        If txtPolicyNumber.Text = "" Then
+            lblMsg.Text = "Please enter a policy Number"
+            lblMsg.Visible = True
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
+            txtPolicyNumber.Focus()
+            chkPaidUp.Checked = False
         Else
-            txtPaidUpEffectiveDate.Visible = False
-            lblPaidUpEffDate.Visible = False
-            lblPaidUpEffFormat.Visible = False
-            Panel1.Visible = False
+            If chkPaidUp.Checked Then
+                txtPaidUpEffectiveDate.Visible = True
+                lblPaidUpEffDate.Visible = True
+                lblPaidUpEffFormat.Visible = True
+            Else
+                txtPaidUpEffectiveDate.Visible = False
+                lblPaidUpEffDate.Visible = False
+                lblPaidUpEffFormat.Visible = False
+            End If
         End If
     End Sub
 
