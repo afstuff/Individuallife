@@ -2580,7 +2580,8 @@ MyTestDate_Err1:
         Else
             'Validate date
             Dim myarrData = Split(dateValue, "/")
-            If myarrData.Count <> 3 Then
+            'If myarrData.Count <> 3 Then
+            If myarrData.Length <> 3 Then
                 rtnMsg_ = " Expecting full date in ddmmyyyy format ..."
                 rtnMsg_ = "Javascript:alert('" & rtnMsg_ & "')"
                 rtnMsg(0) = rtnMsg_
