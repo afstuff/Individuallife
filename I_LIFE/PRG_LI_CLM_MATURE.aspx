@@ -129,7 +129,8 @@
                                     runat="server"></asp:TextBox>
                             </td>
                             <td align="left" valign="top" class="style3">
-                                <asp:CheckBox ID="chkPolyNum" AutoPostBack="true" Text="Policy #:" runat="server" />
+                                <asp:CheckBox ID="chkPolyNum" AutoPostBack="true" Text="Policy #:" 
+                                    runat="server" Enabled="False" />
                             </td>
                             <td align="left" valign="top" class="style2">
                                 <asp:TextBox ID="txtPolicyNumber" runat="server" Enabled="False" TabIndex="2" 
@@ -316,7 +317,7 @@
                                 <asp:TextBox ID="txtTotalClaimAmtFC" runat="server" TabIndex="6"></asp:TextBox>
                             </td>
                             <td align="left" valign="top" class="style3" colspan="2">
-                                <asp:CheckBox ID="recalcClaimsCbx" AutoPostBack="true" Text="Re-Calculate Claims?" 
+                                <asp:CheckBox ID="recalcClaimsCbx" AutoPostBack="true" Text="Re-Calculate Claims Maturity?" 
                                     runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="#FF3300" 
                                     Visible="False" />
                             </td>
