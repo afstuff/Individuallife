@@ -502,7 +502,10 @@ Partial Class I_LIFE_MENU_IL
                 AddMenuItem("", "Waiver of Premium", "PRG_LI_CLM_WAIVER.aspx?optid=NEW")
                 AddMenuItem("", "Paid-Up Policies", "PRG_PAIDUP_PROCESS.aspx?optid=NEW")
                 AddMenuItem("", "Lapse Policies", "PRG_LI_LAPSE_PROCESS.aspx?optid=NEW")
-                'AddMenuItem("", "Paid-Up Policies", "PRG_PAIDUP_PROCESS.aspx?optid=NEW")
+                AddMenuItem("", "Policy Cancellation Process", "PRG_LI_CANCEL_PROCESS.aspx?optid=NEW")
+                AddMenuItem("", "Policy Reactivation Process", "PRG_LI_REVIVE_POLICY.aspx?optid=NEW")
+                AddMenuItem("", "Maturity Claim Process", "PRG_LI_CLM_MATURE.aspx?optid=NEW")
+                AddMenuItem("", "Partial Maturity Claim Process", "PRG_LI_CLM_PART_MATURE.aspx?optid=NEW")
 
                 AddMenuItem("", "", "") 'blank link
                 AddMenuItem("Reports", "List of Surrendered Policies", "")
