@@ -14,7 +14,7 @@ Partial Class I_LIFE_PRG_LI_LAPSE_PROCESS
     Dim strErrMsg As String
     Protected blnStatusX As Boolean
     Dim _policyNo As String = ""
-    Private Sub GetPolicyDetails(ByVal _policyNo As String)
+    Private Sub GetActivePolicies(ByVal _policyNo As String)
         Dim mystrCONN As String = CType(Session("connstr"), String)
         Dim objOLEConn As New OleDbConnection()
         objOLEConn.ConnectionString = mystrCONN
@@ -26,6 +26,7 @@ Partial Class I_LIFE_PRG_LI_LAPSE_PROCESS
         Catch ex As Exception
             Me.lblMsg.Text = "Unable to connect to database. Reason: " & ex.Message
             'FirstMsg = "Javascript:alert('" & Me.txtMsg.Text & "')"
+            lblMsg.Visible = True
             objOLEConn = Nothing
             Exit Sub
         End Try
@@ -45,6 +46,7 @@ Partial Class I_LIFE_PRG_LI_LAPSE_PROCESS
             GrdLapsePolicy.DataBind()
         Catch ex As Exception
             Me.lblMsg.Text = ex.Message.ToString
+            lblMsg.Visible = True
             Exit Sub
         End Try
 
@@ -62,12 +64,36 @@ Partial Class I_LIFE_PRG_LI_LAPSE_PROCESS
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
-            GetPolicyDetails(_policyNo)
+            GetActivePolicies(_policyNo)
         End If
     End Sub
     Protected Sub UpdateLapse(ByVal sender As Object, ByVal e As EventArgs)
-        Dim policyNo As String = Convert.ToString((TryCast(sender, LinkButton).CommandArgument))
+        lblMsg.Text = ""
+        Dim geTValue As String = Convert.ToString((TryCast(sender, Button).CommandArgument))
         Dim myUserIDX As String = ""
+
+        Dim MyLen = Len(geTValue)
+        Dim MyPos = InStr(geTValue, "-")
+        Dim LocationLen = MyLen - MyPos
+        MyPos = MyPos - 1
+        Dim policyNo = Microsoft.VisualBasic.Left(geTValue, MyPos)
+        Dim Last_Premium_Paid_Date = Microsoft.VisualBasic.Right(geTValue, LocationLen)
+
+        If Last_Premium_Paid_Date = Nothing Then
+            lblMsg.Text = "Last Premium date is blank, Lapse cannot be processed"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            Exit Sub
+        End If
+
+        Dim Last_Prem_Date As Date
+        Last_Prem_Date = DoConvertToDbDateFormat(Last_Premium_Paid_Date)
+        Dim i = DateDiff("yyyy", Last_Prem_Date, Now)
+
+        If i < 1 Then
+            lblMsg.Text = "Lapse last premium paid date is less than a year, Lapse cannot be processed"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            Exit Sub
+        End If
         Try
             myUserIDX = CType(Session("MyUserIDX"), String)
         Catch ex As Exception
@@ -85,6 +111,7 @@ Partial Class I_LIFE_PRG_LI_LAPSE_PROCESS
         Catch ex As Exception
             Me.lblMsg.Text = "Unable to connect to database. Reason: " & ex.Message
             'FirstMsg = "Javascript:alert('" & Me.txtMsg.Text & "')"
+            lblMsg.Visible = True
             objOLEConn = Nothing
             Exit Sub
         End Try
@@ -135,6 +162,7 @@ Partial Class I_LIFE_PRG_LI_LAPSE_PROCESS
 
         Catch ex As Exception
             Me.lblMsg.Text = ex.Message.ToString
+            lblMsg.Visible = True
             Exit Sub
         End Try
 
@@ -160,7 +188,7 @@ Partial Class I_LIFE_PRG_LI_LAPSE_PROCESS
 
     Protected Sub GrdLapsePolicy_PageIndexChanging(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewPageEventArgs) Handles GrdLapsePolicy.PageIndexChanging
         GrdLapsePolicy.PageIndex = e.NewPageIndex
-        GetPolicyDetails(_policyNo)
+        GetActivePolicies(_policyNo)
     End Sub
 
     Protected Sub cmdSearch_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdSearch.Click
@@ -180,18 +208,42 @@ Partial Class I_LIFE_PRG_LI_LAPSE_PROCESS
             If Me.cboSearch.SelectedIndex = -1 Or Me.cboSearch.SelectedIndex = 0 Or _
             Me.cboSearch.SelectedItem.Value = "" Or Me.cboSearch.SelectedItem.Value = "*" Then
             Else
-                GetPolicyDetails(cboSearch.SelectedValue.Trim())
+                GetActivePolicies(cboSearch.SelectedValue.Trim())
             End If
         Catch ex As Exception
             Me.lblMsg.Text = "Error. Reason: " & ex.Message.ToString
+            lblMsg.Visible = True
         End Try
     End Sub
     Protected Sub PrintLapsePolicy(ByVal sender As Object, ByVal e As EventArgs)
-        Dim policyNo As String = Convert.ToString((TryCast(sender, LinkButton).CommandArgument))
+        lblMsg.Text = ""
+        Dim geTValue As String = Convert.ToString((TryCast(sender, Button).CommandArgument))
+        Dim MyLen = Len(geTValue)
+        Dim MyPos = InStr(geTValue, "-")
+        Dim LocationLen = MyLen - MyPos
+        MyPos = MyPos - 1
+        Dim policyNo = Microsoft.VisualBasic.Left(geTValue, MyPos)
+        Dim Last_Premium_Paid_Date = Microsoft.VisualBasic.Right(geTValue, LocationLen)
+
+        If Last_Premium_Paid_Date = Nothing Then
+            lblMsg.Text = "Last Premium date is blank, Lapse cannot be processed"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            Exit Sub
+        End If
+
+        Dim Last_Prem_Date As Date
+        Last_Prem_Date = DoConvertToDbDateFormat(Last_Premium_Paid_Date)
+        Dim i = DateDiff("yyyy", Last_Prem_Date, Now)
+
+        If i < 1 Then
+            lblMsg.Text = "Lapse last premium paid date is less than a year, Lapse cannot be processed"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            Exit Sub
+        End If
         Dim rParams As String() = {"nw", "nw", "new"}
 
         rParams(0) = "RPT_LI_LAPSE_PROCESS"
-        rParams(1) = "pPolicyNo="
+        rParams(1) = "pPolicy_No="
         rParams(2) = policyNo + "&"
         Session("ReportParams") = rParams
         Response.Redirect("../PrintView.aspx")

@@ -1,4 +1,5 @@
-﻿Partial Class I_LIFE_RPT_LI_CLM_WAIVER
+﻿
+Partial Class I_LIFE_PRG_LI_REVIVE_POLICY_RPT
     Inherits System.Web.UI.Page
     Dim rParams As String() = {"nw", "nw", "new", "new", "new"}
 
@@ -14,7 +15,7 @@
             Exit Sub
         End If
 
-        
+
 
         str = DoDate_Process(txtStartDate.Text, txtStartDate)
         If (str(2) = Nothing) Then
@@ -36,8 +37,6 @@
             txtEndDate.Text = str(2).ToString()
         End If
 
-        'Dim startDate As DateTime = Convert.ToDateTime(DoConvertToDbDateFormat(txtStartDate.Text))
-        'Dim endDate As DateTime = Convert.ToDateTime(DoConvertToDbDateFormat(txtEndDate.Text))
         Dim startDate = Format(Convert.ToDateTime(DoConvertToDbDateFormat(txtStartDate.Text)), "MM/dd/yyyy")
         Dim endDate = Format(Convert.ToDateTime(DoConvertToDbDateFormat(txtEndDate.Text)), "MM/dd/yyyy")
 
@@ -46,14 +45,19 @@
             Exit Sub
         End If
 
-        rParams(0) = "RPT_LI_CLM_WAIVER"
-        rParams(1) = "RPT_ST_DATE="
+        rParams(0) = "RPT_LI_REVIVE_POLICY"
+        rParams(1) = "pStartDate="
         rParams(2) = startDate + "&"
-        rParams(3) = "RPT_END_DATE="
+        rParams(3) = "pEndDate="
         rParams(4) = endDate + "&"
 
         Session("ReportParams") = rParams
         Response.Redirect("../PrintView.aspx")
         ' Response.Redirect("PrintView.aspx")
     End Sub
+
+    Protected Sub butClose_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles butClose.Click
+        Response.Redirect("PRG_LI_REVIVE_POLICY.aspx")
+    End Sub
+
 End Class

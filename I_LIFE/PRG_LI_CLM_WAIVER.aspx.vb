@@ -49,6 +49,7 @@ Partial Class PRG_LI_CLM_WAIVER
             End If
         Catch ex As Exception
             Me.lblMsg.Text = "Error. Reason: " & ex.Message.ToString
+            lblMsg.Visible = True
         End Try
     End Sub
     Protected Sub cmdSearch1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdSearch1.Click
@@ -283,6 +284,7 @@ Public Shared Function GetEffectedWaiverDsc(ByVal waiverCode As String) As Strin
         Catch ex As Exception
             Me.lblMsg.Text = "Unable to connect to database. Reason: " & ex.Message
             'FirstMsg = "Javascript:alert('" & Me.txtMsg.Text & "')"
+            lblMsg.Visible = True
             objOLEConn = Nothing
             Exit Sub
         End Try
@@ -334,6 +336,7 @@ Public Shared Function GetEffectedWaiverDsc(ByVal waiverCode As String) As Strin
 
         Catch ex As Exception
             Me.lblMsg.Text = ex.Message.ToString
+            lblMsg.Visible = True
             Exit Sub
         End Try
 
