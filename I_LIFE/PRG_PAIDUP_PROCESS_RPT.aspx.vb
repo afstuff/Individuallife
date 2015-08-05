@@ -7,11 +7,11 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS_RPT
         Dim str() As String
         '  Dim reportname As String
         If (txtStartDate.Text = "") Then
-            Status.Text = "Waiver effective start date must not be empty"
+            Status.Text = "Paid up start date must not be empty"
             Exit Sub
         End If
         If (txtEndDate.Text = "") Then
-            Status.Text = "Waiver effective end date must not be empty"
+            Status.Text = "Paid up end date must not be empty"
             Exit Sub
         End If
 
@@ -37,10 +37,14 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS_RPT
             txtEndDate.Text = str(2).ToString()
         End If
 
-        Dim startDate As DateTime = Format(Convert.ToDateTime(DoConvertToDbDateFormat(txtStartDate.Text)), "MM/dd/yyyy")
-        Dim endDate As DateTime = Format(Convert.ToDateTime(DoConvertToDbDateFormat(txtEndDate.Text)), "MM/dd/yyyy")
-        'Dim startDate As DateTime = DoConvertToDbDateFormat(txtStartDate.Text)
-        'Dim endDate As DateTime = DoConvertToDbDateFormat(txtEndDate.Text)
+        
+        Dim startDate = Format(Convert.ToDateTime(DoConvertToDbDateFormat(txtStartDate.Text)), "MM/dd/yyyy")
+        Dim endDate = Format(Convert.ToDateTime(DoConvertToDbDateFormat(txtEndDate.Text)), "MM/dd/yyyy")
+
+        If startDate > endDate Then
+            Status.Text = "Start Date must not be greater than end date"
+            Exit Sub
+        End If
 
         rParams(0) = "RPT_PAIDUP_PROCESS"
         rParams(1) = "pSTART_DATE="

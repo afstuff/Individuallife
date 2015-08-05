@@ -12,10 +12,13 @@
     <script src="jquery-1.11.0.js" type="text/javascript"></script>
     <script src="jquery.simplemodal.js" type="text/javascript"></script>
     <script language="JavaScript" src="calendar_eu.js" type="text/javascript"></script>
+     <script src="../calendar_eu.js" type="text/javascript"></script>
+
+    <link href="../calendar.css" rel="stylesheet" type="text/css" />
     <title></title>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="PRG_PAIDUP_PROCESS_RPT" runat="server">
       <div>
     </div>
     <div  class="newpage">
@@ -38,18 +41,19 @@
                 	
 
                 <table class="tbl_menu_new">
-			        <tr><td colspan="2" class="myMenu_Title" align="center">&nbsp;</td><td></td><td></td><td></td></tr>
+			        <tr><td colspan="2" class="myMenu_Title" align="center">&nbsp;</td></tr>
 				    <tr>
-					    <td>Paid Up Policies Effective Start Date</td>
+					    <td>Paid Up Start Date</td>
 					    <td><asp:TextBox ID="txtStartDate" runat="server" Width="150px" MaxLength=10 ></asp:TextBox>
-					    					<!--<script language="JavaScript" type="text/javascript">
-					    					    new tcal({ 'formname': 'LifeReportsPrint', 'controlname': 'txtStartDate' });</script>dd/mm/yyyy--></td>
+					    				<script language="JavaScript" type="text/javascript">
+					    					    new tcal({ 'formname': 'PRG_PAIDUP_PROCESS_RPT', 'controlname': 'txtStartDate' });</script>dd/mm/yyyy</td>
 				    </tr>
     				
 				    
 				    <tr>
-					    <td>Paid Up Policies Effective End Date</td>
-					    <td><asp:TextBox ID="txtEndDate" runat="server" Width="150px" MaxLength=10 ></asp:TextBox>
+					    <td>Paid Up&nbsp; End Date</td>
+					    <td><asp:TextBox ID="txtEndDate" runat="server" Width="150px" MaxLength=10 ></asp:TextBox> <script language="JavaScript" type="text/javascript">
+					        new tcal({ 'formname': 'PRG_PAIDUP_PROCESS_RPT', 'controlname': 'txtEndDate' });</script>dd/mm/yyyy
 					    					</td>
 				    </tr>
 

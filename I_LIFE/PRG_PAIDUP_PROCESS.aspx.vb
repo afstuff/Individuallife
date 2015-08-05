@@ -46,6 +46,7 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS
             Me.lblMsg.Text = "Unable to connect to database. Reason: " & ex.Message
             'FirstMsg = "Javascript:alert('" & Me.txtMsg.Text & "')"
             objOLEConn = Nothing
+            lblMsg.Visible = True
             Exit Sub
         End Try
 
@@ -79,14 +80,16 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS
                 End If
 
             Else
-                lblMsg.Text = "Policy No does not exist"
+                lblMsg.Text = txtPolicyNumber.Text & " is not a valid policy number"
                 lblMsg.Visible = True
                 FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
+                txtPolicyNumber.Text = ""
                 txtPolicyNumber.Focus()
                 Exit Sub
             End If
         Catch ex As Exception
             Me.lblMsg.Text = ex.Message.ToString
+            lblMsg.Visible = True
             Exit Sub
         End Try
 
@@ -117,6 +120,7 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS
             End If
         Catch ex As Exception
             Me.lblMsg.Text = "Error. Reason: " & ex.Message.ToString
+            lblMsg.Visible = True
         End Try
     End Sub
     Protected Sub txtPolicyNumber_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtPolicyNumber.TextChanged
@@ -166,7 +170,7 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS
             ErrorInd = "Y"
             Exit Sub
         End If
-       
+
 
         If (Not IsDate(txtPolicyEndDate.Text)) Then
             lblMsg.Text = "Policy end date is not valid"
@@ -199,7 +203,7 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS
             'lblPaidUpEffFormat.Visible = True
             Exit Sub
         End If
-       
+
         Dim str() As String
         str = DoDate_Process(txtPaidUpEffectiveDate.Text, txtPaidUpEffectiveDate)
         If (str(2) = Nothing) Then
@@ -305,6 +309,7 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS
         Catch ex As Exception
             Me.lblMsg.Text = "Unable to connect to database. Reason: " & ex.Message
             'FirstMsg = "Javascript:alert('" & Me.txtMsg.Text & "')"
+            lblMsg.Visible = True
             objOLEConn = Nothing
             Exit Sub
         End Try
@@ -349,12 +354,13 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS
                 intC = objDA.Update(obj_DT)
 
                 Me.lblMsg.Text = "Record Saved to Database Successfully."
-
+                lblMsg.Visible = True
             End If
 
 
         Catch ex As Exception
             Me.lblMsg.Text = ex.Message.ToString
+            lblMsg.Visible = True
             Exit Sub
         End Try
 
@@ -380,16 +386,24 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS
     End Sub
 
     Protected Sub chkPaidUp_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles chkPaidUp.CheckedChanged
-        If chkPaidUp.Checked Then
-            txtPaidUpEffectiveDate.Visible = True
-            lblPaidUpEffDate.Visible = True
-            lblPaidUpEffFormat.Visible = True
-            'Panel1.Visible = True
+        lblMsg.Text = ""
+        If txtPolicyNumber.Text = "" Then
+            lblMsg.Text = "Please enter a policy Number"
+            lblMsg.Visible = True
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
+            txtPolicyNumber.Focus()
+            chkPaidUp.Checked = False
+            Exit Sub
         Else
-            txtPaidUpEffectiveDate.Visible = False
-            lblPaidUpEffDate.Visible = False
-            lblPaidUpEffFormat.Visible = False
-            'Panel1.Visible = False
+            If chkPaidUp.Checked Then
+                txtPaidUpEffectiveDate.Visible = True
+                lblPaidUpEffDate.Visible = True
+                lblPaidUpEffFormat.Visible = True
+            Else
+                txtPaidUpEffectiveDate.Visible = False
+                lblPaidUpEffDate.Visible = False
+                lblPaidUpEffFormat.Visible = False
+            End If
         End If
     End Sub
 
