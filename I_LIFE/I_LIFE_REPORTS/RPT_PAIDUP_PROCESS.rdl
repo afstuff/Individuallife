@@ -6,19 +6,19 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.17175in</Width>
+              <Width>0.92175in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.30717in</Width>
+              <Width>1.845in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.37376in</Width>
+              <Width>1.71751in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.85925in</Width>
+              <Width>1.55717in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.25508in</Width>
+              <Width>0.88008in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>0.92175in</Width>
@@ -454,9 +454,9 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DT_PAIDUP_PROCESS</DataSetName>
-        <Top>0.88417in</Top>
+        <Top>0.98312in</Top>
         <Height>0.51042in</Height>
-        <Width>9.88876in</Width>
+        <Width>7.84325in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -470,10 +470,9 @@
             <Value>001</Value>
           </Parameter>
         </Parameters>
-        <Top>0.09896in</Top>
         <Left>0.22917in</Left>
-        <Height>0.405in</Height>
-        <Width>8.21701in</Width>
+        <Height>0.62548in</Height>
+        <Width>7.61408in</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -502,8 +501,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox7</rd:DefaultName>
-        <Top>0.54562in</Top>
-        <Left>2.51017in</Left>
+        <Top>0.69493in</Top>
+        <Left>2.13517in</Left>
         <Height>0.23264in</Height>
         <Width>3.94792in</Width>
         <ZIndex>2</ZIndex>
@@ -519,12 +518,16 @@
       </Textbox>
     </ReportItems>
     <Height>3.37375in</Height>
-    <Style />
+    <Style>
+      <Border>
+        <Style>None</Style>
+      </Border>
+    </Style>
   </Body>
-  <Width>11.56052in</Width>
+  <Width>7.8941in</Width>
   <Page>
-    <LeftMargin>1in</LeftMargin>
-    <RightMargin>1in</RightMargin>
+    <LeftMargin>0.25in</LeftMargin>
+    <RightMargin>0.25in</RightMargin>
     <TopMargin>1in</TopMargin>
     <BottomMargin>1in</BottomMargin>
     <Style />

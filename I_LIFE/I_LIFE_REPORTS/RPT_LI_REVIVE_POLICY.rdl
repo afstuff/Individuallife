@@ -6,70 +6,34 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>0.78027in</Width>
+              <Width>1.45362in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.46676in</Width>
+              <Width>1in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.07093in</Width>
+              <Width>1.09375in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.14384in</Width>
+              <Width>0.95833in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.72917in</Width>
+              <Width>1.09375in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.07292in</Width>
+              <Width>0.625in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.99108in</Width>
+              <Width>0.63542in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.77232in</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>0.85565in</Width>
+              <Width>0.70833in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.51041in</Height>
+              <Height>0.36458in</Height>
               <TablixCells>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox12">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>WAIVER DATE</Value>
-                              <Style>
-                                <FontSize>9pt</FontSize>
-                                <FontWeight>Bold</FontWeight>
-                                <TextDecoration>Underline</TextDecoration>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox12</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>None</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="Textbox1">
@@ -79,7 +43,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>POLICY NUMBER</Value>
+                              <Value>POLICY NO</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -101,19 +65,18 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox3">
+                    <Textbox Name="Textbox13">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>ASSURED CODE</Value>
+                              <Value>ASSRD CODE</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -124,7 +87,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox3</rd:DefaultName>
+                      <rd:DefaultName>Textbox13</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -139,14 +102,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox5">
+                    <Textbox Name="Textbox15">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>INSURED NAME</Value>
+                              <Value>ASSURED NAME</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -157,73 +120,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox5</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>None</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox2">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>COVER CODE</Value>
-                              <Style>
-                                <FontSize>9pt</FontSize>
-                                <FontWeight>Bold</FontWeight>
-                                <TextDecoration>Underline</TextDecoration>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox2</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>None</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox16">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>COVER DESCRIPTION</Value>
-                              <Style>
-                                <FontSize>9pt</FontSize>
-                                <FontWeight>Bold</FontWeight>
-                                <TextDecoration>Underline</TextDecoration>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox16</rd:DefaultName>
+                      <rd:DefaultName>Textbox15</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -245,7 +142,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>PRODUCT DESCRIPTION</Value>
+                              <Value>PRODUCT CODE</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -278,7 +175,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>POLICY START DATE</Value>
+                              <Value>PRODUCT  DESCRIPTION</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -304,14 +201,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox13">
+                    <Textbox Name="Textbox7">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>POLICY END DATE</Value>
+                              <Value>START DATE</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -322,7 +219,73 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox13</rd:DefaultName>
+                      <rd:DefaultName>Textbox7</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox3">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>END DATE</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <TextDecoration>Underline</TextDecoration>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox3</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox5">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>REVIVE DATE</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <TextDecoration>Underline</TextDecoration>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox5</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -342,38 +305,7 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="TBIL_POLY_WAIVER_DT">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Format(Fields!TBIL_POLY_WAIVER_DT.Value,"dd/MM/yyyy")</Value>
-                              <Style>
-                                <Format>dd/MM/yyyy</Format>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>TBIL_POLY_WAIVER_DT</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>None</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="TBIL_POLY_POLICY_NO1">
+                    <Textbox Name="TBIL_POLY_POLICY_NO">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -389,7 +321,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>TBIL_POLY_POLICY_NO1</rd:DefaultName>
+                      <rd:DefaultName>TBIL_POLY_POLICY_NO</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -466,14 +398,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="TBIL_POL_ADD_COVER_CD">
+                    <Textbox Name="TBIL_POL_PRM_PRDCT_CD">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!TBIL_POL_ADD_COVER_CD.Value</Value>
+                              <Value>=Fields!TBIL_POL_PRM_PRDCT_CD.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -482,38 +414,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>TBIL_POL_ADD_COVER_CD</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>None</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="TBIL_COV_DESC">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!TBIL_COV_DESC.Value</Value>
-                              <Style>
-                                <FontSize>8pt</FontSize>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>TBIL_COV_DESC</rd:DefaultName>
+                      <rd:DefaultName>TBIL_POL_PRM_PRDCT_CD</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -619,13 +520,43 @@
                     </Textbox>
                   </CellContents>
                 </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="TBIL_POLY_REACTIVATE_DT">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Format(Fields!TBIL_POLY_REACTIVATE_DT.Value,"dd/MM/yyyy")</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>TBIL_POLY_REACTIVATE_DT</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
               </TablixCells>
             </TablixRow>
           </TablixRows>
         </TablixBody>
         <TablixColumnHierarchy>
           <TablixMembers>
-            <TablixMember />
             <TablixMember />
             <TablixMember />
             <TablixMember />
@@ -646,11 +577,10 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>DAT_WAIVER</DataSetName>
-        <Top>0.62028in</Top>
-        <Left>0.29167in</Left>
-        <Height>0.76041in</Height>
-        <Width>8.88293in</Width>
+        <DataSetName>DT_REVIVE</DataSetName>
+        <Top>0.91889in</Top>
+        <Height>0.61458in</Height>
+        <Width>7.5682in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -664,9 +594,9 @@
             <Value>001</Value>
           </Parameter>
         </Parameters>
-        <Left>1.54041in</Left>
-        <Height>0.405in</Height>
-        <Width>8.32118in</Width>
+        <Left>0.49875in</Left>
+        <Height>0.55778in</Height>
+        <Width>7.06945in</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -674,14 +604,14 @@
           </Border>
         </Style>
       </Subreport>
-      <Textbox Name="Textbox7">
+      <Textbox Name="Textbox14">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>LIST OF WAIVER OF PREMIUM</Value>
+                <Value>LIST OF ALL REACTIVATED  POLICIES</Value>
                 <Style>
                   <FontSize>12pt</FontSize>
                   <FontWeight>Bold</FontWeight>
@@ -694,11 +624,11 @@
             </Style>
           </Paragraph>
         </Paragraphs>
-        <rd:DefaultName>Textbox7</rd:DefaultName>
-        <Top>0.38764in</Top>
-        <Left>2.79513in</Left>
-        <Height>0.23264in</Height>
-        <Width>3.94792in</Width>
+        <rd:DefaultName>Textbox13</rd:DefaultName>
+        <Top>0.62722in</Top>
+        <Left>1.44667in</Left>
+        <Height>0.22222in</Height>
+        <Width>5.15278in</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -711,13 +641,11 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>3.13417in</Height>
+    <Height>3.28in</Height>
     <Style />
   </Body>
-  <Width>12.97766in</Width>
+  <Width>7.64584in</Width>
   <Page>
-    <PageHeight>8.5in</PageHeight>
-    <PageWidth>11in</PageWidth>
     <LeftMargin>0.25in</LeftMargin>
     <RightMargin>0.25in</RightMargin>
     <TopMargin>1in</TopMargin>
@@ -729,23 +657,23 @@
     <DataSource Name="ABS_LIFE_DS">
       <DataSourceReference>ABS_LIFE_DS</DataSourceReference>
       <rd:SecurityType>None</rd:SecurityType>
-      <rd:DataSourceID>24cf3131-6996-4646-b505-d15c2db912d3</rd:DataSourceID>
+      <rd:DataSourceID>87db1772-8c59-49df-8692-d497e42a9632</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="DAT_WAIVER">
+    <DataSet Name="DT_REVIVE">
       <Query>
         <DataSourceName>ABS_LIFE_DS</DataSourceName>
         <QueryParameters>
-          <QueryParameter Name="@RPT_ST_DATE">
-            <Value>=Parameters!RPT_ST_DATE.Value</Value>
+          <QueryParameter Name="@pStartDate">
+            <Value>=Parameters!pStartDate.Value</Value>
           </QueryParameter>
-          <QueryParameter Name="@RPT_END_DATE">
-            <Value>=Parameters!RPT_END_DATE.Value</Value>
+          <QueryParameter Name="@pEndDate">
+            <Value>=Parameters!pEndDate.Value</Value>
           </QueryParameter>
         </QueryParameters>
         <CommandType>StoredProcedure</CommandType>
-        <CommandText>SPIL_GET_CLAIM_WAIVER_RPT</CommandText>
+        <CommandText>SPIL_GET_REVIVE_POLICY_RPT</CommandText>
       </Query>
       <Fields>
         <Field Name="TBIL_POLY_ASSRD_CD">
@@ -756,24 +684,16 @@
           <DataField>TBIL_POLY_POLICY_NO</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="TBIL_POLY_WAIVER_DT">
-          <DataField>TBIL_POLY_WAIVER_DT</DataField>
+        <Field Name="TBIL_POLY_REACTIVATE_DT">
+          <DataField>TBIL_POLY_REACTIVATE_DT</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
         <Field Name="FULLNAME">
           <DataField>FULLNAME</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="TBIL_POL_ADD_COVER_CD">
-          <DataField>TBIL_POL_ADD_COVER_CD</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="TBIL_POL_PRM_PRDCT_CD">
           <DataField>TBIL_POL_PRM_PRDCT_CD</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="TBIL_COV_DESC">
-          <DataField>TBIL_COV_DESC</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="TBIL_POL_PRM_FROM">
@@ -792,15 +712,15 @@
     </DataSet>
   </DataSets>
   <ReportParameters>
-    <ReportParameter Name="RPT_ST_DATE">
+    <ReportParameter Name="pStartDate">
       <DataType>DateTime</DataType>
-      <Prompt>RPT ST DATE</Prompt>
+      <Prompt>p Start Date</Prompt>
     </ReportParameter>
-    <ReportParameter Name="RPT_END_DATE">
+    <ReportParameter Name="pEndDate">
       <DataType>DateTime</DataType>
-      <Prompt>RPT END DATE</Prompt>
+      <Prompt>p End Date</Prompt>
     </ReportParameter>
   </ReportParameters>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
-  <rd:ReportID>efb905fe-2e81-41bf-b9fe-2dae61d227dc</rd:ReportID>
+  <rd:ReportID>7fa8bcff-281d-401b-9ec7-2a153cc81240</rd:ReportID>
 </Report>
