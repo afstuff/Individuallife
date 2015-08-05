@@ -15,10 +15,10 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
     Protected strTableName As String
     Dim strErrMsg As String
     Protected blnStatusX As Boolean
-
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         strTableName = "TBIL_POLICY_DET"
     End Sub
+
 
     Protected Sub cmdSearch_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdSearch.Click
         If LTrim(RTrim(Me.txtSearch.Value)) = "Search..." Then
@@ -34,7 +34,8 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
     End Sub
     Private Sub GetPolicyDetails(ByVal PolicyNo As String)
         lblMsg.Text = ""
-        lblMsg.Visible = False
+        ' lblMsg.Visible = False
+        initializeFields()
         Dim mystrCONN As String = CType(Session("connstr"), String)
         Dim objOLEConn As New OleDbConnection()
         objOLEConn.ConnectionString = mystrCONN
@@ -46,6 +47,7 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
         Catch ex As Exception
             Me.lblMsg.Text = "Unable to connect to database. Reason: " & ex.Message
             'FirstMsg = "Javascript:alert('" & Me.txtMsg.Text & "')"
+            lblMsg.Visible = True
             objOLEConn = Nothing
             Exit Sub
         End Try
@@ -68,26 +70,29 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
                 txtAgentName.Text = objOLEReader("TBIL_AGCY_AGENT_NAME")
                 HidPolyStatus.Value = objOLEReader("TBIL_POLY_STATUS")
 
-                'If HidPolyStatus.Value = "P" Then
-                '    If Not IsDBNull(objOLEReader("PAIDUP_DT")) Then
-                '        '  txtPaidUpEffectiveDate.Text = Format(objOLEReader("PAIDUP_DT"), "dd/MM/yyyy")
-                '        '  txtPaidUpEffectiveDate.Visible = True
-                '        lblPaidUpEffDate.Visible = True
-                '        lblPaidUpEffFormat.Visible = True
-                '    End If
-                '    ' chkCancelPolicy.Checked = True
-                '    lblMsg.Text = "Paid UP has already been processed"
-                '    lblMsg.Visible = True
-                'End If
+                If HidPolyStatus.Value = "C" Then
+                    If Not IsDBNull(objOLEReader("CANCEL_DT")) Then
+                        txtCancelDate.Text = Format(objOLEReader("CANCEL_DT"), "dd/MM/yyyy")
+                        txtCancelDate.Visible = True
+                        lblPaidUpEffDate.Visible = True
+                        lblPaidUpEffFormat.Visible = True
+                    End If
+                    chkCancelPolicy.Checked = True
+                    lblMsg.Text = "Policy cancellation has already been processed"
+                    lblMsg.Visible = True
+                End If
 
             Else
-                lblMsg.Text = "Policy No does not exist"
+                lblMsg.Text = txtPolicyNumber.Text & " is not a valid policy number"
                 lblMsg.Visible = True
                 FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
+                txtPolicyNumber.Text = ""
+                txtPolicyNumber.Focus()
                 Exit Sub
             End If
         Catch ex As Exception
             Me.lblMsg.Text = ex.Message.ToString
+            lblMsg.Visible = True
             Exit Sub
         End Try
 
@@ -115,9 +120,11 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
                 txtPolicyNumber.Text = Me.cboSearch.SelectedItem.Value
                 GetPolicyDetails(cboSearch.SelectedValue.Trim())
                 GetTotalPremium()
+                GetAgencyComm()
             End If
         Catch ex As Exception
             Me.lblMsg.Text = "Error. Reason: " & ex.Message.ToString
+            lblMsg.Visible = True
         End Try
     End Sub
     Protected Sub txtPolicyNumber_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtPolicyNumber.TextChanged
@@ -125,6 +132,7 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
         If txtPolicyNumber.Text <> "" Then
             GetPolicyDetails(txtPolicyNumber.Text.Trim())
             GetTotalPremium()
+            GetAgencyComm()
         End If
     End Sub
 
@@ -135,8 +143,8 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
         If ErrorInd = "Y" Then
             Exit Sub
         End If
-        'Proc_DoSave()
-        'initializeFields()
+        Proc_DoSave()
+        initializeFields()
     End Sub
     Private Sub ValidateControls(ByRef ErrorInd As String)
         If (txtPolicyNumber.Text = String.Empty) Then
@@ -209,7 +217,7 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
         Dim CancelDate = Convert.ToDateTime(DoConvertToDbDateFormat(txtCancelDate.Text))
 
         If CancelDate < PolicyStartDate Then
-            lblMsg.Text = "Policy cancellation effective date must ealier than policy start date"
+            lblMsg.Text = "Policy cancellation effective date must not be earlier than policy start date"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
@@ -222,12 +230,12 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
             ErrorInd = "Y"
             Exit Sub
         End If
-        'If (txtPremiumPaid.Text = "") Then
-        '    lblMsg.Text = "Premium paid must not empty"
-        '    lblMsg.Visible = True
-        '    ErrorInd = "Y"
-        '    Exit Sub
-        'End If
+        If (txtPremiumPaid.Text = "") Then
+            lblMsg.Text = "Premium paid must not empty"
+            lblMsg.Visible = True
+            ErrorInd = "Y"
+            Exit Sub
+        End If
 
         'If (txtAgentCode.Text = "") Then
         '    lblMsg.Text = "Agent code must not be empty"
@@ -257,24 +265,18 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
         '    Exit Sub
         'End If
 
-        'If (HidPolyStatus.Value = "") Then
-        '    lblMsg.Text = "Policy status is empty or null"
-        '    lblMsg.Visible = True
-        '    ErrorInd = "Y"
-        '    Exit Sub
-        'End If
-        'If (HidPolyStatus.Value = "W") Then
-        '    lblMsg.Text = "Policy has been waived"
-        '    lblMsg.Visible = True
-        '    ErrorInd = "Y"
-        '    Exit Sub
-        'End If
-        'If (HidPolyStatus.Value <> "A") Then
-        '    lblMsg.Text = "Policy status must be Active"
-        '    lblMsg.Visible = True
-        '    ErrorInd = "Y"
-        '    Exit Sub
-        'End If
+        If (HidPolyStatus.Value = "") Then
+            lblMsg.Text = "Policy status is empty or null"
+            lblMsg.Visible = True
+            ErrorInd = "Y"
+            Exit Sub
+        End If
+        If (HidPolyStatus.Value <> "A") Then
+            lblMsg.Text = "Policy status must be Active"
+            lblMsg.Visible = True
+            ErrorInd = "Y"
+            Exit Sub
+        End If
     End Sub
 
     Private Sub GetTotalPremium()
@@ -289,6 +291,7 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
         Catch ex As Exception
             Me.lblMsg.Text = "Unable to connect to database. Reason: " & ex.Message
             'FirstMsg = "Javascript:alert('" & Me.txtMsg.Text & "')"
+            lblMsg.Visible = True
             objOLEConn = Nothing
             Exit Sub
         End Try
@@ -311,12 +314,15 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
             If obj_DT.Rows.Count > 0 Then
                 For i = 0 To obj_DT.Rows.Count - 1
                     dr = obj_DT.Rows(i)
-                    sum = sum + dr("TBFN_TRANS_TOT_AMT")
+                    If Not IsDBNull(dr("TBFN_TRANS_TOT_AMT")) Then
+                        sum = sum + dr("TBFN_TRANS_TOT_AMT")
+                    End If
                 Next
             End If
 
         Catch ex As Exception
             Me.lblMsg.Text = ex.Message.ToString
+            lblMsg.Visible = True
             Exit Sub
         End Try
 
@@ -355,12 +361,13 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
         Catch ex As Exception
             Me.lblMsg.Text = "Unable to connect to database. Reason: " & ex.Message
             'FirstMsg = "Javascript:alert('" & Me.txtMsg.Text & "')"
+            lblMsg.Visible = True
             objOLEConn = Nothing
             Exit Sub
         End Try
 
-        strSQL = "SELECT  * FROM TBIL_AGENCY_COMM_DTLS"
-        strSQL = strSQL & " WHERE TBFN_TRANS_POLY_NO = '" & RTrim(txtPolicyNumber.Text) & "'"
+        strSQL = "SELECT  * FROM TBFN_AGENT_COMM_DETAIL"
+        strSQL = strSQL & " WHERE TBFN_COMM_TRANS_POLY_NO = '" & RTrim(txtPolicyNumber.Text) & "'"
 
         Dim objDA As System.Data.OleDb.OleDbDataAdapter
         objDA = New System.Data.OleDb.OleDbDataAdapter(strSQL, objOLEConn)
@@ -377,16 +384,19 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
             If obj_DT.Rows.Count > 0 Then
                 For i = 0 To obj_DT.Rows.Count - 1
                     dr = obj_DT.Rows(i)
-                    BasicCommTotal = BasicCommTotal + dr("TBIL_AGCY_DTL_STD_COMM")
-                    SumAgcyDtl_Add1 = SumAgcyDtl_Add1 + dr("TBIL_AGCY_DTL_ADD_1")
-                    SumAgcyDtl_Add2 = SumAgcyDtl_Add1 + dr("TBIL_AGCY_DTL_ADD_2")
-                    SumAgcyDtl_Add3 = SumAgcyDtl_Add1 + dr("TBIL_AGCY_DTL_ADD_3")
+                    If Not IsDBNull(dr("TBFN_COMM_TRANS_COMM_AMT")) Then
+                        BasicCommTotal = BasicCommTotal + dr("TBFN_COMM_TRANS_COMM_AMT")
+                        'SumAgcyDtl_Add1 = SumAgcyDtl_Add1 + dr("TBIL_AGCY_DTL_ADD_1")
+                        'SumAgcyDtl_Add2 = SumAgcyDtl_Add1 + dr("TBIL_AGCY_DTL_ADD_2")
+                        'SumAgcyDtl_Add3 = SumAgcyDtl_Add1 + dr("TBIL_AGCY_DTL_ADD_3")
+                    End If
                 Next
             End If
-            OverridingCommTotal = SumAgcyDtl_Add1 + SumAgcyDtl_Add2 + SumAgcyDtl_Add3
+            ' OverridingCommTotal = SumAgcyDtl_Add1 + SumAgcyDtl_Add2 + SumAgcyDtl_Add3
 
         Catch ex As Exception
             Me.lblMsg.Text = ex.Message.ToString
+            lblMsg.Visible = True
             Exit Sub
         End Try
 
@@ -407,7 +417,7 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
         End If
         objOLEConn = Nothing
         txtBasicCommPaid.Text = Format(BasicCommTotal, "Standard")
-        txtOverCommPaid.Text = Format(OverridingCommTotal, "Standard")
+        '  txtOverCommPaid.Text = Format(OverridingCommTotal, "Standard")
     End Sub
 
     Private Sub Proc_DoSave()
@@ -428,6 +438,7 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
             objOLEConn.Open()
         Catch ex As Exception
             Me.lblMsg.Text = "Unable to connect to database. Reason: " & ex.Message
+            lblMsg.Visible = True
             'FirstMsg = "Javascript:alert('" & Me.txtMsg.Text & "')"
             objOLEConn = Nothing
             Exit Sub
@@ -463,7 +474,6 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
                 '   Update existing record
                 With obj_DT
                     .Rows(0)("TBIL_POLY_CANCEL_DT") = Convert.ToDateTime(DoConvertToDbDateFormat(txtCancelDate.Text))
-                    .Rows(0)("TBIL_POLY_STATUS") = "C"
                     .Rows(0)("TBIL_POLY_KEYDTE") = Now
                     .Rows(0)("TBIL_POLY_FLAG") = "A"
                     .Rows(0)("TBIL_POLY_OPERID") = myUserIDX
@@ -479,6 +489,7 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
 
         Catch ex As Exception
             Me.lblMsg.Text = ex.Message.ToString
+            lblMsg.Visible = True
             Exit Sub
         End Try
 
@@ -520,18 +531,37 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
         txtAgentCode.Text = String.Empty
         txtAgentName.Text = String.Empty
         txtBasicCommPaid.Text = String.Empty
-        txtOverCommPaid.Text = String.Empty
+        'txtOverCommPaid.Text = String.Empty
+        txtCancelDate.Visible = False
+        lblPaidUpEffDate.Visible = False
+        lblPaidUpEffFormat.Visible = False
     End Sub
 
     Protected Sub chkCancelPolicy_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles chkCancelPolicy.CheckedChanged
-        If chkCancelPolicy.Checked Then
-            txtCancelDate.Visible = True
-            lblPaidUpEffDate.Visible = True
-            lblPaidUpEffFormat.Visible = True
+        lblMsg.Text = ""
+        If txtPolicyNumber.Text = "" Then
+            lblMsg.Text = "Please enter a policy Number"
+            lblMsg.Visible = True
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
+            txtPolicyNumber.Focus()
+            chkCancelPolicy.Checked = False
+            Exit Sub
         Else
-            txtCancelDate.Visible = False
-            lblPaidUpEffDate.Visible = False
-            lblPaidUpEffFormat.Visible = False
+            If chkCancelPolicy.Checked Then
+                txtCancelDate.Visible = True
+                lblPaidUpEffDate.Visible = True
+                lblPaidUpEffFormat.Visible = True
+            Else
+                txtCancelDate.Visible = False
+                lblPaidUpEffDate.Visible = False
+                lblPaidUpEffFormat.Visible = False
+            End If
         End If
     End Sub
+
+    Protected Sub cmdPrint_ASP_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdPrint_ASP.Click
+        Response.Redirect("PRG_LI_CANCEL_PROCESS_RPT.aspx")
+    End Sub
+
+ 
 End Class

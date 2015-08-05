@@ -78,7 +78,7 @@
                                     <tr>
                                         <td align="center" colspan="4" valign="top">
                                             &nbsp;&nbsp;<a href="#" onclick="javascript:JSDO_RETURN('MENU_IL.aspx?menu=IL_CLAIM')">Go to Menu</a>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:button id="cmdSave_ASP" CssClass="cmd_butt" runat="server" text="Save Data" OnClientClick="return ValidateOnClient()"></asp:button>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:button id="cmdSave_ASP" CssClass="cmd_butt" runat="server" text="Save Data"></asp:button>
                                             &nbsp;&nbsp;<asp:button id="cmdDelete_ASP" CssClass="cmd_butt" Enabled="false"  runat="server" text="Delete Data" OnClientClick="JSDelete_ASP();"></asp:button>
                                             &nbsp;&nbsp;<asp:button id="cmdPrint_ASP" CssClass="cmd_butt" runat="server" 
                                                 text="Print"></asp:button>
@@ -153,7 +153,8 @@
                         </td>
                         <td align="left" valign="top">
                             <asp:TextBox ID="txtPolicyStartDate" runat="server" Enabled="False"></asp:TextBox>
-                            <asp:Label ID="Label11" runat="server" Text="dd/mm/yyyy" Font-Size="9pt"></asp:Label>
+                            <asp:Label ID="lblPaidUpEffFormat0" runat="server" Text="dd/mm/yyyy" 
+                                Visible="False"></asp:Label>
                         </td>
                         <td align="left" valign="top">
                             <asp:Label ID="Label13" runat="server" Text="Premium Paid: "></asp:Label>
@@ -170,11 +171,9 @@
                             <asp:TextBox ID="txtBasicCommPaid" runat="server" Enabled="False"></asp:TextBox>
                         </td>
                         <td  align="left" valign="top">
-                            <asp:Label ID="Label15" runat="server" Text="Overriding Commision: "></asp:Label>
-                        </td>
+                            &nbsp;</td>
                         <td align="left">
-                            <asp:TextBox ID="txtOverCommPaid" runat="server" Enabled="False"></asp:TextBox>
-                        </td>
+                            &nbsp;</td>
                     </tr>
                     <tr>
                         <td align="left" valign="top">
