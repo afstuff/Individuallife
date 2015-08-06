@@ -156,7 +156,7 @@ Partial Class I_LIFE_PRG_LI_LAPSE_PROCESS
                 intC = objDA.Update(obj_DT)
 
                 Me.lblMsg.Text = "Record Saved to Database Successfully."
-
+                GetActivePolicies("")
             End If
 
 
@@ -204,6 +204,9 @@ Partial Class I_LIFE_PRG_LI_LAPSE_PROCESS
         End If
     End Sub
     Protected Sub cboSearch_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboSearch.SelectedIndexChanged
+        lblMsg.Text = ""
+        cboSearch.DataSource = Nothing
+        cboSearch.DataBind()
         Try
             If Me.cboSearch.SelectedIndex = -1 Or Me.cboSearch.SelectedIndex = 0 Or _
             Me.cboSearch.SelectedItem.Value = "" Or Me.cboSearch.SelectedItem.Value = "*" Then
@@ -247,5 +250,18 @@ Partial Class I_LIFE_PRG_LI_LAPSE_PROCESS
         rParams(2) = policyNo + "&"
         Session("ReportParams") = rParams
         Response.Redirect("../PrintView.aspx")
+    End Sub
+
+    Protected Sub txtPolicyNo_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtPolicyNo.TextChanged
+        lblMsg.Text = ""
+        If txtPolicyNo.Text <> "" Then
+            cboSearch.DataSource = Nothing
+            cboSearch.DataBind()
+            GetActivePolicies(txtPolicyNo.Text.Trim())
+        End If
+    End Sub
+
+    Protected Sub cmdPrint_ASP_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdPrint_ASP.Click
+        Response.Redirect("PRG_LI_LAPSE_PROCESS_RPT.aspx")
     End Sub
 End Class

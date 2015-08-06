@@ -37,13 +37,16 @@ Partial Class I_LIFE_PRG_LI_LAPSE_PROCESS_RPT
             txtEndDate.Text = str(2).ToString()
         End If
 
-        Dim startDate = Format(Convert.ToDateTime(DoConvertToDbDateFormat(txtStartDate.Text)), "MM/dd/yyyy")
-        Dim endDate = Format(Convert.ToDateTime(DoConvertToDbDateFormat(txtEndDate.Text)), "MM/dd/yyyy")
+        Dim startDate1 = Convert.ToDateTime(DoConvertToDbDateFormat(txtStartDate.Text))
+        Dim endDate1 = Convert.ToDateTime(DoConvertToDbDateFormat(txtEndDate.Text))
 
-        If startDate > endDate Then
+        If startDate1 > endDate1 Then
             Status.Text = "Start Date must not be greater than end date"
             Exit Sub
         End If
+
+        Dim startDate = Format(startDate1, "MM/dd/yyyy")
+        Dim endDate = Format(endDate1, "MM/dd/yyyy")
 
         rParams(0) = "RPT_LI_LAPSE_PROCESS_ALL"
         rParams(1) = "pStart_Date="

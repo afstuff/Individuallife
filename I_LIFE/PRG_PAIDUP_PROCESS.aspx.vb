@@ -65,18 +65,19 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS
                 txtProdDesc.Text = objOLEReader("TBIL_PRDCT_DTL_DESC")
                 txtPolicyStartDate.Text = Format(objOLEReader("TBIL_POL_PRM_FROM"), "dd/MM/yyyy")
                 txtPolicyEndDate.Text = Format(objOLEReader("TBIL_POL_PRM_TO"), "dd/MM/yyyy")
-                HidPolyStatus.Value = objOLEReader("TBIL_POLY_STATUS")
-
-                If HidPolyStatus.Value = "P" Then
-                    If Not IsDBNull(objOLEReader("PAIDUP_DT")) Then
-                        txtPaidUpEffectiveDate.Text = Format(objOLEReader("PAIDUP_DT"), "dd/MM/yyyy")
-                        txtPaidUpEffectiveDate.Visible = True
-                        lblPaidUpEffDate.Visible = True
-                        lblPaidUpEffFormat.Visible = True
+                If Not IsDBNull(objOLEReader("TBIL_POLY_STATUS")) Then
+                    HidPolyStatus.Value = objOLEReader("TBIL_POLY_STATUS")
+                    If HidPolyStatus.Value = "P" Then
+                        If Not IsDBNull(objOLEReader("PAIDUP_DT")) Then
+                            txtPaidUpEffectiveDate.Text = Format(objOLEReader("PAIDUP_DT"), "dd/MM/yyyy")
+                            txtPaidUpEffectiveDate.Visible = True
+                            lblPaidUpEffDate.Visible = True
+                            lblPaidUpEffFormat.Visible = True
+                        End If
+                        chkPaidUp.Checked = True
+                        lblMsg.Text = "Paid UP has already been processed"
+                        lblMsg.Visible = True
                     End If
-                    chkPaidUp.Checked = True
-                    lblMsg.Text = "Paid UP has already been processed"
-                    lblMsg.Visible = True
                 End If
 
             Else

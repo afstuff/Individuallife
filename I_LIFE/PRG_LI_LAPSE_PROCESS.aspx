@@ -33,6 +33,10 @@
             color:#fff;
         	
         }
+        .style2
+        {
+            width: 109px;
+        }
     </style>
 </head>
 <body onload="<%= FirstMsg %>">
@@ -76,10 +80,12 @@
                                     <tr>
                                         <td align="center" colspan="4" valign="top">
                                             &nbsp;&nbsp;<a href="#" onclick="javascript:JSDO_RETURN('MENU_IL.aspx?menu=IL_CLAIM')">Go to Menu</a>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:button id="cmdSave_ASP" CssClass="cmd_butt" runat="server" text="Save Data" OnClientClick="return ValidateOnClient()"></asp:button>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:button id="cmdSave_ASP" 
+                                                CssClass="cmd_butt" runat="server" text="Save Data" 
+                                                OnClientClick="return ValidateOnClient()" Enabled="False"></asp:button>
                                             &nbsp;&nbsp;<asp:button id="cmdDelete_ASP" CssClass="cmd_butt" Enabled="false"  runat="server" text="Delete Data" OnClientClick="JSDelete_ASP();"></asp:button>
                                             &nbsp;&nbsp;<asp:button id="cmdPrint_ASP" CssClass="cmd_butt" runat="server" 
-                                                text="Print"></asp:button>
+                                                text="Print" Height="35px"></asp:button>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
                                         </td>
                                     </tr>
@@ -98,13 +104,25 @@
                     <td align="center" valign="top" class="td_menu">
                     <table align="center" border="0" class="tbl_menu_new"">
                     <tr>
-                        <td>
+                        <td colspan="4">
                             <center>
                                 <asp:Label ID="lblMsg" runat="server" Font-Size="13pt" ForeColor="#FF3300"></asp:Label></center>
                         </td>
                     </tr>
                     <tr>
+                        <td align="left" valign="top" class="style2">
+                            <asp:Label ID="Label1" runat="server" Text="Policy Number"></asp:Label>
+                        </td>
                         <td align="left" valign="top">
+                            <asp:TextBox ID="txtPolicyNo" runat="server" AutoPostBack="True" Width="287px"></asp:TextBox>
+                        </td>
+                        <td>
+                            &nbsp;</td>
+                        <td>
+                            &nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td align="left" valign="top" colspan="4">
                                       <asp:GridView ID="GrdLapsePolicy" runat="server" AllowPaging="true">
                             <PagerSettings Mode="Numeric" Position="Bottom" PageButtonCount="10" />
                                     
@@ -113,7 +131,7 @@
                             <ItemTemplate>
                                  <asp:Button ID="lnkPrint" runat="server"  CssClass="linkStyle"
                                    Text="Print"  CausesValidation="false" CommandName=""
-                                    CommandArgument='<%#  Eval("POLICY NO") & "-" & Eval("LAST PREMIUM") %>' OnClick="PrintLapsePolicy" OnClientClick="return PrintLapsePolicy()"></asp:Button>
+                                    CommandArgument='<%#  Eval("POLICY NO") & "-" & Eval("LAST PREMIUM PAID DATE") %>' OnClick="PrintLapsePolicy" OnClientClick="return PrintLapsePolicy()"></asp:Button>
                             </ItemTemplate>
                             <ItemStyle HorizontalAlign="Left" Width="25px" />
                         </asp:TemplateField>
@@ -122,7 +140,7 @@
                             <ItemTemplate>
                                 <asp:Button ID="lnkUpdate" runat="server" CssClass="linkStyle"
                                    Text="Update" CausesValidation="false" CommandName=""
-                                    CommandArgument='<%# Eval("POLICY NO") & "-" & Eval("LAST PREMIUM") %>' OnClick="UpdateLapse" OnClientClick="return ClientUpdateLapse()"></asp:Button>
+                                    CommandArgument='<%# Eval("POLICY NO") & "-" & Eval("LAST PREMIUM PAID DATE") %>' OnClick="UpdateLapse" OnClientClick="return ClientUpdateLapse()"></asp:Button>
                             <ItemStyle HorizontalAlign="Left" Width="25px" />
                              </ItemTemplate>
                         </asp:TemplateField>

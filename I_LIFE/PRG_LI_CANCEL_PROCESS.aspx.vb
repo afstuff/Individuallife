@@ -59,6 +59,7 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
             objOLEComm.CommandType = CommandType.StoredProcedure
             objOLEComm.Parameters.AddWithValue("@PARAM_POL_NO", PolicyNo)
             Dim objOLEReader As OleDbDataReader = objOLEComm.ExecuteReader()
+
             If objOLEReader.HasRows = True Then
                 objOLEReader.Read()
                 txtAssuredCode.Text = objOLEReader("TBIL_POLY_ASSRD_CD")
@@ -66,22 +67,25 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
                 txtPolicyProCode.Text = objOLEReader("TBIL_POL_PRM_PRDCT_CD")
                 txtProdDesc.Text = objOLEReader("TBIL_PRDCT_DTL_DESC")
                 txtPolicyStartDate.Text = Format(objOLEReader("TBIL_POL_PRM_FROM"), "dd/MM/yyyy")
-                txtAgentCode.Text = objOLEReader("TBIL_POLY_AGCY_CODE")
-                txtAgentName.Text = objOLEReader("TBIL_AGCY_AGENT_NAME")
-                HidPolyStatus.Value = objOLEReader("TBIL_POLY_STATUS")
+                If Not IsDBNull(objOLEReader("TBIL_POLY_AGCY_CODE")) Then txtAgentCode.Text = objOLEReader("TBIL_POLY_AGCY_CODE")
+                If Not IsDBNull(objOLEReader("TBIL_AGCY_AGENT_NAME")) Then txtAgentName.Text = objOLEReader("TBIL_AGCY_AGENT_NAME")
 
-                If HidPolyStatus.Value = "C" Then
-                    If Not IsDBNull(objOLEReader("CANCEL_DT")) Then
-                        txtCancelDate.Text = Format(objOLEReader("CANCEL_DT"), "dd/MM/yyyy")
-                        txtCancelDate.Visible = True
-                        lblPaidUpEffDate.Visible = True
-                        lblPaidUpEffFormat.Visible = True
+                If Not IsDBNull(objOLEReader("TBIL_POLY_STATUS")) Then
+                    HidPolyStatus.Value = objOLEReader("TBIL_POLY_STATUS")
+
+                    If HidPolyStatus.Value = "C" Then
+                        If Not IsDBNull(objOLEReader("CANCEL_DT")) Then
+                            txtCancelDate.Text = Format(objOLEReader("CANCEL_DT"), "dd/MM/yyyy")
+                            txtCancelDate.Visible = True
+                            lblPaidUpEffDate.Visible = True
+                            lblPaidUpEffFormat.Visible = True
+                        End If
+                        chkCancelPolicy.Checked = True
+                        lblMsg.Text = "Policy cancellation has already been processed"
+                        lblMsg.Visible = True
+                        Exit Sub
                     End If
-                    chkCancelPolicy.Checked = True
-                    lblMsg.Text = "Policy cancellation has already been processed"
-                    lblMsg.Visible = True
                 End If
-
             Else
                 lblMsg.Text = txtPolicyNumber.Text & " is not a valid policy number"
                 lblMsg.Visible = True
@@ -474,6 +478,7 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
                 '   Update existing record
                 With obj_DT
                     .Rows(0)("TBIL_POLY_CANCEL_DT") = Convert.ToDateTime(DoConvertToDbDateFormat(txtCancelDate.Text))
+                    .Rows(0)("TBIL_POLY_STATUS") = "C"
                     .Rows(0)("TBIL_POLY_KEYDTE") = Now
                     .Rows(0)("TBIL_POLY_FLAG") = "A"
                     .Rows(0)("TBIL_POLY_OPERID") = myUserIDX
