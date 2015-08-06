@@ -509,4 +509,7 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE
     End Sub
 
 
+    Protected Sub cmdPrint_ASP_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdPrint_ASP.Click
+
+    End Sub
 End Class

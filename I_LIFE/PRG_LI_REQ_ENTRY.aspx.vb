@@ -95,9 +95,13 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
         If Me.chkClaimNum.Checked Then
             txtClaimsNo.Enabled = True
             cmdClaimNoGet.Enabled = True
+
+            txtAction.Text = "Save"
         Else
             txtClaimsNo.Enabled = False
             cmdClaimNoGet.Enabled = False
+
+            txtAction.Text = ""
         End If
 
     End Sub
@@ -107,9 +111,13 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
         If chkPolyNum.Checked Then
             txtPolicyNumber.Enabled = True
             cmdPolyNoGet.Enabled = True
+
+            txtAction.Text = "New"
         Else
             txtPolicyNumber.Enabled = False
             cmdPolyNoGet.Enabled = False
+
+            txtAction.Text = ""
         End If
 
     End Sub
@@ -271,7 +279,7 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
                 If IsDate(objOledr("TBIL_POLICY_EFF_DT")) Then
                     txtClaimsEffectiveDate.Text = Format(CType(objOledr("TBIL_POLICY_EFF_DT"), DateTime), "dd/MM/yyyy")
                 End If
-
+                _rtnMessage = "Policy record retrieved!"
             Else
                 _rtnMessage = "Unable to retrieve record. Invalid CLAIMS NUMBER!"
             End If
@@ -332,6 +340,9 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
                 DdnSysModule.SelectedValue = CType(objOledr("TBIL_CLM_RPTD_MDLE") & vbNullString, String)
                 DdnLossType.SelectedValue = CType(objOledr("TBIL_CLM_RPTD_LOSS_TYPE") & vbNullString, String)
                 txtProductDec.Text = CType(objOledr("TBIL_CLM_RPTD_DESC") & vbNullString, String)
+
+                _rtnMessage = "Claims record retrieved!"
+
             Else
                 _rtnMessage = "Unable to retrieve record. Invalid POLICY NUMBER!"
             End If
@@ -344,13 +355,40 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
     End Function
     Protected Sub cmdPolyNoGet_Click(ByVal sender As Object, ByVal e As EventArgs) Handles cmdPolyNoGet.Click
         If txtPolicyNumber.Text <> "" Then
-            strStatus = GetPolicyDetailsByNumber(txtPolicyNumber.Text.Trim())
+            ClearFormControls()
+            lblMsg.Text = GetPolicyDetailsByNumber(txtPolicyNumber.Text.Trim())
+            FirstMsg = "javascript:alert('" + lblMsg.Text + "');"
+        Else
+            lblMsg.Text = "Policy number field cannot be empty!"
+            FirstMsg = "javascript:alert('" + lblMsg.Text + "');"
         End If
     End Sub
+    Sub ClearFormControls()
+        txtUWY.Text = ""
+        txtProductCode.Text = ""
+        txtPolicyStartDate.Text = ""
+        txtPolicyEndDate.Text = ""
+        txtNotificationDate.Text = ""
+        txtClaimsEffectiveDate.Text = ""
+        txtBasicSumClaimsFC.Text = ""
+        txtBasicSumClaimsLC.Text = ""
+        txtAdditionalSumClaimsLC.Text = ""
+        txtAdditionalSumClaimsFC.Text = ""
+        txtAssuredAge.Text = ""
+        DdnSysModule.SelectedIndex = 0
+        DdnClaimType.SelectedIndex = 0
+        DdnLossType.SelectedIndex = 0
+        txtProductDec.Text = ""
 
+    End Sub
     Protected Sub cmdClaimNoGet_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdClaimNoGet.Click
         If txtClaimsNo.Text <> "" Then
-            strStatus = GetClaimsDetailsByNumber(txtClaimsNo.Text.Trim())
+            ClearFormControls()
+            lblMsg.Text = GetClaimsDetailsByNumber(txtClaimsNo.Text.Trim())
+            FirstMsg = "javascript:alert('" + lblMsg.Text + "');"
+        Else
+            lblMsg.Text = "Claims number field cannot be empty!"
+            FirstMsg = "javascript:alert('" + lblMsg.Text + "');"
         End If
     End Sub
 
@@ -403,7 +441,7 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
             For Each dr As DataRow In dt.Rows
                 Dim msg = dr("Msg").ToString()
                 If msg = 1 Then
-                    _rtnMessage = "Entry Successful!"
+                    _rtnMessage = "Entry Successful, with CLAIM NUMBER: " + claimNo + " generated!"
                 Else
                     _rtnMessage = "Entry failed, record already exist!"
                 End If
@@ -686,6 +724,7 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
                                           Convert.ToString(txtProductDec.Text), Convert.ToInt16(txtAssuredAge.Text), _
                                           Convert.ToString(DdnLossType.SelectedValue), flag, dateAdded, operatorId)
 
+            FirstMsg = "javascript:alert('" + lblMsg.Text + "');"
         Else
             Dim flag As String = "C"
             Dim dateAdded As DateTime = Now
@@ -702,6 +741,7 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
                                           Convert.ToString(txtProductDec.Text), Convert.ToInt16(txtAssuredAge.Text), _
                                           Convert.ToString(DdnLossType.SelectedValue), flag, dateAdded, operatorId)
 
+            FirstMsg = "javascript:alert('" + lblMsg.Text + "');"
         End If
 
 
@@ -903,5 +943,7 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
     End Sub
 
 
+    Protected Sub cmdPrint_ASP_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdPrint_ASP.Click
 
+    End Sub
 End Class

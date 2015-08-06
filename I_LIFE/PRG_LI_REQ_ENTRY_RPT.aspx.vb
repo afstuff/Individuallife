@@ -2,7 +2,7 @@
 Partial Class I_LIFE_PRG_LI_REQ_ENTRY_RPT
     Inherits System.Web.UI.Page
 
-    Dim rParams As String() = {"nw", "nw", "new", "new", "new", "new", "new"}
+    Dim rParams As String() = {"nw", "nw", "new", "new", "new", "new", "new", "new"}
     Protected FirstMsg As String
 
     Protected Sub butOK_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles butOK.Click
@@ -56,9 +56,9 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY_RPT
 
             Dim startDate = MOD_GEN.DoConvertToDbDateFormat(sStartDate.Text)
             Dim endDate = MOD_GEN.DoConvertToDbDateFormat(sEndDate.Text)
-            Dim newStartDate As Date = Convert.ToDateTime(startDate)
-            Dim newEndDate As Date = Convert.ToDateTime(endDate)
-
+            Dim newStartDate = Format(Convert.ToDateTime(startDate), "MM/dd/yyyy")
+            Dim newEndDate = Format(Convert.ToDateTime(endDate), "MM/dd/yyyy")
+            Dim pFilterOption1 = pFilterOption.selectedValue
             If newEndDate < newStartDate Then
                 Dim errMsg = "Javascript:alert('End date can not be less than start date!');"
                 Label1.Text = errMsg.Replace("Javascript:alert('", "").Replace("');", "")
@@ -67,14 +67,14 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY_RPT
                 Exit Sub
             End If
 
-            rParams(0) = rblTransType.SelectedValue.Trim
+            rParams(0) = "PRG_LI_CLM_MATURE_1"
             rParams(1) = "startDate="
-            rParams(2) = startDate.Trim + "&"
+            rParams(2) = startDate + "&"
             rParams(3) = "endDate="
-            rParams(4) = endDate.Trim + "&"
+            rParams(4) = endDate + "&"
 
             rParams(5) = "pFilterOption="
-            rParams(6) = pFilterOption.SelectedValue + "&"
+            rParams(6) = pFilterOption1 + "&"
 
             Session("ReportParams") = rParams
             Response.Redirect("~/PrintView.aspx")
@@ -86,6 +86,7 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY_RPT
             pFilterOption.Focus()
             Exit Sub
         End If
+
     End Sub
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load

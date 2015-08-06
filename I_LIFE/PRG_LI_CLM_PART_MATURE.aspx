@@ -1,12 +1,11 @@
-﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="PRG_LI_CLM_MATURE.aspx.vb" Inherits="I_LIFE_PRG_LI_CLM_MATURE" %>
-
+﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="PRG_LI_CLM_PART_MATURE.aspx.vb" Inherits="I_LIFE_PRG_LI_CLM_PART_MATURE" %>
 <%@ Register Src="../UC_BANT.ascx" TagName="UC_BANT" TagPrefix="uc1" %>
 <%@ Register Src="../UC_FOOT.ascx" TagName="UC_FOOT" TagPrefix="uc2" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head id="Head1" runat="server">
        <title>Individual Life Module</title>
     <link rel="Stylesheet" href="../SS_ILIFE.css" type="text/css" />
 
@@ -94,7 +93,7 @@
                                     Text="Delete Data" OnClientClick="JSDelete_ASP();"></asp:Button>
                                 &nbsp;
                                 <asp:Button ID="cmdPrint_ASP" CssClass="cmd_butt" runat="server"
-                                    Text="Print" PostBackUrl="~/I_LIFE/PRG_LI_CLM_MATURE_RPT.aspx"></asp:Button>
+                                    Text="Print" PostBackUrl="~/I_LIFE/PRG_LI_REQ_ENTRY_RPT.aspx"></asp:Button>
                             </td>
                         </tr>
                     </table>
@@ -107,6 +106,7 @@
         <table class="tbl_cont" align="center">
             <tr>
                 <td nowrap class="myheader">
+                    Multiple
                     Maturity Claim Process</td>
             </tr>
             <tr>
@@ -122,6 +122,16 @@
                             <td align="left" colspan="4" valign="top" class="myMenu_Title">
                                 POLICY INFO.
                             </td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="top" class="style1">
+                                &nbsp;</td>
+                            <td align="left" valign="top" class="style2">
+                                &nbsp;</td>
+                            <td align="left" valign="top" class="style3">
+                                &nbsp;</td>
+                            <td align="left" valign="top" class="style2">
+                                &nbsp;</td>
                         </tr>
                         <tr>
                             <td align="left" valign="top" class="style1">
@@ -242,8 +252,7 @@
                         </tr>
                         <tr>
                             <td align="left" valign="top" class="style1">
-                                <asp:Label runat="server" Text="Contribution Claims LC:"></asp:Label>
-                            </td>
+                                &nbsp;</td>
                             <td align="left" valign="top" class="style2">
                                 <asp:TextBox ID="txtContributionClaimsLC" runat="server" TabIndex="5"></asp:TextBox>
                             </td>
@@ -256,8 +265,7 @@
                         </tr>
                         <tr>
                             <td align="left" valign="top" class="style1">
-                                <asp:Label runat="server" Text="Contribution Claims FC:"></asp:Label>
-                            </td>
+                                &nbsp;</td>
                             <td align="left" valign="top" class="style2">
                                 <asp:TextBox ID="txtContributionClaimsFC" runat="server" TabIndex="6"></asp:TextBox>
                             </td>
@@ -379,5 +387,4 @@
     </script>
 
 </body>
-
 </html>
