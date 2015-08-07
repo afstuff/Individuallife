@@ -68,19 +68,20 @@ Partial Class I_LIFE_PRG_LI_REVIVE_POLICY
                 If Not IsDBNull(objOLEReader("TBIL_POLY_LAPSE_DT")) Then
                     txtPolLapseDate.Text = Format(objOLEReader("TBIL_POLY_LAPSE_DT"), "dd/MM/yyyy")
                 End If
-                HidPolyStatus.Value = objOLEReader("TBIL_POLY_STATUS")
+                If Not IsDBNull(objOLEReader("TBIL_POLY_STATUS")) Then
+                    HidPolyStatus.Value = objOLEReader("TBIL_POLY_STATUS")
+                    If HidPolyStatus.Value = "R" Then
+                        If Not IsDBNull(objOLEReader("REACTIVATE_DT")) Then
+                            txtPolReviveDate.Text = Format(objOLEReader("REACTIVATE_DT"), "dd/MM/yyyy")
+                            txtPolReviveDate.Visible = True
+                            lblReviveFormat.Visible = True
+                            lblRevive.Visible = True
+                        End If
+                        chkRevivePolicy.Checked = True
+                        lblMsg.Text = "Policy has already been reactivated"
 
-                If HidPolyStatus.Value = "R" Then
-                    If Not IsDBNull(objOLEReader("REACTIVATE_DT")) Then
-                        txtPolReviveDate.Text = Format(objOLEReader("REACTIVATE_DT"), "dd/MM/yyyy")
-                        txtPolReviveDate.Visible = True
-                        lblReviveFormat.Visible = True
-                        lblRevive.Visible = True
+                        lblMsg.Visible = True
                     End If
-                    chkRevivePolicy.Checked = True
-                    lblMsg.Text = "Policy has already been reactivated"
-
-                    lblMsg.Visible = True
                 End If
             Else
                 lblMsg.Text = txtPolicyNumber.Text & " is not a valid policy number"
@@ -185,12 +186,12 @@ Partial Class I_LIFE_PRG_LI_REVIVE_POLICY
             PolicyEndDate = CDate(txtPolicyEndDate.Text)
         End If
 
-        If (PolicyEndDate < Now) Then
-            lblMsg.Text = "Policy has already been completed"
-            lblMsg.Visible = True
-            ErrorInd = "Y"
-            Exit Sub
-        End If
+        'If (PolicyEndDate < Now) Then
+        '    lblMsg.Text = "Policy has already been completed"
+        '    lblMsg.Visible = True
+        '    ErrorInd = "Y"
+        '    Exit Sub
+        'End If
         'If (chkRevivePolicy.Checked = False) Then
         '    lblMsg.Text = "Please confirm Paid UP"
         '    lblMsg.Visible = True
@@ -265,6 +266,13 @@ Partial Class I_LIFE_PRG_LI_REVIVE_POLICY
 
         If ReviveDate < PolicyStartDate Or ReviveDate > PolEndDate Then
             lblMsg.Text = "Policy Revive Date must be within policy year"
+            lblMsg.Visible = True
+            ErrorInd = "Y"
+            Exit Sub
+        End If
+
+        If ReviveDate < PolEndDate Then
+            lblMsg.Text = "Policy Revive Date must be greater than Policy End Date"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
@@ -416,6 +424,6 @@ Partial Class I_LIFE_PRG_LI_REVIVE_POLICY
         End If
     End Sub
     Protected Sub cmdPrint_ASP_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdPrint_ASP.Click
-        Response.Redirect("PRG_LI_CLM_WAIVER_RPT.aspx")
+        Response.Redirect("PRG_LI_REVIVE_POLICY_RPT.aspx")
     End Sub
 End Class

@@ -38,13 +38,17 @@
 
         'Dim startDate As DateTime = Convert.ToDateTime(DoConvertToDbDateFormat(txtStartDate.Text))
         'Dim endDate As DateTime = Convert.ToDateTime(DoConvertToDbDateFormat(txtEndDate.Text))
-        Dim startDate = Format(Convert.ToDateTime(DoConvertToDbDateFormat(txtStartDate.Text)), "MM/dd/yyyy")
-        Dim endDate = Format(Convert.ToDateTime(DoConvertToDbDateFormat(txtEndDate.Text)), "MM/dd/yyyy")
+        Dim startDate1 = Convert.ToDateTime(DoConvertToDbDateFormat(txtStartDate.Text))
+        Dim endDate1 = Convert.ToDateTime(DoConvertToDbDateFormat(txtEndDate.Text))
 
-        If startDate > endDate Then
+        If startDate1 > endDate1 Then
             Status.Text = "Start Date must not be greater than end date"
             Exit Sub
         End If
+
+        Dim startDate = Format(startDate1, "MM/dd/yyyy")
+        Dim endDate = Format(endDate1, "MM/dd/yyyy")
+
 
         rParams(0) = "RPT_LI_CLM_WAIVER"
         rParams(1) = "RPT_ST_DATE="
@@ -55,5 +59,9 @@
         Session("ReportParams") = rParams
         Response.Redirect("../PrintView.aspx")
         ' Response.Redirect("PrintView.aspx")
+    End Sub
+
+    Protected Sub butClose_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles butClose.Click
+        Response.Redirect("PRG_LI_CLM_WAIVER.aspx")
     End Sub
 End Class

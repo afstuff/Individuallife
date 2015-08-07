@@ -198,7 +198,7 @@
                                 AutoPostBack="True" />
                         </td>
                         <td  align="left" valign="top">
-                            <asp:Label ID="lblPaidUpEffDate" runat="server" Text="Paid Up Effective Date: " 
+                            <asp:Label ID="lblPaidUpEffDate" runat="server" Text="Effective Cancel Date: " 
                                 Visible="False"></asp:Label>
                         </td>
                         <td align="left">
