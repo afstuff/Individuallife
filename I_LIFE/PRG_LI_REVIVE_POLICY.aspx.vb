@@ -264,12 +264,12 @@ Partial Class I_LIFE_PRG_LI_REVIVE_POLICY
         Dim PolEndDate = Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyEndDate.Text))
         Dim ReviveDate = Convert.ToDateTime(DoConvertToDbDateFormat(txtPolReviveDate.Text))
 
-        'If ReviveDate < PolicyStartDate Or ReviveDate > PolEndDate Then
-        '    lblMsg.Text = "Policy Revive Date must be within policy year"
-        '    lblMsg.Visible = True
-        '    ErrorInd = "Y"
-        '    Exit Sub
-        'End If
+        If ReviveDate < PolicyStartDate Or ReviveDate > PolEndDate Then
+            lblMsg.Text = "Policy Revive Date must be within policy year"
+            lblMsg.Visible = True
+            ErrorInd = "Y"
+            Exit Sub
+        End If
 
         If ReviveDate < PolEndDate Then
             lblMsg.Text = "Policy Revive Date must be greater than Policy End Date"

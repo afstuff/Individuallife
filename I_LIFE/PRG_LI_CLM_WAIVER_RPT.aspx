@@ -16,6 +16,12 @@
 
     <link href="../calendar.css" rel="stylesheet" type="text/css" />
     <title></title>
+    <style type="text/css">
+        .style1
+        {
+            height: 28px;
+        }
+    </style>
 </head>
 <body>
      <form id="PRG_LI_CLM_WAIVER_RPT" runat="server">
@@ -41,17 +47,17 @@
                 	
 
                 <table class="tbl_menu_new">
-			        <tr><td colspan="2" class="myMenu_Title" align="center">&nbsp;</td><td></td><td></td><td></td></tr>
+			        <tr><td colspan="2" class="myMenu_Title" align="center">&nbsp;</td></tr>
 				    <tr>
-					    <td>Waiver Effective Start Date</td>
-					    <td><asp:TextBox ID="txtStartDate" runat="server" Width="150px" MaxLength=10 ></asp:TextBox>
+					    <td class="style1">Waiver Start Date</td>
+					    <td class="style1"><asp:TextBox ID="txtStartDate" runat="server" Width="150px" MaxLength=10 ></asp:TextBox>
 					    				 <script language="JavaScript" type="text/javascript">
 					    				     new tcal({ 'formname': 'PRG_LI_CLM_WAIVER_RPT', 'controlname': 'txtStartDate' });</script>dd/mm/yyyy</td>
 				    </tr>
     				
 				    
 				    <tr>
-					    <td>Waiver Effective End Date</td>
+					    <td>Waiver End Date</td>
 					    <td><asp:TextBox ID="txtEndDate" runat="server" Width="150px" MaxLength=10 ></asp:TextBox>
 					    <script language="JavaScript" type="text/javascript">
 					        new tcal({ 'formname': 'PRG_LI_CLM_WAIVER_RPT', 'controlname': 'txtEndDate' });</script>dd/mm/yyyy
