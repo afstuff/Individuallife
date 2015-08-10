@@ -297,13 +297,13 @@ Partial Class I_LIFE_PRG_LI_CLM_PART_MATURE
     End Sub
 
     Protected Sub rbnPayOptions_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rbnPayOptions.SelectedIndexChanged
-
+         lblMsg.Text = ""
         If rbnPayOptions.SelectedValue = 1 Then
-            lblMsg.Text = ""
+            'lblMsg.Text = ""
             lblMsg.Text = GET_CALCULATED_CLAIMS(txtPolicyNumber.Text.Trim(), txtClaimsNo.Text.Trim(), txtProductCode.Text.Trim(), CType(rbnPayOptions.SelectedValue.ToString(), Short), Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyStartDate.Text.Trim())), Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyEndDate.Text.Trim())))
             FirstMsg = "javascript:alert('" + lblMsg.Text + "');"
         ElseIf rbnPayOptions.SelectedValue = 2 Then
-            lblMsg.Text = ""
+            'lblMsg.Text = ""
             lblMsg.Text = GET_CALCULATED_CLAIMS(txtPolicyNumber.Text.Trim(), txtClaimsNo.Text.Trim(), txtProductCode.Text.Trim(), CType(rbnPayOptions.SelectedValue.ToString(), Short), Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyStartDate.Text.Trim())), Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyEndDate.Text.Trim())))
             FirstMsg = "javascript:alert('" + lblMsg.Text + "');"
         End If

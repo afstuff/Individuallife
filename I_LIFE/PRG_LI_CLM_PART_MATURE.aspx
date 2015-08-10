@@ -246,8 +246,8 @@
                             <td align="left" valign="top" class="style2">
                                 <asp:RadioButtonList ID="rbnPayOptions" runat="server" 
                                     RepeatDirection="Horizontal" AutoPostBack="True">
-                                    <asp:ListItem Value="1">1st Payment</asp:ListItem>
-                                    <asp:ListItem Value="2">2nd Payment</asp:ListItem>
+                                    <asp:ListItem Value="1">1st Partial Payment</asp:ListItem>
+                                    <asp:ListItem Value="2">2nd Partial Payment</asp:ListItem>
                                 </asp:RadioButtonList>
                             </td>
                             <td align="left" valign="top" class="style3" colspan="2">
@@ -262,10 +262,10 @@
                             </td>
                             <td align="left" valign="top" class="style3">
                                 &nbsp;
-                                <asp:Label ID="Label23" runat="server" Text="Total Claims Amount:"></asp:Label>
+                                <asp:Label ID="Label23" runat="server" Text="Total Paid Amount:"></asp:Label>
                             </td>
                             <td align="left" valign="top">
-                                <asp:TextBox ID="txtTotalClaimAmtLC" runat="server" TabIndex="4"></asp:TextBox>
+                                <asp:TextBox ID="txtTotalPaidAmtLC" runat="server" TabIndex="4"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -275,9 +275,11 @@
                             <td align="left" valign="top" class="style2">
                                 <asp:TextBox ID="txtPartialSumAssuredPaid" runat="server" TabIndex="3"></asp:TextBox>
                             </td>
-                            <td align="left" valign="top" class="style3" colspan="2">
-                                <asp:Button ID="btnCalcClaims" runat="server" Text="CALCULATE CLAIMS" Visible="False" />
-                                <asp:Button ID="btnReCalcClaims" runat="server" Text="RE-CALCULATE CLAIMS" Visible="False" />
+                            <td align="left" valign="top" class="style3">
+                                <asp:Label ID="Label28" runat="server" Text="Total Claims Amount:"></asp:Label>
+                            </td>
+                            <td align="left" valign="top" class="style3">
+                                <asp:TextBox ID="txtTotalClaimAmtLC" runat="server" TabIndex="4"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -287,11 +289,9 @@
                             <td align="left" valign="top" class="style2">
                                 &nbsp;
                             </td>
-                            <td align="left" valign="top" class="style3">
-                                &nbsp;
-                            </td>
-                            <td align="left" valign="top" class="style2">
-                                &nbsp;
+                            <td align="left" valign="top" class="style3" colspan="2">
+                                <asp:Button ID="btnCalcClaims" runat="server" Text="CALCULATE CLAIMS" Visible="False" />
+                                <asp:Button ID="btnReCalcClaims" runat="server" Text="RE-CALCULATE CLAIMS" Visible="False" />
                             </td>
                         </tr>
                         <tr>
