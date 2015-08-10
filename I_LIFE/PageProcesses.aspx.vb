@@ -6,6 +6,8 @@ Partial Class I_LIFE_PageProcesses
     Inherits System.Web.UI.Page
 
     Private _rtnMessage As String
+    Private _xmlMessage as String
+
 
      <System.Web.Services.WebMethod()> _
     Public  Function CHECK_IF_CLAIM_EXIST(ByVal claimNumber As String) As String
