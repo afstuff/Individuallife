@@ -83,11 +83,11 @@
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="cmdPrintAll" 
                                                 CssClass="cmd_butt" runat="server" Text="Print List" 
                                                 OnClientClick="return PrintLapsePolicy()" />
-                             &nbsp;&nbsp;<asp:Button ID="cmdUpdate" CssClass="cmd_butt" runat="server" Text="Update List" 
-                                                OnClientClick="return ClientUpdateLapse()" />
+                             &nbsp;&nbsp;<asp:Button ID="cmdUpdate" CssClass="cmd_butt" runat="server" Text="Make Policy Lapse" 
+                                                OnClientClick="return ClientUpdateLapse()" Width="156px" />
                                             &nbsp;&nbsp;<asp:button id="cmdDelete_ASP" CssClass="cmd_butt" Enabled="false"  runat="server" text="Delete Data" OnClientClick="JSDelete_ASP();"></asp:button>
                                             &nbsp;&nbsp;<asp:button id="cmdPrint_ASP" CssClass="cmd_butt" runat="server" 
-                                                text="Print" Height="35px"></asp:button>
+                                                text="Print Lapse" Height="35px"></asp:button>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
                                         </td>
                                     </tr>
@@ -124,12 +124,18 @@
                             &nbsp;</td>
                     </tr>
                     <tr>
-                        <td align="left" valign="top" colspan="4">
+                        <td align="left" valign="top" colspan="4" style="height:400px!important;">
                                       <asp:GridView ID="GrdLapsePolicy" runat="server" AllowPaging="True" 
                                           AutoGenerateColumns="False">
                             <PagerSettings Mode="NumericFirstLast" Position="Bottom" PageButtonCount="10" />
                                     
                              <Columns>
+                                 
+                                 <asp:TemplateField> 
+                                     <ItemTemplate>
+                                         <asp:CheckBox ID="chkPolicyNo" runat="server" />
+                                     </ItemTemplate>
+                                 </asp:TemplateField>
                                  <asp:BoundField DataField="POLICY NO" HeaderText="POLICY NUMBER" />
                                  <asp:BoundField DataField="ASSURED CODE" HeaderText="ASSURED CODE" />
                                  <asp:BoundField DataField="ASSURED NAME" HeaderText="ASSURED NAME" 
@@ -153,6 +159,8 @@
                                      SortExpression="LAST PREMIUM PAID DATE" >
                                      <ItemStyle Width="50px" />
                                  </asp:BoundField>
+                             
+                                 
                     </Columns>
                       <SelectedRowStyle BackColor="Silver" />
                     <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
@@ -198,7 +206,14 @@
         function ClientUpdateLapse() {
             var res = confirm("Are you sure you want to Process lapse for this policy?")
             if (res) {
-                return true
+
+                var res1 = confirm("Blank and Last Premium paid date less than a year will not be processed")
+                if (res1) {
+                    return true
+                }
+                else {
+                return false
+                }
             }
             else {
                 return false;

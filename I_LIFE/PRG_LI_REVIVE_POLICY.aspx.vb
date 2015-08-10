@@ -70,6 +70,13 @@ Partial Class I_LIFE_PRG_LI_REVIVE_POLICY
                 End If
                 If Not IsDBNull(objOLEReader("TBIL_POLY_STATUS")) Then
                     HidPolyStatus.Value = objOLEReader("TBIL_POLY_STATUS")
+                    If HidPolyStatus.Value <> "L" And HidPolyStatus.Value <> "R" Then
+                        lblMsg.Text = "Policy must be lapsed before reactivating"
+                        FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
+                        lblMsg.Visible = True
+                        'ErrorInd = "Y"
+                        Exit Sub
+                    End If
                     If HidPolyStatus.Value = "R" Then
                         If Not IsDBNull(objOLEReader("REACTIVATE_DT")) Then
                             txtPolReviveDate.Text = Format(objOLEReader("REACTIVATE_DT"), "dd/MM/yyyy")
@@ -79,7 +86,7 @@ Partial Class I_LIFE_PRG_LI_REVIVE_POLICY
                         End If
                         chkRevivePolicy.Checked = True
                         lblMsg.Text = "Policy has already been reactivated"
-
+                        FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
                         lblMsg.Visible = True
                     End If
                 End If
@@ -148,29 +155,41 @@ Partial Class I_LIFE_PRG_LI_REVIVE_POLICY
         If (txtPolicyNumber.Text = String.Empty) Then
             lblMsg.Text = "Please enter a policy number"
             lblMsg.Visible = True
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
+            ErrorInd = "Y"
+            Exit Sub
+        End If
+        If (HidPolyStatus.Value = "R") Then
+            lblMsg.Text = "Policy has already been reactivated"
+            lblMsg.Visible = True
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
             ErrorInd = "Y"
             Exit Sub
         End If
         If (txtAssuredCode.Text = String.Empty) Then
             lblMsg.Text = "Please enter a assurance code"
             lblMsg.Visible = True
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
             ErrorInd = "Y"
             Exit Sub
         End If
         If (txtPolicyProCode.Text = String.Empty) Then
             lblMsg.Text = "Please enter policy product code"
             lblMsg.Visible = True
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
             ErrorInd = "Y"
             Exit Sub
         End If
         If (txtPolicyStartDate.Text = String.Empty) Then
             lblMsg.Text = "Please enter policy start date"
             lblMsg.Visible = True
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
             ErrorInd = "Y"
             Exit Sub
         End If
         If (txtPolicyEndDate.Text = String.Empty) Then
             lblMsg.Text = "Please enter policy end date"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
@@ -179,6 +198,7 @@ Partial Class I_LIFE_PRG_LI_REVIVE_POLICY
 
         If (Not IsDate(txtPolicyEndDate.Text)) Then
             lblMsg.Text = "Policy end date is not valid"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
@@ -201,6 +221,7 @@ Partial Class I_LIFE_PRG_LI_REVIVE_POLICY
 
         If (txtPolLapseDate.Text = String.Empty) Then
             lblMsg.Text = "Policy lapse date must not be empty, lapse has not been processed on the policy"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
             lblMsg.Visible = True
             ErrorInd = "Y"
             'txtPaidUpEffectiveDate.Visible = True
@@ -266,17 +287,19 @@ Partial Class I_LIFE_PRG_LI_REVIVE_POLICY
 
         If ReviveDate < PolicyStartDate Or ReviveDate > PolEndDate Then
             lblMsg.Text = "Policy Revive Date must be within policy year"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
         End If
 
-        If ReviveDate < PolEndDate Then
-            lblMsg.Text = "Policy Revive Date must be greater than Policy End Date"
-            lblMsg.Visible = True
-            ErrorInd = "Y"
-            Exit Sub
-        End If
+        'If ReviveDate < PolEndDate Then
+        '    lblMsg.Text = "Policy Revive Date must be greater than Policy End Date"
+        '    FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
+        '    lblMsg.Visible = True
+        '    ErrorInd = "Y"
+        '    Exit Sub
+        'End If
 
         'If (HidPolyStatus.Value = "") Then
         '    lblMsg.Text = "Policy status is empty or null"
@@ -284,8 +307,17 @@ Partial Class I_LIFE_PRG_LI_REVIVE_POLICY
         '    ErrorInd = "Y"
         '    Exit Sub
         'End If
+        If (HidPolyStatus.Value = "R") Then
+            lblMsg.Text = "Policy has already been reactivated"
+            lblMsg.Visible = True
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
+            chkRevivePolicy.Checked = True
+            ErrorInd = "Y"
+            Exit Sub
+        End If
         If (HidPolyStatus.Value <> "L") Then
-            lblMsg.Text = "Policy must be elapsed before reactivating"
+            lblMsg.Text = "Policy must be lapsed before reactivating"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
@@ -412,6 +444,22 @@ Partial Class I_LIFE_PRG_LI_REVIVE_POLICY
             chkRevivePolicy.Checked = False
             Exit Sub
         Else
+            If (HidPolyStatus.Value = "R") Then
+                lblMsg.Text = "Policy has already been reactivated"
+                lblMsg.Visible = True
+                FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
+                chkRevivePolicy.Checked = True
+                ' ErrorInd = "Y"
+                Exit Sub
+            End If
+            If HidPolyStatus.Value <> "L" Then
+                lblMsg.Text = "Policy must be lapsed before reactivating"
+                FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
+                lblMsg.Visible = True
+                'ErrorInd = "Y"
+                chkRevivePolicy.Checked = False
+                Exit Sub
+            End If
             If chkRevivePolicy.Checked Then
                 txtPolReviveDate.Visible = True
                 lblRevive.Visible = True

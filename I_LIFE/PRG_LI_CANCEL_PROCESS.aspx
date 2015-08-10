@@ -157,23 +157,26 @@
                                 Visible="False"></asp:Label>
                         </td>
                         <td align="left" valign="top">
+                            <asp:Label ID="Label8" runat="server" Text="Policy End Date: "></asp:Label>
+                        </td>
+                        <td align="left" valign="top">
+                            <asp:TextBox ID="txtPolicyEndDate" runat="server" Enabled="False"></asp:TextBox>
+                            <asp:Label ID="Label12" runat="server" Text="dd/mm/yyyy"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left" valign="top">
                             <asp:Label ID="Label13" runat="server" Text="Premium Paid: "></asp:Label>
                         </td>
                         <td align="left" valign="top">
                             <asp:TextBox ID="txtPremiumPaid" runat="server" Enabled="False"></asp:TextBox>
                         </td>
-                    </tr>
-                    <tr>
-                        <td align="left" valign="top">
+                        <td  align="left" valign="top">
                             <asp:Label ID="Label16" runat="server" Text="Basic Commission Paid: "></asp:Label>
                         </td>
-                        <td align="left" valign="top">
+                        <td align="left">
                             <asp:TextBox ID="txtBasicCommPaid" runat="server" Enabled="False"></asp:TextBox>
                         </td>
-                        <td  align="left" valign="top">
-                            &nbsp;</td>
-                        <td align="left">
-                            &nbsp;</td>
                     </tr>
                     <tr>
                         <td align="left" valign="top">

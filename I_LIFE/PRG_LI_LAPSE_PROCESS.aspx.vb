@@ -51,7 +51,7 @@ Partial Class I_LIFE_PRG_LI_LAPSE_PROCESS
             GrdLapsePolicy.DataBind()
 
             If GrdLapsePolicy.Rows.Count = 0 Then
-                lblMsg.Text = "No record found or record cannot be lapse"
+                lblMsg.Text = "Policy status is not active or no record found"
                 Exit Sub
             End If
            
@@ -78,125 +78,6 @@ Partial Class I_LIFE_PRG_LI_LAPSE_PROCESS
             GetActivePolicies(_policyNo)
         End If
     End Sub
-    Protected Sub UpdateLapse(ByVal sender As Object, ByVal e As EventArgs)
-        lblMsg.Text = ""
-        Dim geTValue As String = Convert.ToString((TryCast(sender, Button).CommandArgument))
-        Dim myUserIDX As String = ""
-
-        Dim MyLen = Len(geTValue)
-        Dim MyPos = InStr(geTValue, "-")
-        Dim LocationLen = MyLen - MyPos
-        MyPos = MyPos - 1
-        Dim policyNo = Microsoft.VisualBasic.Left(geTValue, MyPos)
-        Dim Last_Premium_Paid_Date = Microsoft.VisualBasic.Right(geTValue, LocationLen)
-
-        If Last_Premium_Paid_Date = Nothing Then
-            lblMsg.Text = "Last Premium date is blank, Lapse cannot be processed"
-            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
-            Exit Sub
-        End If
-
-        Dim Last_Prem_Date As Date
-        Last_Prem_Date = DoConvertToDbDateFormat(Last_Premium_Paid_Date)
-        Dim i = DateDiff("yyyy", Last_Prem_Date, Now)
-
-        If i < 1 Then
-            lblMsg.Text = "Lapse last premium paid date is less than a year, Lapse cannot be processed"
-            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
-            Exit Sub
-        End If
-        Try
-            myUserIDX = CType(Session("MyUserIDX"), String)
-        Catch ex As Exception
-            myUserIDX = ""
-        End Try
-
-
-        Dim mystrCONN As String = CType(Session("connstr"), String)
-        Dim objOLEConn As New OleDbConnection()
-        objOLEConn.ConnectionString = mystrCONN
-
-        Try
-            'open connection to database
-            objOLEConn.Open()
-        Catch ex As Exception
-            Me.lblMsg.Text = "Unable to connect to database. Reason: " & ex.Message
-            'FirstMsg = "Javascript:alert('" & Me.txtMsg.Text & "')"
-            lblMsg.Visible = True
-            objOLEConn = Nothing
-            Exit Sub
-        End Try
-
-
-
-        strTable = strTableName
-
-        strSQL = ""
-        strSQL = "SELECT TOP 1 * FROM TBIL_POLICY_DET"
-        strSQL = strSQL & " WHERE TBIL_POLY_POLICY_NO = '" & policyNo & "'"
-
-        Dim objDA As System.Data.OleDb.OleDbDataAdapter
-        objDA = New System.Data.OleDb.OleDbDataAdapter(strSQL, objOLEConn)
-        Dim m_cbCommandBuilder As System.Data.OleDb.OleDbCommandBuilder
-        m_cbCommandBuilder = New System.Data.OleDb.OleDbCommandBuilder(objDA)
-
-        Dim obj_DT As New System.Data.DataTable
-        Dim intC As Integer = 0
-
-        Try
-
-            objDA.Fill(obj_DT)
-
-            If obj_DT.Rows.Count = 0 Then
-                '   Creating a new record
-                Dim drNewRow As System.Data.DataRow
-                drNewRow = obj_DT.NewRow()
-                drNewRow = Nothing
-                Me.lblMsg.Text = "New Record Saved to Database Successfully."
-            Else
-                '   Update existing record
-                With obj_DT
-                    .Rows(0)("TBIL_POLY_LAPSE_DT") = Now
-                    .Rows(0)("TBIL_POLY_STATUS") = "L"
-                    .Rows(0)("TBIL_POLY_KEYDTE") = Now
-                    .Rows(0)("TBIL_POLY_FLAG") = "A"
-                    .Rows(0)("TBIL_POLY_OPERID") = myUserIDX
-                End With
-
-                'obj_DT.AcceptChanges()
-                intC = objDA.Update(obj_DT)
-
-                Me.lblMsg.Text = "Record Saved to Database Successfully."
-                GetActivePolicies("")
-            End If
-
-
-        Catch ex As Exception
-            Me.lblMsg.Text = ex.Message.ToString
-            lblMsg.Visible = True
-            Exit Sub
-        End Try
-
-        obj_DT.Dispose()
-        obj_DT = Nothing
-
-        m_cbCommandBuilder.Dispose()
-        m_cbCommandBuilder = Nothing
-
-        If objDA.SelectCommand.Connection.State = ConnectionState.Open Then
-            objDA.SelectCommand.Connection.Close()
-        End If
-        objDA.Dispose()
-        objDA = Nothing
-
-        If objOLEConn.State = ConnectionState.Open Then
-            objOLEConn.Close()
-        End If
-        objOLEConn = Nothing
-        FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
-        lblMsg.Visible = True
-    End Sub
-
     Protected Sub GrdLapsePolicy_PageIndexChanging(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewPageEventArgs) Handles GrdLapsePolicy.PageIndexChanging
         GrdLapsePolicy.PageIndex = e.NewPageIndex
         GetActivePolicies(_policyNo)
@@ -323,88 +204,117 @@ Partial Class I_LIFE_PRG_LI_LAPSE_PROCESS
             Catch ex As Exception
                 myUserIDX = ""
             End Try
+            '  Dim row As GridViewRow
             For i = 0 To GrdLapsePolicy.Rows.Count - 1
-                Dim policyNo As String = GrdLapsePolicy.Rows(i).Cells(0).Text
+                Dim chk As CheckBox
+                chk = GrdLapsePolicy.Rows(i).FindControl("chkPolicyNo")
+                If chk.Checked Then
+                    Dim policyNo As String = GrdLapsePolicy.Rows(i).Cells(1).Text
+                    Dim Last_Premium_Paid_Date = GrdLapsePolicy.Rows(i).Cells(8).Text
 
-                Try
-                    'open connection to database
-                    objOLEConn.Open()
-                Catch ex As Exception
-                    Me.lblMsg.Text = "Unable to connect to database. Reason: " & ex.Message
-                    'FirstMsg = "Javascript:alert('" & Me.txtMsg.Text & "')"
-                    lblMsg.Visible = True
-                    objOLEConn = Nothing
-                    Exit Sub
-                End Try
-
-
-
-                strTable = strTableName
-
-                strSQL = ""
-                strSQL = "SELECT TOP 1 * FROM TBIL_POLICY_DET"
-                strSQL = strSQL & " WHERE TBIL_POLY_POLICY_NO = '" & policyNo & "'"
-
-                Dim objDA As System.Data.OleDb.OleDbDataAdapter
-                objDA = New System.Data.OleDb.OleDbDataAdapter(strSQL, objOLEConn)
-                Dim m_cbCommandBuilder As System.Data.OleDb.OleDbCommandBuilder
-                m_cbCommandBuilder = New System.Data.OleDb.OleDbCommandBuilder(objDA)
-
-                Dim obj_DT As New System.Data.DataTable
-                Dim intC As Integer = 0
-
-                Try
-
-                    objDA.Fill(obj_DT)
-
-                    If obj_DT.Rows.Count = 0 Then
-                        '   Creating a new record
-                        Dim drNewRow As System.Data.DataRow
-                        drNewRow = obj_DT.NewRow()
-                        drNewRow = Nothing
-                        Me.lblMsg.Text = "New Record Saved to Database Successfully."
-                    Else
-                        '   Update existing record
-                        With obj_DT
-                            .Rows(0)("TBIL_POLY_LAPSE_DT") = Now
-                            .Rows(0)("TBIL_POLY_STATUS") = "L"
-                            .Rows(0)("TBIL_POLY_KEYDTE") = Now
-                            .Rows(0)("TBIL_POLY_FLAG") = "A"
-                            .Rows(0)("TBIL_POLY_OPERID") = myUserIDX
-                        End With
-
-                        'obj_DT.AcceptChanges()
-                        intC = objDA.Update(obj_DT)
-
-                        Me.lblMsg.Text = "Record Saved to Database Successfully."
+                    If Last_Premium_Paid_Date = Nothing Or Last_Premium_Paid_Date = "&nbsp;" Then
+                        '  lblMsg.Text = "Last Premium date is blank, Lapse cannot be processed"
+                        'FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+                        ' Exit Sub
+                        GoTo ProcessNext
                     End If
 
+                    Dim Last_Prem_Date As Date
+                    Last_Prem_Date = DoConvertToDbDateFormat(Last_Premium_Paid_Date)
+                    ' Dim yrdiff = DateDiff("yyyy", Last_Prem_Date, Now)
+                    Dim yrdiff = DateDiff("d", Last_Prem_Date, Now)
 
-                Catch ex As Exception
-                    Me.lblMsg.Text = ex.Message.ToString
-                    lblMsg.Visible = True
-                    Exit Sub
-                End Try
+                    If yrdiff < 365 Then
+                        'lblMsg.Text = "Lapse last premium paid date is less than a year, Lapse cannot be processed"
+                        'FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+                        'lblMsg.Visible = True
+                        'Exit Sub
+                        GoTo ProcessNext
+                    End If
 
-                obj_DT.Dispose()
-                obj_DT = Nothing
+                    Try
+                        'open connection to database
+                        objOLEConn.Open()
+                    Catch ex As Exception
+                        Me.lblMsg.Text = "Unable to connect to database. Reason: " & ex.Message
+                        'FirstMsg = "Javascript:alert('" & Me.txtMsg.Text & "')"
+                        lblMsg.Visible = True
+                        objOLEConn = Nothing
+                        Exit Sub
+                    End Try
 
-                m_cbCommandBuilder.Dispose()
-                m_cbCommandBuilder = Nothing
 
-                If objDA.SelectCommand.Connection.State = ConnectionState.Open Then
-                    objDA.SelectCommand.Connection.Close()
+
+                    strTable = strTableName
+
+                    strSQL = ""
+                    strSQL = "SELECT TOP 1 * FROM TBIL_POLICY_DET"
+                    strSQL = strSQL & " WHERE TBIL_POLY_POLICY_NO = '" & policyNo & "'"
+
+                    Dim objDA As System.Data.OleDb.OleDbDataAdapter
+                    objDA = New System.Data.OleDb.OleDbDataAdapter(strSQL, objOLEConn)
+                    Dim m_cbCommandBuilder As System.Data.OleDb.OleDbCommandBuilder
+                    m_cbCommandBuilder = New System.Data.OleDb.OleDbCommandBuilder(objDA)
+
+                    Dim obj_DT As New System.Data.DataTable
+                    Dim intC As Integer = 0
+
+                    Try
+
+                        objDA.Fill(obj_DT)
+
+                        If obj_DT.Rows.Count = 0 Then
+                            '   Creating a new record
+                            Dim drNewRow As System.Data.DataRow
+                            drNewRow = obj_DT.NewRow()
+                            drNewRow = Nothing
+                            Me.lblMsg.Text = "New Record Saved to Database Successfully."
+                        Else
+                            '   Update existing record
+                            With obj_DT
+                                .Rows(0)("TBIL_POLY_LAPSE_DT") = Now
+                                .Rows(0)("TBIL_POLY_STATUS") = "L"
+                                .Rows(0)("TBIL_POLY_KEYDTE") = Now
+                                .Rows(0)("TBIL_POLY_FLAG") = "A"
+                                .Rows(0)("TBIL_POLY_OPERID") = myUserIDX
+                            End With
+
+                            'obj_DT.AcceptChanges()
+                            intC = objDA.Update(obj_DT)
+
+                            Me.lblMsg.Text = "Record Saved to Database Successfully."
+                        End If
+
+
+                    Catch ex As Exception
+                        Me.lblMsg.Text = ex.Message.ToString
+                        lblMsg.Visible = True
+                        Exit Sub
+                    End Try
+
+                    obj_DT.Dispose()
+                    obj_DT = Nothing
+
+                    m_cbCommandBuilder.Dispose()
+                    m_cbCommandBuilder = Nothing
+
+                    If objDA.SelectCommand.Connection.State = ConnectionState.Open Then
+                        objDA.SelectCommand.Connection.Close()
+                    End If
+                    objDA.Dispose()
+                    objDA = Nothing
+
+                    If objOLEConn.State = ConnectionState.Open Then
+                        objOLEConn.Close()
+                    End If
                 End If
-                objDA.Dispose()
-                objDA = Nothing
-
-                If objOLEConn.State = ConnectionState.Open Then
-                    objOLEConn.Close()
-                End If
+ProcessNext:
             Next
             objOLEConn = Nothing
-            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
-            lblMsg.Visible = True
+            If lblMsg.Text <> "" Then
+                FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
+                lblMsg.Visible = True
+            End If
         End If
     End Sub
 End Class

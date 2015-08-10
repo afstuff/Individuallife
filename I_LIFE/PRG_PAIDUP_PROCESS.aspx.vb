@@ -31,7 +31,7 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS
             cboSearch.DataBind()
         End If
     End Sub
-    Private Sub GetPolicyDetails(ByVal PolicyNo As String)
+    Private Sub GetPolicyDetails(ByVal PolicyNo As String, ByRef ErrorInd As String)
         lblMsg.Text = ""
         lblMsg.Visible = False
         Dim mystrCONN As String = CType(Session("connstr"), String)
@@ -65,6 +65,27 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS
                 txtProdDesc.Text = objOLEReader("TBIL_PRDCT_DTL_DESC")
                 txtPolicyStartDate.Text = Format(objOLEReader("TBIL_POL_PRM_FROM"), "dd/MM/yyyy")
                 txtPolicyEndDate.Text = Format(objOLEReader("TBIL_POL_PRM_TO"), "dd/MM/yyyy")
+
+
+                If (Not IsDate(txtPolicyEndDate.Text)) Then
+                    lblMsg.Text = "Policy end date is not valid"
+                    FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+                    lblMsg.Visible = True
+                    ErrorInd = "Y"
+                    Exit Sub
+                Else
+                    PolicyEndDate = CDate(txtPolicyEndDate.Text)
+                End If
+
+                GetLastPaidDate(txtPolicyNumber.Text.Trim())
+                If (PolicyEndDate < Now) Then
+                    lblMsg.Text = "Policy has already been matured"
+                    FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+                    lblMsg.Visible = True
+                    ErrorInd = "Y"
+                    Exit Sub
+                End If
+
                 If Not IsDBNull(objOLEReader("TBIL_POLY_STATUS")) Then
                     HidPolyStatus.Value = objOLEReader("TBIL_POLY_STATUS")
                     If HidPolyStatus.Value = "P" Then
@@ -76,7 +97,10 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS
                         End If
                         chkPaidUp.Checked = True
                         lblMsg.Text = "Paid UP has already been processed"
+                        FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
                         lblMsg.Visible = True
+                        ErrorInd = "Y"
+                        Exit Sub
                     End If
                 End If
 
@@ -106,8 +130,69 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS
         objOLEConn = Nothing
     End Sub
 
+    Private Sub GetLastPaidDate(ByVal PolicyNo As String)
+        lblMsg.Text = ""
+        lblMsg.Visible = False
+        Dim mystrCONN As String = CType(Session("connstr"), String)
+        Dim objOLEConn As New OleDbConnection()
+        objOLEConn.ConnectionString = mystrCONN
+        Dim objOLEComm As OleDbCommand = New OleDbCommand()
+
+        Try
+            'open connection to database
+            objOLEConn.Open()
+        Catch ex As Exception
+            Me.lblMsg.Text = "Unable to connect to database. Reason: " & ex.Message
+            'FirstMsg = "Javascript:alert('" & Me.txtMsg.Text & "')"
+            objOLEConn = Nothing
+            lblMsg.Visible = True
+            Exit Sub
+        End Try
+
+
+        Try
+            objOLEComm.Connection = objOLEConn
+            objOLEComm.CommandText = "SPIL_GET_LAST_PREMIUM_PAID_DATE"
+            objOLEComm.CommandType = CommandType.StoredProcedure
+            objOLEComm.Parameters.AddWithValue("@PARAM_POL_NO", PolicyNo)
+            Dim objOLEReader As OleDbDataReader = objOLEComm.ExecuteReader()
+            If objOLEReader.HasRows = True Then
+                objOLEReader.Read()
+                txtPremPaidDate.Text = Format(objOLEReader("LAST_PREMIUM_PAID_DATE"), "dd/MM/yyyy")
+
+                'Dim Yeardiff = GetYearDiff(CDate(txtPremPaidDate.Text), CDate(txtPolicyStartDate.Text))
+                Dim daydiff = GetYearDiff(CDate(txtPremPaidDate.Text), CDate(txtPolicyStartDate.Text))
+
+                ' If Yeardiff <= 2 Then
+                '730 days approximately 2 yrs 
+                If daydiff <= 730 Then
+                    lblMsg.Text = "Premium Paid Should be more than two (2) years before Paid Up Can be Processed"
+                    FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+                    lblMsg.Visible = True
+                    Exit Sub
+                End If
+            End If
+        Catch ex As Exception
+            Me.lblMsg.Text = ex.Message.ToString
+            lblMsg.Visible = True
+            Exit Sub
+        End Try
+
+        If objOLEComm.Connection.State = ConnectionState.Open Then
+            objOLEComm.Connection.Close()
+        End If
+        '   objOLEComm.Dispose()
+        objOLEComm = Nothing
+
+        If objOLEConn.State = ConnectionState.Open Then
+            objOLEConn.Close()
+        End If
+        objOLEConn = Nothing
+    End Sub
+
     Protected Sub cboSearch_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboSearch.SelectedIndexChanged
         initializeFields()
+        ErrorInd = ""
         Try
             If Me.cboSearch.SelectedIndex = -1 Or Me.cboSearch.SelectedIndex = 0 Or _
             Me.cboSearch.SelectedItem.Value = "" Or Me.cboSearch.SelectedItem.Value = "*" Then
@@ -117,7 +202,10 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS
                 'Me.txtSearch.Value = ""
             Else
                 txtPolicyNumber.Text = Me.cboSearch.SelectedItem.Value
-                GetPolicyDetails(cboSearch.SelectedValue.Trim())
+                GetPolicyDetails(cboSearch.SelectedValue.Trim(), ErrorInd)
+                If ErrorInd = "Y" Then
+                    Exit Sub
+                End If
             End If
         Catch ex As Exception
             Me.lblMsg.Text = "Error. Reason: " & ex.Message.ToString
@@ -126,8 +214,12 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS
     End Sub
     Protected Sub txtPolicyNumber_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtPolicyNumber.TextChanged
         initializeFields()
+        ErrorInd = ""
         If txtPolicyNumber.Text <> "" Then
-            GetPolicyDetails(txtPolicyNumber.Text.Trim())
+            GetPolicyDetails(txtPolicyNumber.Text.Trim(), ErrorInd)
+            If ErrorInd = "Y" Then
+                Exit Sub
+            End If
         End If
     End Sub
     Protected Sub cmdSave_ASP_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdSave_ASP.Click
@@ -143,38 +235,43 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS
     Private Sub ValidateControls(ByRef ErrorInd As String)
         If (txtPolicyNumber.Text = String.Empty) Then
             lblMsg.Text = "Please enter a policy number"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
         End If
         If (txtAssuredCode.Text = String.Empty) Then
             lblMsg.Text = "Please enter a assurance code"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
         End If
         If (txtPolicyProCode.Text = String.Empty) Then
             lblMsg.Text = "Please enter policy product code"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
         End If
         If (txtPolicyStartDate.Text = String.Empty) Then
-            lblMsg.Text = "Please enter policy start date"
+            lblMsg.Text = "policy start date must not be empty"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
         End If
         If (txtPolicyEndDate.Text = String.Empty) Then
-            lblMsg.Text = "Please enter policy end date"
+            lblMsg.Text = "policy end date must not be empty"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
         End If
 
-
         If (Not IsDate(txtPolicyEndDate.Text)) Then
             lblMsg.Text = "Policy end date is not valid"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
@@ -183,13 +280,37 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS
         End If
 
         If (PolicyEndDate < Now) Then
-            lblMsg.Text = "Policy End Date must be greater than today"
+            lblMsg.Text = "Policy has already been matured"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
         End If
+
+        If (txtPremPaidDate.Text = String.Empty) Then
+            lblMsg.Text = "Last premium paid date must not be empty"
+            lblMsg.Visible = True
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            ErrorInd = "Y"
+            Exit Sub
+        End If
+
+        'Dim Yeardiff As Integer = GetYearDiff(CDate(txtPremPaidDate.Text), CDate(txtPolicyStartDate.Text))
+        Dim daydiff = GetYearDiff(CDate(txtPremPaidDate.Text), CDate(txtPolicyStartDate.Text))
+
+        ' If Yeardiff <= 2 Then
+        '730 days approximately 2 yrs 
+        If daydiff <= 730 Then
+            lblMsg.Text = "Premium Paid Should be more than two (2) years before Paid Up Can be Processed"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            ErrorInd = "Y"
+            lblMsg.Visible = True
+            Exit Sub
+        End If
+
         If (chkPaidUp.Checked = False) Then
             lblMsg.Text = "Please confirm Paid UP"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
@@ -197,6 +318,7 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS
 
         If (txtPaidUpEffectiveDate.Text = String.Empty) Then
             lblMsg.Text = "Please enter Paid UP effective date"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             lblMsg.Visible = True
             ErrorInd = "Y"
             'txtPaidUpEffectiveDate.Visible = True
@@ -245,12 +367,13 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS
 
 
 
-        Dim PolicyStartYear = Year(Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyStartDate.Text)))
-        Dim PolicyEndYear = Year(Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyEndDate.Text)))
-        Dim PaidUpYear = Year(Convert.ToDateTime(DoConvertToDbDateFormat(txtPaidUpEffectiveDate.Text)))
+        Dim PolicyStartYear = Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyStartDate.Text))
+        Dim PolicyEndYear = Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyEndDate.Text))
+        Dim PaidUpYear = Convert.ToDateTime(DoConvertToDbDateFormat(txtPaidUpEffectiveDate.Text))
 
         If PaidUpYear < PolicyStartYear Or PaidUpYear > PolicyEndYear Then
             lblMsg.Text = "Paid UP effective date must be within policy year"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
@@ -258,22 +381,35 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS
 
         If (HidPolyStatus.Value = "") Then
             lblMsg.Text = "Policy status is empty or null"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
         End If
         If (HidPolyStatus.Value = "W") Then
             lblMsg.Text = "Policy has been waived"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
         End If
+        
+        If (HidPolyStatus.Value = "P") Then
+            lblMsg.Text = "Paid UP has already been processed"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            lblMsg.Visible = True
+            ErrorInd = "Y"
+            Exit Sub
+        End If
+
         If (HidPolyStatus.Value <> "A") Then
             lblMsg.Text = "Policy status must be Active"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
         End If
+
     End Sub
     Private Sub initializeFields()
         'txtPolicyNumber.Text = String.Empty
@@ -289,6 +425,7 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS
         txtPaidUpEffectiveDate.Visible = False
         lblPaidUpEffDate.Visible = False
         lblPaidUpEffFormat.Visible = False
+        txtPremPaidDate.Text = String.Empty
     End Sub
 
     Private Sub Proc_DoSave()
@@ -395,20 +532,75 @@ Partial Class I_LIFE_PRG_PAIDUP_PROCESS
             txtPolicyNumber.Focus()
             chkPaidUp.Checked = False
             Exit Sub
+        End If
+
+        If (HidPolyStatus.Value = "P") Then
+            lblMsg.Text = "Paid UP has already been processed"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            lblMsg.Visible = True
+            chkPaidUp.Checked = True
+            '  ErrorInd = "Y"
+            Exit Sub
+        End If
+
+        If (Not IsDate(txtPolicyEndDate.Text)) Then
+            lblMsg.Text = "Policy end date is not valid"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            lblMsg.Visible = True
+            '  ErrorInd = "Y"
+            Exit Sub
         Else
-            If chkPaidUp.Checked Then
-                txtPaidUpEffectiveDate.Visible = True
-                lblPaidUpEffDate.Visible = True
-                lblPaidUpEffFormat.Visible = True
-            Else
-                txtPaidUpEffectiveDate.Visible = False
-                lblPaidUpEffDate.Visible = False
-                lblPaidUpEffFormat.Visible = False
-            End If
+            PolicyEndDate = CDate(txtPolicyEndDate.Text)
+        End If
+
+        If (PolicyEndDate < Now) Then
+            lblMsg.Text = "Policy has already been matured"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            lblMsg.Visible = True
+            chkPaidUp.Checked = False
+            ' ErrorInd = "Y"
+            Exit Sub
+        End If
+
+        If (txtPremPaidDate.Text = "") Then
+            lblMsg.Text = "Last premium paid date must not be empty"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            lblMsg.Visible = True
+            chkPaidUp.Checked = False
+            ' ErrorInd = "Y"
+            Exit Sub
+        End If
+
+        ' Dim Yeardiff As Integer = GetYearDiff(CDate(txtPremPaidDate.Text), CDate(txtPolicyStartDate.Text))
+        Dim daydiff = GetYearDiff(CDate(txtPremPaidDate.Text), CDate(txtPolicyStartDate.Text))
+
+        ' If Yeardiff <= 2 Then
+        '730 days approximately 2 yrs 
+        If daydiff <= 730 Then
+            lblMsg.Text = "Premium Paid Should be more than two (2) years before Paid Up Can be Processed"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            chkPaidUp.Checked = False
+            lblMsg.Visible = True
+            Exit Sub
+        End If
+
+        If chkPaidUp.Checked Then
+            txtPaidUpEffectiveDate.Visible = True
+            lblPaidUpEffDate.Visible = True
+            lblPaidUpEffFormat.Visible = True
+        Else
+            txtPaidUpEffectiveDate.Visible = False
+            lblPaidUpEffDate.Visible = False
+            lblPaidUpEffFormat.Visible = False
         End If
     End Sub
 
     Protected Sub cmdPrint_ASP_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdPrint_ASP.Click
         Response.Redirect("PRG_PAIDUP_PROCESS_RPT.aspx")
     End Sub
+
+    Public Function GetYearDiff(ByVal PremiumPaidDate As Date, ByVal StartDate As Date) As Integer
+        Dim Yeardiff As Integer = DateDiff("d", StartDate, PremiumPaidDate)
+        Return Yeardiff
+    End Function
 End Class

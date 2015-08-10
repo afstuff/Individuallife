@@ -115,7 +115,7 @@
                         </td>
                         <td align="left" valign="top">
                             <asp:TextBox ID="txtPolicyNumber" runat="server" Width="221px" 
-                                AutoPostBack="True"></asp:TextBox>
+                                AutoPostBack="True" style="height: 22px"></asp:TextBox>
                         </td>
                         <td>
                             &nbsp;</td>
@@ -167,6 +167,20 @@
                             <asp:TextBox ID="txtPolicyEndDate" runat="server" Enabled="False"></asp:TextBox>
                             <asp:Label ID="Label12" runat="server" Text="dd/mm/yyyy"></asp:Label>
                         </td>
+                    </tr>
+                    <tr>
+                        <td align="left" valign="top">
+                            <asp:Label ID="Label14" runat="server" Text="Last Premium Paid Date: "></asp:Label>
+                        </td>
+                        <td align="left" valign="top">
+                            <asp:TextBox ID="txtPremPaidDate" runat="server" Enabled="False"></asp:TextBox>
+  
+                            <asp:Label ID="Label15" runat="server" Text="dd/mm/yyyy"></asp:Label>
+                        </td>
+                        <td align="left" valign="top">
+                            &nbsp;</td>
+                        <td align="left" valign="top">
+                            &nbsp;</td>
                     </tr>
                     <tr>
                         <td align="left" valign="top">

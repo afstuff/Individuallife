@@ -67,6 +67,7 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
                 txtPolicyProCode.Text = objOLEReader("TBIL_POL_PRM_PRDCT_CD")
                 txtProdDesc.Text = objOLEReader("TBIL_PRDCT_DTL_DESC")
                 txtPolicyStartDate.Text = Format(objOLEReader("TBIL_POL_PRM_FROM"), "dd/MM/yyyy")
+                txtPolicyEndDate.Text = Format(objOLEReader("TBIL_POL_PRM_TO"), "dd/MM/yyyy")
                 If Not IsDBNull(objOLEReader("TBIL_POLY_AGCY_CODE")) Then txtAgentCode.Text = objOLEReader("TBIL_POLY_AGCY_CODE")
                 If Not IsDBNull(objOLEReader("TBIL_AGCY_AGENT_NAME")) Then txtAgentName.Text = objOLEReader("TBIL_AGCY_AGENT_NAME")
 
@@ -82,6 +83,7 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
                         End If
                         chkCancelPolicy.Checked = True
                         lblMsg.Text = "Policy cancellation has already been processed"
+                        FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
                         lblMsg.Visible = True
                         Exit Sub
                     End If
@@ -137,6 +139,15 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
             GetPolicyDetails(txtPolicyNumber.Text.Trim())
             GetTotalPremium()
             GetAgencyComm()
+
+            Dim daydiff = GetDayDiff(CDate(txtPolicyStartDate.Text), Now)
+            If daydiff > 31 Then
+                lblMsg.Text = "Policy can only be cancelled if not more than a month "
+                FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+                lblMsg.Visible = True
+                ErrorInd = "Y"
+                Exit Sub
+            End If
         End If
     End Sub
 
@@ -153,24 +164,37 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
     Private Sub ValidateControls(ByRef ErrorInd As String)
         If (txtPolicyNumber.Text = String.Empty) Then
             lblMsg.Text = "Please enter a policy number"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
         End If
         If (txtAssuredCode.Text = String.Empty) Then
             lblMsg.Text = "Please enter a assurance code"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
         End If
         If (txtPolicyProCode.Text = String.Empty) Then
             lblMsg.Text = "Please enter policy product code"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
         End If
         If (txtPolicyStartDate.Text = String.Empty) Then
             lblMsg.Text = "Please enter policy start date"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            lblMsg.Visible = True
+            ErrorInd = "Y"
+            Exit Sub
+        End If
+
+        Dim monthValue As Integer = GetDayDiff(CDate(txtPolicyStartDate.Text), Now)
+        If monthValue > 31 Then
+            lblMsg.Text = "Policy can only be cancelled if not more than a month"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
@@ -178,6 +202,7 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
 
         If (chkCancelPolicy.Checked = False) Then
             lblMsg.Text = "Please confirm policy cancellation process"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
@@ -185,6 +210,7 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
 
         If (txtCancelDate.Text = String.Empty) Then
             lblMsg.Text = "Please enter Paid UP effective date"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
@@ -218,24 +244,31 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
 
 
         Dim PolicyStartDate = Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyStartDate.Text))
+        Dim PolicyEndDate = Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyEndDate.Text))
         Dim CancelDate = Convert.ToDateTime(DoConvertToDbDateFormat(txtCancelDate.Text))
 
-        If CancelDate < PolicyStartDate Then
-            lblMsg.Text = "Policy cancellation effective date must not be earlier than policy start date"
+        ' If CancelDate < PolicyStartDate Then
+        If CancelDate < PolicyStartDate Or CancelDate > PolicyEndDate Then
+            ' lblMsg.Text = "Policy cancellation effective date must not be earlier than policy start date"
+            lblMsg.Text = "Policy cancellation effective date must be within policy year"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
         End If
 
-        Dim monthValue As Integer = DateDiff("m", PolicyStartDate, CancelDate)
-        If monthValue > 1 Then
-            lblMsg.Text = "Cancellation effective date must not be more than one month after policy start date"
+       
+        monthValue = GetDayDiff(PolicyStartDate, CancelDate)
+        If monthValue > 31 Then
+            lblMsg.Text = "Cancellation date must not be more than one (1) month after policy start date"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
         End If
         If (txtPremiumPaid.Text = "") Then
             lblMsg.Text = "Premium paid must not empty"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
@@ -271,12 +304,21 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
 
         If (HidPolyStatus.Value = "") Then
             lblMsg.Text = "Policy status is empty or null"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            lblMsg.Visible = True
+            ErrorInd = "Y"
+            Exit Sub
+        End If
+        If (HidPolyStatus.Value = "C") Then
+            lblMsg.Text = "Policy cancellation has already been processed"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
         End If
         If (HidPolyStatus.Value <> "A") Then
             lblMsg.Text = "Policy status must be Active"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             lblMsg.Visible = True
             ErrorInd = "Y"
             Exit Sub
@@ -526,6 +568,7 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
         txtPolicyProCode.Text = String.Empty
         txtProdDesc.Text = String.Empty
         txtPolicyStartDate.Text = String.Empty
+        txtPolicyEndDate.Text = String.Empty
         txtCancelDate.Text = String.Empty
         chkCancelPolicy.Checked = False
         HidPolyStatus.Value = String.Empty
@@ -552,6 +595,24 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
             chkCancelPolicy.Checked = False
             Exit Sub
         Else
+            If (HidPolyStatus.Value = "C") Then
+                lblMsg.Text = "Policy cancellation has already been processed"
+                FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+                lblMsg.Visible = True
+                chkCancelPolicy.Checked = True
+                'ErrorInd = "Y"
+                Exit Sub
+            End If
+
+            Dim daydiff = GetDayDiff(CDate(txtPolicyStartDate.Text), Now)
+            If daydiff > 31 Then
+                lblMsg.Text = "Policy can only be cancelled if not more than a month"
+                FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+                lblMsg.Visible = True
+                ' ErrorInd = "Y"
+                chkCancelPolicy.Checked = False
+                Exit Sub
+            End If
             If chkCancelPolicy.Checked Then
                 txtCancelDate.Visible = True
                 lblPaidUpEffDate.Visible = True
@@ -568,5 +629,9 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
         Response.Redirect("PRG_LI_CANCEL_PROCESS_RPT.aspx")
     End Sub
 
+    Private Function GetDayDiff(ByVal PolicyStartDt As DateTime, ByVal higherDate As DateTime) As Integer
+        Dim DayValue As Integer = DateDiff("d", PolicyStartDt, higherDate)
+        Return DayValue
+    End Function
  
 End Class
