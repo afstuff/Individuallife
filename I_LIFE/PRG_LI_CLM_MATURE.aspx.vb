@@ -325,11 +325,7 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE
             Dim objOledr2 As OleDbDataReader
             objOledr2 = cmd2.ExecuteReader()
             If (objOledr2.Read()) Then
-                'txtSumAssuredClaimLC.Text = Format(CType(objOledr2("SUM_ASSURED"), Decimal), "N2")
-                'txtSumAssuredClaimFC.Text = Format(CType(objOledr2("SUM_ASSURED"), Decimal), "N2")
-                'txtBonusClaimsLC.Text = Format(CType(objOledr2("BONUS_AMOUNT"), Decimal), "N2")
-                'txtBonusClaimsFC.Text = Format(CType(objOledr2("BONUS_AMOUNT"), Decimal), "N2")
-
+               
                  If IsNumeric(objOledr2("TBIL_CLM_PAID_CONTRIB_AMT_LC")) Then
                     txtContributionClaimsLC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_CONTRIB_AMT_LC") & vbNullString, Decimal), "N2")
                     txtContributionClaimsFC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_CONTRIB_AMT_FC") & vbNullString, Decimal), "N2")

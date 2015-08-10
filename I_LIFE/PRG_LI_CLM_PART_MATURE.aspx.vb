@@ -1,7 +1,7 @@
 ﻿
 Imports System.Data.OleDb
 Imports System.Data
-Imports Microsoft.Office.Interop.Word
+'Imports Microsoft.Office.Interop.Word
 
 Partial Class I_LIFE_PRG_LI_CLM_PART_MATURE
     Inherits System.Web.UI.Page
@@ -279,11 +279,11 @@ Partial Class I_LIFE_PRG_LI_CLM_PART_MATURE
 
         If rbnPayOptions.SelectedValue = 1 Then
             lblMsg.Text = ""
-            lblMsg.Text = GET_CALCULATED_CLAIMS(txtPolicyNumber.Text.Trim(), txtClaimsNo.Text.Trim(), txtProductCode.Text.Trim(), rbnPayOptions.SelectedValue.ToString(), DoConvertToDbDateFormat(txtPolicyStartDate.Text.Trim()), DoConvertToDbDateFormat(txtPolicyEndDate.Text.Trim()))
+            lblMsg.Text = GET_CALCULATED_CLAIMS(txtPolicyNumber.Text.Trim(), txtClaimsNo.Text.Trim(), txtProductCode.Text.Trim(), CType(rbnPayOptions.SelectedValue.ToString(), Short), Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyStartDate.Text.Trim())), Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyEndDate.Text.Trim())))
             FirstMsg = "javascript:alert('" + lblMsg.Text + "');"
         ElseIf rbnPayOptions.SelectedValue = 2 Then
             lblMsg.Text = ""
-            lblMsg.Text = GET_CALCULATED_CLAIMS(txtPolicyNumber.Text.Trim(), txtClaimsNo.Text.Trim(), txtProductCode.Text.Trim(), rbnPayOptions.SelectedValue.ToString(), DoConvertToDbDateFormat(txtPolicyStartDate.Text.Trim()), DoConvertToDbDateFormat(txtPolicyEndDate.Text.Trim()))
+            lblMsg.Text = GET_CALCULATED_CLAIMS(txtPolicyNumber.Text.Trim(), txtClaimsNo.Text.Trim(), txtProductCode.Text.Trim(), CType(rbnPayOptions.SelectedValue.ToString(), Short), Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyStartDate.Text.Trim())), Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyEndDate.Text.Trim())))
             FirstMsg = "javascript:alert('" + lblMsg.Text + "');"
         End If
 
@@ -300,14 +300,12 @@ Partial Class I_LIFE_PRG_LI_CLM_PART_MATURE
 
         If rbnPayOptions.SelectedValue = 1 Then
             lblMsg.Text = ""
-            lblMsg.Text = GET_CALCULATED_CLAIMS(txtPolicyNumber.Text.Trim(), txtClaimsNo.Text.Trim(), txtProductCode.Text.Trim(), rbnPayOptions.SelectedValue.ToString(), DoConvertToDbDateFormat(txtPolicyStartDate.Text.Trim()), DoConvertToDbDateFormat(txtPolicyEndDate.Text.Trim()))
+            lblMsg.Text = GET_CALCULATED_CLAIMS(txtPolicyNumber.Text.Trim(), txtClaimsNo.Text.Trim(), txtProductCode.Text.Trim(), CType(rbnPayOptions.SelectedValue.ToString(), Short), Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyStartDate.Text.Trim())), Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyEndDate.Text.Trim())))
             FirstMsg = "javascript:alert('" + lblMsg.Text + "');"
-
         ElseIf rbnPayOptions.SelectedValue = 2 Then
             lblMsg.Text = ""
-            lblMsg.Text = GET_CALCULATED_CLAIMS(txtPolicyNumber.Text.Trim(), txtClaimsNo.Text.Trim(), txtProductCode.Text.Trim(), rbnPayOptions.SelectedValue.ToString(), DoConvertToDbDateFormat(txtPolicyStartDate.Text.Trim()), DoConvertToDbDateFormat(txtPolicyEndDate.Text.Trim()))
+            lblMsg.Text = GET_CALCULATED_CLAIMS(txtPolicyNumber.Text.Trim(), txtClaimsNo.Text.Trim(), txtProductCode.Text.Trim(), CType(rbnPayOptions.SelectedValue.ToString(), Short), Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyStartDate.Text.Trim())), Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyEndDate.Text.Trim())))
             FirstMsg = "javascript:alert('" + lblMsg.Text + "');"
-
         End If
 
     End Sub
