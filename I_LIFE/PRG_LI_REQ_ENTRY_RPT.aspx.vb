@@ -54,12 +54,13 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY_RPT
                 Exit Sub
             End If
 
-            Dim startDate = MOD_GEN.DoConvertToDbDateFormat(sStartDate.Text)
-            Dim endDate = MOD_GEN.DoConvertToDbDateFormat(sEndDate.Text)
-            Dim newStartDate = Format(Convert.ToDateTime(startDate), "MM/dd/yyyy")
-            Dim newEndDate = Format(Convert.ToDateTime(endDate), "MM/dd/yyyy")
-            Dim pFilterOption1 = pFilterOption.selectedValue
-            If newEndDate < newStartDate Then
+            'Dim startDate = MOD_GEN.DoConvertToDbDateFormat(sStartDate.Text)
+            'Dim endDate = MOD_GEN.DoConvertToDbDateFormat(sEndDate.Text)
+
+            Dim startDate1 = Convert.ToDateTime(DoConvertToDbDateFormat(sStartDate.Text))
+            Dim endDate1 = Convert.ToDateTime(DoConvertToDbDateFormat(sEndDate.Text))
+
+            If startDate1 > endDate1 Then
                 Dim errMsg = "Javascript:alert('End date can not be less than start date!');"
                 Label1.Text = errMsg.Replace("Javascript:alert('", "").Replace("');", "")
                 FirstMsg = errMsg
@@ -67,12 +68,15 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY_RPT
                 Exit Sub
             End If
 
-            rParams(0) = "PRG_LI_CLM_MATURE_1"
+            Dim startDate = Format(startDate1, "MM/dd/yyyy")
+            Dim endDate = Format(endDate1, "MM/dd/yyyy")
+            Dim pFilterOption1 = pFilterOption.SelectedValue
+
+            rParams(0) = "PRG_LI_REQ_ENTRY_1"
             rParams(1) = "startDate="
             rParams(2) = startDate + "&"
             rParams(3) = "endDate="
             rParams(4) = endDate + "&"
-
             rParams(5) = "pFilterOption="
             rParams(6) = pFilterOption1 + "&"
 

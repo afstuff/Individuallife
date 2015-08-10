@@ -209,7 +209,7 @@
                         </tr>
                         <tr>
                             <td align="left" valign="top">
-                                <asp:Label ID="Label12" runat="server" Text="System Module:"></asp:Label>
+                                <asp:Label ID="Label12" runat="server" Text="Claims Paid Module:"></asp:Label>
                             </td>
                             <td align="left" valign="top" class="style2">
                                 <asp:DropDownList ID="DdnSysModule" runat="server" TabIndex="10" 
