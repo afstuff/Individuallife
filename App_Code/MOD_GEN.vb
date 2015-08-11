@@ -2597,14 +2597,14 @@ MyTestDate_Err1:
             strMyMth = CType(Format(Val(strMyMth), "00"), String)
             strMyYear = CType(Format(Val(strMyYear), "0000"), String)
 
-            If Val(strMyYear) < 1999 Then
-                rtnMsg_ = " year part is less than 1999 ..."
-                rtnMsg_ = "Javascript:alert('" & rtnMsg_ & "')"
-                rtnMsg(0) = rtnMsg_
-                rtnMsg(1) = ctrlId.ID
-                Return rtnMsg
-                'Exit Function
-            End If
+            'If Val(strMyYear) < 1999 Then
+            '    rtnMsg_ = " year part is less than 1999 ..."
+            '    rtnMsg_ = "Javascript:alert('" & rtnMsg_ & "')"
+            '    rtnMsg(0) = rtnMsg_
+            '    rtnMsg(1) = ctrlId.ID
+            '    Return rtnMsg
+            '    'Exit Function
+            'End If
 
             Dim strMyDte = Trim(strMyDay) & "/" & Trim(strMyMth) & "/" & Trim(strMyYear)
             'dateValue = Trim(strMyDte)
