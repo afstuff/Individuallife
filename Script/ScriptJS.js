@@ -2,10 +2,10 @@
 
 //var mynav = navigator.userAgent.toLowerCase();
 
- var myWin;
- var popUpDate;
- var popUpCode;
- var popUpHelp;
+var myWin;
+var popUpDate;
+var popUpCode;
+var popUpHelp;
 
 var iw;
 var ih;
@@ -17,86 +17,81 @@ var Pcnt;
 var myobj;
 var myprm;
 
-    var str_browser_ver = navigator.appVersion;
-    var str_browser_name = navigator.appName;
+var str_browser_ver = navigator.appVersion;
+var str_browser_name = navigator.appName;
 
 //    var button = document.getElementById(/* button client id */);
 //    button.click();
-    
+
 //i. In your code file (assuming you are using C# and .NET 2.0 or later) add the following Interface to your Page Class to make it look like
 //public partial class Default : System.Web.UI.Page, IPostBackEventHandler{}
 //ii. This should add (using Tab-Tab) this function to your code file:
 //public void RaisePostBackEvent(string eventArgument) { }
 //iii. In your onclick event in Javascript write the following code:
 // var pageId = '<%=  Page.ClientID %>';
-    // __doPostBack(pageId, argumentString);
+// __doPostBack(pageId, argumentString);
 
 //This will call the 'RaisePostBackEvent' method in your code file with the 'eventArgument' as the 'argumentString' you passed from the Javascript. Now, you can call any other event you like.
 
-    function ShowPopup_Message(strMSG) {
-        try {
-            alert(strMSG);
-        }
-        catch (ex) {
-            alert("Error has occured!. Reason: " + ex.message);
-        }
+function ShowPopup_Message(strMSG) {
+    try {
+        alert(strMSG);
     }
+    catch (ex) {
+        alert("Error has occured!. Reason: " + ex.message);
+    }
+}
 
 function MyForm_Load() {
     //document.Form1.autocomplete = "off";
     document.forms["Form1"].autocomplete = "off";
     //alert("In LOGIN form load. \nAuto Complete is turn off...");
-    
+
     //alert("Browser Name: \t" + str_browser_name + "\n\nBrowser Version: \t" + str_browser_ver);
 
 }
 
-   function MyFrm_Load_Life() {
-        //document.location.href = "m_menu.aspx?menu=home";
-        document.location.href = "LoginP.aspx";
-   }   
+function MyFrm_Load_Life() {
+    //document.location.href = "m_menu.aspx?menu=home";
+    document.location.href = "LoginP.aspx";
+}
 
 
-        function SelControl_OnChg(objSelect_Ctrl, objValue_Ctrl, objText_Ctrl)
-        {
-            try
-            {
+function SelControl_OnChg(objSelect_Ctrl, objValue_Ctrl, objText_Ctrl) {
+    try {
 
-            // onchange="SelControl_OnChange()"
-            // var myf=document.forms['Form1'];myf.txtCustType.value=myf.selCustType.options[myf.selCustType.selectedIndex].value;
+        // onchange="SelControl_OnChange()"
+        // var myf=document.forms['Form1'];myf.txtCustType.value=myf.selCustType.options[myf.selCustType.selectedIndex].value;
 
-                //objFrm = document.forms['Form1'];
-                ////objFrm.txtCustType.value = objFrm.selCustType.selectedIndex;
-                //objFrm.txtCustType.value = objFrm.selCustType.options[objFrm.selCustType.selectedIndex].value;
+        //objFrm = document.forms['Form1'];
+        ////objFrm.txtCustType.value = objFrm.selCustType.selectedIndex;
+        //objFrm.txtCustType.value = objFrm.selCustType.options[objFrm.selCustType.selectedIndex].value;
 
-                if ((objSelect_Ctrl.type == "select-one") && (objValue_Ctrl.type == "text"))
-                {
-                    objValue_Ctrl.value = objSelect_Ctrl.options[objSelect_Ctrl.selectedIndex].value;
-                }
-                if ((objSelect_Ctrl.type == "select-one") && (objText_Ctrl.type == "text"))
-                {
-                    objText_Ctrl.value = objSelect_Ctrl.options[objSelect_Ctrl.selectedIndex].text;
-                }
-            }
-            catch (ex)            
-            {
-                alert("Error has occured!. Reason: " + ex.message);
-            }
+        if ((objSelect_Ctrl.type == "select-one") && (objValue_Ctrl.type == "text")) {
+            objValue_Ctrl.value = objSelect_Ctrl.options[objSelect_Ctrl.selectedIndex].value;
         }
-
-
-    function sel_change(sel_ctrl) {
-    	if (sel_ctrl.type.indexOf("select") > 0) {
-	                switch (sel_ctrl.selectedIndex) {
-                        case 0 :
-                            break;
-                        case 1 :
-                            break;
-                        case 2 :
-                            break;
-                    }
+        if ((objSelect_Ctrl.type == "select-one") && (objText_Ctrl.type == "text")) {
+            objText_Ctrl.value = objSelect_Ctrl.options[objSelect_Ctrl.selectedIndex].text;
         }
     }
+    catch (ex) {
+        alert("Error has occured!. Reason: " + ex.message);
+    }
+}
+
+
+function sel_change(sel_ctrl) {
+    if (sel_ctrl.type.indexOf("select") > 0) {
+        switch (sel_ctrl.selectedIndex) {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+        }
+    }
+}
 
 
 // <select id="cboProduct" class="selProduct" runat="server"
@@ -107,12 +102,12 @@ function MyForm_Load() {
 //onchange="javascript:setSelected(this,this.value,this.form.txtProduct_Num)">                
 // Utility function to set a SELECT element to one value
 function setSelected(obj_select, str_value, objText_Ctrl) {
-    
+
     for (var i = 0; i < obj_select.options.length; i++) {
         if (str_value == "0" || str_value == "*") {
-           break;
-           return false;
-        }   
+            break;
+            return false;
+        }
         if (obj_select.options[i].value == str_value) {
             obj_select.selectedIndex = i;
             objText_Ctrl.value = obj_select.options[obj_select.selectedIndex].value;
@@ -128,118 +123,115 @@ function func_mytoday() {
     var mydays = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
     var mytoday = new Date();
     return mydays[mytoday.getDay()];
-    }
+}
 
 function saveCookie(myvalue, myday) {
-		var myexpires = "";
+    var myexpires = "";
 
-		if (mydays) {
-			var date = new Date();
-			date.setTime(date.getTime() + (mydays * 24 * 60 * 60 * 1000));
-			myexpires = "; expires = " + date.toGMTString();
-		}
+    if (mydays) {
+        var date = new Date();
+        date.setTime(date.getTime() + (mydays * 24 * 60 * 60 * 1000));
+        myexpires = "; expires = " + date.toGMTString();
+    }
 
-		var mycookie = "cookieName = " + myvalue + myexpires + "; path=/";
-		document.cookie = mycookie;
-		
+    var mycookie = "cookieName = " + myvalue + myexpires + "; path=/";
+    document.cookie = mycookie;
+
 }
 
 function readCookie() {
-		var ca = document.cookie.split(';');
-		for(var i=0;i < ca.length;i++) {
-			var c = ca[i];
-			var x = c.charAt(0);
-			var y = c.substring(1,c.length);
-		}
-	}
-
-	
-function JSDO_RETURN(pURL)
-{
-    try {    
-       myprm = confirm("*** WARNING: You are About to Close this Page *** " +
-         "\n\n\t+++ OK TO CLOSE THIS PAGE ? +++");
-       if (myprm == true) {
-            window.location.href = pURL;
-	   }
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        var x = c.charAt(0);
+        var y = c.substring(1, c.length);
     }
-    catch(ex_err)
-    {
+}
+
+
+function JSDO_RETURN(pURL) {
+    try {
+        myprm = confirm("*** WARNING: You are About to Close this Page *** " +
+         "\n\n\t+++ OK TO CLOSE THIS PAGE ? +++");
+        if (myprm == true) {
+            window.location.href = pURL;
+        }
+    }
+    catch (ex_err) {
         alert("Error has occured. Reason: " + ex_err.message);
     }
 }
 
 function JSDO_LOG_OUT() {
-  
-       myprm = confirm("*** DO YOU WANT TO LOG OUT NOW ?");
-       if (myprm == true) {
-	     document.forms["Form1"].elements["txtAction"].value = "Log_Out";
-		 document.forms["Form1"].submit();
-	   }
-	   else {  
-	     Pcnt = 0;
-		 //alert("Log Out Cancelled!");
-       }
+
+    myprm = confirm("*** DO YOU WANT TO LOG OUT NOW ?");
+    if (myprm == true) {
+        document.forms["Form1"].elements["txtAction"].value = "Log_Out";
+        document.forms["Form1"].submit();
+    }
+    else {
+        Pcnt = 0;
+        //alert("Log Out Cancelled!");
+    }
 }
 
 function openwin(WinName) {
-  window.open(WinName,"_blank","resizable=no," +
+    window.open(WinName, "_blank", "resizable=no," +
           "scrollbars=yes,toolbar=no,location=no,directories=no,status=no," +
           "menubar=no,maximize=no,width=420,height=300,top=100,left=300");
 }
 
-function windowTitle(sWinMsg)
-{
+function windowTitle(sWinMsg) {
     parent.document.title = sWinMsg;
 }
 
 function JSNew_ASP() {
 
-  Pcnt = 0;
+    Pcnt = 0;
 
     //alert("Welcome to new button...");
-    
+
     var myform = window.document.forms["Form1"];
-  	//for (i = 0; i < document.forms["Form1"].length; i++) {
-  	//  myobj = document.forms["Form1"].elements[i];
-  	for (i = 0; i < myform.elements.length; i++) {
-  	  myobj = myform.elements[i];
-      //alert("Control Type: " + myobj.type + "\nControl ID: " + myobj.id + "\nStatus: " + myobj.Checked);
-      //alert("Control Type: " + myobj.type + "\nControl ID: " + myobj.id);      
-      if (myobj.id == "cmdNew_ASP" || myobj.id.substring(24,34) == "cmdNew_ASP") { 
-          Pcnt = Pcnt + 1;
-	  }
-	  
-	}
-  
+    //for (i = 0; i < document.forms["Form1"].length; i++) {
+    //  myobj = document.forms["Form1"].elements[i];
+    for (i = 0; i < myform.elements.length; i++) {
+        myobj = myform.elements[i];
+        //alert("Control Type: " + myobj.type + "\nControl ID: " + myobj.id + "\nStatus: " + myobj.Checked);
+        //alert("Control Type: " + myobj.type + "\nControl ID: " + myobj.id);      
+        if (myobj.id == "cmdNew_ASP" || myobj.id.substring(24, 34) == "cmdNew_ASP") {
+            Pcnt = Pcnt + 1;
+        }
+
+    }
+
     if (Pcnt > 0) {
-       myprm = confirm("THIS FORM/PAGE CONTENT WILL BE CLEARED?" + 
-	        "\nNOTE: Any unsave data will be discarded."  + 
+        myprm = confirm("THIS FORM/PAGE CONTENT WILL BE CLEARED?" +
+	        "\nNOTE: Any unsave data will be discarded." +
 	        "\n\nOK to clear the content of this form/page?");
-       if (myprm == true) {
-	     document.forms["Form1"].elements["txtAction"].value = "New";
-		 document.forms["Form1"].submit();
-	   }
-	   else {  
-	     Pcnt = 0;
-		 //alert("Current page record retained!");
-       }		 
+        if (myprm == true) {
+            document.forms["Form1"].elements["txtAction"].value = "New";
+            document.forms["Form1"].submit();
+        }
+        else {
+            Pcnt = 0;
+            //alert("Current page record retained!");
+        }
     }
 }
 
 function JSSave_ASP() {
 
-  Pcnt = 0;
-    
+    Pcnt = 0;
+
     //id=TabContainer1_TabPanel1_cmdSave_ASP
 
-//    var myform = window.document.forms[0];
-//    for (var i = 0; i < myform.elements.length; i++) {
-//  	  myobj = myform.elements[i];
-//      alert("Control Type: " + myobj.type + "\nControl ID: " + myobj.id);
-////    if (myform.elements[i].type == "text") {
-////        myform.elements[i].value = ""
-//    }
+    //    var myform = window.document.forms[0];
+    //    for (var i = 0; i < myform.elements.length; i++) {
+    //  	  myobj = myform.elements[i];
+    //      alert("Control Type: " + myobj.type + "\nControl ID: " + myobj.id);
+    ////    if (myform.elements[i].type == "text") {
+    ////        myform.elements[i].value = ""
+    //    }
 
     //alert("save button clicked...");
 
@@ -249,7 +241,7 @@ function JSSave_ASP() {
 
     var myform;
     myform = document.forms['Form1'];
-    if (!myform) {    
+    if (!myform) {
         myform = window.document.forms["Form1"];
     }
     if (!myform) {
@@ -263,205 +255,205 @@ function JSSave_ASP() {
         return false;
     }
 
-  	//for (i = 0; i < document.forms["Form1"].length; i++) {
-  	//  myobj = document.forms["Form1"].elements[i];
-  	for (i = 0; i < myform.elements.length; i++) {
-  	  myobj = myform.elements[i];
-      //alert("Control Type: " + myobj.type + "\nControl ID: " + myobj.id + "\nStatus: " + myobj.Checked);
-      //alert("Control Type: " + myobj.type + "\nControl ID: " + myobj.id);
-      if ( myobj.id == "cmdSave" || myobj.id == "cmdSave_ASP" || myobj.id == "cmdSave_Next" ||
-           myobj.id.substring(24,34) == "cmdNew_ASP" ||
-           myobj.id.substring(24,31) == "cmdSave" || 
-           myobj.id.substring(24,35) == "cmdSave_ASP" ||
-           myobj.id.substring(24,37) == "cmdDelete_ASP" ||
-           myobj.id.substring(24,36) == "cmdPrint_ASP" ||
-           myobj.id.substring(24,36) == "cmdSave_Next" ) { 
-           //alert("Control Type: " + myobj.type + "\nControl ID: " + myobj.id);
-          Pcnt = Pcnt + 1;
-	  }
-	  //else{alert("Control Type: " + myobj.type + "\nControl ID: " + myobj.id + "\nSave_ASP: " + myobj.id.substring(24,34));}
-	}
-  
-	if (Pcnt > 0) {
-	   //myprm = confirm("Are you sure you want to save this record to database ?");
-	   myprm = confirm("Are you sure you want to save this data ?");
-	   //alert("My value: " + myprm);
-	   
-	   if (myprm == true) {
-	      //document.forms["Form1"].elements["txtAction"].value = "Save";
-          //document.forms["Form1"].submit();
-	      myform.elements["txtAction"].value = "Save";
-          myform.submit();
-	   }
-	   else  {
-	     Pcnt = 0;
-		  //alert("Current page record not save!");
-       }		  
+    //for (i = 0; i < document.forms["Form1"].length; i++) {
+    //  myobj = document.forms["Form1"].elements[i];
+    for (i = 0; i < myform.elements.length; i++) {
+        myobj = myform.elements[i];
+        //alert("Control Type: " + myobj.type + "\nControl ID: " + myobj.id + "\nStatus: " + myobj.Checked);
+        //alert("Control Type: " + myobj.type + "\nControl ID: " + myobj.id);
+        if (myobj.id == "cmdSave" || myobj.id == "cmdSave_ASP" || myobj.id == "cmdSave_Next" ||
+           myobj.id.substring(24, 34) == "cmdNew_ASP" ||
+           myobj.id.substring(24, 31) == "cmdSave" ||
+           myobj.id.substring(24, 35) == "cmdSave_ASP" ||
+           myobj.id.substring(24, 37) == "cmdDelete_ASP" ||
+           myobj.id.substring(24, 36) == "cmdPrint_ASP" ||
+           myobj.id.substring(24, 36) == "cmdSave_Next") {
+            //alert("Control Type: " + myobj.type + "\nControl ID: " + myobj.id);
+            Pcnt = Pcnt + 1;
+        }
+        //else{alert("Control Type: " + myobj.type + "\nControl ID: " + myobj.id + "\nSave_ASP: " + myobj.id.substring(24,34));}
+    }
+
+    if (Pcnt > 0) {
+        //myprm = confirm("Are you sure you want to save this record to database ?");
+        myprm = confirm("Are you sure you want to save this data ?");
+        //alert("My value: " + myprm);
+
+        if (myprm == true) {
+            //document.forms["Form1"].elements["txtAction"].value = "Save";
+            //document.forms["Form1"].submit();
+            myform.elements["txtAction"].value = "Save";
+            myform.submit();
+        }
+        else {
+            Pcnt = 0;
+            //alert("Current page record not save!");
+        }
     }
 }
 
 
 
 function JSDelete_ASP() {
-  Pcnt = 0;
-    
+    Pcnt = 0;
+
     var myform = window.document.forms["Form1"];
-  	//for (i = 0; i < document.forms["Form1"].length; i++) {
-  	//  myobj = document.forms["Form1"].elements[i];
-  	for (i = 0; i < myform.elements.length; i++) {
-  	  myobj = myform.elements[i];
-      //alert("Control Type: " + myobj.type + "\nControl ID: " + myobj.id + "\nStatus: " + myobj.Checked);
-      //alert("Control Type: " + myobj.type + "\nControl ID: " + myobj.id);
-      if (myobj.id == "cmdDelete" || myobj.id == "cmdDelete_ASP" || myobj.id.substring(24,37) == "cmdDelete_ASP") { 
-          Pcnt = Pcnt + 1;
-	  }
-	  
-	}
+    //for (i = 0; i < document.forms["Form1"].length; i++) {
+    //  myobj = document.forms["Form1"].elements[i];
+    for (i = 0; i < myform.elements.length; i++) {
+        myobj = myform.elements[i];
+        //alert("Control Type: " + myobj.type + "\nControl ID: " + myobj.id + "\nStatus: " + myobj.Checked);
+        //alert("Control Type: " + myobj.type + "\nControl ID: " + myobj.id);
+        if (myobj.id == "cmdDelete" || myobj.id == "cmdDelete_ASP" || myobj.id.substring(24, 37) == "cmdDelete_ASP") {
+            Pcnt = Pcnt + 1;
+        }
+
+    }
 
     if (Pcnt > 0) {
         myprm = confirm("WARNING: Record will be permanently deleteed from the database!" +
           "\nAre you sure you want to delete this data?");
         if (myprm == true) {
             document.forms["Form1"].elements["txtAction"].value = "Delete";
-	        document.forms["Form1"].submit;
-	    }
-        else {  
-	     Pcnt = 0;
-	       alert("Current page record not deleted!");
-	    }
-	}    
+            document.forms["Form1"].submit;
+        }
+        else {
+            Pcnt = 0;
+            alert("Current page record not deleted!");
+        }
+    }
 }
 
 
 function JSDelItem_ASP() {
 
-  Pcnt = 0;
+    Pcnt = 0;
 
-  //      if V.type = "checkbox" and right(V.id,6) = "chkSel" and (left(V.id,9) = "DataGrid1" or left(V.id,9) = "GridView1") then
-  //         'msgbox "Found Control Type: " &  V.type & vbcrLF & "Found Control ID: " & V.id & vbcrLF & "Status: " & V.Checked
-  //         if V.Checked = True then
-  //            P = P + 1
-  //         end if
-  //      end if
-    
+    //      if V.type = "checkbox" and right(V.id,6) = "chkSel" and (left(V.id,9) = "DataGrid1" or left(V.id,9) = "GridView1") then
+    //         'msgbox "Found Control Type: " &  V.type & vbcrLF & "Found Control ID: " & V.id & vbcrLF & "Status: " & V.Checked
+    //         if V.Checked = True then
+    //            P = P + 1
+    //         end if
+    //      end if
+
     var myform = window.document.forms["Form1"];
-  	//for (i = 0; i < document.forms["Form1"].length; i++) {
-  	//  myobj = document.forms["Form1"].elements[i];
-  	for (i = 0; i < myform.elements.length; i++) {
-  	  myobj = myform.elements[i];
-  	  var myobjid = myobj.id;
-  	  
-      //alert("Control Type: " + myobj.type + "\nControl ID: " + myobj.id + "\nStatus: " + myobj.Checked);
-      //alert("Control Type: " + myobj.type + "\nControl ID: " + myobj.id + "\nCharacter Extracted: " + myobjid.substring(0,9));
-      //if (myobj.id == "chkSel" && myobj.type == "checkbox" && myobj.checked == true && (myobjid.substring(0,9) == "DataGrid1" || myobjid.substring(0,9) == "GridView1")) { 
+    //for (i = 0; i < document.forms["Form1"].length; i++) {
+    //  myobj = document.forms["Form1"].elements[i];
+    for (i = 0; i < myform.elements.length; i++) {
+        myobj = myform.elements[i];
+        var myobjid = myobj.id;
 
-		//var xx_xx = myobj.type;
-		//if (xx_xx == "text" || xx_xx == "radio" || xx_xx == "checkbox" || xx_xx.indexOf("select") > 0) 
-		//{
-		//    alert("Control is either text box or radio button or check box or drop down select control...");
-		//}
+        //alert("Control Type: " + myobj.type + "\nControl ID: " + myobj.id + "\nStatus: " + myobj.Checked);
+        //alert("Control Type: " + myobj.type + "\nControl ID: " + myobj.id + "\nCharacter Extracted: " + myobjid.substring(0,9));
+        //if (myobj.id == "chkSel" && myobj.type == "checkbox" && myobj.checked == true && (myobjid.substring(0,9) == "DataGrid1" || myobjid.substring(0,9) == "GridView1")) { 
 
-      if (myobjid.substring(0,9) == "GridView1" && myobj.type == "checkbox" && myobj.checked == 1) {
-          Pcnt = Pcnt + 1;
-	  }
-      
-      //if (myobj.id == "chkSel" && myobj.type == "checkbox" && myobj.checked == true && (myobjid.substring(0,9) == "GridView1")) { 
-      //    Pcnt = Pcnt + 1;
-	  //}
-	  
-	}
+        //var xx_xx = myobj.type;
+        //if (xx_xx == "text" || xx_xx == "radio" || xx_xx == "checkbox" || xx_xx.indexOf("select") > 0) 
+        //{
+        //    alert("Control is either text box or radio button or check box or drop down select control...");
+        //}
 
-	if (Pcnt > 0) {
+        if (myobjid.substring(0, 9) == "GridView1" && myobj.type == "checkbox" && myobj.checked == 1) {
+            Pcnt = Pcnt + 1;
+        }
+
+        //if (myobj.id == "chkSel" && myobj.type == "checkbox" && myobj.checked == true && (myobjid.substring(0,9) == "GridView1")) { 
+        //    Pcnt = Pcnt + 1;
+        //}
+
+    }
+
+    if (Pcnt > 0) {
         myprm = confirm("WARNING: Record will be permanently deleteed!" +
           "\nAre you sure you want to delete the selected item(s)?");
         if (myprm == true) {
             document.forms["Form1"].elements["txtAction"].value = "Delete_Item";
-	        document.forms["Form1"].submit;
-	    }
+            document.forms["Form1"].submit;
+        }
     }
     else {
-	  Pcnt = 0;
-	  alert("You must select an item to delete. Nothing is selected to Delete...");
-	}
+        Pcnt = 0;
+        alert("You must select an item to delete. Nothing is selected to Delete...");
+    }
 
 }
-   		
+
 
 function cmdDelete_HTML_OnClick() {
 
-  Pcnt = 0;
-  var V;
+    Pcnt = 0;
+    var V;
 
-  //for (each V in document.forms["Form1"]) {
-  //  if (V.id == "cmdDelete_ASP") {
-  //     Pcnt = Pcnt + 1;
-  //  }
-  //}
-    
-  	for (i = 0; i < document.forms["Form1"].length; i++) {
-  	  myobj = document.forms["Form1"].elements[i];
-      //alert("Control Type: " + myobj.type + "\nControl ID: " + myobj.id + "\nStatus: " + myobj.Checked);
-      alert("Control Type: " + myobj.type + "\nControl ID: " + myobj.id);
-      if (myobj.id == "cmdDelete_HTML") { 
-          Pcnt = Pcnt + 1;
-	  }
-	  
-	}
+    //for (each V in document.forms["Form1"]) {
+    //  if (V.id == "cmdDelete_ASP") {
+    //     Pcnt = Pcnt + 1;
+    //  }
+    //}
+
+    for (i = 0; i < document.forms["Form1"].length; i++) {
+        myobj = document.forms["Form1"].elements[i];
+        //alert("Control Type: " + myobj.type + "\nControl ID: " + myobj.id + "\nStatus: " + myobj.Checked);
+        alert("Control Type: " + myobj.type + "\nControl ID: " + myobj.id);
+        if (myobj.id == "cmdDelete_HTML") {
+            Pcnt = Pcnt + 1;
+        }
+
+    }
 
     if (Pcnt > 0) {
         myprm = confirm("WARNING: Record will be permanently deleteed!" +
           "\nAre you sure you want to delete this data?");
         if (myprm == true) {
             document.forms["Form1"].elements["txtAction"].value = "Delete";
-	        document.forms["Form1"].submit;
-	    }
+            document.forms["Form1"].submit;
+        }
         else {
-	     Pcnt = 0;
-	      alert("Current page record not deleted!");
-	    }
-	}
+            Pcnt = 0;
+            alert("Current page record not deleted!");
+        }
+    }
 }
-	    
- 
-  	    function doSave_JS() {
-            myprm = confirm("Are you sure you want to save data?");
-            if (myprm == true) {
-	           //var myfield;
-	           //myfield = document.forms[0].txtAction;
-	           //myfield = document.forms[0].elements["txtAction"];
-	           //myfield.value = "Saving...";
-		       //alert("Saving Record...");
-	           document.forms["Form1"].elements["txtAction"].value = "Save";
-		       //document.forms["Form1"].reset;
-		       document.forms["Form1"].submit();
-		       //document.forms["Form1"].cmdSave.click();
-		       //document.forms["Form1"].handleEvent();
-		       //document.forms["Form1"].txtAction.select()
-		       //alert("Record saved successfully...");
-		    }   
-      	   else {  
-		     //alert("Current record not save!");
-		   }
-  	    }
+
+
+function doSave_JS() {
+    myprm = confirm("Are you sure you want to save data?");
+    if (myprm == true) {
+        //var myfield;
+        //myfield = document.forms[0].txtAction;
+        //myfield = document.forms[0].elements["txtAction"];
+        //myfield.value = "Saving...";
+        //alert("Saving Record...");
+        document.forms["Form1"].elements["txtAction"].value = "Save";
+        //document.forms["Form1"].reset;
+        document.forms["Form1"].submit();
+        //document.forms["Form1"].cmdSave.click();
+        //document.forms["Form1"].handleEvent();
+        //document.forms["Form1"].txtAction.select()
+        //alert("Record saved successfully...");
+    }
+    else {
+        //alert("Current record not save!");
+    }
+}
 
 
 
-    function myOpenPage(sPopURL) {
+function myOpenPage(sPopURL) {
 
-	var myWinx;
+    var myWinx;
 
     iw = 960;
     ih = 500;
 
     icordX = (screen.width - iw) / 2;
     icordY = (screen.height - ih) / 2;
-    icordY = ((screen.height - ih) / 2 ) - 50;
+    icordY = ((screen.height - ih) / 2) - 50;
 
     myWinx = window.open(sPopURL, "", "width=" + iw + ",height=" + ih + ",left=" + icordX + ",top=" + icordY + ",resizable=1,channelmode=0,status=yes,toolbar=no,menubar=no,scrollbars=yes,location=no,modal=yes,alwaysRaised=yes");
-	//myWinx = window.open(sPopURL, "fraDetails", "width=" + iw + ",height=" + ih + ",left=" + icordX + ",top=" + icordY + ",resizable=1,channelmode=0,status=yes,toolbar=no,menubar=no,scrollbars=yes,location=no");
-	myWinx.focus;
-	   
-    }
+    //myWinx = window.open(sPopURL, "fraDetails", "width=" + iw + ",height=" + ih + ",left=" + icordX + ",top=" + icordY + ",resizable=1,channelmode=0,status=yes,toolbar=no,menubar=no,scrollbars=yes,location=no");
+    myWinx.focus;
+
+}
 
 function jsDoPopNewN(PopPage) {
 
@@ -470,14 +462,14 @@ function jsDoPopNewN(PopPage) {
 
     icordX = (screen.width - iw) / 2;
     icordY = (screen.height - ih) / 2;
-    icordY = ((screen.height - ih) / 2 ) - 50;
+    icordY = ((screen.height - ih) / 2) - 50;
     if (icordY < 0) {
-       icordY = 50;
+        icordY = 50;
     }
 
     myWin = window.open(PopPage, "", "width=" + iw + ",height=" + ih + ",left=" + icordX + ",top=" + icordY + ",resizable=1,channelmode=0,status=yes,toolbar=no,menubar=no,scrollbars=yes,location=no,modal=yes,alwaysRaised=yes");
-	//myWin = window.open(PopPage, "fraDetails", "width=" + iw + ",height=" + ih & ",left=" + icordX + ",top=" + icordY + ",resizable=1,channelmode=0,status=yes,toolbar=no,menubar=no,scrollbars=yes,location=no");
-	myWin.focus;
+    //myWin = window.open(PopPage, "fraDetails", "width=" + iw + ",height=" + ih & ",left=" + icordX + ",top=" + icordY + ",resizable=1,channelmode=0,status=yes,toolbar=no,menubar=no,scrollbars=yes,location=no");
+    myWin.focus;
 
 }
 
@@ -488,14 +480,14 @@ function jsMyPopUpN(PopPage) {
 
     icordX = (screen.width - iw) / 2;
     icordY = (screen.height - ih) / 2;
-    icordY = ((screen.height - ih) / 2 ) - 50;
+    icordY = ((screen.height - ih) / 2) - 50;
     if (icordY < 0) {
-       icordY = 50;
+        icordY = 50;
     }
 
     myWin = window.open(PopPage, null, "width=" + iw + ",height=" + ih + ",left=" + icordX + ",top=" + icordY + ",resizable=1,channelmode=0,status=yes,toolbar=no,menubar=no,scrollbars=yes,location=no,modal=yes,alwaysRaised=yes");
-	//myWin = window.open(PopPage, "fraDetails", "width=" + iw + ",height=" + ih & ",left=" + icordX + ",top=" + icordY + ",resizable=1,channelmode=0,status=yes,toolbar=no,menubar=no,scrollbars=yes,location=no");
-	myWin.focus;
+    //myWin = window.open(PopPage, "fraDetails", "width=" + iw + ",height=" + ih & ",left=" + icordX + ",top=" + icordY + ",resizable=1,channelmode=0,status=yes,toolbar=no,menubar=no,scrollbars=yes,location=no");
+    myWin.focus;
 
 }
 
@@ -506,14 +498,14 @@ function jsDoPopNew_Small(PopPage) {
 
     icordX = (screen.width - iw) / 2;
     icordY = (screen.height - ih) / 2;
-    icordY = ((screen.height - ih) / 2 ) - 50;
+    icordY = ((screen.height - ih) / 2) - 50;
     if (icordY < 0) {
-       icordY = 50;
+        icordY = 50;
     }
 
     myWin = window.open(PopPage, "", "width=" + iw + ",height=" + ih + ",left=" + icordX + ",top=" + icordY + ",resizable=1,channelmode=0,status=yes,toolbar=no,menubar=no,scrollbars=yes,location=no,modal=yes,alwaysRaised=yes");
-	//myWin = window.open(PopPage, "fraDetails", "width=" + iw + ",height=" + ih & ",left=" + icordX + ",top=" + icordY + ",resizable=1,channelmode=0,status=yes,toolbar=no,menubar=no,scrollbars=yes,location=no");
-	myWin.focus;
+    //myWin = window.open(PopPage, "fraDetails", "width=" + iw + ",height=" + ih & ",left=" + icordX + ",top=" + icordY + ",resizable=1,channelmode=0,status=yes,toolbar=no,menubar=no,scrollbars=yes,location=no");
+    myWin.focus;
 
 }
 
@@ -524,11 +516,11 @@ function jsDoPopNew_Big(PopPage) {
 
     icordX = (screen.width - iw) / 2;
     icordY = (screen.height - ih) / 2;
-    icordY = ((screen.height - ih) / 2 ) - 50;
+    icordY = ((screen.height - ih) / 2) - 50;
 
     myWin = window.open(PopPage, "", "width=" + iw + ",height=" + ih + ",left=" + icordX + ",top=" + icordY + ",resizable=1,channelmode=0,status=yes,toolbar=no,menubar=no,scrollbars=yes,location=no,modal=yes,alwaysRaised=yes");
-	//myWin = window.open(PopPage, "fraDetails", "width=" + iw + ",height=" + ih + ",left=" + icordX + ",top=" + icordY + ",resizable=1,channelmode=0,status=yes,toolbar=no,menubar=no,scrollbars=yes,location=no");
-	myWin.focus;
+    //myWin = window.open(PopPage, "fraDetails", "width=" + iw + ",height=" + ih + ",left=" + icordX + ",top=" + icordY + ",resizable=1,channelmode=0,status=yes,toolbar=no,menubar=no,scrollbars=yes,location=no");
+    myWin.focus;
 
 }
 
@@ -539,12 +531,12 @@ function jsDoPopNew_Full(PopPage) {
 
     icordX = (screen.width - iw) / 2;
     icordY = (screen.height - ih) / 2;
-    icordY = ((screen.height - ih) / 2 ) - 50;
-       
-	//myWin = window.open(PopPage, null, "width=" + iw + ",height=" + ih + ",left=" + icordX + ",top=" + icordY + ",resizable=1,channelmode=0,status=yes,toolbar=no,menubar=no,scrollbars=yes,location=no");
-	//myWin = window.open(PopPage, null, "width=" + iw + ",height=" + ih + ",left=" + icordX + ",top=" + icordY + ",resizable=1,channelmode=1,status=yes,toolbar=no,menubar=no,scrollbars=yes,location=no");
-	myWin = window.open(PopPage, "", "width=" + iw + ",height=" + ih + ",left=" + icordX + ",top=" + icordY + ",resizable=1,channelmode=1,status=yes,toolbar=no,menubar=no,scrollbars=yes,location=no");
-	myWin.focus; 
+    icordY = ((screen.height - ih) / 2) - 50;
+
+    //myWin = window.open(PopPage, null, "width=" + iw + ",height=" + ih + ",left=" + icordX + ",top=" + icordY + ",resizable=1,channelmode=0,status=yes,toolbar=no,menubar=no,scrollbars=yes,location=no");
+    //myWin = window.open(PopPage, null, "width=" + iw + ",height=" + ih + ",left=" + icordX + ",top=" + icordY + ",resizable=1,channelmode=1,status=yes,toolbar=no,menubar=no,scrollbars=yes,location=no");
+    myWin = window.open(PopPage, "", "width=" + iw + ",height=" + ih + ",left=" + icordX + ",top=" + icordY + ",resizable=1,channelmode=1,status=yes,toolbar=no,menubar=no,scrollbars=yes,location=no");
+    myWin.focus;
 
 }
 
@@ -558,101 +550,98 @@ function DoPopNewN(PopPage, PageWidth, PageHeight) {
 
     icordX = (screen.width - iw) / 2;
     icordY = (screen.height - ih) / 2;
-    icordY = ((screen.height - ih) / 2 ) - 50;
+    icordY = ((screen.height - ih) / 2) - 50;
     if (icordY < 0) {
-       icordY = 50;
+        icordY = 50;
     }
 
     myWin = window.open(PopPage, null, "width=" + iw + ",height=" + ih + ",left=" + icordX + ",top=" + icordY + ",resizable=1,channelmode=0,status=yes,toolbar=no,menubar=no,scrollbars=yes,location=no,modal=yes,alwaysRaised=yes");
-	//myWin = window.open(PopPage, "fraDetails", "width=" + iw + ",height=" + ih & ",left=" + icordX + ",top=" + icordY + ",resizable=1,channelmode=0,status=yes,toolbar=no,menubar=no,scrollbars=yes,location=no");
-	myWin.focus;
+    //myWin = window.open(PopPage, "fraDetails", "width=" + iw + ",height=" + ih & ",left=" + icordX + ",top=" + icordY + ",resizable=1,channelmode=0,status=yes,toolbar=no,menubar=no,scrollbars=yes,location=no");
+    myWin.focus;
 
 }
 
-  function OpenCalendar(idname)
-  {
+function OpenCalendar(idname) {
     iw = 300;
     ih = 270;
-    
+
     icordX = (screen.width - iw) / 2;
     icordY = (screen.height - ih) / 2;
-    icordY = ((screen.height - ih) / 2 ) - 50;
+    icordY = ((screen.height - ih) / 2) - 50;
     if (icordY < 0) {
-       icordY = 50;
-  }
+        icordY = 50;
+    }
 
-  popUpDate = window.open('/abswund/Calendar.aspx?formname=' + document.forms[0].name +
-  '&id=' + idname + '&selected=' + document.forms[0].elements[idname].value, 
+    popUpDate = window.open('/abswund/Calendar.aspx?formname=' + document.forms[0].name +
+  '&id=' + idname + '&selected=' + document.forms[0].elements[idname].value,
 				'popupcal', "width=" + iw + ",height=" + ih + ",left=" + icordX + ",top=" + icordY + ",status=no");
-		
-	popUpDate.focus;
+
+    popUpDate.focus;
 }
 
-function DoPopCodes(popString){
+function DoPopCodes(popString) {
 
     iw = 750;
     ih = 450;
-    
+
     icordX = (screen.width - iw) / 2;
     icordY = (screen.height - ih) / 2;
-    icordY = ((screen.height - ih) / 2 ) - 50;
+    icordY = ((screen.height - ih) / 2) - 50;
     if (icordY < 0) {
-       icordY = 50;
+        icordY = 50;
     }
 
-	popUpCode = window.open('/abswund/PopupList.aspx?formname=' + document.forms[0].name + 
+    popUpCode = window.open('/abswund/PopupList.aspx?formname=' + document.forms[0].name +
 	             popString, 'Childe', "width=" + iw + ",height=" + ih + ",left=" + icordX + ",top=" + icordY + ",status=yes");
-	popUpCode.focus;
+    popUpCode.focus;
 }
 
-  function SetDate(formName, id, newDate){
-  eval('var theform = document.' + formName + ';');
-  popUpDate.close();
-  theform.elements[id].value = newDate;
-  }
+function SetDate(formName, id, newDate) {
+    eval('var theform = document.' + formName + ';');
+    popUpDate.close();
+    theform.elements[id].value = newDate;
+}
 
-  function SetCode(formName, CodeID, NameID, NewCode, NewName, PostBack){
-  eval('var theform = document.' + formName + ';');
-  popUpCode.close();
-  if (CodeID != '') {theform.elements[CodeID].value = NewCode};
-  if (NameID != '') {theform.elements[NameID].value = NewName};
-  if (PostBack != '') {__doPostBack(PostBack, '')};
-  }
+function SetCode(formName, CodeID, NameID, NewCode, NewName, PostBack) {
+    eval('var theform = document.' + formName + ';');
+    popUpCode.close();
+    if (CodeID != '') { theform.elements[CodeID].value = NewCode };
+    if (NameID != '') { theform.elements[NameID].value = NewName };
+    if (PostBack != '') { __doPostBack(PostBack, '') };
+}
 
 
 /*
-    this function is used to verify whether the 'Enter' key is pressed.
+this function is used to verify whether the 'Enter' key is pressed.
 */
 
-function keydownfn(e, evntHdlrName, formName)
-{	
+function keydownfn(e, evntHdlrName, formName) {
     var nav4;
     var keyPressed;
 
     //check if the brower is Netscape Navigator 4 or not
     nav4 = window.Event ? true : false;
-	
-	//if browser is Navigator 4, the key pressed is called <event object>.which else it's called <event object>.keyCode
-	keyPressed = nav4 ? e.which : e.keyCode;
-		
-    if (keyPressed == 13)
-    {	
-			if (formName == "")	formName = 0;
-            document.forms[formName].submit();
+
+    //if browser is Navigator 4, the key pressed is called <event object>.which else it's called <event object>.keyCode
+    keyPressed = nav4 ? e.which : e.keyCode;
+
+    if (keyPressed == 13) {
+        if (formName == "") formName = 0;
+        document.forms[formName].submit();
     }
     return true;
 }
 
 function MyFunc_KeyPress(event, href) {
-// SEE ABOVE FOR HTML TAG
+    // SEE ABOVE FOR HTML TAG
     var keyCode;
-    if (typeof(event.keyCode) != "undefined") {
+    if (typeof (event.keyCode) != "undefined") {
         keyCode = event.keyCode;
     }
     else {
         keyCode = event.which;
     }
- 
+
     if (keyCode == 13) {
         window.location = href;
     }
@@ -660,7 +649,7 @@ function MyFunc_KeyPress(event, href) {
 
 function myOpen_Frame(surl) {
     var myurl = null;
-    
+
     if (surl != "") {
         myurl = surl;
         parent.frames["content_frame"].location = myurl;
@@ -683,67 +672,67 @@ function jumpToPage(obj) {
 }
 
 
-    function myHelp(sPG) {
-    
-//window.showModalDialog("URL"[, arguments] [, features])
-//window.showModelessDialog("URL"[, arguments] [, features])
-//    
+function myHelp(sPG) {
 
-//The first parameter is the URL name of the page to open.
-//
-//The second parameter is the optional parameters to pass to the dialog window.
-//To retrieve the argument parameters from the dialog window use the following:
-//	var returnFunc = window.dialogArguments
-//
-//The third parameter is optional. The IE Dialog Box Window Features are:
-//
-//Feature	 Type	 	Default	 Description
-//=====================================================
-//center	 Boolean	 yes	 Whether to center dialog box (overridden by dialogLeft and/or dialogTop).
-//dialogHeight	 Length		 varies	 Outer height of the dialog box window. IE4 default length unit is em; IE5 is pixel (px).
-//dialogLeft	 Integer	 varies	 Pixel offset of dialog box from left edge of screen.
-//dialogTop	 Integer	 varies	 Pixel offset of dialog box from top edge of screen.
-//dialogWidth	 Length		 varies	 Outer width of the dialog box window. IE4 default length unit is em; IE5 is pixel (px).
-//help		 Boolean	 yes	 Display Help icon in title bar.
-//resizable	 Boolean	 no	 Dialog box is resizable (IE5+ only).
-//status	 Boolean	 varies	 Display statusbar at window bottom (IE5+ only). Default is yes for untrusted dialog box; no for trusted dialog box
-//
+    //window.showModalDialog("URL"[, arguments] [, features])
+    //window.showModelessDialog("URL"[, arguments] [, features])
+    //    
+
+    //The first parameter is the URL name of the page to open.
+    //
+    //The second parameter is the optional parameters to pass to the dialog window.
+    //To retrieve the argument parameters from the dialog window use the following:
+    //	var returnFunc = window.dialogArguments
+    //
+    //The third parameter is optional. The IE Dialog Box Window Features are:
+    //
+    //Feature	 Type	 	Default	 Description
+    //=====================================================
+    //center	 Boolean	 yes	 Whether to center dialog box (overridden by dialogLeft and/or dialogTop).
+    //dialogHeight	 Length		 varies	 Outer height of the dialog box window. IE4 default length unit is em; IE5 is pixel (px).
+    //dialogLeft	 Integer	 varies	 Pixel offset of dialog box from left edge of screen.
+    //dialogTop	 Integer	 varies	 Pixel offset of dialog box from top edge of screen.
+    //dialogWidth	 Length		 varies	 Outer width of the dialog box window. IE4 default length unit is em; IE5 is pixel (px).
+    //help		 Boolean	 yes	 Display Help icon in title bar.
+    //resizable	 Boolean	 no	 Dialog box is resizable (IE5+ only).
+    //status	 Boolean	 varies	 Display statusbar at window bottom (IE5+ only). Default is yes for untrusted dialog box; no for trusted dialog box
+    //
 
     var defaultData = "xyz";
-    
-	//window.showHelp();
-	var odlg = window.showModalDialog(sPG, defaultData, "dialogHeight:650px; dialogWidth:960px; help:yes; center:yes; resizable:yes; status:yes");
+
+    //window.showHelp();
+    var odlg = window.showModalDialog(sPG, defaultData, "dialogHeight:650px; dialogWidth:960px; help:yes; center:yes; resizable:yes; status:yes");
     //odlg.document.forms[0].txtName.value = "Message from Dialog boz";
 
     //// var returnFunc = window.dialogArguments;
-        	
-        //window.showModelessDialog();
 
-    }
+    //window.showModelessDialog();
 
-    function myMsg() {
-    
-        var odiv = window.document.getElementById("mydiv_title");
-        odiv.innerHTML = "Welcome to " + "Custodian&reg; and Allied Insurance Plc" + "";
-        
-        var otbl = window.document.getElementById("mytbl_subitem");
+}
 
-       //Create and insert table row
-       var newRow;
-       newRow = otbl.insertRow();
+function myMsg() {
 
-	//var myTR = document.createElement("TR");
+    var odiv = window.document.getElementById("mydiv_title");
+    odiv.innerHTML = "Welcome to " + "Custodian&reg; and Allied Insurance Plc" + "";
 
-	// Note: parameter of 0 inserts at first cell position
+    var otbl = window.document.getElementById("mytbl_subitem");
 
-	//Create and insert table column
-	var newCell = newRow.insertCell(0);
-	newCell.innerHTML = "Custodian is a company committed to providing quality insurance services...";
-	//newCell.style.backgroundColor = "salmon";
-	//newCell.style.fontName = "Courier";
-	//newCell.style.fontSize = "20";
-              
-    }
+    //Create and insert table row
+    var newRow;
+    newRow = otbl.insertRow();
+
+    //var myTR = document.createElement("TR");
+
+    // Note: parameter of 0 inserts at first cell position
+
+    //Create and insert table column
+    var newCell = newRow.insertCell(0);
+    newCell.innerHTML = "Custodian is a company committed to providing quality insurance services...";
+    //newCell.style.backgroundColor = "salmon";
+    //newCell.style.fontName = "Courier";
+    //newCell.style.fontSize = "20";
+
+}
 
 
 //  ActiveXObject
@@ -765,51 +754,51 @@ function jumpToPage(obj) {
 
 
 // To open a word document with javascript
-	function openWord(strFilePath) {
-		var yourSite;
-		yourSite = "http://www.yoursite.com";
-		openWordDocPath(yourSite + strFilePath);
-	}
+function openWord(strFilePath) {
+    var yourSite;
+    yourSite = "http://www.yoursite.com";
+    openWordDocPath(yourSite + strFilePath);
+}
 
-	function openWordDocPath(strLocation) {
-		var objWord;
-		objWord = new ActiveXObject("Word.Application");
-		objWord.Visible = true;
-		objWord.Documents.Open(strLocation);
-	}
+function openWordDocPath(strLocation) {
+    var objWord;
+    objWord = new ActiveXObject("Word.Application");
+    objWord.Visible = true;
+    objWord.Documents.Open(strLocation);
+}
 
 // The following code segment lets the user open a Word document directly:
-	function openWordDoc() {
-        var pause = 0;
-        var wdDialogFileOpen = 80;
-        var wdApp = new ActiveXObject("Word.Application");
-        var dialog = wdApp.Dialogs(wdDialogFileOpen);
-        var button = dialog.Show(pause);
+function openWordDoc() {
+    var pause = 0;
+    var wdDialogFileOpen = 80;
+    var wdApp = new ActiveXObject("Word.Application");
+    var dialog = wdApp.Dialogs(wdDialogFileOpen);
+    var button = dialog.Show(pause);
 
-	}
+}
 
 // To open an excel document with javascript
-	function openExcel(strFilePath) {
-		var yourSite;
-		yourSite = "http://www.yoursite.com";
-		openExcelDocPath(yourSite + strFilePath, false);
-	}
+function openExcel(strFilePath) {
+    var yourSite;
+    yourSite = "http://www.yoursite.com";
+    openExcelDocPath(yourSite + strFilePath, false);
+}
 
-	function openExcelDocPath(strLocation, boolReadOnly) {
-		var objExcel;
-		objExcel = new ActiveXObject("Excel.Application");
-		objExcel.Visible = true;
-		objExcel.Workbooks.Open(strLocation, false, boolReadOnly);
-	}
+function openExcelDocPath(strLocation, boolReadOnly) {
+    var objExcel;
+    objExcel = new ActiveXObject("Excel.Application");
+    objExcel.Visible = true;
+    objExcel.Workbooks.Open(strLocation, false, boolReadOnly);
+}
 
 // The following code segment lets the user open a Word document directly:
-	function openExcelDoc() {
-        var pause = 0;
-        var wdDialogFileOpen = 80;
-        var wdApp = new ActiveXObject("Excel.Application");
-        var dialog = wdApp.Dialogs(wdDialogFileOpen);
-        var button = dialog.Show(pause);
-	}
+function openExcelDoc() {
+    var pause = 0;
+    var wdDialogFileOpen = 80;
+    var wdApp = new ActiveXObject("Excel.Application");
+    var dialog = wdApp.Dialogs(wdDialogFileOpen);
+    var button = dialog.Show(pause);
+}
 
 //ActiveXObject FileSystemObject
 
@@ -871,15 +860,15 @@ function saveLocalData(theData) {
 //    }
 
 // REMOVE FROM LIST BOX
- //for ( var idx = 0; idx < mySelectList.options.length; )
- //   {
- //       if ( mySelectList.options[idx].selected )
- //           mySelectList.options[idx] = null;
- //       else
- //           idx++;
- //   }
- //
-    
+//for ( var idx = 0; idx < mySelectList.options.length; )
+//   {
+//       if ( mySelectList.options[idx].selected )
+//           mySelectList.options[idx] = null;
+//       else
+//           idx++;
+//   }
+//
+
 //		document.getElementById('ad-box-iframe').height = myheight ;
 //		document.getElementById('ad-box-iframe').width = mywidth ;
 
@@ -904,8 +893,8 @@ function saveLocalData(theData) {
 
 //document.body.className = document.body.className.replace('no-js', 'js');
 //document.body.offsetHeight;
-  
- 
+
+
 //    document.Form1.autocomplete = "off";
 
 //    window.location.href = sURL;
@@ -975,10 +964,10 @@ function saveLocalData(theData) {
 //theForm = document.forms['form1'];
 //    for ( idx = 0; idx < theForm.elements.length; ++idx )
 //        alert ( theForm.elements[idx].name + " - " + theForm.elements[idx].value );
-        
+
 // EXAMPLE-2
 // -------
- //    var myform = window.document.forms[0];
+//    var myform = window.document.forms[0];
 //    for (var i = 0; i < myform.elements.length; i++) {
 //  	  myobj = myform.elements[i];
 //        alert("Control Type: " + myobj.type + "\nControl ID: " + myobj.id);

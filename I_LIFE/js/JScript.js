@@ -1,4 +1,5 @@
-﻿$(function() {
+﻿//TODO: validating numeric entries
+$(function() {
     //    alert("working");
     $("#txtBasicSumClaimsLC").keypress(function(e) {
         //if the letter is not digit then display error and don't type anything
@@ -41,13 +42,9 @@
 });
 
 
-//function to check if CHECK_IF_CLAIM_EXIST
+//TODO: function to check if CHECK_IF_CLAIM_EXIST
 $(function() {
-    $("#txtClaimsCalculatedDate").focus(function(e) {
-        e.preventDefault();
-
-    });
-
+   
     function getClaimFromClaimPaid() {
         $.ajax({
             type: "POST",
@@ -60,6 +57,7 @@ $(function() {
             error: onErrorCm(response)
         });
     }
+    
     function onSucceccCm(response) {
         console.log(response);
         var xmlDoc = $.parseXML(response.d);
@@ -102,4 +100,10 @@ $(function() {
 
     }
 
-})
+});
+
+
+//TODO: PRG_LI_CLM_MATURE.aspx queries
+$(function() {
+    
+});

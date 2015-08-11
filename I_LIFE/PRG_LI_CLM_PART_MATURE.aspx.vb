@@ -1,6 +1,7 @@
 ﻿
 Imports System.Data.OleDb
 Imports System.Data
+'Imports Microsoft.Office.Interop.Word
 
 Partial Class I_LIFE_PRG_LI_CLM_PART_MATURE
     Inherits System.Web.UI.Page
@@ -56,9 +57,9 @@ Partial Class I_LIFE_PRG_LI_CLM_PART_MATURE
             If lblMsg.Text = "Claims paid does not exist!" Then
                 FirstMsg = "Javascript:alert('" + lblMsg.Text + "'. Claims has not been reported)"
 
-            '    recalcClaimsCbx.Visible = True
-            '    Exit Sub
-            'Else
+                '    recalcClaimsCbx.Visible = True
+                '    Exit Sub
+                'Else
                 FirstMsg = "Javascript:alert('" + lblMsg.Text + "')"
 
             End If
@@ -120,14 +121,20 @@ Partial Class I_LIFE_PRG_LI_CLM_PART_MATURE
                 If _rtnMessage = "Claims not calculated!" Then
                     lblMsg.Text = _rtnMessage
                     FirstMsg = "javascript:alert('" + lblMsg.Text + " Click button CALCULATE CLAIMS!');"
-                    btnCalcClaims.Visible = True
-                    btnReCalcClaims.Visible = False
+
+                    'lblPartialPayment.Visible = True
+                    'rbnPayOptions.Visible = True
+                    'btnCalcClaims.Visible = True
+                    'btnReCalcClaims.Visible = False
 
                 ElseIf _rtnMessage = "Re-calculate claims!" Then
                     lblMsg.Text = _rtnMessage
                     FirstMsg = "javascript:alert('" + lblMsg.Text + " Click button CALCULATE CLAIMS!');"
-                    btnCalcClaims.Visible = False
-                    btnReCalcClaims.Visible = true
+
+                    'lblPartialPayment.Visible = True
+                    'rbnPayOptions.Visible = True
+                    'btnCalcClaims.Visible = False
+                    'btnReCalcClaims.Visible = True
 
                 End If
             Else
@@ -140,8 +147,6 @@ Partial Class I_LIFE_PRG_LI_CLM_PART_MATURE
 
         Return _rtnMessage
     End Function
-
-
     Public Function MOVEDATA_FROM_CLAIMRPTD_TO_CLAIMPAID(ByVal systemModule As String, ByVal claimNumber As String, ByVal polyNumber As String, _
                                                                ByVal uwy As String, ByVal prodCode As String, _
                                                               ByVal claimType As String, ByVal polyStartDate As DateTime, _
@@ -182,6 +187,7 @@ Partial Class I_LIFE_PRG_LI_CLM_PART_MATURE
             Else
                 _rtnMessage = "Unable to read data!"
             End If
+            conn1.Close()
         Catch ex As Exception
             _rtnMessage = "Error calculating maturity claim! " + ex.Message
         End Try
@@ -189,6 +195,67 @@ Partial Class I_LIFE_PRG_LI_CLM_PART_MATURE
         Return _rtnMessage
 
     End Function
+
+    Public Function GET_CALCULATED_CLAIMS(ByVal polyNumber As String, ByVal claimNumber As String, ByVal prodCode As String, _
+                                              ByVal payPlan As Int16, ByVal polyStartDate As DateTime, ByVal polyEndDate As DateTime) As String
+
+        Dim mystrConn As String = CType(Session("connstr"), String)
+        Dim conn As OleDbConnection
+        conn = New OleDbConnection(mystrConn)
+        Dim cmd As OleDbCommand = New OleDbCommand()
+        cmd.Connection = conn
+        cmd.CommandText = "SPIL_CALC_PART_CLAIM_OR_REJECT_CLAIM"
+        cmd.CommandType = CommandType.StoredProcedure
+
+        cmd.Parameters.AddWithValue("@pPOLICY_NUMBER", polyNumber)
+        cmd.Parameters.AddWithValue("@pCLAIM_NUMBER", claimNumber)
+        cmd.Parameters.AddWithValue("@pPRODUCT_CODE", prodCode)
+        cmd.Parameters.AddWithValue("@pPARTIAL_PAYMENT", payPlan)
+        cmd.Parameters.AddWithValue("@pPOLICY_START_DATE", polyStartDate)
+        cmd.Parameters.AddWithValue("@pPOLICY_END_DATE", polyEndDate)
+
+        Try
+            conn.Open()
+            Dim objOledr As OleDbDataReader
+            objOledr = cmd.ExecuteReader()
+            Dim dt As DataTable = New DataTable()
+            dt.Load(objOledr)
+            For Each dr As DataRow In dt.Rows
+                Dim colExist As Boolean = dr.Table.Columns.Contains("MSG")
+                If colExist = True Then
+
+                    txtTotalSumAssured.Text = ""
+                    txtTotalClaimAmtLC.Text = ""
+                    txtPartialSumAssuredPaid.Text = ""
+
+                    _rtnMessage = CType(dr("MSG"), String)
+                    btnCalcClaims.Visible = False
+                    btnReCalcClaims.Visible = False
+
+                ElseIf colExist = False Then
+                    '_rtnMessage = "MSG column does not exist!"
+                    txtTotalSumAssured.Text = ""
+                    txtTotalClaimAmtLC.Text = ""
+                    txtPartialSumAssuredPaid.Text = ""
+
+                    txtTotalSumAssured.Text = Format(CType(dr("TBIL_POL_PRM_SA_LC"), Decimal), "N2")
+                    txtTotalClaimAmtLC.Text = Format(CType(dr("TBIL_CLM_PAID_TOT_AMT_LC"), Decimal), "N2")
+                    txtPartialSumAssuredPaid.Text = Format(CType(dr("TBIL_CLM_PAID_SA_AMT_LC"), Decimal), "N2")
+
+                    btnReCalcClaims.Visible = True
+
+                End If
+            Next
+
+
+            conn.Close()
+        Catch ex As Exception
+            _rtnMessage = "Error calculating maturity claim! " + ex.Message
+        End Try
+        Return _rtnMessage
+
+    End Function
+
 
 
     Sub ClearAllFields()
@@ -198,7 +265,7 @@ Partial Class I_LIFE_PRG_LI_CLM_PART_MATURE
         txtPolicyEndDate.Text = ""
         txtProductCode.Text = ""
         txtProductName.Text = ""
-        txtAssuredName.text=""
+        txtAssuredName.Text = ""
         txtUWY.Text = ""
         DdnSysModule.SelectedIndex = 0
         DdnClaimType.SelectedIndex = 0
@@ -210,6 +277,15 @@ Partial Class I_LIFE_PRG_LI_CLM_PART_MATURE
     Protected Sub btnCalcClaims_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCalcClaims.Click
         ''CALL METHOD TO CALCULATE CLAIM
 
+        If rbnPayOptions.SelectedValue = 1 Then
+            lblMsg.Text = ""
+            lblMsg.Text = GET_CALCULATED_CLAIMS(txtPolicyNumber.Text.Trim(), txtClaimsNo.Text.Trim(), txtProductCode.Text.Trim(), CType(rbnPayOptions.SelectedValue.ToString(), Short), Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyStartDate.Text.Trim())), Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyEndDate.Text.Trim())))
+            FirstMsg = "javascript:alert('" + lblMsg.Text + "');"
+        ElseIf rbnPayOptions.SelectedValue = 2 Then
+            lblMsg.Text = ""
+            lblMsg.Text = GET_CALCULATED_CLAIMS(txtPolicyNumber.Text.Trim(), txtClaimsNo.Text.Trim(), txtProductCode.Text.Trim(), CType(rbnPayOptions.SelectedValue.ToString(), Short), Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyStartDate.Text.Trim())), Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyEndDate.Text.Trim())))
+            FirstMsg = "javascript:alert('" + lblMsg.Text + "');"
+        End If
 
     End Sub
 
@@ -219,5 +295,21 @@ Partial Class I_LIFE_PRG_LI_CLM_PART_MATURE
 
 
     End Sub
+
+    Protected Sub rbnPayOptions_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rbnPayOptions.SelectedIndexChanged
+         lblMsg.Text = ""
+        If rbnPayOptions.SelectedValue = 1 Then
+            'lblMsg.Text = ""
+            lblMsg.Text = GET_CALCULATED_CLAIMS(txtPolicyNumber.Text.Trim(), txtClaimsNo.Text.Trim(), txtProductCode.Text.Trim(), CType(rbnPayOptions.SelectedValue.ToString(), Short), Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyStartDate.Text.Trim())), Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyEndDate.Text.Trim())))
+            FirstMsg = "javascript:alert('" + lblMsg.Text + "');"
+        ElseIf rbnPayOptions.SelectedValue = 2 Then
+            'lblMsg.Text = ""
+            lblMsg.Text = GET_CALCULATED_CLAIMS(txtPolicyNumber.Text.Trim(), txtClaimsNo.Text.Trim(), txtProductCode.Text.Trim(), CType(rbnPayOptions.SelectedValue.ToString(), Short), Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyStartDate.Text.Trim())), Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyEndDate.Text.Trim())))
+            FirstMsg = "javascript:alert('" + lblMsg.Text + "');"
+        End If
+
+    End Sub
+
+
 
 End Class
