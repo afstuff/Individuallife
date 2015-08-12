@@ -247,7 +247,7 @@
                                 <asp:DropDownList ID="DdnClaimType" runat="server" TabIndex="11">
                                     <asp:ListItem Value="0">--- Select ---</asp:ListItem>
                                     <asp:ListItem Value="1">Full Maturity</asp:ListItem>
-                                    <asp:ListItem Value="2">Patial Maturity</asp:ListItem>
+                                    <asp:ListItem Value="2">Partial Maturity</asp:ListItem>
                                     <asp:ListItem Value="3">Surrender</asp:ListItem>
                                     <asp:ListItem Value="4">Death</asp:ListItem>
                                     <asp:ListItem Value="5">Critical Illness</asp:ListItem>
@@ -262,7 +262,7 @@
                             </td>
                             <td align="left" valign="top" class="style2">
                                 <asp:DropDownList ID="DdnLossType" runat="server" 
-                                    TabIndex="12" AppendDataBoundItems="True">
+                                    TabIndex="12">
                                     <asp:ListItem>-- Select --</asp:ListItem>
                                 </asp:DropDownList>
                             </td>

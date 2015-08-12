@@ -217,6 +217,7 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE
         cmd1.Parameters.AddWithValue("@pTBIL_CLM_PAID_POLY_FROM_DT", polyStartDate)
         cmd1.Parameters.AddWithValue("@pTBIL_CLM_PAID_POLY_TO_DT", polyEndDate)
         cmd1.Parameters.AddWithValue("@pTBIL_CLM_PAID_DUE_DATE", claimsCalcDate)
+        cmd1.Parameters.AddWithValue("@TBIL_CLM_PAID_CONTRIB_AMT_LC", 0.00)
 
         Try
             conn1.Open()
@@ -224,7 +225,7 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE
             objOledr1 = cmd1.ExecuteReader()
             If (objOledr1.Read()) Then
 
-                Dim contribAmtLc As String = CType((objOledr1("TBIL_CLM_PAID_CONTRIB_AMT_LC") & vbNullString), String)
+                Dim contribAmtLc As String = CType(objOledr1("TBIL_CLM_PAID_CONTRIB_AMT_LC") & vbNullString, String)
 
                 If contribAmtLc <> "0.00" Then
                     lblMsg.Text = "Maturity already calculated!, click 'Re-Calculate' to recalculate maturity!"
@@ -241,7 +242,7 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE
                     If prodCategory = "I" Then
                         Call Do_CLM_MATURE_INVESTMENT(CType((objOledr1("TBIL_CLM_PAID_POLY_NO") & vbNullString), String))
                     ElseIf prodCategory = "E" Then
-                        Call Do_CLM_MATURE_ENDOWMENT(CType((objOledr1("TBIL_CLM_PAID_POLY_NO") & vbNullString), String), 2015, CType(objOledr1("TBIL_CLM_PAID_PRDCT_CD") & vbNullString, String).Trim())
+                        Call Do_CLM_MATURE_ENDOWMENT(CType((objOledr1("TBIL_CLM_PAID_POLY_NO") & vbNullString), String), Now.Year, CType(objOledr1("TBIL_CLM_PAID_PRDCT_CD") & vbNullString, String).Trim())
                     End If
                     'lblMsg.Text = "Not a string"
                 End If
@@ -278,58 +279,7 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE
                 If IsNumeric(objOledr2("TBIL_CLM_PAID_CONTRIB_AMT_LC")) Then
                     txtContributionClaimsLC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_CONTRIB_AMT_LC") & vbNullString, Decimal), "N2")
                     txtContributionClaimsFC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_CONTRIB_AMT_FC") & vbNullString, Decimal), "N2")
-                End If 
-
-                If IsNumeric(objOledr2("TBIL_CLM_PAID_LOAN_BAL_AMT_LC")) Then
-                    txtLoanBalanceLC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_LOAN_BAL_AMT_LC") & vbNullString, Decimal), "N2")
-                    txtLoanBalanceFC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_LOAN_BAL_AMT_FC") & vbNullString, Decimal), "N2")
-
                 End If
-
-                If IsNumeric(objOledr2("TBIL_CLM_PAID_TOT_AMT_LC")) Then
-                    txtTotalClaimAmtLC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_TOT_AMT_LC") & vbNullString, Decimal), "N2")
-                    txtTotalClaimAmtFC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_TOT_AMT_FC") & vbNullString, Decimal), "N2")
-                End If
-
-                 txtSumAssuredClaimLC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_SA_AMT_LC"), Decimal), "N2")
-                txtSumAssuredClaimFC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_SA_AMT_FC"), Decimal), "N2")
-                txtBonusClaimsLC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_BONUS_AMT_LC"), Decimal), "N2")
-                txtBonusClaimsFC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_BONUS_AMT_FC"), Decimal), "N2")
-
-                '_rtnMessage = "MATURE_INVESTMENT"
-            End If
-
-        Catch ex As Exception
-            _rtnMessage = "Error calculating maturity claim! " + ex.Message
-        End Try
-
-        Return _rtnMessage
-    End Function
-
-
-    Public Function Do_CLM_MATURE_ENDOWMENT(ByVal policyNumber As String, ByVal bonusYear As Int16, ByVal prodCode As String) As String
-        Dim mystrConn As String = CType(Session("connstr"), String)
-        Dim conn2 As OleDbConnection
-        conn2 = New OleDbConnection(mystrConn)
-        Dim cmd2 As OleDbCommand = New OleDbCommand()
-        cmd2.Connection = conn2
-        cmd2.CommandText = "SPIL_PRG_LI_CLM_MATURE_ENDOWMENT"
-        cmd2.CommandType = CommandType.StoredProcedure
-
-        cmd2.Parameters.AddWithValue("@pPOLICY_NUMBER", policyNumber)
-        cmd2.Parameters.AddWithValue("@pPRODUCT_CODE", prodCode)
-        cmd2.Parameters.AddWithValue("@pBONUS_RT_YEAR", bonusYear)
-
-        Try
-            conn2.Open()
-            Dim objOledr2 As OleDbDataReader
-            objOledr2 = cmd2.ExecuteReader()
-            If (objOledr2.Read()) Then
-               
-                 If IsNumeric(objOledr2("TBIL_CLM_PAID_CONTRIB_AMT_LC")) Then
-                    txtContributionClaimsLC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_CONTRIB_AMT_LC") & vbNullString, Decimal), "N2")
-                    txtContributionClaimsFC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_CONTRIB_AMT_FC") & vbNullString, Decimal), "N2")
-                End If 
 
                 If IsNumeric(objOledr2("TBIL_CLM_PAID_LOAN_BAL_AMT_LC")) Then
                     txtLoanBalanceLC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_LOAN_BAL_AMT_LC") & vbNullString, Decimal), "N2")
@@ -347,7 +297,63 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE
                 txtBonusClaimsLC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_BONUS_AMT_LC"), Decimal), "N2")
                 txtBonusClaimsFC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_BONUS_AMT_FC"), Decimal), "N2")
 
+                '_rtnMessage = "MATURE_INVESTMENT"
+            End If
 
+        Catch ex As Exception
+            _rtnMessage = "Error calculating maturity claim! " + ex.Message
+        End Try
+
+        Return _rtnMessage
+    End Function
+
+
+    Public Function Do_CLM_MATURE_ENDOWMENT(ByVal policyNumber As String, ByVal bonusYear As Integer, ByVal prodCode As String) As String
+        Dim mystrConn As String = CType(Session("connstr"), String)
+        Dim conn2 As OleDbConnection
+        conn2 = New OleDbConnection(mystrConn)
+        Dim cmd2 As OleDbCommand = New OleDbCommand()
+        cmd2.Connection = conn2
+        cmd2.CommandText = "SPIL_PRG_LI_CLM_MATURE_ENDOWMENT"
+        cmd2.CommandType = CommandType.StoredProcedure
+
+        cmd2.Parameters.AddWithValue("@pPOLICY_NUMBER", policyNumber)
+        cmd2.Parameters.AddWithValue("@pPRODUCT_CODE", prodCode)
+        cmd2.Parameters.AddWithValue("@pBONUS_RT_YEAR", bonusYear)
+
+        Try
+            conn2.Open()
+            Dim objOledr2 As OleDbDataReader
+            objOledr2 = cmd2.ExecuteReader()
+            If (objOledr2.Read()) Then
+
+                If IsNumeric(objOledr2("TBIL_CLM_PAID_CONTRIB_AMT_LC")) Then
+                    txtContributionClaimsLC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_CONTRIB_AMT_LC") & vbNullString, Decimal), "N2")
+                    txtContributionClaimsFC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_CONTRIB_AMT_FC") & vbNullString, Decimal), "N2")
+                End If
+
+                If IsNumeric(objOledr2("TBIL_CLM_PAID_LOAN_BAL_AMT_LC")) Then
+                    txtLoanBalanceLC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_LOAN_BAL_AMT_LC") & vbNullString, Decimal), "N2")
+                    txtLoanBalanceFC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_LOAN_BAL_AMT_FC") & vbNullString, Decimal), "N2")
+
+                End If
+
+                If IsNumeric(objOledr2("TBIL_CLM_PAID_TOT_AMT_LC")) Then
+                    txtTotalClaimAmtLC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_TOT_AMT_LC") & vbNullString, Decimal), "N2")
+                    txtTotalClaimAmtFC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_TOT_AMT_FC") & vbNullString, Decimal), "N2")
+                End If
+
+                If IsNumeric(objOledr2("TBIL_CLM_PAID_SA_AMT_LC")) Then
+                    txtSumAssuredClaimLC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_SA_AMT_LC"), Decimal), "N2")
+                    txtSumAssuredClaimFC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_SA_AMT_FC"), Decimal), "N2")
+                End If
+
+                If IsNumeric(objOledr2("TBIL_CLM_PAID_BONUS_AMT_LC")) Then
+                    txtBonusClaimsLC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_BONUS_AMT_LC"), Decimal), "N2")
+                    txtBonusClaimsFC.Text = Format(CType(objOledr2("TBIL_CLM_PAID_BONUS_AMT_FC"), Decimal), "N2")
+                End If
+            Else
+                _rtnMessage = "Unable to read data!"
                 '_rtnMessage = "MATURE_ENDOWMENT"
             End If
 
@@ -494,7 +500,7 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE
     Protected Sub recalcClaimsCbx_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles recalcClaimsCbx.CheckedChanged
         Dim res As String = MOVESELECTDATA_FROM_CLAIMRPTD_TO_CLAIMPAID(RTrim(DdnSysModule.SelectedItem.Value), _
                                                                     RTrim(txtPolicyNumber.Text.Trim()), _
-                                                                    RTrim(txtClaimsNo.Text.Trim()), _                                                                    
+                                                                    RTrim(txtClaimsNo.Text.Trim()), _
                                                                     RTrim(txtProductCode.Text.Trim()), _
                                                                     RTrim(txtUWY.Text), _
                                                                     RTrim(DdnClaimType.SelectedItem.Value), _

@@ -52,7 +52,12 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         'load loss type into combobox
-        LoadLossTypeCmb()
+        If Not IsPostBack Then
+            'DdnLossType.Items.Add("Select")
+            ' DdnLossType.SelectedItem.Text="Select"
+            LoadLossTypeCmb()
+        End If
+
         'LoadProductsDescCmb()
 
         strTableName = "TBIL_INS_CLASS"
@@ -195,22 +200,42 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
     End Sub
 
     Sub LoadLossTypeCmb()
-        'DdnLossType.Items.Clear()
-        'Dim newListItem As ListItem
-        'newListItem = New ListItem("-- Select Loss Type --", "")
-        'newListItem.Selected = True
-        'DdnLossType.Items.Add(newListItem)
 
         Dim ds As DataSet = GetAllLossTypeCode()
-        'Dim dt As DataTable = ds.Tables(0)
+        Dim dt As DataTable = ds.Tables(0)
+        Dim dr As DataRow = dt.NewRow()
 
-        DdnLossType.DataSource = ds.Tables(0)
+        dr("TBIL_COD_SHORT_DESC") = "-- Selecct --"
+        dr("TBIL_COD_ITEM") = ""
+        dt.Rows.InsertAt(dr, 0)
+
+        DdnLossType.DataSource = dt
         DdnLossType.DataTextField = "TBIL_COD_SHORT_DESC"
         DdnLossType.DataValueField = "TBIL_COD_ITEM"
         DdnLossType.DataBind()
 
     End Sub
 
+    Sub ClaerAllFields()
+        txtPolicyNumber.Text = ""
+        txtClaimsNo.Text = ""
+        txtUWY.Text = ""
+        txtProductCode.Text = ""
+        txtPolicyStartDate.Text = ""
+        txtPolicyEndDate.Text = ""
+        txtNotificationDate.Text = ""
+        txtClaimsEffectiveDate.Text = ""
+        txtBasicSumClaimsLC.Text = ""
+        txtBasicSumClaimsFC.Text = ""
+        txtAdditionalSumClaimsLC.Text = ""
+        txtAdditionalSumClaimsFC.Text = ""
+        txtAssuredAge.Text = ""
+        DdnLossType.SelectedIndex = 0
+        DdnClaimType.SelectedIndex = 0
+        DdnSysModule.SelectedIndex = 0
+        txtProductDec.Text = ""
+
+    End Sub
     Sub LoadProductsDescCmb()
         Dim dsProd As DataSet = GetAllProductCodeList()
         'Dim dt As DataTable = ds.Tables(0)
@@ -223,6 +248,8 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
     End Sub
 
     Protected Sub cboSearch_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles cboSearch.SelectedIndexChanged
+        'clear fields
+        ClaerAllFields()
         Try
             If cboSearch.SelectedIndex = -1 Or cboSearch.SelectedIndex = 0 Or cboSearch.SelectedItem.Value = "" Or cboSearch.SelectedItem.Value = "*" Then
 
@@ -273,7 +300,7 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
                 txtBasicSumClaimsFC.Text = Format(CType(objOledr("TBIL_POL_PRM_ANN_CONTRIB_FC"), Decimal), "N2")
                 txtAdditionalSumClaimsLC.Text = Format(CType(objOledr("TBIL_POL_PRM_MTH_CONTRIB_LC"), Decimal), "N2")
                 txtAdditionalSumClaimsFC.Text = Format(CType(objOledr("TBIL_POL_PRM_MTH_CONTRIB_FC"), Decimal), "N2")
-                txtAssuredAge.Text = CType(Convert.ToInt16(objOledr("TBIL_POLY_ASSRD_AGE").ToString), String)
+                txtAssuredAge.Text = (objOledr("TBIL_POLY_ASSRD_AGE").ToString)
 
 
                 If IsDate(objOledr("TBIL_POLICY_EFF_DT")) Then
