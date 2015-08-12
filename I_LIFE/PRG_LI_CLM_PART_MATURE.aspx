@@ -96,7 +96,8 @@
                                 <asp:Button ID="cmdDelete_ASP" CssClass="cmd_butt" Enabled="False" runat="server"
                                     Text="Delete Data" OnClientClick="JSDelete_ASP();"></asp:Button>
                                 &nbsp;
-                                <asp:Button ID="cmdPrint_ASP" CssClass="cmd_butt" runat="server" Text="Print" PostBackUrl="~/I_LIFE/PRG_LI_REQ_ENTRY_RPT.aspx">
+                                <asp:Button ID="cmdPrint_ASP" CssClass="cmd_butt" runat="server" Text="Print" 
+                                    PostBackUrl="~/I_LIFE/PRG_LI_CLM_PART_MATURE_RPT.aspx">
                                 </asp:Button>
                             </td>
                         </tr>
@@ -261,11 +262,10 @@
                                 <asp:TextBox ID="txtTotalSumAssured" runat="server" TabIndex="2"></asp:TextBox>
                             </td>
                             <td align="left" valign="top" class="style3">
-                                &nbsp;
-                                <asp:Label ID="Label23" runat="server" Text="Total Paid Amount:"></asp:Label>
+                                <asp:Label ID="Label28" runat="server" Text="Total Claims Amount:"></asp:Label>
                             </td>
                             <td align="left" valign="top">
-                                <asp:TextBox ID="txtTotalPaidAmtLC" runat="server" TabIndex="4"></asp:TextBox>
+                                <asp:TextBox ID="txtTotalClaimAmtLC" runat="server" TabIndex="4"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -276,10 +276,10 @@
                                 <asp:TextBox ID="txtPartialSumAssuredPaid" runat="server" TabIndex="3"></asp:TextBox>
                             </td>
                             <td align="left" valign="top" class="style3">
-                                <asp:Label ID="Label28" runat="server" Text="Total Claims Amount:"></asp:Label>
+                                <asp:Label ID="Label23" runat="server" Text="Total Paid Amount:"></asp:Label>
                             </td>
                             <td align="left" valign="top" class="style3">
-                                <asp:TextBox ID="txtTotalClaimAmtLC" runat="server" TabIndex="4"></asp:TextBox>
+                                <asp:TextBox ID="txtTotalPaidAmtLC" runat="server" TabIndex="4"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>

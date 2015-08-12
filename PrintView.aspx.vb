@@ -6,6 +6,10 @@ Partial Class PrintView
     Protected ReportURL As String
     Dim rParams As String()
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If IsNothing(Session("ReportParams")) Then
+            Response.Redirect("~/LoginP.aspx")
+        End If
+
         If Not Page.IsPostBack Then
             rParams = CType(Session("ReportParams"), String())
             ReportURL = "I_LIFE/img/ABS_Print_Canvas_02.jpg"
