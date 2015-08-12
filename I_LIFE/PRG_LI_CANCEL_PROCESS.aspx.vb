@@ -71,6 +71,8 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
                 If Not IsDBNull(objOLEReader("TBIL_POLY_AGCY_CODE")) Then txtAgentCode.Text = objOLEReader("TBIL_POLY_AGCY_CODE")
                 If Not IsDBNull(objOLEReader("TBIL_AGCY_AGENT_NAME")) Then txtAgentName.Text = objOLEReader("TBIL_AGCY_AGENT_NAME")
 
+                GetTotalPremium()
+                GetAgencyComm()
                 If Not IsDBNull(objOLEReader("TBIL_POLY_STATUS")) Then
                     HidPolyStatus.Value = objOLEReader("TBIL_POLY_STATUS")
 
@@ -84,9 +86,19 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
                         chkCancelPolicy.Checked = True
                         lblMsg.Text = "Policy cancellation has already been processed"
                         FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+                        'ErrorInd = "Y"
                         lblMsg.Visible = True
                         Exit Sub
                     End If
+                End If
+
+                Dim daydiff = GetDayDiff(CDate(txtPolicyStartDate.Text), Now)
+                If daydiff > 31 Then
+                    lblMsg.Text = "Policy can only be cancelled if not more than a month "
+                    FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+                    lblMsg.Visible = True
+                    ' ErrorInd = "Y"
+                    Exit Sub
                 End If
             Else
                 lblMsg.Text = txtPolicyNumber.Text & " is not a valid policy number"
@@ -94,6 +106,7 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
                 FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
                 txtPolicyNumber.Text = ""
                 txtPolicyNumber.Focus()
+                'ErrorInd = "Y"
                 Exit Sub
             End If
         Catch ex As Exception
@@ -124,9 +137,8 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
                 'Me.txtSearch.Value = ""
             Else
                 txtPolicyNumber.Text = Me.cboSearch.SelectedItem.Value
+                ErrorInd = ""
                 GetPolicyDetails(cboSearch.SelectedValue.Trim())
-                GetTotalPremium()
-                GetAgencyComm()
             End If
         Catch ex As Exception
             Me.lblMsg.Text = "Error. Reason: " & ex.Message.ToString
@@ -137,17 +149,6 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
         'initializeFields()
         If txtPolicyNumber.Text <> "" Then
             GetPolicyDetails(txtPolicyNumber.Text.Trim())
-            GetTotalPremium()
-            GetAgencyComm()
-
-            Dim daydiff = GetDayDiff(CDate(txtPolicyStartDate.Text), Now)
-            If daydiff > 31 Then
-                lblMsg.Text = "Policy can only be cancelled if not more than a month "
-                FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
-                lblMsg.Visible = True
-                ErrorInd = "Y"
-                Exit Sub
-            End If
         End If
     End Sub
 
@@ -257,7 +258,7 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
             Exit Sub
         End If
 
-       
+
         monthValue = GetDayDiff(PolicyStartDate, CancelDate)
         If monthValue > 31 Then
             lblMsg.Text = "Cancellation date must not be more than one (1) month after policy start date"
@@ -633,5 +634,5 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS
         Dim DayValue As Integer = DateDiff("d", PolicyStartDt, higherDate)
         Return DayValue
     End Function
- 
+
 End Class
