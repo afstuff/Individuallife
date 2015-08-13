@@ -208,7 +208,7 @@ Partial Class Annuity_MENU_AN
                 AddMenuItem("New Proposal", "Retiree Life Annuity", "")
                 AddMenuItem("", "Dependant Annuity", "")
                 AddMenuItem("", "", "") 'blank link
-                AddMenuItem("", "Convert Proposal to Policy", "AN_QUOTE")
+                AddMenuItem("", "Convert Proposal to Policy", "")
                 AddMenuItem("", "", "") 'blank link
                 AddMenuItem("Reports", "Proposal Status Report", "")
                 AddMenuItem("", "UNDER_LINE", "") 'blank link

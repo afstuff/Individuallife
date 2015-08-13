@@ -44,19 +44,22 @@ Partial Class Annuity_PRG_ANNUITY_POLY_BENEFRY
         'STRMENU_TITLE = "Investment Plus Proposal"
 
         Try
-            strF_ID = CType(Request.QueryString("optfileid"), String)
+            'strF_ID = CType(Request.QueryString("optfileid"), String)
+            strF_ID = CType("1110356", String)
         Catch ex As Exception
             strF_ID = ""
         End Try
 
         Try
-            strQ_ID = CType(Request.QueryString("optquotid"), String)
+            'strQ_ID = CType(Request.QueryString("optquotid"), String)
+            strQ_ID = CType("P/2/IP/000121", String)
         Catch ex As Exception
             strQ_ID = ""
         End Try
 
         Try
-            strP_ID = CType(Request.QueryString("optpolid"), String)
+            'strP_ID = CType(Request.QueryString("optpolid"), String)
+            strP_ID = CType("PI/2015/1501/I/I005/I/0000013", String)
         Catch ex As Exception
             strP_ID = ""
         End Try
@@ -1204,4 +1207,5 @@ Proc_Skip_ANB:
 
     End Sub
 
+   
 End Class
