@@ -49,7 +49,7 @@
         </asp:Panel>
     </div>
     
-    <div =id="div_content" align="center">
+    <div id="div_content" align="center">
         <table id="tbl_content" align="center">
         <tr>
             <td align="center" valign="top" class="td_menu">
