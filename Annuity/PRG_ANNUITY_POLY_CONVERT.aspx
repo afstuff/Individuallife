@@ -1,4 +1,4 @@
-﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="PRG_LI_ANNUITY_POLY_CONVERT.aspx.vb" Inherits="Annuity_PRG_LI_ANNUITY_POLY_CONVERT" %>
+﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="PRG_ANNUITY_POLY_CONVERT.aspx.vb" Inherits="Annuity_PRG_LI_ANNUITY_POLY_CONVERT" %>
 
 <%@ Register src="../UC_BANT.ascx" tagname="UC_BANT" tagprefix="uc1" %>
 
@@ -50,7 +50,7 @@
                                         &nbsp;
                                     </td>
                                     <td align="right" colspan="1" valign="top">&nbsp;
-                                        <a href="PRG_LI_PROP_POLICY.aspx?menu=AN_QUOTE" class="a_sub_menu">Return to Menu</a>&nbsp;                            
+                                        <a href="PRG_ANNUITY_PROP_POLICY.aspx?menu=AN_QUOTE" class="a_sub_menu">Return to Menu</a>&nbsp;                            
                                     </td>                           
                                     
                                     <td align="right" colspan="1" valign="top" style="display:none;">    
@@ -178,7 +178,7 @@
 
                     <tr>
                         <td align="right" colspan="2" valign="top">&nbsp;
-                            <a href="PRG_LI_PROP_POLICY.aspx?menu=AN_QUOTE" class="a_sub_menu">Return to Menu</a>&nbsp;
+                            <a href="PRG_ANNUITY_PROP_POLICY.aspx?menu=AN_QUOTE" class="a_sub_menu">Return to Menu</a>&nbsp;
                         </td>                           
                     </tr>
                     
