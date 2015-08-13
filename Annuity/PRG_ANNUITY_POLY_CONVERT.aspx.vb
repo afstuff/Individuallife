@@ -32,7 +32,7 @@ Partial Class Annuity_PRG_LI_ANNUITY_POLY_CONVERT
     Protected strUpdate_Sw As String
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        strTableName = "TBIL_POLICY_DET"
+        strTableName = "TBIL_ANN_POLICY_DET"
 
         STRMENU_TITLE = UCase("+++ Convert Proposal to Policy +++ ")
 
@@ -251,7 +251,8 @@ Partial Class Annuity_PRG_LI_ANNUITY_POLY_CONVERT
         End If
         Me.txtTrans_Date.Text = RTrim(strMyDte)
 
-        mydteX = Trim(strMyMth) & "/" & Trim(strMyDay) & "/" & Trim(strMyYear)
+        'mydteX = Trim(strMyMth) & "/" & Trim(strMyDay) & "/" & Trim(strMyYear)
+        mydteX = Trim(strMyYear) & "/" & Trim(strMyMth) & "/" & Trim(strMyDay)
         mydte = Format(CDate(mydteX), "MM/dd/yyyy")
         dteTrans = Format(mydte, "MM/dd/yyyy")
 
@@ -357,14 +358,15 @@ Partial Class Annuity_PRG_LI_ANNUITY_POLY_CONVERT
             strTable = strTableName
             strSQL = ""
             strSQL = "UPDATE " & strTable
-            strSQL = strSQL & " SET TBIL_POLY_POLICY_NO = '" & RTrim(txtPol_Num.Text) & "'"
-            strSQL = strSQL & " ,TBIL_POLY_PROPSL_ACCPT_STATUS = 'A'"
-            strSQL = strSQL & " ,TBIL_POLY_PROPSL_ACCPT_DT = '" & CDate(Format(Now, "MM/dd/yyyy")) & "'"
-            strSQL = strSQL & " ,TBIL_POLY_PRPSAL_RECD_DT = '" & CDate(Format(Now, "MM/dd/yyyy")) & "'"
-            strSQL = strSQL & " ,TBIL_POLICY_ISSUE_DT = '" & CDate(Format(Now, "MM/dd/yyyy")) & "'"
-            strSQL = strSQL & " ,TBIL_POLICY_EFF_DT = '" & CDate(Me.txtPol_Eff_Date.Text) & "'"
-            strSQL = strSQL & " WHERE TBIL_POLY_PROPSAL_NO = '" & RTrim(txtPro_Pol_Num.Text) & "'"
-            strSQL = strSQL & " AND TBIL_POLY_FILE_NO = '" & RTrim(txtFileNum.Text) & "'"
+            strSQL = strSQL & " SET TBIL_ANN_POLY_POLICY_NO = '" & RTrim(txtPol_Num.Text) & "'"
+            strSQL = strSQL & " ,TBIL_ANN_POLY_PROPSL_ACCPT_STATUS = 'A'"
+            ' strSQL = strSQL & " ,TBIL_ANN_POLY_PROPSL_ACCPT_DT = '" & CDate(Format(Now, "MM/dd/yyyy")) & "'"
+            strSQL = strSQL & " ,TBIL_ANN_POLY_PROPSL_ACCPT_DT = '" & Format(Now, "MM/dd/yyyy") & "'"
+            strSQL = strSQL & " ,TBIL_ANN_POLY_PRPSAL_RECD_DT = '" & Format(Now, "MM/dd/yyyy") & "'"
+            strSQL = strSQL & " ,TBIL_ANN_POLICY_ISSUE_DT = '" & Format(Now, "MM/dd/yyyy") & "'"
+            strSQL = strSQL & " ,TBIL_ANN_POLICY_EFF_DT = '" & CDate(Me.txtPol_Eff_Date.Text) & "'"
+            strSQL = strSQL & " WHERE TBIL_ANN__POLY_PROPSAL_NO = '" & RTrim(txtPro_Pol_Num.Text) & "'"
+            strSQL = strSQL & " AND TBIL_ANN_POLY_FILE_NO = '" & RTrim(txtFileNum.Text) & "'"
 
             objOLECmd = New OleDbCommand(strSQL, objOLEConn, objOLETran)
             objOLECmd.CommandType = CommandType.Text
@@ -376,12 +378,12 @@ Partial Class Annuity_PRG_LI_ANNUITY_POLY_CONVERT
 
             ' '' update premium information table
             strTable = strTableName
-            strTable = "TBIL_POLICY_PREM_INFO"
+            strTable = "TBIL_ANN_POLICY_PREM_INFO"
             strSQL = ""
             strSQL = "UPDATE " & strTable
-            strSQL = strSQL & " SET TBIL_POL_PRM_POLY_NO = '" & RTrim(txtPol_Num.Text) & "'"
-            strSQL = strSQL & " WHERE TBIL_POL_PRM_PROP_NO = '" & RTrim(txtPro_Pol_Num.Text) & "'"
-            strSQL = strSQL & " AND TBIL_POL_PRM_FILE_NO = '" & RTrim(txtFileNum.Text) & "'"
+            strSQL = strSQL & " SET TBIL_ANN_POL_PRM_POLY_NO = '" & RTrim(txtPol_Num.Text) & "'"
+            strSQL = strSQL & " WHERE TBIL_ANN_POL_PRM_PROP_NO = '" & RTrim(txtPro_Pol_Num.Text) & "'"
+            strSQL = strSQL & " AND TBIL_ANN_POL_PRM_FILE_NO = '" & RTrim(txtFileNum.Text) & "'"
             objOLECmd_X = New OleDbCommand(strSQL, objOLEConn, objOLETran)
             objOLECmd_X.CommandType = CommandType.Text
             intRC = objOLECmd_X.ExecuteNonQuery()
