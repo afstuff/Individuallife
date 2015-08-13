@@ -1,4 +1,4 @@
-﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="PRG_LI_CLM_MATURE_RPT.aspx.vb" Inherits="I_LIFE_PRG_LI_CLM_MATURE_RPT" %>
+﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="PRG_LI_CLM_PART_MATURE_RPT.aspx.vb" Inherits="I_LIFE_PRG_LI_CLM_PART_MATURE_RPT" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -74,7 +74,8 @@
                                 </tr>
                                 <tr>
                                     <td class="style1">
-                                        Policy Number:                                     </td>
+                                        Policy Number:
+                                    </td>
                                     <td>
                                         <asp:TextBox ID="txtPolyNumber" runat="server" Width="200px" Height="25px"></asp:TextBox>
 
@@ -83,13 +84,15 @@
 
                                         &nbsp;</td>
                                 </tr>
-                                <tr style="display: none;">
+                                <tr style="">
                                     <td class="style1">
-                                        Report Type
+                                        Payment Type:
                                     </td>
                                     <td>
-                                        <asp:RadioButtonList ID="rblTransType" runat="server">
-                                            <asp:ListItem Text="Claims List" Value="PRG_LI_CLM_MATURE"></asp:ListItem>
+                                        <asp:RadioButtonList ID="pPayOption" runat="server" 
+                                            RepeatDirection="Horizontal">
+                                            <asp:ListItem Text="1st Payment" Value="1"></asp:ListItem>
+                                            <asp:ListItem Value="2">2nd Payment</asp:ListItem>
                                         </asp:RadioButtonList>
                                     </td>
                                 </tr>

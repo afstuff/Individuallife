@@ -108,15 +108,27 @@ Partial Class I_LIFE_PRG_LI_CLM_PART_MATURE
                 DdnClaimType.SelectedValue = CType(objOledr("TBIL_CLM_RPTD_CLM_TYPE") & vbNullString, String).Trim()
                 DdnSysModule.SelectedValue = CType(objOledr("TBIL_CLM_RPTD_MDLE") & vbNullString, String).Trim()
 
+                If DdnClaimType.SelectedValue = 2 Then
+                    _rtnMessage = MOVEDATA_FROM_CLAIMRPTD_TO_CLAIMPAID(RTrim(CType(objOledr("TBIL_CLM_RPTD_MDLE") & vbNullString, String)), _
+                                                           RTrim(CType(objOledr("TBIL_CLM_RPTD_POLY_NO") & vbNullString, String)), _
+                                                           RTrim(CType(objOledr("TBIL_CLM_RPTD_CLM_NO") & vbNullString, String)), _
+                                                           RTrim(CType(objOledr("TBIL_CLM_RPTD_PRDCT_CD") & vbNullString, String)), _
+                                                           RTrim(CType(objOledr("TBIL_CLM_RPTD_UNDW_YR") & vbNullString, String)), _
+                                                           RTrim(CType(objOledr("TBIL_CLM_RPTD_CLM_TYPE") & vbNullString, String)), _
+                                                           Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtPolicyStartDate.Text)), _
+                                                           Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtPolicyEndDate.Text)))
+                    rbnPayOptions.Enabled = True
 
-                '_rtnMessage = MOVEDATA_FROM_CLAIMRPTD_TO_CLAIMPAID(RTrim(CType(objOledr("TBIL_CLM_RPTD_MDLE") & vbNullString, String)), _
-                '                                                RTrim(CType(objOledr("TBIL_CLM_RPTD_POLY_NO") & vbNullString, String)), _
-                '                                                RTrim(CType(objOledr("TBIL_CLM_RPTD_CLM_NO") & vbNullString, String)), _
-                '                                                RTrim(CType(objOledr("TBIL_CLM_RPTD_PRDCT_CD") & vbNullString, String)), _
-                '                                                RTrim(CType(objOledr("TBIL_CLM_RPTD_UNDW_YR") & vbNullString, String)), _
-                '                                                RTrim(CType(objOledr("TBIL_CLM_RPTD_CLM_TYPE") & vbNullString, String)), _
-                '                                                Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtPolicyStartDate.Text)), _
-                '                                                Convert.ToDateTime(MOD_GEN.DoConvertToDbDateFormat(txtPolicyEndDate.Text)))
+                Else
+                    lblMsg.Text = "PARTIAL MATURITY CALCULATION IS NOT APPLICABLE TO THIS CLAIM TYPE!"
+                    FirstMsg = "javascript:alert('" + lblMsg.Text + " Click button CALCULATE CLAIMS!');"
+                    rbnPayOptions.Enabled = False
+                    Exit Function
+                End If
+
+
+
+
 
                 If _rtnMessage = "Claims not calculated!" Then
                     lblMsg.Text = _rtnMessage
@@ -135,7 +147,10 @@ Partial Class I_LIFE_PRG_LI_CLM_PART_MATURE
                     'rbnPayOptions.Visible = True
                     'btnCalcClaims.Visible = False
                     'btnReCalcClaims.Visible = True
-
+                ElseIf _rtnMessage = "PARTIAL MATURITY CALCULATION IS NOT APPLICABLE TO THIS CLAIM TYPE!" Then
+                    lblMsg.Text = _rtnMessage
+                    FirstMsg = "javascript:alert('" + lblMsg.Text + " Click button CALCULATE CLAIMS!');"
+                    Exit Function
                 End If
             Else
                 _rtnMessage = "Claims record does not exist!"
@@ -174,28 +189,29 @@ Partial Class I_LIFE_PRG_LI_CLM_PART_MATURE
             objOledr1 = cmd1.ExecuteReader()
             If (objOledr1.Read()) Then
 
-                Dim claimType_ As String
-                claimType_ = CType((objOledr1("TBIL_CLM_PAID_CLM_TYP") & vbNullString), String)
-                If claimType_ = "2" Then
+                'Dim claimType_ As String
+                'claimType_ = CType((objOledr1("TBIL_CLM_PAID_CLM_TYP") & vbNullString), String)
+                'If claimType_ = "2" Then
 
-                    Dim paidAmtLc As String = CType((objOledr1("TBIL_CLM_PAID_AMT_LC") & vbNullString), String)
+                Dim paidAmtLc As String = CType((objOledr1("TBIL_CLM_PAID_AMT_LC") & vbNullString), String)
 
-                    If paidAmtLc <> "0.00" Then
-                        _rtnMessage = "Re-calculate claims!"
-                        Exit Function
-                    Else
-                        _rtnMessage = "Claims not calculated!"
-                    End If
-                Else
-                    _rtnMessage = "PARTIAL MATURITY CALCULATION IS NOT APPLICABLE TO THIS CLAIM TYPE!"
+                If paidAmtLc <> "0.00" Then
+                    _rtnMessage = "Re-calculate claims!"
                     Exit Function
+                Else
+                    _rtnMessage = "Claims not calculated!"
                 End If
 
+                'Else
+                '    _rtnMessage = "PARTIAL MATURITY CALCULATION IS NOT APPLICABLE TO THIS CLAIM TYPE!"
+                '    'Exit Function
+                'End If
 
 
 
-            Else
-                _rtnMessage = "Unable to read data!"
+
+                'Else
+                '    _rtnMessage = "Unable to read data!"
             End If
             conn1.Close()
         Catch ex As Exception
@@ -228,6 +244,7 @@ Partial Class I_LIFE_PRG_LI_CLM_PART_MATURE
             conn.Open()
             Dim objOledr As OleDbDataReader
             objOledr = cmd.ExecuteReader()
+
             Dim dt As DataTable = New DataTable()
             dt.Load(objOledr)
             For Each dr As DataRow In dt.Rows
@@ -255,6 +272,12 @@ Partial Class I_LIFE_PRG_LI_CLM_PART_MATURE
 
                     btnReCalcClaims.Visible = True
 
+                    If rbnPayOptions.SelectedIndex = 0 Then
+                        _rtnMessage = "1ST PARTIAL PAYMENT CALCULATED!"
+                    ElseIf rbnPayOptions.SelectedIndex = 1 Then
+                        _rtnMessage = "2ND PARTIAL PAYMENT CALCULATED!"
+                    End If
+
                 End If
             Next
 
@@ -270,6 +293,7 @@ Partial Class I_LIFE_PRG_LI_CLM_PART_MATURE
 
 
     Sub ClearAllFields()
+        lblMsg.Text = ""
         'txtClaimsNo.Text = ""
         txtPolicyNumber.Text = ""
         txtPolicyStartDate.Text = ""
@@ -302,7 +326,15 @@ Partial Class I_LIFE_PRG_LI_CLM_PART_MATURE
 
     Protected Sub btnReCalcClaims_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnReCalcClaims.Click
         ''CALL METHOD TO RE-CALCULATE CLAIM
-
+        If rbnPayOptions.SelectedValue = 1 Then
+            'lblMsg.Text = ""
+            lblMsg.Text = GET_CALCULATED_CLAIMS(txtPolicyNumber.Text.Trim(), txtClaimsNo.Text.Trim(), txtProductCode.Text.Trim(), CType(rbnPayOptions.SelectedValue.ToString(), Short), Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyStartDate.Text.Trim())), Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyEndDate.Text.Trim())))
+            FirstMsg = "javascript:alert('" + lblMsg.Text + "');"
+        ElseIf rbnPayOptions.SelectedValue = 2 Then
+            'lblMsg.Text = ""
+            lblMsg.Text = GET_CALCULATED_CLAIMS(txtPolicyNumber.Text.Trim(), txtClaimsNo.Text.Trim(), txtProductCode.Text.Trim(), CType(rbnPayOptions.SelectedValue.ToString(), Short), Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyStartDate.Text.Trim())), Convert.ToDateTime(DoConvertToDbDateFormat(txtPolicyEndDate.Text.Trim())))
+            FirstMsg = "javascript:alert('" + lblMsg.Text + "');"
+        End If
 
 
     End Sub
