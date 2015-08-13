@@ -32,7 +32,7 @@
                 PROPOSAL LINK - MENU_AN.aspx?menu=AN_QUOTE
             -->
             &nbsp;<asp:LinkButton ID="LNK_CODE" Enabled="true" runat="server" Text="Master Setup" PostBackUrl="MENU_AN.aspx?menu=AN_CODE"></asp:LinkButton>&nbsp;            
-            <asp:LinkButton ID="LNK_QUOTE" Enabled="true" runat="server" Text="Proposal" PostBackUrl="PRG_ANNUITY_PROP_POLICY.aspx?menu=AN_QUOTE"></asp:LinkButton>&nbsp;
+            <asp:LinkButton ID="LNK_QUOTE" Enabled="true" runat="server" Text="Proposal" PostBackUrl="PRG_LI_PROP_POLICY.aspx?menu=AN_QUOTE"></asp:LinkButton>&nbsp;
             
             <asp:LinkButton ID="LNK_UND" Enabled="true" runat="server" Text="Underwriting" PostBackUrl="MENU_AN.aspx?menu=AN_UND"></asp:LinkButton>&nbsp;
             <asp:LinkButton ID="LNK_ENDORSE" Enabled="true" runat="server" Text="Endorsement" PostBackUrl="MENU_AN.aspx?menu=AN_ENDORSE"></asp:LinkButton>&nbsp;
@@ -49,7 +49,7 @@
         </asp:Panel>
     </div>
     
-    <div =id="div_content" align="center">
+    <div id="div_content" align="center">
         <table id="tbl_content" align="center">
         <tr>
             <td align="center" valign="top" class="td_menu">
