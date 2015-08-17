@@ -247,7 +247,7 @@
                                         <td align="left" valign="top" colspan="3"><asp:TextBox ID="txtAssured_Num" AutoPostBack="true" MaxLength="10" runat="server" OnTextChanged="DoProc_Validate_Assured"></asp:TextBox>
                                             &nbsp;<asp:Label ID="lblAssuredName" Text="Full Name:" runat="server"></asp:Label>
                                             &nbsp;<asp:TextBox ID="txtAssured_Name" Enabled="False" runat="server" Width="250px"></asp:TextBox>
-                                            &nbsp;<input type="button" id="cmdAssured_Setup" name="cmdAssured_Setup" value="Setup" onclick="javascript:jsDoPopNew_Full('PRG_LI_CUST_DTL.aspx?optid=001&optd=Customer_Details&popup=YES')" />
+                                            &nbsp;<input type="button" id="cmdAssured_Setup" name="cmdAssured_Setup" value="Setup" onclick="javascript:jsDoPopNew_Full('../I_LIFE/PRG_LI_CUST_DTL.aspx?optid=001&optd=Customer_Details&popup=YES')" />
                                             &nbsp;<input type="button" id="cmdAssured_Browse" name="cmdAssured_Browse" value="Browse..." onclick="javascript:Sel_Func_Open('INS','../WebForm3.aspx?popup=YES','Form1','txtAssured_Num','txtAssured_Name')" />
                                         </td>
                                     </tr>
@@ -464,7 +464,9 @@
                                     <tr>
                                                 <td align="left" valign="top"><asp:Label ID="Label12" Text="Retirement Date:" runat="server"></asp:Label></td>
                                                 <td align="left" valign="top" colspan="0">
-                                                    <asp:TextBox ID="txtRetirementDate" Visible="true" Enabled="true"  Width="250px" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="txtRetirementDate" Visible="true" Enabled="true"  
+                                                        Width="171px" runat="server"></asp:TextBox>
+                                                    <asp:Label ID="lblDOB_Format0" Text="dd/mm/yyyy" runat="server"></asp:Label>
                                                 </td>    
                                     </tr>
                                     <tr>

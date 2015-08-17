@@ -2388,7 +2388,13 @@ PUpdate_Date1:
 
     End Sub
 
-    Protected Sub DoProc_Validate_Agency(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtAgcyNum.TextChanged
+    'Protected Sub DoProc_Validate_Agency(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtAgcyNum.TextChanged
 
-    End Sub
+    'End Sub
+
+    'Protected Sub DoProc_Broker_Search(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdBroker_Search.Click
+
+    'End Sub
+
+
 End Class
