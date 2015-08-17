@@ -101,7 +101,7 @@ Partial Class Annuity_PRG_LI_PROP_POLICY
                 AddMenuItem("", "Delete Proposal", "")
                 'AddMenuItem("", "UNDER_LINE", "") 'blank link
                 AddMenuItem("", "", "") 'blank link
-                AddMenuItem("", "Convert Proposal to Policy", "PRG_LI_ANNUITY_POLY_CONVERT.aspx")
+                AddMenuItem("", "Convert Proposal to Policy", "PRG_ANNUITY_POLY_CONVERT.aspx")
                 'AddMenuItem("", "", "") 'blank link
                 'AddMenuItem("", "Change Policy - Endorsement", "")
                 AddMenuItem("", "", "") 'blank link
