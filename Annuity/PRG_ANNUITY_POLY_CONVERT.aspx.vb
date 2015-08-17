@@ -30,6 +30,7 @@ Partial Class Annuity_PRG_LI_ANNUITY_POLY_CONVERT
 
     Dim strErrMsg As String
     Protected strUpdate_Sw As String
+    Dim Pol_Eff_Date
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         strTableName = "TBIL_ANN_POLICY_DET"
@@ -193,68 +194,36 @@ Partial Class Annuity_PRG_LI_ANNUITY_POLY_CONVERT
         'Dim Dte_DOB As Date = Now
         'Dim Dte_Maturity As Date = Now
 
-        Dim myYear As String = ""
+        Dim myYear As Integer
 
         'Validate date
-        Me.txtTrans_Date.Text = Trim(Me.txtTrans_Date.Text)
-        myarrData = Split(Me.txtTrans_Date.Text, "/")
-        If myarrData.Count <> 3 Then
-            Me.lblMsg.Text = "Missing or Invalid " & Me.lblTrans_Date.Text & ". Expecting full date in ddmmyyyy format ..."
-            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
-            'ClientScript.RegisterStartupScript(Me.GetType(), "Popup_Validation", "ShowPopup_Message('" & Me.lblMsg.Text & "');", True)
+        Dim str() As String
+        str = DoDate_Process(txtTrans_Date.Text, txtTrans_Date)
+        If (str(2) = Nothing) Then
+            Dim errMsg = str(0).Insert(18, " receipt date, ")
+            lblMsg.Text = errMsg.Replace("Javascript:alert('", "").Replace("');", "")
+            lblMsg.Visible = True
+            txtTrans_Date.Focus()
+            ' ErrorInd = "Y"
             Exit Sub
+        Else
+            txtTrans_Date.Text = str(2).ToString()
         End If
-        strMyDay = myarrData(0)
-        strMyMth = myarrData(1)
-        strMyYear = myarrData(2)
 
-        strMyDay = CType(Format(Val(strMyDay), "00"), String)
-        strMyMth = CType(Format(Val(strMyMth), "00"), String)
-        strMyYear = CType(Format(Val(strMyYear), "0000"), String)
-        If Val(strMyYear) < 1999 Then
+        strMyYear = Year(Convert.ToDateTime(txtTrans_Date.Text))
+        If val(strMyYear) < 1999 Then
             Me.lblMsg.Text = "Error. Receipt year date is less than 1999 ..."
             FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             Exit Sub
         End If
 
-        strMyDte = Trim(strMyDay) & "/" & Trim(strMyMth) & "/" & Trim(strMyYear)
-        Me.txtTrans_Date.Text = Trim(strMyDte)
-
-        If RTrim(Me.txtTrans_Date.Text) = "" Or Len(Trim(Me.txtTrans_Date.Text)) <> 10 Then
-            Me.lblMsg.Text = "Missing or Invalid date - Receipt Date..."
+        dteTrans = Convert.ToDateTime(DoConvertToDbDateFormat(txtTrans_Date.Text))
+        If dteTrans > Now Then
+            lblMsg.Text = "Receipt date must not be greater than today"
             FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            lblMsg.Visible = True
             Exit Sub
         End If
-
-        'Validate date
-        myarrData = Split(Me.txtTrans_Date.Text, "/")
-        If myarrData.Count <> 3 Then
-            Me.lblMsg.Text = "Missing or Invalid " & Me.lblTrans_Date.Text & ". Expecting full date in ddmmyyyy format ..."
-            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
-            Exit Sub
-        End If
-        strMyDay = myarrData(0)
-        strMyMth = myarrData(1)
-        strMyYear = myarrData(2)
-
-        strMyDay = CType(Format(Val(strMyDay), "00"), String)
-        strMyMth = CType(Format(Val(strMyMth), "00"), String)
-        strMyYear = CType(Format(Val(strMyYear), "0000"), String)
-
-        strMyDte = Trim(strMyDay) & "/" & Trim(strMyMth) & "/" & Trim(strMyYear)
-
-        blnStatusX = MOD_GEN.gnTest_TransDate(strMyDte)
-        If blnStatusX = False Then
-            Me.lblMsg.Text = "Please enter valid date..."
-            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
-            Exit Sub
-        End If
-        Me.txtTrans_Date.Text = RTrim(strMyDte)
-
-        'mydteX = Trim(strMyMth) & "/" & Trim(strMyDay) & "/" & Trim(strMyYear)
-        mydteX = Trim(strMyYear) & "/" & Trim(strMyMth) & "/" & Trim(strMyDay)
-        mydte = Format(CDate(mydteX), "MM/dd/yyyy")
-        dteTrans = Format(mydte, "MM/dd/yyyy")
 
 
         If RTrim(Me.txtTrans_Num.Text) = "" Then
@@ -353,19 +322,19 @@ Partial Class Annuity_PRG_LI_ANNUITY_POLY_CONVERT
         Try
 
             Dim objOLECmd As OleDbCommand = Nothing
-
             ' update policy table
             strTable = strTableName
             strSQL = ""
             strSQL = "UPDATE " & strTable
             strSQL = strSQL & " SET TBIL_ANN_POLY_POLICY_NO = '" & RTrim(txtPol_Num.Text) & "'"
             strSQL = strSQL & " ,TBIL_ANN_POLY_PROPSL_ACCPT_STATUS = 'A'"
-            ' strSQL = strSQL & " ,TBIL_ANN_POLY_PROPSL_ACCPT_DT = '" & CDate(Format(Now, "MM/dd/yyyy")) & "'"
+            ' 'strSQL = strSQL & " ,TBIL_ANN_POLY_PROPSL_ACCPT_DT = '" & CDate(Format(Now, "MM/dd/yyyy")) & "'"
             strSQL = strSQL & " ,TBIL_ANN_POLY_PROPSL_ACCPT_DT = '" & Format(Now, "MM/dd/yyyy") & "'"
             strSQL = strSQL & " ,TBIL_ANN_POLY_PRPSAL_RECD_DT = '" & Format(Now, "MM/dd/yyyy") & "'"
-            strSQL = strSQL & " ,TBIL_ANN_POLICY_ISSUE_DT = '" & Format(Now, "MM/dd/yyyy") & "'"
-            strSQL = strSQL & " ,TBIL_ANN_POLICY_EFF_DT = '" & CDate(Me.txtPol_Eff_Date.Text) & "'"
-            strSQL = strSQL & " WHERE TBIL_ANN__POLY_PROPSAL_NO = '" & RTrim(txtPro_Pol_Num.Text) & "'"
+            strSQL = strSQL & " ,TBIL_POLICY_ISSUE_DT = '" & Format(Now, "MM/dd/yyyy") & "'"
+            'strSQL = strSQL & " ,TBIL_POLICY_EFF_DT = '" & Pol_Eff_Date & "'"
+            strSQL = strSQL & " ,TBIL_POLICY_EFF_DT = '" & Format(CDate(Me.txtPol_Eff_Date.Text), "MM/dd/yyyy") & "'"
+            strSQL = strSQL & " WHERE TBIL_ANN_POLY_PROPSAL_NO = '" & RTrim(txtPro_Pol_Num.Text) & "'"
             strSQL = strSQL & " AND TBIL_ANN_POLY_FILE_NO = '" & RTrim(txtFileNum.Text) & "'"
 
             objOLECmd = New OleDbCommand(strSQL, objOLEConn, objOLETran)
@@ -392,137 +361,139 @@ Partial Class Annuity_PRG_LI_ANNUITY_POLY_CONVERT
 
             ' update beneficiary table
             strTable = strTableName
-            strTable = "TBIL_POLICY_BENEFRY"
+            strTable = "TBIL_ANN_POLICY_BENEFRY"
             strSQL = ""
             strSQL = "UPDATE " & strTable
-            strSQL = strSQL & " SET TBIL_POL_BENF_POLY_NO = '" & RTrim(txtPol_Num.Text) & "'"
-            strSQL = strSQL & " WHERE TBIL_POL_BENF_PROP_NO = '" & RTrim(txtPro_Pol_Num.Text) & "'"
-            strSQL = strSQL & " AND TBIL_POL_BENF_FILE_NO = '" & RTrim(txtFileNum.Text) & "'"
+            strSQL = strSQL & " SET TBIL_ANN_BENF_POLY_NO = '" & RTrim(txtPol_Num.Text) & "'"
+            strSQL = strSQL & " WHERE TBIL_ANN_BENF_PROP_NO = '" & RTrim(txtPro_Pol_Num.Text) & "'"
+            strSQL = strSQL & " AND TBIL_ANN_BENF_FILE_NO = '" & RTrim(txtFileNum.Text) & "'"
             objOLECmd_X = New OleDbCommand(strSQL, objOLEConn, objOLETran)
             objOLECmd_X.CommandType = CommandType.Text
+
+
             intRC = objOLECmd_X.ExecuteNonQuery()
             objOLECmd_X.Dispose()
             objOLECmd_X = Nothing
 
 
-            ' '' update funeral table
-            strTable = strTableName
-            strTable = "TBIL_FUNERAL_SA_TAB"
-            strSQL = ""
-            strSQL = "UPDATE " & strTable
-            strSQL = strSQL & " SET TBIL_FUN_POLY_NO = '" & RTrim(txtPol_Num.Text) & "'"
-            strSQL = strSQL & " WHERE TBIL_FUN_PROP_NO = '" & RTrim(txtPro_Pol_Num.Text) & "'"
-            strSQL = strSQL & " AND TBIL_FUN_FILE_NO = '" & RTrim(txtFileNum.Text) & "'"
-            objOLECmd_X = New OleDbCommand(strSQL, objOLEConn, objOLETran)
-            objOLECmd_X.CommandType = CommandType.Text
-            intRC = objOLECmd_X.ExecuteNonQuery()
-            objOLECmd_X.Dispose()
-            objOLECmd_X = Nothing
+            '' '' update funeral table
+            'strTable = strTableName
+            'strTable = "TBIL_FUNERAL_SA_TAB"
+            'strSQL = ""
+            'strSQL = "UPDATE " & strTable
+            'strSQL = strSQL & " SET TBIL_FUN_POLY_NO = '" & RTrim(txtPol_Num.Text) & "'"
+            'strSQL = strSQL & " WHERE TBIL_FUN_PROP_NO = '" & RTrim(txtPro_Pol_Num.Text) & "'"
+            'strSQL = strSQL & " AND TBIL_FUN_FILE_NO = '" & RTrim(txtFileNum.Text) & "'"
+            'objOLECmd_X = New OleDbCommand(strSQL, objOLEConn, objOLETran)
+            'objOLECmd_X.CommandType = CommandType.Text
+            'intRC = objOLECmd_X.ExecuteNonQuery()
+            'objOLECmd_X.Dispose()
+            'objOLECmd_X = Nothing
 
 
-            ' '' update additional cover table
-            strTable = strTableName
-            strTable = "TBIL_POLICY_ADD_PREM"
-            strSQL = ""
-            strSQL = "UPDATE " & strTable
-            strSQL = strSQL & " SET TBIL_POL_ADD_POLY_NO = '" & RTrim(txtPol_Num.Text) & "'"
-            strSQL = strSQL & " WHERE TBIL_POL_ADD_PROP_NO = '" & RTrim(txtPro_Pol_Num.Text) & "'"
-            strSQL = strSQL & " AND TBIL_POL_ADD_FILE_NO = '" & RTrim(txtFileNum.Text) & "'"
-            objOLECmd_X = New OleDbCommand(strSQL, objOLEConn, objOLETran)
-            objOLECmd_X.CommandType = CommandType.Text
-            intRC = objOLECmd_X.ExecuteNonQuery()
-            objOLECmd_X.Dispose()
-            objOLECmd_X = Nothing
+            '' '' update additional cover table
+            'strTable = strTableName
+            'strTable = "TBIL_POLICY_ADD_PREM"
+            'strSQL = ""
+            'strSQL = "UPDATE " & strTable
+            'strSQL = strSQL & " SET TBIL_POL_ADD_POLY_NO = '" & RTrim(txtPol_Num.Text) & "'"
+            'strSQL = strSQL & " WHERE TBIL_POL_ADD_PROP_NO = '" & RTrim(txtPro_Pol_Num.Text) & "'"
+            'strSQL = strSQL & " AND TBIL_POL_ADD_FILE_NO = '" & RTrim(txtFileNum.Text) & "'"
+            'objOLECmd_X = New OleDbCommand(strSQL, objOLEConn, objOLETran)
+            'objOLECmd_X.CommandType = CommandType.Text
+            'intRC = objOLECmd_X.ExecuteNonQuery()
+            'objOLECmd_X.Dispose()
+            'objOLECmd_X = Nothing
 
 
-            ' '' update medical information table
-            strTable = strTableName
-            strTable = "TBIL_POLICY_MEDIC_EXAM"
-            strSQL = ""
-            strSQL = "UPDATE " & strTable
-            strSQL = strSQL & " SET TBIL_POL_MED_POLY_NO = '" & RTrim(txtPol_Num.Text) & "'"
-            strSQL = strSQL & " WHERE TBIL_POL_MED_PROP_NO = '" & RTrim(txtPro_Pol_Num.Text) & "'"
-            strSQL = strSQL & " AND TBIL_POL_MED_FILE_NO = '" & RTrim(txtFileNum.Text) & "'"
-            objOLECmd_X = New OleDbCommand(strSQL, objOLEConn, objOLETran)
-            objOLECmd_X.CommandType = CommandType.Text
-            intRC = objOLECmd_X.ExecuteNonQuery()
-            objOLECmd_X.Dispose()
-            objOLECmd_X = Nothing
+            '' '' update medical information table
+            'strTable = strTableName
+            'strTable = "TBIL_POLICY_MEDIC_EXAM"
+            'strSQL = ""
+            'strSQL = "UPDATE " & strTable
+            'strSQL = strSQL & " SET TBIL_POL_MED_POLY_NO = '" & RTrim(txtPol_Num.Text) & "'"
+            'strSQL = strSQL & " WHERE TBIL_POL_MED_PROP_NO = '" & RTrim(txtPro_Pol_Num.Text) & "'"
+            'strSQL = strSQL & " AND TBIL_POL_MED_FILE_NO = '" & RTrim(txtFileNum.Text) & "'"
+            'objOLECmd_X = New OleDbCommand(strSQL, objOLEConn, objOLETran)
+            'objOLECmd_X.CommandType = CommandType.Text
+            'intRC = objOLECmd_X.ExecuteNonQuery()
+            'objOLECmd_X.Dispose()
+            'objOLECmd_X = Nothing
 
 
-            ' '' update medical illness table
-            strTable = strTableName
-            strTable = "TBIL_POLICY_ILLNESS"
-            strSQL = ""
-            strSQL = "UPDATE " & strTable
-            strSQL = strSQL & " SET TBIL_POL_ILL_POLY_NO = '" & RTrim(txtPol_Num.Text) & "'"
-            strSQL = strSQL & " WHERE TBIL_POL_ILL_PROP_NO = '" & RTrim(txtPro_Pol_Num.Text) & "'"
-            strSQL = strSQL & " AND TBIL_POL_ILL_FILE_NO = '" & RTrim(txtFileNum.Text) & "'"
-            objOLECmd_X = New OleDbCommand(strSQL, objOLEConn, objOLETran)
-            objOLECmd_X.CommandType = CommandType.Text
-            intRC = objOLECmd_X.ExecuteNonQuery()
-            objOLECmd_X.Dispose()
-            objOLECmd_X = Nothing
+            '' '' update medical illness table
+            'strTable = strTableName
+            'strTable = "TBIL_POLICY_ILLNESS"
+            'strSQL = ""
+            'strSQL = "UPDATE " & strTable
+            'strSQL = strSQL & " SET TBIL_POL_ILL_POLY_NO = '" & RTrim(txtPol_Num.Text) & "'"
+            'strSQL = strSQL & " WHERE TBIL_POL_ILL_PROP_NO = '" & RTrim(txtPro_Pol_Num.Text) & "'"
+            'strSQL = strSQL & " AND TBIL_POL_ILL_FILE_NO = '" & RTrim(txtFileNum.Text) & "'"
+            'objOLECmd_X = New OleDbCommand(strSQL, objOLEConn, objOLETran)
+            'objOLECmd_X.CommandType = CommandType.Text
+            'intRC = objOLECmd_X.ExecuteNonQuery()
+            'objOLECmd_X.Dispose()
+            'objOLECmd_X = Nothing
 
 
-            ' '' update policy charges table
-            strTable = strTableName
-            strTable = "TBIL_POLICY_CHG_DTLS"
-            strSQL = ""
-            strSQL = "UPDATE " & strTable
-            strSQL = strSQL & " SET TBIL_POLY_CHG_POLY_NO = '" & RTrim(txtPol_Num.Text) & "'"
-            strSQL = strSQL & " WHERE TBIL_POLY_CHG_PROP_NO = '" & RTrim(txtPro_Pol_Num.Text) & "'"
-            strSQL = strSQL & " AND TBIL_POLY_CHG_FILE_NO = '" & RTrim(txtFileNum.Text) & "'"
-            objOLECmd_X = New OleDbCommand(strSQL, objOLEConn, objOLETran)
-            objOLECmd_X.CommandType = CommandType.Text
-            intRC = objOLECmd_X.ExecuteNonQuery()
-            objOLECmd_X.Dispose()
-            objOLECmd_X = Nothing
+            '' '' update policy charges table
+            'strTable = strTableName
+            'strTable = "TBIL_POLICY_CHG_DTLS"
+            'strSQL = ""
+            'strSQL = "UPDATE " & strTable
+            'strSQL = strSQL & " SET TBIL_POLY_CHG_POLY_NO = '" & RTrim(txtPol_Num.Text) & "'"
+            'strSQL = strSQL & " WHERE TBIL_POLY_CHG_PROP_NO = '" & RTrim(txtPro_Pol_Num.Text) & "'"
+            'strSQL = strSQL & " AND TBIL_POLY_CHG_FILE_NO = '" & RTrim(txtFileNum.Text) & "'"
+            'objOLECmd_X = New OleDbCommand(strSQL, objOLEConn, objOLETran)
+            'objOLECmd_X.CommandType = CommandType.Text
+            'intRC = objOLECmd_X.ExecuteNonQuery()
+            'objOLECmd_X.Dispose()
+            'objOLECmd_X = Nothing
 
 
-            ' '' update policy loading and discount table
-            strTable = strTableName
-            strTable = "TBIL_POLICY_DISCT_LOAD"
-            strSQL = ""
-            strSQL = "UPDATE " & strTable
-            strSQL = strSQL & " SET TBIL_POL_DISC_POLY_NO = '" & RTrim(txtPol_Num.Text) & "'"
-            strSQL = strSQL & " WHERE TBIL_POL_DISC_PROP_NO = '" & RTrim(txtPro_Pol_Num.Text) & "'"
-            strSQL = strSQL & " AND TBIL_POL_DISC_FILE_NO = '" & RTrim(txtFileNum.Text) & "'"
-            objOLECmd_X = New OleDbCommand(strSQL, objOLEConn, objOLETran)
-            objOLECmd_X.CommandType = CommandType.Text
-            intRC = objOLECmd_X.ExecuteNonQuery()
-            objOLECmd_X.Dispose()
-            objOLECmd_X = Nothing
+            '' '' update policy loading and discount table
+            'strTable = strTableName
+            'strTable = "TBIL_POLICY_DISCT_LOAD"
+            'strSQL = ""
+            'strSQL = "UPDATE " & strTable
+            'strSQL = strSQL & " SET TBIL_POL_DISC_POLY_NO = '" & RTrim(txtPol_Num.Text) & "'"
+            'strSQL = strSQL & " WHERE TBIL_POL_DISC_PROP_NO = '" & RTrim(txtPro_Pol_Num.Text) & "'"
+            'strSQL = strSQL & " AND TBIL_POL_DISC_FILE_NO = '" & RTrim(txtFileNum.Text) & "'"
+            'objOLECmd_X = New OleDbCommand(strSQL, objOLEConn, objOLETran)
+            'objOLECmd_X.CommandType = CommandType.Text
+            'intRC = objOLECmd_X.ExecuteNonQuery()
+            'objOLECmd_X.Dispose()
+            'objOLECmd_X = Nothing
 
 
-            ' '' update premium calculation details table
-            strTable = strTableName
-            strTable = "TBIL_POLICY_PREM_DETAILS"
-            strSQL = ""
-            strSQL = "UPDATE " & strTable
-            strSQL = strSQL & " SET TBIL_POL_PRM_DTL_POLY_NO = '" & RTrim(txtPol_Num.Text) & "'"
-            strSQL = strSQL & " WHERE TBIL_POL_PRM_DTL_PROP_NO = '" & RTrim(txtPro_Pol_Num.Text) & "'"
-            strSQL = strSQL & " AND TBIL_POL_PRM_DTL_FILE_NO = '" & RTrim(txtFileNum.Text) & "'"
-            objOLECmd_X = New OleDbCommand(strSQL, objOLEConn, objOLETran)
-            objOLECmd_X.CommandType = CommandType.Text
-            intRC = objOLECmd_X.ExecuteNonQuery()
-            objOLECmd_X.Dispose()
-            objOLECmd_X = Nothing
+            '' '' update premium calculation details table
+            'strTable = strTableName
+            'strTable = "TBIL_POLICY_PREM_DETAILS"
+            'strSQL = ""
+            'strSQL = "UPDATE " & strTable
+            'strSQL = strSQL & " SET TBIL_POL_PRM_DTL_POLY_NO = '" & RTrim(txtPol_Num.Text) & "'"
+            'strSQL = strSQL & " WHERE TBIL_POL_PRM_DTL_PROP_NO = '" & RTrim(txtPro_Pol_Num.Text) & "'"
+            'strSQL = strSQL & " AND TBIL_POL_PRM_DTL_FILE_NO = '" & RTrim(txtFileNum.Text) & "'"
+            'objOLECmd_X = New OleDbCommand(strSQL, objOLEConn, objOLETran)
+            'objOLECmd_X.CommandType = CommandType.Text
+            'intRC = objOLECmd_X.ExecuteNonQuery()
+            'objOLECmd_X.Dispose()
+            'objOLECmd_X = Nothing
 
 
-            ' '' update premium calculation details table
-            strTable = strTableName
-            strTable = "TBIL_POLICY_DOC_ITEMS"
-            strSQL = ""
-            strSQL = "UPDATE " & strTable
-            strSQL = strSQL & " SET TBIL_POL_ITEM_POLY_NO = '" & RTrim(txtPol_Num.Text) & "'"
-            strSQL = strSQL & " WHERE TBIL_POL_ITEM_PROP_NO = '" & RTrim(txtPro_Pol_Num.Text) & "'"
-            strSQL = strSQL & " AND TBIL_POL_ITEM_FILE_NO = '" & RTrim(txtFileNum.Text) & "'"
-            objOLECmd_X = New OleDbCommand(strSQL, objOLEConn, objOLETran)
-            objOLECmd_X.CommandType = CommandType.Text
-            intRC = objOLECmd_X.ExecuteNonQuery()
-            objOLECmd_X.Dispose()
-            objOLECmd_X = Nothing
+            '' '' update premium calculation details table
+            'strTable = strTableName
+            'strTable = "TBIL_POLICY_DOC_ITEMS"
+            'strSQL = ""
+            'strSQL = "UPDATE " & strTable
+            'strSQL = strSQL & " SET TBIL_POL_ITEM_POLY_NO = '" & RTrim(txtPol_Num.Text) & "'"
+            'strSQL = strSQL & " WHERE TBIL_POL_ITEM_PROP_NO = '" & RTrim(txtPro_Pol_Num.Text) & "'"
+            'strSQL = strSQL & " AND TBIL_POL_ITEM_FILE_NO = '" & RTrim(txtFileNum.Text) & "'"
+            'objOLECmd_X = New OleDbCommand(strSQL, objOLEConn, objOLETran)
+            'objOLECmd_X.CommandType = CommandType.Text
+            'intRC = objOLECmd_X.ExecuteNonQuery()
+            'objOLECmd_X.Dispose()
+            'objOLECmd_X = Nothing
 
 
             '-----------------------------------------------------------------------
@@ -738,11 +709,12 @@ Partial Class Annuity_PRG_LI_ANNUITY_POLY_CONVERT
                 Me.txtAssured_Name.Text = RTrim(CType(objOLEDR_Chk("TBIL_INSRD_SURNAME") & vbNullString, String)) & " " & _
                    RTrim(CType(objOLEDR_Chk("TBIL_INSRD_FIRSTNAME") & vbNullString, String))
 
-
                 If IsDate(objOLEDR_Chk("TBIL_ANN_POL_PRM_FROM")) Then
-                    Me.txtPol_Eff_Date.Text = Format(CType(objOLEDR_Chk("TBIL_ANN_POL_PRM_FROM"), DateTime), "MM/dd/yyyy")
+                    '' Me.txtPol_Eff_Date.Text = Format(CType(objOLEDR_Chk("TBIL_ANN_POL_PRM_FROM"), DateTime), "MM/dd/yyyy")
+                    Me.txtPol_Eff_Date.Text = Format(objOLEDR_Chk("TBIL_ANN_POL_PRM_FROM"), "dd/MM/yyyy")
                 Else
-                    Me.txtPol_Eff_Date.Text = Format(Now, "MM/dd/yyyy")
+                    Me.txtPol_Eff_Date.Text = Format(Now, "dd/MM/yyyy")
+                    'Pol_Eff_Date = Format(Now, "MM/dd/yyyy")
                 End If
 
                 Me.txtYear.Text = RTrim(CType(objOLEDR_Chk("TBIL_ANN_POLY_UNDW_YR") & vbNullString, String))
