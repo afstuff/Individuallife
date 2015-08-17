@@ -293,9 +293,6 @@ Partial Class Annuity_PRG_LI_ANNUITY_POLY_CONVERT
         Catch ex As Exception
             myUserIDX = ""
         End Try
-
-
-
         Dim mystrCONN As String = CType(Session("connstr"), String)
         Dim objOLEConn As New OleDbConnection()
         objOLEConn.ConnectionString = mystrCONN
