@@ -94,10 +94,11 @@ body {
 #div_header
 {
 	border: 0px solid black;
-	margin: 0px auto;
 	padding: 0px;
 	width: 1000px;
-	/* max-width:1024px; */
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0px;
 }
 
 #div_content

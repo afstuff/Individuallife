@@ -287,8 +287,6 @@ Partial Class Annuity_PRG_LI_ANNUITY_POLY_CONVERT
             Exit Sub
         End If
 
-
-
         Dim myUserIDX As String = ""
         Try
             myUserIDX = CType(Session("MyUserIDX"), String)
