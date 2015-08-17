@@ -214,9 +214,6 @@
 
                             <tr>
                                 <td align="center" colspan="4" valign="top">
-                                    <table align="center" style="background-color: White; width: 95%;">
-                                        <tr>
-                                            <td align="left" colspan="4" valign="top">
                                                 <asp:GridView ID="GridView1" CellPadding="2" runat="server" CssClass="grd_ctrl"
                                                     DataKeyNames="TBIL_ANN_BENF_REC_ID" HorizontalAlign="Left"
                                                     AutoGenerateColumns="False" AllowPaging="True" AllowSorting="true" PageSize="10"
@@ -257,7 +254,10 @@
                                                     </Columns>
 
                                                 </asp:GridView>
-                                            </td>
+                                    <table align="center" style="background-color: White; width: 95%;">
+                                        <tr>
+                                            <td align="left" colspan="4" valign="top">
+                                                &nbsp;</td>
                                         </tr>
                                     </table>
                                 </td>

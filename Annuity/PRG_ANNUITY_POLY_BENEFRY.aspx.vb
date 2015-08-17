@@ -1035,7 +1035,7 @@ Proc_Skip_ANB:
         'strSQL = strSQL & " AND PT.TBIL_POLY_PROPSAL_NO = '" & RTrim(strQ_ID) & "'"
         'strSQL = strSQL & " AND PT.TBIL_POLY_POLICY_NO = '" & RTrim(strP_ID) & "'"
 
-        strSQL = "SPIL_GET_POLICY_BENEFRY"
+        strSQL = "SPIL_GET_ANNUITY_POLICY_BENEFRY"
 
         Dim objOLECmd As OleDbCommand = New OleDbCommand(strSQL, objOLEConn)
         objOLECmd.CommandTimeout = 180
@@ -1207,5 +1207,5 @@ Proc_Skip_ANB:
 
     End Sub
 
-   
+
 End Class

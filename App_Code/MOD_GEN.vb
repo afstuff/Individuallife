@@ -1806,6 +1806,13 @@ gnGet_SN_End:
                 strSQL = RTrim("SPIL_GET_INSURED")
                 Call gnPopulate_DropDownList(pvCODE, pvcboList, strSQL, RTrim(pvSearchValue), "* select insured *", "*")
 
+            Case "AN_ASSURED_HELP_SP"
+                strTable = "TBIL_ANN_POLICY_DET"
+                strSQL = ""
+                strSQL = RTrim("SPIL_GET_ANN_POLICY")
+                Call gnPopulate_DropDownList(pvCODE, pvcboList, strSQL, RTrim(pvSearchValue), "* select insured *", "*")
+
+
             Case "GL_ASSURED_HELP_SP"
                 strTable = "TBIL_GRP_POLICY_DET"
                 strSQL = ""
