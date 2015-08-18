@@ -237,6 +237,13 @@ Partial Class Annuity_PRG_ANNTY_POLY_CONVERT
             Exit Sub
         End If
 
+        Dim premiumAmount = GetPremiumPayment(txtPro_Pol_Num.Text)
+
+        If premiumAmount <> Val(txtTrans_Amt.Text) Then
+            Me.lblMsg.Text = "Transaction Amount must be equal to Premium Payment"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
+            Exit Sub
+        End If
 
         If Trim(Me.txtPWD.Text) <> "pro_to_pol" Then
             Me.lblMsg.Text = "Invalid Access or Password code..."
@@ -829,78 +836,85 @@ Partial Class Annuity_PRG_ANNTY_POLY_CONVERT
     End Sub
 
     Private Function GetPremiumPayment(ByVal proposalNo As String) As Double
-        '    Dim PremiumPayment As Double = 0.0
-        '    Dim OverridingCommTotal As Double = 0.0
-        '    Dim SumAgcyDtl_Add1 As Double = 0.0
-        '    Dim SumAgcyDtl_Add2 As Double = 0.0
-        '    Dim SumAgcyDtl_Add3 As Double = 0.0
-        '    Dim mystrCONN As String = CType(Session("connstr"), String)
-        '    Dim objOLEConn As New OleDbConnection()
-        '    objOLEConn.ConnectionString = mystrCONN
+        Dim PremiumPayment As Double = 0.0
+        Dim OverridingCommTotal As Double = 0.0
+        Dim PaymentMode As String
+        Dim mystrCONN As String = CType(Session("connstr"), String)
+        Dim objOLEConn As New OleDbConnection()
+        objOLEConn.ConnectionString = mystrCONN
 
-        '    Try
-        '        'open connection to database
-        '        objOLEConn.Open()
-        '    Catch ex As Exception
-        '        Me.lblMsg.Text = "Unable to connect to database. Reason: " & ex.Message
-        '        'FirstMsg = "Javascript:alert('" & Me.txtMsg.Text & "')"
-        '        lblMsg.Visible = True
-        '        objOLEConn = Nothing
-        '        Exit Function
-        '    End Try
+        Try
+            'open connection to database
+            objOLEConn.Open()
+        Catch ex As Exception
+            Me.lblMsg.Text = "Unable to connect to database. Reason: " & ex.Message
+            'FirstMsg = "Javascript:alert('" & Me.txtMsg.Text & "')"
+            lblMsg.Visible = True
+            objOLEConn = Nothing
+            Exit Function
+        End Try
 
-        '    strSQL = "SELECT  * FROM TBIL_ANN_POLICY_PREM_INFO"
-        '    strSQL = strSQL & " WHERE TBIL_ANN_POL_PRM_PROP_NO = '" & RTrim(proposalNo) & "'"
+        strSQL = "SELECT  * FROM TBIL_ANN_POLICY_PREM_INFO"
+        strSQL = strSQL & " WHERE TBIL_ANN_POL_PRM_PROP_NO = '" & RTrim(proposalNo) & "'"
 
-        '    Dim objDA As System.Data.OleDb.OleDbDataAdapter
-        '    objDA = New System.Data.OleDb.OleDbDataAdapter(strSQL, objOLEConn)
-        '    Dim m_cbCommandBuilder As System.Data.OleDb.OleDbCommandBuilder
-        '    m_cbCommandBuilder = New System.Data.OleDb.OleDbCommandBuilder(objDA)
+        Dim objDA As System.Data.OleDb.OleDbDataAdapter
+        objDA = New System.Data.OleDb.OleDbDataAdapter(strSQL, objOLEConn)
+        Dim m_cbCommandBuilder As System.Data.OleDb.OleDbCommandBuilder
+        m_cbCommandBuilder = New System.Data.OleDb.OleDbCommandBuilder(objDA)
 
-        '    Dim obj_DT As New System.Data.DataTable
-        '    Dim intC As Integer = 0
+        Dim obj_DT As New System.Data.DataTable
+        Dim intC As Integer = 0
 
-        '    Try
+        Try
 
-        '        objDA.Fill(obj_DT)
-        '        Dim dr As System.Data.DataRow
-        '        If obj_DT.Rows.Count > 0 Then
-        '            For i = 0 To obj_DT.Rows.Count - 1
-        '                dr = obj_DT.Rows(i)
-        '                If Not IsDBNull(dr("TBFN_COMM_TRANS_COMM_AMT")) Then
-        '                    BasicCommTotal = BasicCommTotal + dr("TBFN_COMM_TRANS_COMM_AMT")
-        '                    'SumAgcyDtl_Add1 = SumAgcyDtl_Add1 + dr("TBIL_AGCY_DTL_ADD_1")
-        '                    'SumAgcyDtl_Add2 = SumAgcyDtl_Add1 + dr("TBIL_AGCY_DTL_ADD_2")
-        '                    'SumAgcyDtl_Add3 = SumAgcyDtl_Add1 + dr("TBIL_AGCY_DTL_ADD_3")
-        '                End If
-        '            Next
-        '        End If
-        '        ' OverridingCommTotal = SumAgcyDtl_Add1 + SumAgcyDtl_Add2 + SumAgcyDtl_Add3
+            objDA.Fill(obj_DT)
+            Dim dr As System.Data.DataRow
+            If obj_DT.Rows.Count > 0 Then
+                For i = 0 To obj_DT.Rows.Count - 1
+                    dr = obj_DT.Rows(i)
+                    If Not IsDBNull(dr("TBIL_ANN_POL_PRM_MODE_PAYT")) Then
+                        PaymentMode = dr("TBIL_ANN_POL_PRM_MODE_PAYT")
 
-        '    Catch ex As Exception
-        '        Me.lblMsg.Text = ex.Message.ToString
-        '        lblMsg.Visible = True
-        '        Exit Function
-        '    End Try
+                        If PaymentMode = "Y" Then
+                            PremiumPayment = dr("TBIL_ANN_POL_PRM_ANN_CONTRIB_LC")
+                        ElseIf PaymentMode = "M" Then
+                            PremiumPayment = dr("TBIL_ANN_POL_PRM_MTH_CONTRIB_LC")
+                        ElseIf PaymentMode = "Q" Then
+                            PremiumPayment = dr("TBIL_ANN_POL_PRM_MTH_CONTRIB_LC") * 3
+                            'ElseIf PaymentMode = "W" Then
+                            '    PremiumPayment = dr("TBIL_ANN_POL_PRM_MTH_CONTRIB_LC") / 4
+                            'ElseIf PaymentMode = "H" Then
+                            '    PremiumPayment = dr("TBIL_ANN_POL_PRM_MTH_CONTRIB_LC") * 3
+                            'ElseIf PaymentMode = "S" Then
+                            '    PremiumPayment = dr("TBIL_ANN_POL_PRM_MTH_CONTRIB_LC") * 3
+                        Else
+                            PremiumPayment = dr("TBIL_ANN_POL_PRM_MTH_CONTRIB_LC")
+                        End If
+                    End If
+                Next
+            End If
+        Catch ex As Exception
+            Me.lblMsg.Text = ex.Message.ToString
+            lblMsg.Visible = True
+            Exit Function
+        End Try
 
-        '    obj_DT.Dispose()
-        '    obj_DT = Nothing
+        obj_DT.Dispose()
+        obj_DT = Nothing
 
-        '    m_cbCommandBuilder.Dispose()
-        '    m_cbCommandBuilder = Nothing
+        m_cbCommandBuilder.Dispose()
+        m_cbCommandBuilder = Nothing
 
-        '    If objDA.SelectCommand.Connection.State = ConnectionState.Open Then
-        '        objDA.SelectCommand.Connection.Close()
-        '    End If
-        '    objDA.Dispose()
-        '    objDA = Nothing
+        If objDA.SelectCommand.Connection.State = ConnectionState.Open Then
+            objDA.SelectCommand.Connection.Close()
+        End If
+        objDA.Dispose()
+        objDA = Nothing
 
-        '    If objOLEConn.State = ConnectionState.Open Then
-        '        objOLEConn.Close()
-        '    End If
-        '    objOLEConn = Nothing
-        '    txtBasicCommPaid.Text = Format(BasicCommTotal, "Standard")
-        '    '  txtOverCommPaid.Text = Format(OverridingCommTotal, "Standard")
-        '    Return PremiumPayment
+        If objOLEConn.State = ConnectionState.Open Then
+            objOLEConn.Close()
+        End If
+        objOLEConn = Nothing
+        Return PremiumPayment
     End Function
 End Class
