@@ -63,12 +63,12 @@ Partial Class Annuity_PRG_ANNTY_POLY_CONVERT
             If strF_ID = "" Then
                 Me.txtPro_Pol_Num.Text = "QI/2014/1501/E/E003/I/0000001"
             Else
-                txtPro_Pol_Num.Text = RTrim(strF_ID)
+                txtPro_Pol_Num.Text = RTrim(strQ_ID)
             End If
             If strQ_ID = "" Then
                 Me.txtFileNum.Text = "6004025"
             Else
-                txtFileNum.Text = RTrim(strQ_ID)
+                txtFileNum.Text = RTrim(strF_ID)
             End If
 
             Me.txtPro_Pol_Num.Enabled = True
@@ -766,11 +766,11 @@ Partial Class Annuity_PRG_ANNTY_POLY_CONVERT
                     myTmp_Chk = "N"
                     blnStatusX = False
                     Me.lblMsg.Text = "Sorry! Premium information must be captured before this conversion."
-                ElseIf RTrim(CType(objOLEDR_Chk("TBIL_POL_PRM_DTL_FILE_NO") & vbNullString, String)) = "" Or _
-                       RTrim(CType(objOLEDR_Chk("TBIL_POL_PRM_DTL_PROP_NO") & vbNullString, String)) = "" Then
-                    myTmp_Chk = "N"
-                    blnStatusX = False
-                    Me.lblMsg.Text = "Sorry! Premium calculation is yet to be done and saved before this conversion."
+                    'ElseIf RTrim(CType(objOLEDR_Chk("TBIL_POL_PRM_DTL_FILE_NO") & vbNullString, String)) = "" Or _
+                    '       RTrim(CType(objOLEDR_Chk("TBIL_POL_PRM_DTL_PROP_NO") & vbNullString, String)) = "" Then
+                    '    myTmp_Chk = "N"
+                    '    blnStatusX = False
+                    '    Me.lblMsg.Text = "Sorry! Premium calculation is yet to be done and saved before this conversion."
                 Else
                     If RTrim(CType(objOLEDR_Chk("TBIL_ANN_POLY_PROPSL_ACCPT_STATUS") & vbNullString, String)) = "P" Then
                         myTmp_Chk = "Y"
@@ -952,9 +952,10 @@ Partial Class Annuity_PRG_ANNTY_POLY_CONVERT
                 'Me.txtPolicyNumber.Text = ""
                 'Me.txtSearch.Value = ""
             Else
-                txtPro_Pol_Num.Text = Me.cboSearch.SelectedItem.Value
-                txtFileNum.Text = ""
-                Dim selectedText = cboSearch.Text
+                Dim selectedText = Me.cboSearch.SelectedItem.Text
+                Dim ReturnText = Split(selectedText, "-")
+                txtPro_Pol_Num.Text = Trim(ReturnText(2))
+                txtFileNum.Text = cboSearch.SelectedValue
 
                 blnStatus = Proc_DoGet_Record(RTrim("PRO"), Trim(Me.txtPro_Pol_Num.Text), RTrim(Me.txtFileNum.Text))
                 If blnStatus = True Then
