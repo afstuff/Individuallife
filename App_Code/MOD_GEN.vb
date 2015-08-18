@@ -525,6 +525,13 @@ Public Module MOD_GEN
                 myole_CMD.Parameters.Add("@p01", OleDbType.VarChar, 3).Value = RTrim("FIL")
                 myole_CMD.Parameters.Add("@p02", OleDbType.VarChar, 40).Value = RTrim(pvstr_Key01)
                 myole_CMD.Parameters.Add("@p03", OleDbType.VarChar, 18).Value = RTrim("0")
+            Case "GET_ANNUITY_BY_FILE_NO"
+                mystr_SQL = "SPAN_GET_POLICY_DET"
+                myole_CMD.CommandType = CommandType.StoredProcedure
+                myole_CMD.CommandText = mystr_SQL
+                myole_CMD.Parameters.Add("@p01", OleDbType.VarChar, 3).Value = RTrim("FIL")
+                myole_CMD.Parameters.Add("@p02", OleDbType.VarChar, 40).Value = RTrim(pvstr_Key01)
+                myole_CMD.Parameters.Add("@p03", OleDbType.VarChar, 18).Value = RTrim("0")
             Case "GET_POLICY_BY_QUOTATION_NO"
                 mystr_SQL = "SPIL_GET_POLICY_DET"
                 myole_CMD.CommandType = CommandType.StoredProcedure
@@ -623,6 +630,42 @@ Public Module MOD_GEN
                             .Insert(18, RTrim(myole_DR("TBIL_POLY_PROPSL_ACCPT_STATUS").ToString & vbNullString))
 
                         End With
+
+                    Case "GET_ANNUITY_BY_FILE_NO", "GET_ANNUITY_BY_QUOTATION_NO", "GET_ANNUITY_BY_POLICY_NO"
+                        With myobj_AL
+                            .Insert(1, RTrim(myole_DR("TBIL_ANN_POLY_REC_ID").ToString & vbNullString))
+                            .Insert(2, RTrim(myole_DR("TBIL_ANN_POLY_FILE_NO").ToString & vbNullString))
+                            .Insert(3, RTrim(myole_DR("TBIL_ANN_POLY_PROPSAL_NO").ToString & vbNullString))
+                            .Insert(4, RTrim(myole_DR("TBIL_ANN_POLY_POLICY_NO").ToString & vbNullString))
+                            .Insert(5, RTrim(myole_DR("TBIL_PRDCT_DTL_CAT").ToString & vbNullString))
+                            .Insert(6, RTrim(myole_DR("TBIL_ANN_POLY_PRDCT_CD").ToString & vbNullString))
+                            .Insert(7, RTrim(myole_DR("TBIL_ANN_POLY_PLAN_CD").ToString & vbNullString))
+                            .Insert(8, RTrim(myole_DR("TBIL_ANN_POLY_COVER_CD").ToString & vbNullString))
+
+                            If IsDate(myole_DR("TBIL_ANN_POLY_ASSRD_BDATE")) Then
+                                .Insert(9, Format(CType(myole_DR("TBIL_ANN_POLY_ASSRD_BDATE"), DateTime), "dd/MM/yyyy"))
+                            Else
+                                .Insert(9, "")
+                            End If
+                            .Insert(10, RTrim(myole_DR("TBIL_ANN_POLY_ASSRD_AGE").ToString & vbNullString))
+
+                            If IsDate(myole_DR("TBIL_ANN_POLY_PRPSAL_ISSUE_DATE")) Then
+                                .Insert(11, Format(CType(myole_DR("TBIL_ANN_POLY_PRPSAL_ISSUE_DATE"), DateTime), "dd/MM/yyyy"))
+                            Else
+                                .Insert(11, "")
+                            End If
+                            .Insert(11, RTrim(myole_DR("TBIL_FUN_COVER_ID").ToString & vbNullString))
+                            .Insert(12, RTrim(myole_DR("TBIL_ANN_POL_PRM_RT_TAB_FIX").ToString & vbNullString))
+                            .Insert(13, RTrim(myole_DR("TBIL_ANN_POL_PRM_RT_APPLIED_ON").ToString & vbNullString))
+                            .Insert(14, RTrim(myole_DR("TBIL_ANN_POL_PRM_RATE_CD").ToString & vbNullString))
+                            .Insert(15, RTrim(myole_DR("TBIL_ANN_POL_PRM_ENROL_NO").ToString & vbNullString))
+                            .Insert(16, RTrim(myole_DR("TBIL_ANN_POL_PRM_MODE_PAYT").ToString & vbNullString))
+                            .Insert(17, RTrim(myole_DR("TBIL_ANN_POL_PRM_ANN_CONTRIB_LC").ToString & vbNullString))
+
+                            .Insert(18, RTrim(myole_DR("TBIL_ANN_POLY_PROPSL_ACCPT_STATUS").ToString & vbNullString))
+
+                        End With
+
 
                     Case "GET_GL_POLICY_BY_FILE_NO", "GET_GL_POLICY_BY_QUOTATION_NO", "GET_GL_POLICY_BY_POLICY_NO"
                         With myobj_AL
@@ -1493,6 +1536,12 @@ gnGet_SN_End:
                 objOLECmd.Parameters.Add("p01", OleDbType.VarChar, 3).Value = RTrim("I")
                 objOLECmd.Parameters.Add("p02", OleDbType.VarChar, 50).Value = RTrim(pvWhere)
                 objOLECmd.Parameters.Add("p03", OleDbType.VarChar, 50).Value = RTrim(pvWhere)
+            Case "AN_ASSURED_HELP_SP"
+                objOLECmd.Parameters.Clear()
+                objOLECmd.CommandType = Data.CommandType.StoredProcedure
+                objOLECmd.Parameters.Add("p01", OleDbType.VarChar, 3).Value = RTrim("A")
+                objOLECmd.Parameters.Add("p02", OleDbType.VarChar, 50).Value = RTrim(pvWhere)
+                objOLECmd.Parameters.Add("p03", OleDbType.VarChar, 50).Value = RTrim(pvWhere)
             Case "GL_ASSURED_HELP_SP"
                 objOLECmd.Parameters.Clear()
                 objOLECmd.CommandType = Data.CommandType.StoredProcedure
@@ -1809,7 +1858,8 @@ gnGet_SN_End:
             Case "AN_ASSURED_HELP_SP"
                 strTable = "TBIL_ANN_POLICY_DET"
                 strSQL = ""
-                strSQL = RTrim("SPIL_GET_ANN_POLICY")
+                '  strSQL = RTrim("SPIL_GET_ANN_POLICY")
+                strSQL = RTrim("SPAN_GET_INSURED")
                 Call gnPopulate_DropDownList(pvCODE, pvcboList, strSQL, RTrim(pvSearchValue), "* select insured *", "*")
 
 

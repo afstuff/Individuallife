@@ -99,7 +99,8 @@ Partial Class Annuity_PRG_ANNUITY_POLY_PREM
 
             If Trim(strF_ID) <> "" Then
                 Me.txtFileNum.Text = RTrim(strF_ID)
-                Dim oAL As ArrayList = MOD_GEN.gnGET_RECORD("GET_POLICY_BY_FILE_NO", RTrim(strF_ID), RTrim(""), RTrim(""))
+          '      Me.txtQuote_Num.Text = RTrim(strQ_ID)
+                Dim oAL As ArrayList = MOD_GEN.gnGET_RECORD("GET_ANNUITY_BY_FILE_NO", RTrim(strF_ID), RTrim(""), RTrim(""))
                 If oAL.Item(0) = "TRUE" Then
                     '    'Retrieve the record
                     '    Response.Write("<br/>Status: " & oAL.Item(0))
@@ -1921,7 +1922,7 @@ Skip_C001:
         'strSQL = strSQL & " AND PT.TBIL_ANN_POLY_PROPSAL_NO = '" & RTrim(strQ_ID) & "'"
         'strSQL = strSQL & " AND PT.TBIL_ANN_POLY_POLICY_NO = '" & RTrim(strP_ID) & "'"
 
-        strSQL = "SPIL_GET_POLICY_PREM_INFO"
+        strSQL = "SPANN_GET_POLICY_PREM_INFO"
 
         Dim objOLECmd As OleDbCommand = New OleDbCommand(strSQL, objOLEConn)
         objOLECmd.CommandTimeout = 180
@@ -2159,7 +2160,7 @@ Skip_C001:
     End Function
 
     Protected Sub cmdPrev_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdPrev.Click
-        Dim pvURL As String = "prg_li_indv_poly_persnal.aspx?optfileid=" & Trim(Me.txtFileNum.Text)
+        Dim pvURL As String = "PRG_ANNTY_POLY_PERSNAL.aspx?optfileid=" & Trim(Me.txtFileNum.Text)
         pvURL = pvURL & "&optpolid=" & Trim(Me.txtPolNum.Text)
         pvURL = pvURL & "&optquotid=" & Trim(Me.txtQuote_Num.Text)
         Response.Redirect(pvURL)
@@ -2168,10 +2169,10 @@ Skip_C001:
 
     Protected Sub cmdNext_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdNext.Click
         Dim pvURL As String = ""
-        pvURL = "prg_li_indv_poly_benefry.aspx?optfileid=" & Trim(Me.txtFileNum.Text)
+        pvURL = "prg_annuity_poly_benefry.aspx?optfileid=" & Trim(Me.txtFileNum.Text)
         Select Case Trim(Me.txtProduct_Num.Text)
             Case "F001", "F002"
-                pvURL = "prg_li_indv_poly_funeral.aspx?optfileid=" & Trim(Me.txtFileNum.Text)
+                pvURL = "prg_annuity_poly_funeral.aspx?optfileid=" & Trim(Me.txtFileNum.Text)
         End Select
         pvURL = pvURL & "&optpolid=" & Trim(Me.txtPolNum.Text)
         pvURL = pvURL & "&optquotid=" & Trim(Me.txtQuote_Num.Text)
