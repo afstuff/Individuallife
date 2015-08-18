@@ -141,19 +141,19 @@ Partial Class Annuity_PRG_ANNUITY_POLY_PREM
             '    Me.txtPolNum.Text = RTrim(strP_ID)
             'End If
 
-            If Trim(Me.txtProduct_Num.Text) = "E001" Then
-                Me.lblPrem_School_Term.Enabled = True
-                Me.txtPrem_School_Term.Enabled = True
-                Me.txtPrem_School_Term_Name.Enabled = True
-                Me.lblPrem_Sch_Fee_Prd.Enabled = True
-                Me.txtPrem_Sch_Fee_Prd.Enabled = True
-            Else
-                Me.lblPrem_School_Term.Enabled = False
-                Me.txtPrem_School_Term.Enabled = False
-                Me.txtPrem_School_Term_Name.Enabled = False
-                Me.lblPrem_Sch_Fee_Prd.Enabled = False
-                Me.txtPrem_Sch_Fee_Prd.Enabled = False
-            End If
+            'If Trim(Me.txtProduct_Num.Text) = "E001" Then
+            '    Me.lblPrem_School_Term.Enabled = True
+            '    Me.txtPrem_School_Term.Enabled = True
+            '    Me.txtPrem_School_Term_Name.Enabled = True
+            '    Me.lblPrem_Sch_Fee_Prd.Enabled = True
+            '    Me.txtPrem_Sch_Fee_Prd.Enabled = True
+            'Else
+            '    Me.lblPrem_School_Term.Enabled = False
+            '    Me.txtPrem_School_Term.Enabled = False
+            '    Me.txtPrem_School_Term_Name.Enabled = False
+            '    Me.lblPrem_Sch_Fee_Prd.Enabled = False
+            '    Me.txtPrem_Sch_Fee_Prd.Enabled = False
+            'End If
         End If
 
         If Me.txtAction.Text = "Save" Then
@@ -418,6 +418,34 @@ Partial Class Annuity_PRG_ANNUITY_POLY_PREM
             Me.lblMsg.Text = "Missing " & Me.lblQuote_Num.Text
             FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             Exit Sub
+        End If
+
+        'added by femi
+        If txtTBIL_ANN_POL_PRM_ANNUAL_PCENT_PYMT_INCREASE.Text <> "" Then
+            If Not IsNumeric(txtTBIL_ANN_POL_PRM_ANNUAL_PCENT_PYMT_INCREASE.Text) Then
+                Me.lblMsg.Text = "Missing or invalid " & Me.lblPrem_MOP_Type0.Text
+                FirstMsg = "Javascript:alert('" & Me.lblPrem_MOP_Type0.Text & "')"
+                Exit Sub
+            Else
+
+            End If
+        Else
+            Me.lblMsg.Text = "Missing " & Me.lblPrem_MOP_Type0.Text
+            FirstMsg = "Javascript:alert('" & Me.lblPrem_MOP_Type0.Text & "')"
+        End If
+
+        'added by femi
+        If txtTBIL_ANN_POL_PRM_DEATH_BENEFIT_ANNUAL_FACTOR.Text <> "" Then
+            If Not IsNumeric(txtTBIL_ANN_POL_PRM_DEATH_BENEFIT_ANNUAL_FACTOR.Text) Then
+                Me.lblMsg.Text = "Missing or invalid " & Me.lblPrem_End_Date0.Text
+                FirstMsg = "Javascript:alert('" & Me.lblPrem_End_Date0.Text & "')"
+                Exit Sub
+            Else
+
+            End If
+        Else
+            Me.lblMsg.Text = "Missing " & Me.lblPrem_End_Date0.Text
+            FirstMsg = "Javascript:alert('" & Me.lblPrem_End_Date0.Text & "')"
         End If
 
         'If Me.txtPolNum.Text = "" Then
@@ -702,10 +730,10 @@ Partial Class Annuity_PRG_ANNUITY_POLY_PREM
 
         Call MOD_GEN.gnInitialize_Numeric(Me.txtPrem_Rate)
 
-        Me.txtPrem_No_Instal.Text = Me.txtPrem_No_Instal.Text
-        If Not IsNumeric(Trim(Me.txtPrem_No_Instal.Text)) Then
-            Me.txtPrem_No_Instal.Text = "0"
-        End If
+        'Me.txtPrem_No_Instal.Text = Me.txtPrem_No_Instal.Text
+        'If Not IsNumeric(Trim(Me.txtPrem_No_Instal.Text)) Then
+        '    Me.txtPrem_No_Instal.Text = "0"
+        'End If
 
         If Trim(Me.txtProductClass.Text) = "P" And Val(Me.txtPrem_SA_LC.Text) <> 0 Then
             Me.txtPrem_Free_LiveCover_Lmt_LC.Text = Me.txtPrem_SA_LC.Text
@@ -722,25 +750,25 @@ Partial Class Annuity_PRG_ANNUITY_POLY_PREM
         'VALIDATION for DATA NOT OLD START
         If myTmp_RecStatus <> "OLD" Then
 
-            Call gnGET_SelectedItem(Me.cboPrem_School_Term, Me.txtPrem_School_Term, Me.txtPrem_School_Term_Name, Me.lblMsg)
+            'Call gnGET_SelectedItem(Me.cboPrem_School_Term, Me.txtPrem_School_Term, Me.txtPrem_School_Term_Name, Me.lblMsg)
             Select Case Trim(Me.txtProduct_Num.Text)
                 Case "E001"
-                    If Trim(Me.txtPrem_School_Term.Text) = "" Then
-                        Me.lblPrem_School_Term.Enabled = True
-                        Me.cboPrem_School_Term.Enabled = True
-                        Me.lblMsg.Text = "Missing " & Me.lblPrem_School_Term.Text
-                        FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
-                        Exit Sub
-                    End If
-                    If Val(Me.txtPrem_Sch_Fee_Prd.Text) = 0 Then
-                        Me.lblPrem_Sch_Fee_Prd.Enabled = True
-                        Me.txtPrem_Sch_Fee_Prd.Enabled = True
-                        Me.lblMsg.Text = "Missing " & Me.lblPrem_Sch_Fee_Prd.Text
-                        FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
-                        Exit Sub
-                    End If
-                Case Else
-                    Call MOD_GEN.gnInitialize_Numeric(Me.txtPrem_Sch_Fee_Prd)
+                    'If Trim(Me.txtPrem_School_Term.Text) = "" Then
+                    '    Me.lblPrem_School_Term.Enabled = True
+                    '    Me.cboPrem_School_Term.Enabled = True
+                    '    Me.lblMsg.Text = "Missing " & Me.lblPrem_School_Term.Text
+                    '    FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+                    '    Exit Sub
+                    'End If
+                    '    If Val(Me.txtPrem_Sch_Fee_Prd.Text) = 0 Then
+                    '        Me.lblPrem_Sch_Fee_Prd.Enabled = True
+                    '        Me.txtPrem_Sch_Fee_Prd.Enabled = True
+                    '        Me.lblMsg.Text = "Missing " & Me.lblPrem_Sch_Fee_Prd.Text
+                    '        FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+                    '        Exit Sub
+                    '    End If
+                    'Case Else
+                    'Call MOD_GEN.gnInitialize_Numeric(Me.txtPrem_Sch_Fee_Prd)
 
             End Select
 
@@ -930,7 +958,7 @@ Partial Class Annuity_PRG_ANNUITY_POLY_PREM
                 drNewRow("TBIL_ANN_POL_PRM_RATE") = RTrim(Me.txtPrem_Rate.Text)
                 drNewRow("TBIL_ANN_POL_PRM_RATE_PER") = RTrim(Me.txtPrem_Rate_Per.Text)
 
-                drNewRow("TBIL_ANN_POL_PRM_NO_INSTAL") = RTrim(Me.txtPrem_No_Instal.Text)
+                'drNewRow("TBIL_ANN_POL_PRM_NO_INSTAL") = RTrim(Me.txtPrem_No_Instal.Text)
 
                 drNewRow("TBIL_ANN_POL_PRM_FREE_LIFECOVER_LMT_LC") = Trim(Me.txtPrem_Free_LiveCover_Lmt_LC.Text)
                 drNewRow("TBIL_ANN_POL_PRM_FREE_LIFECOVER_LMT_FC") = Trim(Me.txtPrem_Free_LiveCover_Lmt_FC.Text)
@@ -940,13 +968,14 @@ Partial Class Annuity_PRG_ANNUITY_POLY_PREM
                 'new fields
                 drNewRow("TBIL_ANN_POL_PRM_RT_BONUS_CD") = Trim(Me.txtPrem_Bonus_YN.Text)
                 drNewRow("TBIL_ANN_POL_PRM_ALLOC_CD") = Trim(Me.txtPrem_Allocation_YN.Text)
-                drNewRow("TBIL_ANN_POL_PRM_SCH_TERM") = Trim(Me.txtPrem_School_Term.Text)
-                drNewRow("TBIL_ANN_POL_PRM_FEE_PRD") = Val(Me.txtPrem_Sch_Fee_Prd.Text)
+                'drNewRow("TBIL_ANN_POL_PRM_SCH_TERM") = Trim(Me.txtPrem_School_Term.Text)
+                'drNewRow("TBIL_ANN_POL_PRM_FEE_PRD") = Val(Me.txtPrem_Sch_Fee_Prd.Text)
 
                 drNewRow("TBIL_ANN_POL_PRM_DISCNT_PCENT") = RTrim(Me.txtPrem_Discount_Rate.Text)
                 drNewRow("TBIL_ANN_POL_PRM_LOAD_PCENT") = RTrim(Me.txtPrem_Loading_Rate.Text)
                 drNewRow("TBIL_ANN_POL_PRM_ENROL_NO") = Val(txtPrem_Enrollee_Num.Text)
 
+                drNewRow("TBIL_ANN_POL_PRM_ANNUAL_PCENT_PYMT_INCREASE") = txtTBIL_ANN_POL_PRM_ANNUAL_PCENT_PYMT_INCREASE.Text
 
                 drNewRow("TBIL_ANN_POL_PRM_FLAG") = "A"
                 drNewRow("TBIL_ANN_POL_PRM_OPERID") = CType(myUserIDX, String)
@@ -1021,11 +1050,11 @@ Partial Class Annuity_PRG_ANNUITY_POLY_PREM
                     If RTrim(Me.txtPrem_Rate_Per.Text) <> "" Then
                         .Rows(0)("TBIL_ANN_POL_PRM_RATE_PER") = RTrim(Me.txtPrem_Rate_Per.Text)
                     Else
-                        .Rows(0)("TBIL_ANN_POL_PRM_RATE_PER") = 0.00
+                        .Rows(0)("TBIL_ANN_POL_PRM_RATE_PER") = 0.0
                     End If
 
 
-                    .Rows(0)("TBIL_ANN_POL_PRM_NO_INSTAL") = RTrim(Me.txtPrem_No_Instal.Text)
+                    '.Rows(0)("TBIL_ANN_POL_PRM_NO_INSTAL") = RTrim(Me.txtPrem_No_Instal.Text)
 
                     .Rows(0)("TBIL_ANN_POL_PRM_FREE_LIFECOVER_LMT_LC") = Trim(Me.txtPrem_Free_LiveCover_Lmt_LC.Text)
                     .Rows(0)("TBIL_ANN_POL_PRM_FREE_LIFECOVER_LMT_FC") = Trim(Me.txtPrem_Free_LiveCover_Lmt_FC.Text)
@@ -1035,8 +1064,8 @@ Partial Class Annuity_PRG_ANNUITY_POLY_PREM
                     'new fields
                     .Rows(0)("TBIL_ANN_POL_PRM_RT_BONUS_CD") = Trim(Me.txtPrem_Bonus_YN.Text)
                     .Rows(0)("TBIL_ANN_POL_PRM_ALLOC_CD") = Trim(Me.txtPrem_Allocation_YN.Text)
-                    .Rows(0)("TBIL_ANN_POL_PRM_SCH_TERM") = Trim(Me.txtPrem_School_Term.Text)
-                    .Rows(0)("TBIL_ANN_POL_PRM_FEE_PRD") = Val(Me.txtPrem_Sch_Fee_Prd.Text)
+                    '.Rows(0)("TBIL_ANN_POL_PRM_SCH_TERM") = Trim(Me.txtPrem_School_Term.Text)
+                    '.Rows(0)("TBIL_ANN_POL_PRM_FEE_PRD") = Val(Me.txtPrem_Sch_Fee_Prd.Text)
 
                     .Rows(0)("TBIL_ANN_POL_PRM_DISCNT_PCENT") = RTrim(Me.txtPrem_Discount_Rate.Text)
                     .Rows(0)("TBIL_ANN_POL_PRM_LOAD_PCENT") = RTrim(Me.txtPrem_Loading_Rate.Text)
@@ -1220,9 +1249,9 @@ Partial Class Annuity_PRG_ANNUITY_POLY_PREM
                                     dblRate_Per = CType(Trim(Me.txtPrem_Fixed_Rate_PerNum.Text), Integer)
                                 End If
 
-                                If Val(dblFree_Life_Cover_Lmt_LC) > 0 And Val(Me.txtPrem_Sch_Fee_Prd.Text) > 0 And Val(dblPrem_Rate) <> 0 And Val(dblRate_Per) <> 0 Then
-                                    dblTmp_Amt = (dblFree_Life_Cover_Lmt_LC / (3 * Val(Me.txtPrem_Sch_Fee_Prd.Text))) / dblRate_Per * dblPrem_Rate
-                                End If
+                                'If Val(dblFree_Life_Cover_Lmt_LC) > 0 And Val(Me.txtPrem_Sch_Fee_Prd.Text) > 0 And Val(dblPrem_Rate) <> 0 And Val(dblRate_Per) <> 0 Then
+                                '    dblTmp_Amt = (dblFree_Life_Cover_Lmt_LC / (3 * Val(Me.txtPrem_Sch_Fee_Prd.Text))) / dblRate_Per * dblPrem_Rate
+                                'End If
 
                                 dblTmp_Amt = Format(dblTmp_Amt, "###########0.00")
                                 dblAnnual_Basic_Prem_LC = dblTmp_Amt
@@ -1258,9 +1287,9 @@ Partial Class Annuity_PRG_ANNUITY_POLY_PREM
                                     dblRate_Per = CType(Trim(Me.txtPrem_Rate_Per.Text), Integer)
                                 End If
 
-                                If Val(dblFree_Life_Cover_Lmt_LC) > 0 And Val(Me.txtPrem_Sch_Fee_Prd.Text) > 0 And Val(dblPrem_Rate) <> 0 And Val(dblRate_Per) <> 0 Then
-                                    dblTmp_Amt = (dblFree_Life_Cover_Lmt_LC / (3 * Val(Me.txtPrem_Sch_Fee_Prd.Text))) / dblRate_Per * dblPrem_Rate
-                                End If
+                                'If Val(dblFree_Life_Cover_Lmt_LC) > 0 And Val(Me.txtPrem_Sch_Fee_Prd.Text) > 0 And Val(dblPrem_Rate) <> 0 And Val(dblRate_Per) <> 0 Then
+                                '    dblTmp_Amt = (dblFree_Life_Cover_Lmt_LC / (3 * Val(Me.txtPrem_Sch_Fee_Prd.Text))) / dblRate_Per * dblPrem_Rate
+                                'End If
 
                                 dblTmp_Amt = Format(dblTmp_Amt, "###########0.00")
                                 dblAnnual_Basic_Prem_LC = dblTmp_Amt
@@ -1319,9 +1348,9 @@ Partial Class Annuity_PRG_ANNUITY_POLY_PREM
                                     dblRate_Per = CType(Trim(Me.txtPrem_Fixed_Rate_PerNum.Text), Integer)
                                 End If
 
-                                If Val(dblTmp_Amt) > 0 And Val(Me.txtPrem_Sch_Fee_Prd.Text) > 0 And Val(dblPrem_Rate) <> 0 And Val(dblRate_Per) <> 0 Then
-                                    dblSum_Assured_LC = ((dblTmp_Amt / dblMOP_Rate) * (3 * Val(Me.txtPrem_Sch_Fee_Prd.Text))) / dblPrem_Rate * dblRate_Per
-                                End If
+                                'If Val(dblTmp_Amt) > 0 And Val(Me.txtPrem_Sch_Fee_Prd.Text) > 0 And Val(dblPrem_Rate) <> 0 And Val(dblRate_Per) <> 0 Then
+                                '    dblSum_Assured_LC = ((dblTmp_Amt / dblMOP_Rate) * (3 * Val(Me.txtPrem_Sch_Fee_Prd.Text))) / dblPrem_Rate * dblRate_Per
+                                'End If
 
                                 dblSum_Assured_LC = Format(dblSum_Assured_LC, "###########0.00")
                                 dblSum_Assured_FC = dblSum_Assured_LC
@@ -1371,9 +1400,9 @@ Partial Class Annuity_PRG_ANNUITY_POLY_PREM
                                     dblRate_Per = CType(Trim(Me.txtPrem_Rate_Per.Text), Integer)
                                 End If
 
-                                If Val(dblTmp_Amt) > 0 And Val(Me.txtPrem_Sch_Fee_Prd.Text) > 0 And Val(dblPrem_Rate) <> 0 And Val(dblRate_Per) <> 0 Then
-                                    dblSum_Assured_LC = ((dblTmp_Amt / dblMOP_Rate) * (3 * Val(Me.txtPrem_Sch_Fee_Prd.Text))) / dblPrem_Rate * dblRate_Per
-                                End If
+                                'If Val(dblTmp_Amt) > 0 And Val(Me.txtPrem_Sch_Fee_Prd.Text) > 0 And Val(dblPrem_Rate) <> 0 And Val(dblRate_Per) <> 0 Then
+                                '    dblSum_Assured_LC = ((dblTmp_Amt / dblMOP_Rate) * (3 * Val(Me.txtPrem_Sch_Fee_Prd.Text))) / dblPrem_Rate * dblRate_Per
+                                'End If
 
                                 dblSum_Assured_LC = Format(dblSum_Assured_LC, "###########0.00")
                                 dblSum_Assured_FC = dblSum_Assured_LC
@@ -2087,7 +2116,7 @@ Skip_C001:
             Me.txtPrem_Free_Cover_Lmt_FC.Text = RTrim(CType(objOLEDR("TBIL_ANN_POL_PRM_FREE_COV_LMT_FC") & vbNullString, String))
 
 
-            Me.txtPrem_No_Instal.Text = RTrim(CType(objOLEDR("TBIL_ANN_POL_PRM_NO_INSTAL") & vbNullString, String))
+            'Me.txtPrem_No_Instal.Text = RTrim(CType(objOLEDR("TBIL_ANN_POL_PRM_NO_INSTAL") & vbNullString, String))
 
             Me.txtPrem_Free_LiveCover_Lmt_LC.Text = RTrim(CType(objOLEDR("TBIL_ANN_POL_PRM_FREE_LIFECOVER_LMT_LC") & vbNullString, String))
             Me.txtPrem_Free_LiveCover_Lmt_FC.Text = RTrim(CType(objOLEDR("TBIL_ANN_POL_PRM_FREE_LIFECOVER_LMT_FC") & vbNullString, String))
@@ -2098,9 +2127,9 @@ Skip_C001:
             Me.txtPrem_Allocation_YN.Text = RTrim(CType(objOLEDR("TBIL_ANN_POL_PRM_ALLOC_CD") & vbNullString, String))
             Call gnProc_DDL_Get(Me.cboPrem_Allocation_YN, RTrim(Me.txtPrem_Allocation_YN.Text))
 
-            Me.txtPrem_School_Term.Text = RTrim(CType(objOLEDR("TBIL_ANN_POL_PRM_SCH_TERM") & vbNullString, String))
-            Call gnProc_DDL_Get(Me.cboPrem_School_Term, RTrim(Me.txtPrem_School_Term.Text))
-            Me.txtPrem_Sch_Fee_Prd.Text = RTrim(CType(objOLEDR("TBIL_ANN_POL_PRM_FEE_PRD") & vbNullString, String))
+            'Me.txtPrem_School_Term.Text = RTrim(CType(objOLEDR("TBIL_ANN_POL_PRM_SCH_TERM") & vbNullString, String))
+            'Call gnProc_DDL_Get(Me.cboPrem_School_Term, RTrim(Me.txtPrem_School_Term.Text))
+            'Me.txtPrem_Sch_Fee_Prd.Text = RTrim(CType(objOLEDR("TBIL_ANN_POL_PRM_FEE_PRD") & vbNullString, String))
 
             Me.txtPrem_Discount_Rate.Text = RTrim(CType(objOLEDR("TBIL_ANN_POL_PRM_DISCNT_PCENT") & vbNullString, String))
             Me.txtPrem_Loading_Rate.Text = RTrim(CType(objOLEDR("TBIL_ANN_POL_PRM_LOAD_PCENT") & vbNullString, String))
