@@ -99,7 +99,7 @@ Partial Class Annuity_PRG_ANNUITY_POLY_PREM
 
             If Trim(strF_ID) <> "" Then
                 Me.txtFileNum.Text = RTrim(strF_ID)
-          '      Me.txtQuote_Num.Text = RTrim(strQ_ID)
+                '      Me.txtQuote_Num.Text = RTrim(strQ_ID)
                 Dim oAL As ArrayList = MOD_GEN.gnGET_RECORD("GET_ANNUITY_BY_FILE_NO", RTrim(strF_ID), RTrim(""), RTrim(""))
                 If oAL.Item(0) = "TRUE" Then
                     '    'Retrieve the record
@@ -1016,7 +1016,14 @@ Partial Class Annuity_PRG_ANNUITY_POLY_PREM
                     .Rows(0)("TBIL_ANN_POL_PRM_MODE_PAYT") = RTrim(Me.txtPrem_MOP_Type.Text)
                     .Rows(0)("TBIL_ANN_POL_PRM_RATE_CD") = RTrim(Me.txtPrem_Rate_Code.Text)
                     .Rows(0)("TBIL_ANN_POL_PRM_RATE") = RTrim(Me.txtPrem_Rate.Text)
-                    .Rows(0)("TBIL_ANN_POL_PRM_RATE_PER") = RTrim(Me.txtPrem_Rate_Per.Text)
+
+                    'condition added by femi reason b'cos the value is empty but it expects decimal/numeric value
+                    If RTrim(Me.txtPrem_Rate_Per.Text) <> "" Then
+                        .Rows(0)("TBIL_ANN_POL_PRM_RATE_PER") = RTrim(Me.txtPrem_Rate_Per.Text)
+                    Else
+                        .Rows(0)("TBIL_ANN_POL_PRM_RATE_PER") = 0.00
+                    End If
+
 
                     .Rows(0)("TBIL_ANN_POL_PRM_NO_INSTAL") = RTrim(Me.txtPrem_No_Instal.Text)
 
@@ -2179,5 +2186,6 @@ Skip_C001:
         Response.Redirect(pvURL)
 
     End Sub
+
 
 End Class

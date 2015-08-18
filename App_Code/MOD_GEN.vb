@@ -525,6 +525,7 @@ Public Module MOD_GEN
                 myole_CMD.Parameters.Add("@p01", OleDbType.VarChar, 3).Value = RTrim("FIL")
                 myole_CMD.Parameters.Add("@p02", OleDbType.VarChar, 40).Value = RTrim(pvstr_Key01)
                 myole_CMD.Parameters.Add("@p03", OleDbType.VarChar, 18).Value = RTrim("0")
+
             Case "GET_ANNUITY_BY_FILE_NO"
                 mystr_SQL = "SPAN_GET_POLICY_DET"
                 myole_CMD.CommandType = CommandType.StoredProcedure
