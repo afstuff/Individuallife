@@ -268,6 +268,7 @@ Partial Class Annuity_PRG_ANNTY_POLY_CONVERT
         If premiumAmount <> Val(txtTrans_Amt.Text) Then
             Me.lblMsg.Text = "Transaction Amount must be equal to Premium Payment"
             FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
+            txtTrans_Amt.Focus()
             Exit Sub
         End If
 
@@ -727,7 +728,7 @@ Partial Class Annuity_PRG_ANNTY_POLY_CONVERT
 
             objOLECmd_Chk.Parameters.Add("p01", OleDbType.VarChar, 40).Value = LTrim(RTrim(strREC_ID))
             objOLECmd_Chk.Parameters.Add("p02", OleDbType.VarChar, 40).Value = LTrim(RTrim(pvFileNo))
-            objOLECmd_Chk.Parameters.Add("p03", OleDbType.VarChar, 3).Value = RTrim("I")
+            objOLECmd_Chk.Parameters.Add("p03", OleDbType.VarChar, 3).Value = RTrim("A")
 
             objOLEDR_Chk = objOLECmd_Chk.ExecuteReader()
             If (objOLEDR_Chk.Read()) Then
