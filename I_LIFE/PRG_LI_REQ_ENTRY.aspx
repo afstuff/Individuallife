@@ -27,7 +27,7 @@
     <style type="text/css">
         .style1
         {
-            width: 164px;
+            width: 135px;
         }
         .style2
         {
@@ -153,7 +153,7 @@
                                 <%--<br />--%>&nbsp;</td>
                         </tr>
                         <tr>
-                            <td align="left" valign="top">
+                            <td align="left" valign="top" class="style1">
                                 <asp:Label ID="Label3" runat="server" Text="Policy Start Date: "></asp:Label>
                             </td>
                             <td align="left" valign="top" class="style2">
