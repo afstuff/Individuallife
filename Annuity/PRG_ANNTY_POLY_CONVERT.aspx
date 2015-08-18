@@ -178,7 +178,7 @@
 
                     <tr>
                         <td align="right" colspan="2" valign="top">&nbsp;
-                            <a href="PRG_ANNUITY_PROP_POLICY.aspx?menu=AN_QUOTE" class="a_sub_menu">Return to Menu</a>&nbsp;
+                            <a href="PRG_ANNTY_PROP_POLICY.aspx?menu=AN_QUOTE" class="a_sub_menu">Return to Menu</a>&nbsp;
                         </td>                           
                     </tr>
                     
