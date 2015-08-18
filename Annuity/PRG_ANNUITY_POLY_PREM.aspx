@@ -114,7 +114,7 @@
                                                     &nbsp;<asp:Label ID="lblDOB_Format" Enabled="false" Text="dd/mm/yyyy" runat="server"></asp:Label></td>
                                                 <td align="left" valign="top" colspan="1"><asp:Label ID="lblDOB_ANB" Enabled="true" Text="Age (ANB):" runat="server"></asp:Label>
                                                 </td>
-                                                <td align="left" valign="top" colspan="3"><asp:TextBox ID="txtDOB_ANB" Enabled="false" Width="40px" runat="server"></asp:TextBox>
+                                                <td align="left" valign="top"><asp:TextBox ID="txtDOB_ANB" Enabled="false" Width="40px" runat="server"></asp:TextBox>
                                                 </td>
                                     </tr>
 
@@ -160,6 +160,20 @@
                                 <td align="left" valign="top"><asp:Label ID="lblPrem_MOP_Rate" Enabled="true" Text="Mod of Payment Rate:" runat="server"></asp:Label></td>
                                 <td align="left" valign="top"><asp:TextBox ID="txtPrem_MOP_Rate" Enabled="false" runat="server"></asp:TextBox>
                                     &nbsp;<asp:TextBox ID="txtPrem_MOP_Per" Visible="false" Enabled="false" MaxLength="5" Width="40px" runat="server"></asp:TextBox>
+                                </td>
+                            </tr>
+
+                            
+                            <tr>
+                                <td nowrap align="left" valign="top"><asp:Label ID="lblPrem_MOP_Type0" 
+                                        Text="Annual Benefit % Increase:" runat="server"></asp:Label></td>
+                                <td align="left" valign="top" colspan="1">
+                                    <asp:TextBox ID="txtTBIL_ANN_POL_PRM_ANNUAL_PCENT_PYMT_INCREASE" runat="server"></asp:TextBox>
+                                                <asp:Label ID="lblPrem_Start_Date_Format0" Text="%" runat="server"></asp:Label></td>
+                                <td align="left" valign="top"><asp:Label ID="lblPrem_End_Date0" 
+                                        Text="Death Benefit Annual Factor:" runat="server"></asp:Label></td>
+                                <td align="left" valign="top">
+                                    <asp:TextBox ID="txtTBIL_ANN_POL_PRM_DEATH_BENEFIT_ANNUAL_FACTOR" runat="server"></asp:TextBox>
                                 </td>
                             </tr>
 
@@ -255,11 +269,15 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="left" valign="top" colspan="1"><asp:Label ID="lblPrem_Rate" Enabled="false" Text="Premium Rate:" runat="server"></asp:Label></td>
-                                <td align="left" valign="top" colspan="1">
+                                <td align="left" valign="top" colspan=""><asp:Label ID="lblPrem_Rate" Enabled="false" Text="Premium Rate:" runat="server"></asp:Label></td>
+                                <td align="left" valign="top" colspan="">
                                     <asp:TextBox ID="txtPrem_Rate" Enabled="false" Width="90px" runat="server"></asp:TextBox>
                                     &nbsp;<asp:Label ID="lblPrem_Rate_Per" Enabled="false" Text="Rate Per:" runat="server"></asp:Label>
                                     &nbsp;<asp:TextBox ID="txtPrem_Rate_Per" Visible="true" Enabled="false" MaxLength="5" Width="60px" ToolTip="" runat="server"></asp:TextBox>
+                                </td>
+                                <td align="left">
+                                </td>
+                                <td align="left">
                                 </td>
                             </tr>
                             <tr>
@@ -346,31 +364,11 @@
                                 <td align="left" valign="top" colspan="4"><hr /></td>
                             </tr>
 
-                            <tr>
-                                <td align="left" valign="top"><asp:Label ID="lblPrem_School_Term" Enabled="false" Text="School Term" runat="server"></asp:Label></td>
-                                <td align="left" valign="top">
-                                    <asp:DropDownList ID="cboPrem_School_Term" Enabled="false" Width="120px" ToolTip="Select School Term..." runat="server">
-                                        <asp:ListItem Selected="True" Value="*">(Select)</asp:ListItem>
-                                        <asp:ListItem Value="P">Primary</asp:ListItem>
-                                        <asp:ListItem Value="S">Secondary</asp:ListItem>
-                                    </asp:DropDownList>
-                                    &nbsp;<asp:TextBox ID="txtPrem_School_Term" Enabled="false" Visible="false" MaxLength="3" Width="20px" runat="server"></asp:TextBox>
-                                    &nbsp;<asp:TextBox ID="txtPrem_School_Term_Name" Enabled="false" Visible="false" Width="20px" runat="server"></asp:TextBox>
-                                </td>
-                                <td align="left" valign="top"><asp:Label ID="lblPrem_Sch_Fee_Prd" Enabled="false" Text="School Fee Period" runat="server"></asp:Label></td>
-                                <td align="left" valign="top">
-                                    <asp:TextBox ID="txtPrem_Sch_Fee_Prd" Enabled="false" Width="80px" runat="server"></asp:TextBox>
-                                </td>
-                            </tr>
-
-
-                            <tr>
-                                <td align="left" valign="top" colspan="4"><hr /></td>
-                            </tr>
-
                             <tr style="display: none;">
-                                <td align="left" valign="top"><asp:Label ID="lblPrem_No_Instal" Enabled="true" Text="Premium No Install:" runat="server"></asp:Label></td>
-                                <td align="left" valign="top" colspan="3"><asp:TextBox ID="txtPrem_No_Instal" Enabled="true" runat="server"></asp:TextBox>
+                                <td align="left" valign="top"><asp:Label ID="lblPrem_No_Instal" 
+                                        Text="Start Date of Annuity Benefit:" runat="server"></asp:Label></td>
+                                <td align="left" valign="top" colspan="3">
+                                    <asp:TextBox ID="txtTBIL_POL_ANNUITY_PAYT_START" Enabled="true" runat="server"></asp:TextBox>
                                 </td>
                             </tr>
 

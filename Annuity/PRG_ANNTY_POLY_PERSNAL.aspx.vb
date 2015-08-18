@@ -281,7 +281,7 @@ Partial Class Annuity_PRG_ANNTY_POLY_PERSNAL
 
     Protected Sub DoProc_Broker_Search()
         If RTrim(Me.txtBroker_Search.Text) <> "" Then
-            Call gnProc_Populate_Box("IL_BROKERS_LIST", "001", Me.cboBroker_Search, RTrim(Me.txtBroker_Search.Text))
+            Call gnProc_Populate_Box("AN_BROKERS_LIST", "001", Me.cboBroker_Search, RTrim(Me.txtBroker_Search.Text))
         End If
 
     End Sub
@@ -1986,12 +1986,12 @@ PUpdate_Date1:
 
     End Sub
 
-    Protected Sub cmdNew_ASP_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdNew_ASP.Click
+    'Protected Sub cmdNew_ASP_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdNew_ASP.Click
 
-    End Sub
+    'End Sub
 
 
-    Protected Sub cmdPrev_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdPrev.Click
+    'Protected Sub cmdPrev_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdPrev.Click
 
-    End Sub
+    'End Sub
 End Class

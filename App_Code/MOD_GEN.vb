@@ -1919,6 +1919,19 @@ gnGet_SN_End:
                 strSQL = strSQL & " ORDER BY TBIL_CUST_DESC"
                 Call gnPopulate_DropDownList(pvCODE, pvcboList, strSQL, "", "*** select broker name ***", "*")
 
+                Case "AN_BROKERS_LIST"
+                strTable = "TBIL_CUST_DETAIL"
+                strSQL = ""
+                strSQL = "SELECT TBIL_CUST_CODE AS MyFld_Value"
+                strSQL = strSQL & ",RTRIM(ISNULL(TBIL_CUST_DESC,'')) AS MyFld_Text"
+                strSQL = strSQL & " FROM " & strTable
+                strSQL = strSQL & " WHERE TBIL_CUST_DESC LIKE '" & RTrim(pvSearchValue) & "%'"
+                strSQL = strSQL & " AND TBIL_CUST_ID = '" & RTrim(pvTransType) & "'"
+                strSQL = strSQL & " AND TBIL_CUST_MDLE IN('ANN','A')"
+                strSQL = strSQL & " ORDER BY TBIL_CUST_DESC"
+                Call gnPopulate_DropDownList(pvCODE, pvcboList, strSQL, "", "*** select broker name ***", "*")
+                               
+
             Case "IL_BROKERS_LIST_GL"
                 strTable = "TBIL_CUST_DETAIL"
                 strSQL = ""
@@ -2275,6 +2288,23 @@ MyTestDate_Err1:
                     Case "AGENCY_CODE_LIFE"
                         gnSQL = gnSQL & " AND AGCY.TBIL_AGCY_AGENT_ID IN('001')"
                         gnSQL = gnSQL & " AND AGCY.TBIL_AGCY_CD_MDLE IN('IND','I')"
+                        'gnSQL = gnSQL & " AND RIGHT(RTRIM(CTAGCY_NUM),3) NOT IN('/SO','/FO')"
+                End Select
+
+            Case "BROKER_UND_ANN", "BROKER_CODE_LIFE"
+                gnTable = "TBIL_CUST_DETAIL"
+                gnSQL = ""
+                gnSQL = gnSQL & "SELECT TOP 1 BRK.TBIL_CUST_CODE, BRK.TBIL_CUST_DESC, BRK.TBIL_CUST_CATG"
+                gnSQL = gnSQL & " FROM " & gnTable & " AS BRK"
+                gnSQL = gnSQL & " WHERE BRK.TBIL_CUST_CODE = '" & RTrim(pvRef_Value.Text) & "'"
+                Select Case RTrim(pvCODE)
+                    Case "BROKER_UND_ANN"
+                        gnSQL = gnSQL & " AND BRK.TBIL_CUST_ID IN('001')"
+                        gnSQL = gnSQL & " AND BRK.TBIL_CUST_MDLE IN('ANN','A')"
+                        'gnSQL = gnSQL & " AND RIGHT(RTRIM(CTAGCY_NUM),3) NOT IN('/SO','/FO')"
+                    Case "BROKER_CODE_LIFE"
+                        gnSQL = gnSQL & " AND BRK.TBIL_CUST_ID IN('001')"
+                        gnSQL = gnSQL & " AND BRK.TBIL_CUST_MDLE IN('IND','I')"
                         'gnSQL = gnSQL & " AND RIGHT(RTRIM(CTAGCY_NUM),3) NOT IN('/SO','/FO')"
                 End Select
 
