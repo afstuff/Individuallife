@@ -468,7 +468,8 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
             For Each dr As DataRow In dt.Rows
                 Dim msg = dr("Msg").ToString()
                 If msg = 1 Then
-                    _rtnMessage = "Entry Successful, with CLAIM NUMBER: " + claimNo + " generated!"
+                    '_rtnMessage = "Entry Successful, with CLAIM NUMBER: " + claimNo + " generated!"
+                    _rtnMessage = "Entry Successful!"
                 Else
                     _rtnMessage = "Entry failed, record already exist!"
                 End If

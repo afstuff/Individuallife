@@ -1477,7 +1477,7 @@ Proc_Skip_Check:
                 Dim drNewRow As System.Data.DataRow
                 drNewRow = obj_DT.NewRow()
 
-                drNewRow("TBIL_ANN_POLY_MDLE") = RTrim("I")
+                drNewRow("TBIL_ANN_POLY_MDLE") = RTrim("A")
 
                 drNewRow("TBIL_ANN_POLY_FILE_NO") = RTrim(Me.txtFileNum.Text)
                 drNewRow("TBIL_ANN_POLY_PROPSAL_NO") = RTrim(Me.txtQuote_Num.Text)
