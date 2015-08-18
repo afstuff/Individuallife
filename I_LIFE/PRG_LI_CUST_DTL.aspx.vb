@@ -66,6 +66,7 @@ Partial Class I_LIFE_PRG_LI_CUST_DTL
         If Not (Page.IsPostBack) Then
             Call Proc_Populate_Box("IL_INS_MODULE_LIST", Trim("001"), Me.cboCustModule)
             Call Proc_Populate_Box("IL_INS_CLASS_LIST", Trim("001"), Me.cboCustClass)
+
             'Call Proc_Populate_Box("IL_INS_DETAIL_LIST", Trim(Me.txtCustID.Text), Me.cboTransList)
             Call Proc_DataBind()
             Call DoNew()

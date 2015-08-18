@@ -206,7 +206,7 @@
                                         <td align="left" valign="top" colspan="3"><asp:TextBox ID="txtBrokerNum" AutoPostBack="true" MaxLength="10" runat="server" OnTextChanged="DoProc_Validate_Broker"></asp:TextBox>
                                             &nbsp;<asp:Label ID="lblBrokerName" Text="Full Name:" runat="server"></asp:Label>
                                             &nbsp;<asp:TextBox ID="txtBrokerName" Enabled="False" runat="server" Width="250px"></asp:TextBox>
-                                            &nbsp;<input type="button" id="cmdBroker_Setup" name="cmdBroker_Setup" value="Setup" onclick="javascript:jsDoPopNew_Full('PRG_LI_BRK_DTL.aspx?optid=001&optd=Brokers_Agents_Details&popup=YES')" />
+                                            &nbsp;<input type="button" id="cmdBroker_Setup" name="cmdBroker_Setup" value="Setup" onclick="javascript:jsDoPopNew_Full('../i_life/PRG_LI_BRK_DTL.aspx?optid=001&optd=Brokers_Agents_Details&popup=YES')" />
                                             &nbsp;<input type="button" id="cmdBroker_Browse" name="cmdBroker_Browse" visible="false" value="Browse..." onclick="javascript:Sel_Func_Open('BRK','../WebForm3.aspx?popup=YES','Form1','txtBrokerNum','txtBrokerName')" />
                                         </td>
                                     </tr>
