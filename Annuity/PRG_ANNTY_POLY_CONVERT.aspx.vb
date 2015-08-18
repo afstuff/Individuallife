@@ -37,28 +37,54 @@ Partial Class Annuity_PRG_ANNTY_POLY_CONVERT
 
         STRMENU_TITLE = UCase("+++ Convert Proposal to Policy +++ ")
 
+        Try
+            strF_ID = CType(Request.QueryString("optfileid"), String)
+        Catch ex As Exception
+            strF_ID = ""
+        End Try
+
+        Try
+            strQ_ID = CType(Request.QueryString("optquotid"), String)
+        Catch ex As Exception
+            strQ_ID = ""
+        End Try
+
+        Try
+            strP_ID = CType(Request.QueryString("optpolid"), String)
+        Catch ex As Exception
+            strP_ID = ""
+        End Try
+
         If Not (Page.IsPostBack) Then
             Call Proc_DoNew()
 
             Me.cmdFileNum.Enabled = True
             Me.BUT_OK.Enabled = False
-            Me.txtPro_Pol_Num.Text = "QI/2014/1501/E/E003/I/0000001"
-            Me.txtFileNum.Text = "6004025"
+            If strF_ID = "" Then
+                Me.txtPro_Pol_Num.Text = "QI/2014/1501/E/E003/I/0000001"
+            Else
+                txtPro_Pol_Num.Text = RTrim(strF_ID)
+            End If
+            If strQ_ID = "" Then
+                Me.txtFileNum.Text = "6004025"
+            Else
+                txtFileNum.Text = RTrim(strQ_ID)
+            End If
 
             Me.txtPro_Pol_Num.Enabled = True
             Me.txtPro_Pol_Num.Focus()
         End If
 
 
-        If Me.txtAction.Text = "New" Then
-            Me.txtPro_Pol_Num.Text = ""
-            Call Proc_DoNew()
-            Me.txtAction.Text = ""
-            Me.lblMsg.Text = "New Entry..."
+            If Me.txtAction.Text = "New" Then
+                Me.txtPro_Pol_Num.Text = ""
+                Call Proc_DoNew()
+                Me.txtAction.Text = ""
+                Me.lblMsg.Text = "New Entry..."
 
-            Me.txtPro_Pol_Num.Enabled = True
-            Me.txtPro_Pol_Num.Focus()
-        End If
+                Me.txtPro_Pol_Num.Enabled = True
+                Me.txtPro_Pol_Num.Focus()
+            End If
     End Sub
     Protected Sub cmdFileNum_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdFileNum.Click
         Dim xc As Integer = 0
@@ -263,7 +289,8 @@ Partial Class Annuity_PRG_ANNTY_POLY_CONVERT
         '   
         myYear = Trim(Me.txtYear.Text)
         If Trim(txtPol_Num.Text) = "" Then
-            Me.txtPol_Num.Text = MOD_GEN.gnGet_Serial_File_Proposal_Policy(RTrim("GET_SN_AN_FIL_PRO_POL"), RTrim("POL"), Trim(myYear), RTrim("IL"), RTrim(Me.txtBraNum.Text), RTrim(Me.txtProductClass.Text), RTrim(Me.txtProduct_Num.Text), RTrim("I"), RTrim(""), RTrim(""))
+            'Me.txtPol_Num.Text = MOD_GEN.gnGet_Serial_File_Proposal_Policy(RTrim("GET_SN_AN_FIL_PRO_POL"), RTrim("POL"), Trim(myYear), RTrim("IL"), RTrim(Me.txtBraNum.Text), RTrim(Me.txtProductClass.Text), RTrim(Me.txtProduct_Num.Text), RTrim("I"), RTrim(""), RTrim(""))
+            Me.txtPol_Num.Text = MOD_GEN.gnGet_Serial_File_Proposal_Policy(RTrim("GET_SN_AN_FIL_PRO_POL"), RTrim("POL"), Trim(myYear), RTrim("AN"), RTrim(Me.txtBraNum.Text), RTrim(Me.txtProductClass.Text), RTrim(Me.txtProduct_Num.Text), RTrim("A"), RTrim(""), RTrim(""))
         End If
 
         If Trim(txtPol_Num.Text) = "" Or Trim(Me.txtPol_Num.Text) = "0" Or Trim(Me.txtPol_Num.Text) = "*" Then
@@ -917,4 +944,35 @@ Partial Class Annuity_PRG_ANNTY_POLY_CONVERT
         objOLEConn = Nothing
         Return PremiumPayment
     End Function
+
+    Protected Sub cboSearch_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboSearch.SelectedIndexChanged
+        Try
+            If Me.cboSearch.SelectedIndex = -1 Or Me.cboSearch.SelectedIndex = 0 Or _
+            Me.cboSearch.SelectedItem.Value = "" Or Me.cboSearch.SelectedItem.Value = "*" Then
+                'Me.txtPolicyNumber.Text = ""
+                'Me.txtSearch.Value = ""
+            Else
+                txtPro_Pol_Num.Text = Me.cboSearch.SelectedItem.Value
+                txtFileNum.Text = ""
+                Dim selectedText = cboSearch.Text
+
+                blnStatus = Proc_DoGet_Record(RTrim("PRO"), Trim(Me.txtPro_Pol_Num.Text), RTrim(Me.txtFileNum.Text))
+                If blnStatus = True Then
+                    Me.chkAccept.Enabled = True
+                    'Me.BUT_OK.Enabled = True
+                    Exit Sub
+                Else
+                    Me.chkAccept.Enabled = False
+                    Me.chkAccept.Checked = False
+                    Me.lblPWD.Enabled = False
+                    Me.txtPWD.Enabled = False
+                    Me.BUT_OK.Enabled = False
+                    Exit Sub
+                End If
+            End If
+        Catch ex As Exception
+            Me.lblMsg.Text = "Error. Reason: " & ex.Message.ToString
+            lblMsg.Visible = True
+        End Try
+    End Sub
 End Class
