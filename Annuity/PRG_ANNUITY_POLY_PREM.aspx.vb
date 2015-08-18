@@ -906,7 +906,7 @@ Partial Class Annuity_PRG_ANNUITY_POLY_PREM
                 Dim drNewRow As System.Data.DataRow
                 drNewRow = obj_DT.NewRow()
 
-                drNewRow("TBIL_ANN_POL_PRM_MDLE") = RTrim("I")
+                drNewRow("TBIL_ANN_POL_PRM_MDLE") = RTrim("A")
 
                 drNewRow("TBIL_ANN_POL_PRM_FILE_NO") = RTrim(Me.txtFileNum.Text)
                 drNewRow("TBIL_ANN_POL_PRM_PROP_NO") = RTrim(Me.txtQuote_Num.Text)
@@ -956,7 +956,7 @@ Partial Class Annuity_PRG_ANNUITY_POLY_PREM
 
                 drNewRow("TBIL_ANN_POL_PRM_RATE_CD") = RTrim(Me.txtPrem_Rate_Code.Text)
                 drNewRow("TBIL_ANN_POL_PRM_RATE") = RTrim(Me.txtPrem_Rate.Text)
-                drNewRow("TBIL_ANN_POL_PRM_RATE_PER") = RTrim(Me.txtPrem_Rate_Per.Text)
+               ' drNewRow("TBIL_ANN_POL_PRM_RATE_PER") = RTrim(Me.txtPrem_Rate_Per.Text)
 
                 'drNewRow("TBIL_ANN_POL_PRM_NO_INSTAL") = RTrim(Me.txtPrem_No_Instal.Text)
 
@@ -974,6 +974,13 @@ Partial Class Annuity_PRG_ANNUITY_POLY_PREM
                 drNewRow("TBIL_ANN_POL_PRM_DISCNT_PCENT") = RTrim(Me.txtPrem_Discount_Rate.Text)
                 drNewRow("TBIL_ANN_POL_PRM_LOAD_PCENT") = RTrim(Me.txtPrem_Loading_Rate.Text)
                 drNewRow("TBIL_ANN_POL_PRM_ENROL_NO") = Val(txtPrem_Enrollee_Num.Text)
+
+                'condition added by femi reason b'cos the value is empty but it expects decimal/numeric value
+                If RTrim(Me.txtPrem_Rate_Per.Text) <> "" Then
+                    drNewRow("TBIL_ANN_POL_PRM_RATE_PER") = RTrim(Me.txtPrem_Rate_Per.Text)
+                Else
+                    drNewRow("TBIL_ANN_POL_PRM_RATE_PER") = 0.00
+                End If
 
                 drNewRow("TBIL_ANN_POL_PRM_ANNUAL_PCENT_PYMT_INCREASE") = txtTBIL_ANN_POL_PRM_ANNUAL_PCENT_PYMT_INCREASE.Text
                 drNewRow("TBIL_ANN_POL_PRM_DEATH_BENEFIT_ANNUAL_FACTOR") = txtTBIL_ANN_POL_PRM_DEATH_BENEFIT_ANNUAL_FACTOR.Text
@@ -1072,6 +1079,10 @@ Partial Class Annuity_PRG_ANNUITY_POLY_PREM
                     .Rows(0)("TBIL_ANN_POL_PRM_DISCNT_PCENT") = RTrim(Me.txtPrem_Discount_Rate.Text)
                     .Rows(0)("TBIL_ANN_POL_PRM_LOAD_PCENT") = RTrim(Me.txtPrem_Loading_Rate.Text)
                     .Rows(0)("TBIL_ANN_POL_PRM_ENROL_NO") = Val(txtPrem_Enrollee_Num.Text)
+
+                    .Rows(0)("TBIL_ANN_POL_PRM_ANNUAL_PCENT_PYMT_INCREASE") = Trim(txtTBIL_ANN_POL_PRM_ANNUAL_PCENT_PYMT_INCREASE.Text)
+                    .Rows(0)("TBIL_ANN_POL_PRM_DEATH_BENEFIT_ANNUAL_FACTOR") = Trim(txtTBIL_ANN_POL_PRM_DEATH_BENEFIT_ANNUAL_FACTOR.Text)
+
 
                     .Rows(0)("TBIL_ANN_POL_PRM_FLAG") = "C"
                     '.Rows(0)("TBIL_ANN_POL_PRM_OPERID") = CType(myUserIDX, String)
