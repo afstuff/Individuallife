@@ -133,7 +133,8 @@
                 		<tr>
     	                    <td align="right" nowrap><asp:CheckBox id="chkNum" runat="server" AutoPostBack="true" class="chk_Butt" />
     	                        &nbsp;<asp:Label ID="lblCustNum" Text="Assured Code:" runat="server"></asp:Label>&nbsp;</td>
-                		    <td align="left" nowrap colspan="3"><asp:textbox id="txtCustNum" MaxLength="10" Width="100px" AutoPostBack="true" runat="server" EnableViewState="true"></asp:textbox>
+                		    <td align="left" nowrap colspan="3"><asp:textbox id="txtCustNum" MaxLength="12" 
+                                    Width="100px" AutoPostBack="true" runat="server" EnableViewState="true"></asp:textbox>
                 		        &nbsp;<asp:DropDownList id="cboTransList" Visible="true" Width="350px" AutoPostBack="true" runat="server"></asp:DropDownList>&nbsp;
                             </td>
     		            </tr>

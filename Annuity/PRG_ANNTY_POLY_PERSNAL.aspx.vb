@@ -1963,7 +1963,7 @@ PUpdate_Date1:
     Protected Sub cmdSearch_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdSearch.Click
         If LTrim(RTrim(Me.txtSearch.Value)) = "Search..." Then
         ElseIf LTrim(RTrim(Me.txtSearch.Value)) <> "" Then
-            Call gnProc_Populate_Box("IL_ANNUITY_HELP_SP", "001", Me.cboSearch, RTrim(Me.txtSearch.Value))
+            Call gnProc_Populate_Box("AN_ASSURED_HELP_SP", "001", Me.cboSearch, RTrim(Me.txtSearch.Value))
         End If
 
     End Sub
@@ -1991,4 +1991,7 @@ PUpdate_Date1:
     End Sub
 
 
+    Protected Sub cmdPrev_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdPrev.Click
+
+    End Sub
 End Class
