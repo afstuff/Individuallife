@@ -976,6 +976,8 @@ Partial Class Annuity_PRG_ANNUITY_POLY_PREM
                 drNewRow("TBIL_ANN_POL_PRM_ENROL_NO") = Val(txtPrem_Enrollee_Num.Text)
 
                 drNewRow("TBIL_ANN_POL_PRM_ANNUAL_PCENT_PYMT_INCREASE") = txtTBIL_ANN_POL_PRM_ANNUAL_PCENT_PYMT_INCREASE.Text
+                drNewRow("TBIL_ANN_POL_PRM_DEATH_BENEFIT_ANNUAL_FACTOR") = txtTBIL_ANN_POL_PRM_DEATH_BENEFIT_ANNUAL_FACTOR.Text
+
 
                 drNewRow("TBIL_ANN_POL_PRM_FLAG") = "A"
                 drNewRow("TBIL_ANN_POL_PRM_OPERID") = CType(myUserIDX, String)
