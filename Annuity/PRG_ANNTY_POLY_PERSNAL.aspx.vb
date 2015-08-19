@@ -924,9 +924,12 @@ Proc_Skip_Check:
         End If
         Me.txtTrans_Date.Text = RTrim(strMyDte)
         'mydteX = Mid(Me.txtStartDate.Text, 4, 2) & "/" & Left(Me.txtStartDate.Text, 2) & "/" & Right(Me.txtStartDate.Text, 4)
-        mydteX = Trim(strMyMth) & "/" & Trim(strMyDay) & "/" & Trim(strMyYear)
-        mydte = Format(CDate(mydteX), "MM/dd/yyyy")
-        Dte_Proposal = Format(mydte, "MM/dd/yyyy")
+        'Azeez commented the below code 
+        'mydteX = Trim(strMyMth) & "/" & Trim(strMyDay) & "/" & Trim(strMyYear)
+        'mydte = Format(CDate(mydteX), "MM/dd/yyyy")
+        'Dte_Proposal = Format(mydte, "MM/dd/yyyy")
+
+        Dte_Proposal = Convert.ToDateTime(DoConvertToDbDateFormat(txtTrans_Date.Text))
 
         'Dte_Proposal = Now
         'Dte_Commence = Now
