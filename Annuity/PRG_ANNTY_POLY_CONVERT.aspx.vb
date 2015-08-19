@@ -234,7 +234,7 @@ Partial Class Annuity_PRG_ANNTY_POLY_CONVERT
             txtTrans_Date.Text = str(2).ToString()
         End If
 
-        strMyYear = Year(Convert.ToDateTime(txtTrans_Date.Text))
+        strMyYear = Year(Convert.ToDateTime(DoConvertToDbDateFormat(txtTrans_Date.Text)))
         If Val(strMyYear) < 1999 Then
             Me.lblMsg.Text = "Error. Receipt year date is less than 1999 ..."
             FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
@@ -362,7 +362,8 @@ Partial Class Annuity_PRG_ANNTY_POLY_CONVERT
             strSQL = strSQL & " ,TBIL_ANN_POLY_PRPSAL_RECD_DT = '" & Format(Now, "MM/dd/yyyy") & "'"
             strSQL = strSQL & " ,TBIL_POLICY_ISSUE_DT = '" & Format(Now, "MM/dd/yyyy") & "'"
             'strSQL = strSQL & " ,TBIL_POLICY_EFF_DT = '" & Pol_Eff_Date & "'"
-            strSQL = strSQL & " ,TBIL_POLICY_EFF_DT = '" & Format(CDate(Me.txtPol_Eff_Date.Text), "MM/dd/yyyy") & "'"
+            'strSQL = strSQL & " ,TBIL_POLICY_EFF_DT = '" & Format(CDate(Me.txtPol_Eff_Date.Text), "MM/dd/yyyy") & "'"
+            strSQL = strSQL & " ,TBIL_POLICY_EFF_DT = '" & Convert.ToDateTime(DoConvertToDbDateFormat(Me.txtPol_Eff_Date.Text)) & "'"
             strSQL = strSQL & " WHERE TBIL_ANN_POLY_PROPSAL_NO = '" & RTrim(txtPro_Pol_Num.Text) & "'"
             strSQL = strSQL & " AND TBIL_ANN_POLY_FILE_NO = '" & RTrim(txtFileNum.Text) & "'"
 
