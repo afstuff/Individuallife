@@ -259,7 +259,7 @@ Partial Class Annuity_PRG_ANNTY_POLY_PERSNAL
 
     Protected Sub DoProc_Assured_Search()
         If RTrim(Me.txtAssured_Search.Text) <> "" Then
-            Call gnProc_Populate_Box("IL_ASSURED_LIST", "001", Me.cboAssured_Search, RTrim(Me.txtAssured_Search.Text))
+            Call gnProc_Populate_Box("AN_ASSURED_LIST", "001", Me.cboAssured_Search, RTrim(Me.txtAssured_Search.Text))
         End If
     End Sub
 
