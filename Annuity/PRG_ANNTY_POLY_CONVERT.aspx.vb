@@ -233,7 +233,7 @@ Partial Class Annuity_PRG_ANNTY_POLY_CONVERT
         Else
             txtTrans_Date.Text = str(2).ToString()
         End If
-
+        'Obtain Year from transaction date
         strMyYear = Year(Convert.ToDateTime(DoConvertToDbDateFormat(txtTrans_Date.Text)))
         If Val(strMyYear) < 1999 Then
             Me.lblMsg.Text = "Error. Receipt year date is less than 1999 ..."
