@@ -1837,6 +1837,20 @@ gnGet_SN_End:
                 strSQL = strSQL & " ORDER BY RTRIM(ISNULL(TBIL_INSRD_SURNAME,'')) + ' ' + RTRIM(ISNULL(TBIL_INSRD_FIRSTNAME,''))"
                 Call gnPopulate_DropDownList(pvCODE, pvcboList, strSQL, "", "*** select insured name ***", "*")
 
+                 Case "AN_ASSURED_LIST"
+                strTable = "TBIL_INS_DETAIL"
+                strSQL = ""
+                strSQL = "SELECT TBIL_INSRD_CODE AS MyFld_Value"
+                strSQL = strSQL & ",RTRIM(ISNULL(TBIL_INSRD_SURNAME,'')) + ' ' + RTRIM(ISNULL(TBIL_INSRD_FIRSTNAME,'')) AS MyFld_Text"
+                strSQL = strSQL & " FROM " & strTable
+                strSQL = strSQL & " WHERE TBIL_INSRD_ID = '" & RTrim(pvTransType) & "'"
+                strSQL = strSQL & " AND TBIL_INSRD_MDLE IN ('ANN','A')"
+                strSQL = strSQL & " AND (TBIL_INSRD_SURNAME LIKE '" & RTrim(pvSearchValue) & "%'"
+                strSQL = strSQL & " OR TBIL_INSRD_FIRSTNAME LIKE '" & RTrim(pvSearchValue) & "%')"
+                strSQL = strSQL & " ORDER BY RTRIM(ISNULL(TBIL_INSRD_SURNAME,'')) + ' ' + RTRIM(ISNULL(TBIL_INSRD_FIRSTNAME,''))"
+                Call gnPopulate_DropDownList(pvCODE, pvcboList, strSQL, "", "*** select insured name ***", "*")
+
+
             Case "GL_ASSURED_LIST"
                 strTable = "TBIL_INS_DETAIL"
                 strSQL = ""
