@@ -721,7 +721,7 @@ Partial Class Annuity_PRG_ANNTY_POLY_CONVERT
             strTable = strTableName
 
             strSQL = ""
-            strSQL = "SPIL_SELECT_ANN_PROPOSAL"
+            strSQL = "SPAN_SELECT_ANN_PROPOSAL"
 
             objOLECmd_Chk = New OleDbCommand(strSQL, objOLEConn_Chk)
             ''objOLECmd_Chk.CommandTimeout = 180
