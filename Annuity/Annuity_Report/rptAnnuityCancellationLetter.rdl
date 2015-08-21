@@ -10,7 +10,10 @@
             <TextRuns>
               <TextRun>
                 <Value />
-                <Style />
+                <Style>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
@@ -18,26 +21,11 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>----------------------------------------</Value>
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>----------------------------------------</Value>
-                <Style />
+                <Value>-----------------------------------</Value>
+                <Style>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
@@ -46,7 +34,10 @@
             <TextRuns>
               <TextRun>
                 <Value />
-                <Style />
+                <Style>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
@@ -54,8 +45,11 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>----------------------------------------</Value>
-                <Style />
+                <Value>-----------------------------------</Value>
+                <Style>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
@@ -64,7 +58,10 @@
             <TextRuns>
               <TextRun>
                 <Value />
-                <Style />
+                <Style>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
@@ -72,16 +69,44 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>----------------------------------------</Value>
-                <Style />
+                <Value>----------------------------------</Value>
+                <Style>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>-----------------------------------</Value>
+                <Style>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
+        <Top>0.75in</Top>
         <Left>4.37375in</Left>
-        <Height>1.38417in</Height>
+        <Height>1.79042in</Height>
         <Width>1.92708in</Width>
         <Style>
           <Border>
@@ -101,7 +126,10 @@
             <TextRuns>
               <TextRun>
                 <Value />
-                <Style />
+                <Style>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
@@ -109,26 +137,11 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>----------------------------------------</Value>
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>----------------------------------------</Value>
-                <Style />
+                <Value>------------------------------------</Value>
+                <Style>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
@@ -137,7 +150,10 @@
             <TextRuns>
               <TextRun>
                 <Value />
-                <Style />
+                <Style>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
@@ -145,8 +161,11 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>----------------------------------------</Value>
-                <Style />
+                <Value>------------------------------------</Value>
+                <Style>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
@@ -155,7 +174,10 @@
             <TextRuns>
               <TextRun>
                 <Value />
-                <Style />
+                <Style>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
@@ -163,17 +185,44 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>----------------------------------------</Value>
-                <Style />
+                <Value>------------------------------------</Value>
+                <Style>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>------------------------------------</Value>
+                <Style>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>1.64458in</Top>
+        <Top>2.51958in</Top>
         <Left>0.125in</Left>
-        <Height>1.46181in</Height>
+        <Height>1.72917in</Height>
         <Width>1.94791in</Width>
         <ZIndex>1</ZIndex>
         <Style>
@@ -196,6 +245,8 @@
                 <Value>The Managing Director,</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -206,7 +257,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox3</rd:DefaultName>
-        <Top>1.35292in</Top>
+        <Top>2.22792in</Top>
         <Left>0.125in</Left>
         <Height>0.25in</Height>
         <Width>1.94791in</Width>
@@ -231,6 +282,8 @@
                 <Value>Dear Sir,</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -241,7 +294,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>3.24875in</Top>
+        <Top>4.37375in</Top>
         <Left>0.125in</Left>
         <Height>0.25in</Height>
         <Width>1.48958in</Width>
@@ -266,6 +319,7 @@
                 <Value>CANCELLATION OF PROGRAMMED WITHDRAWAL AND CHANGE TO ANNUITY</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
                   <FontSize>12pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <TextDecoration>None</TextDecoration>
@@ -279,7 +333,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>3.63069in</Top>
+        <Top>4.79042in</Top>
         <Left>0.28125in</Left>
         <Height>0.42708in</Height>
         <Width>5.30208in</Width>
@@ -304,6 +358,8 @@
                 <Value>I wish to notify you that I want to cancel my programmed withdrawals mode of collecting my pension with you and change to annuity.</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -318,6 +374,8 @@
                 <Value />
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -334,6 +392,8 @@
                 <Value>This is because, I am no more satisfied with the programme withdrawal and I want to pull out immediately.</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -350,6 +410,8 @@
                 <Value />
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -366,6 +428,8 @@
                 <Value>Kindly stop my pension salary and give my present balance to Custodian Life Assurance Ltd to enable me purchase annuity.</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -382,6 +446,8 @@
                 <Value />
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -398,6 +464,8 @@
                 <Value>Yours faithfully,</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -414,6 +482,8 @@
                 <Value />
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -430,6 +500,8 @@
                 <Value />
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -446,6 +518,8 @@
                 <Value />
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -462,6 +536,8 @@
                 <Value>PIN NO: </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -471,6 +547,8 @@
                 <Value>=Fields!TBIL_ANN_POLY_RETIREE_PIN_NO.Value</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -487,6 +565,8 @@
                 <Value />
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -503,6 +583,8 @@
                 <Value>Cc:</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -519,6 +601,8 @@
                 <Value />
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -535,6 +619,8 @@
                 <Value>The Director General</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -551,6 +637,8 @@
                 <Value>National Pension Commission</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -567,6 +655,8 @@
                 <Value>Abuja.</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -580,9 +670,9 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox6</rd:DefaultName>
-        <Top>4.11333in</Top>
+        <Top>5.51958in</Top>
         <Left>0.125in</Left>
-        <Height>3.43876in</Height>
+        <Height>4.44918in</Height>
         <Width>6.17583in</Width>
         <ZIndex>5</ZIndex>
         <Style>
@@ -596,7 +686,7 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>7.625in</Height>
+    <Height>10.33333in</Height>
     <Style />
   </Body>
   <Width>6.4675in</Width>

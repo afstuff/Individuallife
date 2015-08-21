@@ -120,7 +120,8 @@
                             <asp:Label ID="lblAssuredName" Text="Assured Name:" runat="server"></asp:Label>
                         </td>
                         <td align="left" colspan="1">&nbsp;                     
-                            <asp:TextBox ID="txtAssured_Name" Enabled="False" runat="server" Width="350px"></asp:TextBox>
+                            <asp:TextBox ID="txtAssured_Name" Enabled="False" runat="server" Width="350px" 
+                                Height="22px"></asp:TextBox>
                         </td>
                     </tr>
 
@@ -135,13 +136,10 @@
                     </tr>
 
                     <tr>
-                        <td align="right" colspan="1" class="style1">&nbsp;</td>    
-                        <td align="left" colspan="1" class="style1">&nbsp;</td>
-                    </tr>
-
-                    <tr>
-                        <td align="left" valign="top">
-                            &nbsp;</td>                           
+                        <td align="right" valign="top">
+                            <asp:Label ID="lblPro_Pol_Num0" Text="Select document:" runat="server"></asp:Label>
+           
+                            </td>                           
                         <td align="left" valign="top">
                             <asp:RadioButtonList ID="rblTransType" runat="server"
                                 style="display:inline">
