@@ -25,9 +25,10 @@
     <!-- start header -->
     <div id="div_header" align="center">
             <asp:Panel ID="menuPanel" CssClass="menuPanel" runat="server">&nbsp;&nbsp;
-                &nbsp;<asp:LinkButton ID="LNK_QUOTE" Enabled="true" Font-Bold="true" runat="server" Text="Proposal Entry" PostBackUrl="PRG_ANNUITY_PROP_POLICY.aspx?menu=AN_QUOTE"></asp:LinkButton>&nbsp;
-                &nbsp;<asp:LinkButton ID="LNK_DOC" Visible="false" Enabled="true" Font-Bold="true" runat="server" Text="Policy Document" PostBackUrl="PRG_ANNUITY_PROP_POLICY.aspx?menu=IL_DOCUMENT"></asp:LinkButton>&nbsp;
-                &nbsp;<asp:LinkButton ID="LNK_DOCX" Enabled="true" Font-Bold="true" runat="server" Text="Policy Document" PostBackUrl="PD_IL001.aspx?opt=I001"></asp:LinkButton>&nbsp;
+                &nbsp;<asp:LinkButton ID="LNK_QUOTE" Enabled="true" Font-Bold="true" runat="server" Text="Proposal Entry" PostBackUrl="PRG_ANNTY_PROP_POLICY.aspx?menu=AN_QUOTE"></asp:LinkButton>&nbsp;
+                <!--&nbsp;<asp:LinkButton ID="LNK_DOC" Visible="false" Enabled="true" Font-Bold="true" runat="server" Text="Policy Document" PostBackUrl="PRG_ANNTY_PROP_POLICY.aspx?menu=AN_DOCUMENT"></asp:LinkButton>&nbsp;-->
+                &nbsp;<asp:LinkButton ID="LNK_DOCX" Enabled="true" Font-Bold="true" runat="server" Text="Policy Document" PostBackUrl="PRG_ANNTY_POLY_DOCUMENT.aspx"></asp:LinkButton>&nbsp;
+                 <!--&nbsp;<asp:LinkButton ID="LinkButton1" Enabled="true" Font-Bold="true" runat="server" Text="Policy Document" PostBackUrl="PRG_ANNTY_POLY_DOCUMENT.aspx?opt=I001"></asp:LinkButton>-->&nbsp;
                 &nbsp;<a class="HREF_MENU2" href="#" onclick="javascript:JSDO_RETURN('MENU_AN.aspx?menu=HOME')">Return to Main Menu</a>&nbsp;
         </asp:Panel>
     </div>

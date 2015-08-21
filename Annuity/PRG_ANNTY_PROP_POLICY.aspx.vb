@@ -108,7 +108,7 @@ Partial Class Annuity_PRG_ANNTY_PROP_POLICY
                 AddMenuItem("", "Returns to Previous Page", "MENU_AN.aspx.aspx?menu=home")
 
 
-            Case "IL_DOCUMENT"
+            Case "AN_DOCUMENT"
                 STRMENU_TITLE = "+++ Proposal Document Menu +++ "
                 AddMenuItem("", "Returns to Previous Page", "MENU_AN.aspx?menu=home")
                 AddMenuItem("", "UNDER_LINE", "") 'blank link

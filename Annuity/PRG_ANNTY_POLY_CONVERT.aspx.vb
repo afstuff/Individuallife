@@ -978,4 +978,8 @@ Partial Class Annuity_PRG_ANNTY_POLY_CONVERT
             lblMsg.Visible = True
         End Try
     End Sub
+
+    Protected Sub cmdNew_ASP_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdNew_ASP.Click
+        Proc_DoNew()
+    End Sub
 End Class
