@@ -43,46 +43,46 @@ Partial Class I_LIFE_PRG_LI_INDV_POLY_BENEFRY
         strTableName = "TBIL_POLICY_BENEFRY"
 
         STRMENU_TITLE = "Proposal Screen"
-        'STRMENU_TITLE = "Investment Plus Proposal"
-
-        'Try
-        '    strF_ID = CType(Request.QueryString("optfileid"), String)
-        'Catch ex As Exception
-        '    strF_ID = ""
-        'End Try
-
-        'Try
-        '    strQ_ID = CType(Request.QueryString("optquotid"), String)
-        'Catch ex As Exception
-        '    strQ_ID = ""
-        'End Try
-
-        'Try
-        '    strP_ID = CType(Request.QueryString("optpolid"), String)
-        'Catch ex As Exception
-        '    strP_ID = ""
-        'End Try
+        STRMENU_TITLE = "Investment Plus Proposal"
 
         Try
-            'strF_ID = CType(Request.QueryString("optfileid"), String)
-            strF_ID = CType("1110356", String)
+            strF_ID = CType(Request.QueryString("optfileid"), String)
         Catch ex As Exception
             strF_ID = ""
         End Try
 
         Try
-            'strQ_ID = CType(Request.QueryString("optquotid"), String)
-            strQ_ID = CType("P/2/IP/000121", String)
+            strQ_ID = CType(Request.QueryString("optquotid"), String)
         Catch ex As Exception
             strQ_ID = ""
         End Try
 
         Try
-            'strP_ID = CType(Request.QueryString("optpolid"), String)
-            strP_ID = CType("PI/2015/1501/I/I005/I/0000013", String)
+            strP_ID = CType(Request.QueryString("optpolid"), String)
         Catch ex As Exception
             strP_ID = ""
         End Try
+
+        'Try
+        '    'strF_ID = CType(Request.QueryString("optfileid"), String)
+        '    strF_ID = CType("1110356", String)
+        'Catch ex As Exception
+        '    strF_ID = ""
+        'End Try
+
+        'Try
+        '    'strQ_ID = CType(Request.QueryString("optquotid"), String)
+        '    strQ_ID = CType("P/2/IP/000121", String)
+        'Catch ex As Exception
+        '    strQ_ID = ""
+        'End Try
+
+        'Try
+        '    'strP_ID = CType(Request.QueryString("optpolid"), String)
+        '    strP_ID = CType("PI/2015/1501/I/I005/I/0000013", String)
+        'Catch ex As Exception
+        '    strP_ID = ""
+        'End Try
 
 
 
