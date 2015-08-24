@@ -1997,4 +1997,8 @@ PUpdate_Date1:
     'Protected Sub cmdPrev_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdPrev.Click
 
     'End Sub
+
+    'Protected Sub DoProc_Broker_Search(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdBroker_Search.Click
+
+    'End Sub
 End Class
