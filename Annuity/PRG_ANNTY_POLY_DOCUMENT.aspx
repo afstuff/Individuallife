@@ -144,9 +144,10 @@
                             <asp:RadioButtonList ID="rblTransType" runat="server"
                                 style="display:inline">
                               <asp:ListItem Text="Policy Schedule" Value="rptAnnuityPolicySchedule"></asp:ListItem>
-                              <asp:ListItem Text="Annuity Contract Letter" Value="ABSSP_ADMIN_ALLCODE_RPT"></asp:ListItem>
-                              <asp:ListItem Text="Annuity Agreement" Value="ABSSP_ADMIN_ALLCODE_RPT"></asp:ListItem>
-                             <asp:ListItem Text="Annuity Agreemen Letter" Value="ABSSP_ADMIN_ALLCODE_RPT"></asp:ListItem>
+                              <asp:ListItem Text="Annuity Contract Letter" Value="rptRetireAnnuityContract"></asp:ListItem>
+                              <asp:ListItem Text="Retirement Annuity Agreement" 
+                                    Value="rptRetireAnnuityAgreement"></asp:ListItem>
+                             <asp:ListItem Text="Annuity Agreemen Letter" Value="rptAnnuityAgreementLetter"></asp:ListItem>
                               <asp:ListItem Text="Annuity Notification" Value="rptAnnuityNotification"></asp:ListItem>
                               <asp:ListItem Text="Annuity Cancellation" Value="rptAnnuityCancellationLetter"></asp:ListItem>
                              
