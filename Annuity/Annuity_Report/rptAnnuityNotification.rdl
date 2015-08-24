@@ -220,7 +220,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>N </Value>
+                <Value>N</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Century Gothic</FontFamily>
@@ -253,7 +253,29 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>(FIVE MILLION FOUR HUNDRED AND THIRTY SEVEN THOUSAND AND TWENTY ONE NAIRA, FIVE KOBO) has been transferred to our insurance company (Custodian Life Assurance Limited) by the PFA (CRUSADER STERLING PENSION) on the </Value>
+                <Value>(</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!TBIL_PREM_PAYABLE_WORD.Value</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>) has been transferred to our insurance company (Custodian Life Assurance Limited) by the PFA (CRUSADER STERLING PENSION) on the </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Century Gothic</FontFamily>
@@ -683,6 +705,10 @@
           <DataField>TBIL_ANN_POLY_MARITAL</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="ASSURED_GENDER">
+          <DataField>ASSURED_GENDER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="TBIL_ANN_POLY_OCCUPATN">
           <DataField>TBIL_ANN_POLY_OCCUPATN</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -703,9 +729,17 @@
           <DataField>TODAYS_DATE</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="TBIL_POLICY_END_DT">
+          <DataField>TBIL_POLICY_END_DT</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
         <Field Name="FORMATTED_PROPOSAL_DT">
           <DataField>FORMATTED_PROPOSAL_DT</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="POLICY_PERIOD">
+          <DataField>POLICY_PERIOD</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="Assured_Name">
           <DataField>Assured_Name</DataField>
@@ -741,6 +775,10 @@
         </Field>
         <Field Name="TBIL_ANN_POLY_LAST_EMPLOYER_ADRES">
           <DataField>TBIL_ANN_POLY_LAST_EMPLOYER_ADRES</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TBIL_PREM_PAYABLE_WORD">
+          <DataField>TBIL_PREM_PAYABLE_WORD</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="TBIL_ANN_POLY_RETIREE_PFA">
@@ -781,6 +819,10 @@
         </Field>
         <Field Name="TBIL_ANN_POL_PRM_SA_CURRCY">
           <DataField>TBIL_ANN_POL_PRM_SA_CURRCY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TBIL_PRDCT_DTL_DESC">
+          <DataField>TBIL_PRDCT_DTL_DESC</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
