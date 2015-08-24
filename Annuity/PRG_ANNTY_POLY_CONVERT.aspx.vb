@@ -233,7 +233,7 @@ Partial Class Annuity_PRG_ANNTY_POLY_CONVERT
         Else
             txtTrans_Date.Text = str(2).ToString()
         End If
-
+        'Obtain Year from transaction date
         strMyYear = Year(Convert.ToDateTime(DoConvertToDbDateFormat(txtTrans_Date.Text)))
         If Val(strMyYear) < 1999 Then
             Me.lblMsg.Text = "Error. Receipt year date is less than 1999 ..."
@@ -721,7 +721,7 @@ Partial Class Annuity_PRG_ANNTY_POLY_CONVERT
             strTable = strTableName
 
             strSQL = ""
-            strSQL = "SPIL_SELECT_ANN_PROPOSAL"
+            strSQL = "SPAN_SELECT_ANN_PROPOSAL"
 
             objOLECmd_Chk = New OleDbCommand(strSQL, objOLEConn_Chk)
             ''objOLECmd_Chk.CommandTimeout = 180
@@ -977,5 +977,9 @@ Partial Class Annuity_PRG_ANNTY_POLY_CONVERT
             Me.lblMsg.Text = "Error. Reason: " & ex.Message.ToString
             lblMsg.Visible = True
         End Try
+    End Sub
+
+    Protected Sub cmdNew_ASP_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdNew_ASP.Click
+        Proc_DoNew()
     End Sub
 End Class
