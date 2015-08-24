@@ -31,6 +31,7 @@ Partial Class Annuity_PRG_ANNTY_POLY_DOCUMENT
     Dim strErrMsg As String
     Protected strUpdate_Sw As String
     Dim rParams As String() = {"nw", "nw", "new", "new", "new", "new", "new", "new", "new"}
+    Dim ErrorInd, PolicyNo_Retrieved As String
 
     Protected Sub cmdSearch_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdSearch.Click
         If LTrim(RTrim(Me.txtSearch.Value)) = "Search..." Then
@@ -68,7 +69,7 @@ Partial Class Annuity_PRG_ANNTY_POLY_DOCUMENT
         'End If
     End Sub
     Private Function Proc_DoGet_Record(ByVal pvPoloNo As String) As Boolean
-
+        Proc_DoNew()
         blnStatusX = False
 
         Dim mystrCONN_Chk As String = ""
@@ -123,32 +124,7 @@ Partial Class Annuity_PRG_ANNTY_POLY_DOCUMENT
                 Me.txtAssured_Name.Text = RTrim(CType(objOLEDR_Chk("Assured_Name") & vbNullString, String))
                 Me.txtProduct_Num.Text = RTrim(CType(objOLEDR_Chk("TBIL_ANN_POLY_PRDCT_CD") & vbNullString, String))
                 Me.txtProduct_Name.Text = Trim(CType(objOLEDR_Chk("TBIL_PRDCT_DTL_DESC") & vbNullString, String))
-
-                ' check for existence of premium information, premium calculation details
-                ' also check for policy status
-                'If RTrim(CType(objOLEDR_Chk("TBIL_ANN_POL_PRM_FILE_NO") & vbNullString, String)) = "" Or _
-                '   RTrim(CType(objOLEDR_Chk("TBIL_ANN_POL_PRM_PROP_NO") & vbNullString, String)) = "" Then
-                '    myTmp_Chk = "N"
-                '    blnStatusX = False
-                '    Me.lblMsg.Text = "Sorry! Premium information must be captured before this conversion."
-                'ElseIf RTrim(CType(objOLEDR_Chk("TBIL_POL_PRM_DTL_FILE_NO") & vbNullString, String)) = "" Or _
-                '       RTrim(CType(objOLEDR_Chk("TBIL_POL_PRM_DTL_PROP_NO") & vbNullString, String)) = "" Then
-                '    myTmp_Chk = "N"
-                '    blnStatusX = False
-                '    Me.lblMsg.Text = "Sorry! Premium calculation is yet to be done and saved before this conversion."
-                'Else
-                '    If RTrim(CType(objOLEDR_Chk("TBIL_ANN_POLY_PROPSL_ACCPT_STATUS") & vbNullString, String)) = "P" Then
-                '        myTmp_Chk = "Y"
-                '        blnStatusX = True
-                '        Me.lblMsg.Text = "Proposal No: " & Me.txtPro_Pol_Num.Text
-                '    Else
-                '        myTmp_Chk = "N"
-                '        blnStatusX = False
-                '        Me.lblMsg.Text = "Warning! The record you requested for has already been converted."
-                '    End If
-                'End If
-                ''
-
+                Session("PolicyNo_Retrieved") = Trim(CType(objOLEDR_Chk("TBIL_ANN_POLY_POLICY_NO") & vbNullString, String))
             Else
                 blnStatusX = False
                 Me.lblMsg.Text = "Record not found for Policy No: " & Me.txtPol_Num.Text
@@ -160,9 +136,7 @@ Partial Class Annuity_PRG_ANNTY_POLY_DOCUMENT
             Me.lblMsg.Text = "Error has occured. Reason: " & ex.Message.ToString()
             'FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             'ClientScript.RegisterStartupScript(Me.GetType(), "Popup_Validation", "ShowPopup_Message('" & Me.lblMsg.Text & "');", True)
-
         End Try
-
         objOLEDR_Chk = Nothing
 
         objOLECmd_Chk.Dispose()
@@ -181,18 +155,18 @@ Partial Class Annuity_PRG_ANNTY_POLY_DOCUMENT
         Me.cmdFileNum.Enabled = True
 
         Me.txtPro_Pol_Num.Text = ""
-        Me.txtPro_Pol_Num.Enabled = True
+        Me.txtPro_Pol_Num.Enabled = False
         Me.txtFileNum.Text = ""
-        Me.txtFileNum.Enabled = True
-
-        Me.txtPol_Num.Text = ""
+        Me.txtFileNum.Enabled = False
         Me.txtAssured_Name.Text = ""
         Me.txtProduct_Num.Text = ""
         Me.txtProduct_Name.Text = ""
+        rblTransType.SelectedValue = ""
+        rblTransType.SelectedIndex = -1
+        'rblTransType.SelectedIndex = Nothing
     End Sub
 
     Protected Sub cboSearch_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboSearch.SelectedIndexChanged
-        Proc_DoNew()
         'ErrorInd = ""
         Try
             If Me.cboSearch.SelectedIndex = -1 Or Me.cboSearch.SelectedIndex = 0 Or _
@@ -221,9 +195,17 @@ Partial Class Annuity_PRG_ANNTY_POLY_DOCUMENT
     End Sub
 
     Protected Sub CmdPrint_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles CmdPrint.Click
-        Dim str() As String
-        '  Dim reportname As String
-
+        ErrorInd = ""
+        ValidateControls(ErrorInd)
+        If ErrorInd = "Y" Then
+            Exit Sub
+        End If
+        ' To avoid document with no policy info
+        If Session("PolicyNo_Retrieved") <> txtPol_Num.Text Then
+            Me.lblMsg.Text = "Record not found for Policy No: " & Me.txtPol_Num.Text
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            Exit Sub
+        End If
         rParams(0) = rblTransType.SelectedValue.Trim
         rParams(1) = "pPolicyNo="
         rParams(2) = txtPol_Num.Text + "&"
@@ -241,5 +223,61 @@ Partial Class Annuity_PRG_ANNTY_POLY_DOCUMENT
 
     Protected Sub cmdNew_ASP_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdNew_ASP.Click
         Proc_DoNew()
+        Me.txtPol_Num.Text = ""
+    End Sub
+    Private Sub ValidateControls(ByRef ErrorInd As String)
+        If (txtPol_Num.Text = String.Empty) Then
+            lblMsg.Text = "Please enter a policy number"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            lblMsg.Visible = True
+            ErrorInd = "Y"
+            Exit Sub
+        End If
+        If (txtPro_Pol_Num.Text = String.Empty) Then
+            lblMsg.Text = "Proposal number must not be empty"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            lblMsg.Visible = True
+            ErrorInd = "Y"
+            Exit Sub
+        End If
+        If (txtFileNum.Text = String.Empty) Then
+            lblMsg.Text = "File number must not be empty"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            lblMsg.Visible = True
+            ErrorInd = "Y"
+            Exit Sub
+        End If
+        If (txtAssured_Name.Text = String.Empty) Then
+            lblMsg.Text = "Assured name must not be empty"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            lblMsg.Visible = True
+            ErrorInd = "Y"
+            Exit Sub
+        End If
+
+        If (txtProduct_Num.Text = "") Then
+            lblMsg.Text = "Product number must not be empty"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            lblMsg.Visible = True
+            ErrorInd = "Y"
+            Exit Sub
+        End If
+
+        If (txtProduct_Name.Text = "") Then
+            lblMsg.Text = "Product name must not be empty"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            lblMsg.Visible = True
+            ErrorInd = "Y"
+            Exit Sub
+        End If
+
+
+        If (rblTransType.SelectedValue = "" Or rblTransType.SelectedIndex = -1) Then
+            lblMsg.Text = "Please select the document to print"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            lblMsg.Visible = True
+            ErrorInd = "Y"
+            Exit Sub
+        End If
     End Sub
 End Class

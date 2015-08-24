@@ -9,39 +9,19 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value />
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>CUSTODIAN LIFE ASSURANCE LIMITED </Value>
+                <Value>CUSTODIAN LIFE ASSURANCE LIMITED (RC 682763)</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>(RC 682763)</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontSize>8pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
+                  <FontFamily>Arial Black</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
                 </Style>
               </TextRun>
             </TextRuns>
             <Style>
-              <TextAlign>Center</TextAlign>
+              <TextAlign>Left</TextAlign>
             </Style>
           </Paragraph>
           <Paragraph>
@@ -50,6 +30,8 @@
                 <Value>Head Office: 16A, Commercial Avenue, Sabo, Yaba, P. O. Box 2101, Lagos.</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -57,7 +39,7 @@
               </TextRun>
             </TextRuns>
             <Style>
-              <TextAlign>Center</TextAlign>
+              <TextAlign>Left</TextAlign>
             </Style>
           </Paragraph>
           <Paragraph>
@@ -66,24 +48,37 @@
                 <Value>Tel: </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>01-2774000-9, 01-2707204-8  </Value>
+                <Value>01-2774000-9, 01-2707204-8 </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
                 </Style>
               </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
               <TextRun>
                 <Value>E-mail:</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -93,6 +88,8 @@
                 <Value xml:space="preserve"> </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -102,32 +99,37 @@
                 <Value>annuity@custodianinsurance.com</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>Underline</TextDecoration>
                   <Color>Blue</Color>
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>, carecentre@custodianinsurance.com</Value>
+                <Value>,carecentre@custodianinsurance.com</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>Underline</TextDecoration>
                   <Color>#000000</Color>
                 </Style>
               </TextRun>
             </TextRuns>
-            <LeftIndent>0.0625in</LeftIndent>
             <Style>
-              <TextAlign>Center</TextAlign>
+              <TextAlign>Left</TextAlign>
             </Style>
           </Paragraph>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>  Fax: 01-2773600, 01-2707203 website: </Value>
+                <Value>Fax: 01-2773600, 01-2707203 website: </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -137,6 +139,8 @@
                 <Value>http://www.custodianplc.com.ng</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#3333cc</Color>
@@ -144,15 +148,15 @@
               </TextRun>
             </TextRuns>
             <Style>
-              <TextAlign>Center</TextAlign>
+              <TextAlign>Left</TextAlign>
             </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>0.11111in</Top>
-        <Left>1.28107in</Left>
-        <Height>1.11681in</Height>
-        <Width>5.2615in</Width>
+        <Top>1.23436in</Top>
+        <Left>1.21883in</Left>
+        <Height>1.08556in</Height>
+        <Width>4.96122in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -167,8 +171,8 @@
         <Source>Embedded</Source>
         <Value>CustodianLogo</Value>
         <Sizing>FitProportional</Sizing>
-        <Top>0.33227in</Top>
-        <Left>0.10971in</Left>
+        <Top>1.45552in</Top>
+        <Left>0.04747in</Left>
         <Height>0.61458in</Height>
         <Width>1in</Width>
         <ZIndex>1</ZIndex>
@@ -188,6 +192,8 @@
                 <Value>Whereas the Policyholder named in the schedule hereto has agreed to effect a retirement annuity therein described and has delivered to Custodian Life Assurance Ltd (hereinafter called “the company”) the Proposal and Declaration therein mentioned which Proposal and Declaration are hereby declared to be basis of the contract of Annuity contained in this Policy.</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -202,6 +208,8 @@
                 <Value />
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -218,6 +226,8 @@
                 <Value>Now, this Policy witnesses that in consideration of the payment already made of the purchase money (premium) in the currency stated in the said Schedule for the Annuity therein described and of the subsequent premium or premiums if any to be paid to the Company in the same currency and on proof satisfactory to the Company of</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -234,6 +244,8 @@
                 <Value />
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -250,6 +262,8 @@
                 <Value>[1]     The happening of an event on which as approved in this Policy an amount</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -266,6 +280,8 @@
                 <Value>          is to become payable.</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -282,6 +298,8 @@
                 <Value />
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -298,6 +316,8 @@
                 <Value>[2]     The title of the person or persons claiming payment and</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -314,6 +334,8 @@
                 <Value />
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -330,6 +352,8 @@
                 <Value>[3]     The age of the policy owner named in the said Schedule</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -346,6 +370,8 @@
                 <Value />
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -362,6 +388,8 @@
                 <Value>The Company will pay in the said currency at the Principal Office of the Company stated in the said Schedule and subject to the laws of the Federal Republic of Nigeria the amount (amounts) provided under the Policy to the person or persons to whom the same is stated in the Schedule to be payable.</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -378,6 +406,8 @@
                 <Value />
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -394,6 +424,8 @@
                 <Value>And it is hereby declared that the Policy Schedule and conditions set out hereon or endorsed by the Company hereon are to be deemed part of this policy.</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -410,6 +442,8 @@
                 <Value />
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -426,6 +460,8 @@
                 <Value>In Witness whereof this Policy has been issued for and on behalf of CUSTODIAN LIFE ASSURANCE LTD on the </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -435,6 +471,8 @@
                 <Value>=Fields!FORMATTED_COMMENCEMENT_DT.Value</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -444,6 +482,8 @@
                 <Value>.</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -460,6 +500,8 @@
                 <Value />
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -476,6 +518,8 @@
                 <Value />
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -492,6 +536,8 @@
                 <Value>SIGNED ........................</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -504,10 +550,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox9</rd:DefaultName>
-        <Top>1.38069in</Top>
-        <Left>0.08191in</Left>
-        <Height>9.61459in</Height>
-        <Width>6.47459in</Width>
+        <Top>2.92302in</Top>
+        <Left>0.19205in</Left>
+        <Height>7.40625in</Height>
+        <Width>5.988in</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -529,7 +575,8 @@
                 <Value>CUSTODIAN ANNUITY POLICY SCHEDULE</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
-                  <FontSize>14pt</FontSize>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>16pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -540,10 +587,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
-        <Top>12.22511in</Top>
+        <Top>12.35011in</Top>
         <Left>1.25977in</Left>
         <Height>0.29167in</Height>
-        <Width>4.5625in</Width>
+        <Width>4.58222in</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -567,6 +614,8 @@
                     <Value>POLICY NUMBER</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -577,8 +626,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox20</rd:DefaultName>
-            <Top>0.23958in</Top>
-            <Left>0.04414in</Left>
+            <Top>0.36458in</Top>
+            <Left>0.10011in</Left>
             <Height>0.25in</Height>
             <Width>1.40972in</Width>
             <Style>
@@ -592,9 +641,9 @@
             </Style>
           </Textbox>
           <Line Name="Line2">
-            <Top>0.21181in</Top>
-            <Left>2.3011in</Left>
-            <Height>1.09722in</Height>
+            <Top>0.30902in</Top>
+            <Left>2.3755in</Left>
+            <Height>1.05556in</Height>
             <Width>0in</Width>
             <ZIndex>1</ZIndex>
             <Style>
@@ -604,8 +653,9 @@
             </Style>
           </Line>
           <Line Name="Line3">
-            <Left>4.77506in</Left>
-            <Height>2.07292in</Height>
+            <Top>0.30902in</Top>
+            <Left>4.47446in</Left>
+            <Height>2.13887in</Height>
             <Width>0in</Width>
             <ZIndex>2</ZIndex>
             <Style>
@@ -615,24 +665,26 @@
             </Style>
           </Line>
           <Textbox Name="TBIL_ANN_POLY_POLICY_NO">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
                     <Value>=First(Fields!TBIL_ANN_POLY_POLICY_NO.Value, "DataSet1")</Value>
-                    <Style />
+                    <Style>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>TBIL_ANN_POLY_POLICY_NO</rd:DefaultName>
-            <Top>0.55903in</Top>
-            <Left>0.06276in</Left>
-            <Height>0.25in</Height>
-            <Width>2.15972in</Width>
+            <Top>0.65625in</Top>
+            <Left>0.03175in</Left>
+            <Height>0.35417in</Height>
+            <Width>2.28819in</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -645,7 +697,6 @@
             </Style>
           </Textbox>
           <Textbox Name="Textbox22">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
@@ -654,6 +705,7 @@
                     <Value>DATE OF COMMENCEMENT </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -664,10 +716,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox22</rd:DefaultName>
-            <Top>0.25347in</Top>
-            <Left>2.32541in</Left>
+            <Top>0.32292in</Top>
+            <Left>2.40328in</Left>
             <Height>0.25in</Height>
-            <Width>2.32118in</Width>
+            <Width>2.02124in</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -689,6 +741,8 @@
                     <Value>DATE OF PROPOSAL &amp; </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -699,10 +753,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox25</rd:DefaultName>
-            <Top>0.28125in</Top>
-            <Left>4.82714in</Left>
+            <Top>0.3368in</Top>
+            <Left>4.50224in</Left>
             <Height>0.28472in</Height>
-            <Width>1.81685in</Width>
+            <Width>1.56404in</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -724,6 +778,8 @@
                     <Value>NAME AND OCCUPATION OF POLICY HOLDER:</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -734,10 +790,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox26</rd:DefaultName>
-            <Top>1.37847in</Top>
-            <Left>0.13096in</Left>
-            <Height>0.27083in</Height>
-            <Width>3.35417in</Width>
+            <Top>1.43403in</Top>
+            <Left>0.15674in</Left>
+            <Height>0.42361in</Height>
+            <Width>2.9375in</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
@@ -750,24 +806,27 @@
             </Style>
           </Textbox>
           <Textbox Name="Assured_Name">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
                     <Value>=First(Fields!Assured_Name.Value, "DataSet1")</Value>
-                    <Style />
+                    <Style>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Assured_Name</rd:DefaultName>
-            <Top>1.71875in</Top>
-            <Left>0.09179in</Left>
-            <Height>0.25in</Height>
-            <Width>3.32292in</Width>
+            <Top>1.94097in</Top>
+            <Left>0.13716in</Left>
+            <Height>0.46526in</Height>
+            <Width>3.06028in</Width>
             <ZIndex>7</ZIndex>
             <Style>
               <Border>
@@ -780,9 +839,9 @@
             </Style>
           </Textbox>
           <Line Name="Line5">
-            <Top>1.30903in</Top>
-            <Left>3.54068in</Left>
-            <Height>0.76389in</Height>
+            <Top>1.36458in</Top>
+            <Left>3.253in</Left>
+            <Height>1.08331in</Height>
             <Width>0in</Width>
             <ZIndex>8</ZIndex>
             <Style>
@@ -801,6 +860,8 @@
                     <Value>DATE OF BIRTH</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -811,8 +872,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox28</rd:DefaultName>
-            <Top>1.39931in</Top>
-            <Left>3.59624in</Left>
+            <Top>1.57291in</Top>
+            <Left>3.27347in</Left>
             <Height>0.25in</Height>
             <Width>1.15104in</Width>
             <ZIndex>9</ZIndex>
@@ -836,6 +897,8 @@
                     <Value>SPOUSE/ DEPENDANTS/LEGAL BENEFICIARY IN WHOSE NAME(S) ANNUITY WILL CONTINUE TO BE PAID IF DEATH OF ANNUITANT OCCURS BEFORE THE END OF GUARANTEED PERIOD                                                                                             </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -848,10 +911,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox19</rd:DefaultName>
-            <Top>2.12847in</Top>
-            <Left>0.08234in</Left>
-            <Height>0.5625in</Height>
-            <Width>6.54367in</Width>
+            <Top>2.51734in</Top>
+            <Left>0.16841in</Left>
+            <Height>0.60417in</Height>
+            <Width>5.89787in</Width>
             <ZIndex>10</ZIndex>
             <Style>
               <Border>
@@ -864,9 +927,9 @@
             </Style>
           </Textbox>
           <Line Name="Line6">
-            <Top>3.22917in</Top>
+            <Top>3.69443in</Top>
             <Height>0in</Height>
-            <Width>6.72043in</Width>
+            <Width>6.15123in</Width>
             <ZIndex>11</ZIndex>
             <Style>
               <Border>
@@ -875,10 +938,10 @@
             </Style>
           </Line>
           <Line Name="Line7">
-            <Top>3.625in</Top>
-            <Left>0.01529in</Left>
+            <Top>4.08332in</Top>
+            <Left>0.01217in</Left>
             <Height>0in</Height>
-            <Width>6.70513in</Width>
+            <Width>6.13906in</Width>
             <ZIndex>12</ZIndex>
             <Style>
               <Border>
@@ -896,6 +959,8 @@
                     <Value>PREMIUM PAYABLE : </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -906,10 +971,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox41</rd:DefaultName>
-            <Top>3.29861in</Top>
-            <Left>0.08327in</Left>
+            <Top>3.76388in</Top>
+            <Left>0.16841in</Left>
             <Height>0.25in</Height>
-            <Width>1.4981in</Width>
+            <Width>1.6231in</Width>
             <ZIndex>13</ZIndex>
             <Style>
               <Border>
@@ -931,6 +996,8 @@
                     <Value>FREQUENCY :</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -941,8 +1008,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox42</rd:DefaultName>
-            <Top>3.29861in</Top>
-            <Left>4.33644in</Left>
+            <Top>3.77082in</Top>
+            <Left>4.17158in</Left>
             <Height>0.25in</Height>
             <Width>1.10417in</Width>
             <ZIndex>14</ZIndex>
@@ -966,6 +1033,8 @@
                     <Value>BENEFITS PAYABLE</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -976,8 +1045,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox43</rd:DefaultName>
-            <Top>3.66667in</Top>
-            <Left>0.09179in</Left>
+            <Top>4.15277in</Top>
+            <Left>0.15674in</Left>
             <Height>0.25in</Height>
             <Width>1.48958in</Width>
             <ZIndex>15</ZIndex>
@@ -992,7 +1061,6 @@
             </Style>
           </Textbox>
           <Textbox Name="Textbox44">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
@@ -1001,7 +1069,8 @@
                     <Value>An annuity payment of </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>arial</FontFamily>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -1011,7 +1080,8 @@
                     <Value xml:space="preserve"> </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>arial</FontFamily>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -1021,7 +1091,8 @@
                     <Value>=Fields!TBIL_ANNUAL_PREM.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>arial</FontFamily>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -1031,7 +1102,8 @@
                     <Value xml:space="preserve"> </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>arial</FontFamily>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -1041,7 +1113,8 @@
                     <Value>per annum payable by equal  installment of </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>arial</FontFamily>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -1051,7 +1124,8 @@
                     <Value>=Fields!TBIL_MONTH_PREM.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>arial</FontFamily>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -1061,7 +1135,8 @@
                     <Value> Monthly from  </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>arial</FontFamily>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -1071,17 +1146,41 @@
                     <Value>=Fields!FORMATTED_COMMENCEMENT_DT.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>arial</FontFamily>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> for a guaranteed period of 10 years and thereafter payable for the life time of the annuitant. No proportionate annuity payment will be made between the date of last annuity payment due and the date of death of the annuitant.</Value>
+                    <Value> for a guaranteed period of  </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>arial</FontFamily>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Fields!POLICY_PERIOD.Value</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value> years and thereafter payable for the life time of the annuitant. No proportionate annuity payment will be made between the date of last annuity payment due and the date of death of the annuitant.</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -1092,10 +1191,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox44</rd:DefaultName>
-            <Top>3.97569in</Top>
-            <Left>0.09179in</Left>
-            <Height>0.77431in</Height>
-            <Width>6.5409in</Width>
+            <Top>4.47221in</Top>
+            <Left>0.15674in</Left>
+            <Height>1.46181in</Height>
+            <Width>5.87812in</Width>
             <ZIndex>16</ZIndex>
             <Style>
               <Border />
@@ -1106,7 +1205,6 @@
             </Style>
           </Textbox>
           <Textbox Name="Textbox45">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
@@ -1114,6 +1212,8 @@
                   <TextRun>
                     <Value>SPECIAL TERMS APPLYING TO THIS POLICY: </Value>
                     <Style>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1121,17 +1221,20 @@
                     <Value>
 The annuity benefits are subject to any relevant laws of the Federal Republic of Nigeria
 </Value>
-                    <Style />
+                    <Style>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox45</rd:DefaultName>
-            <Top>4.95139in</Top>
-            <Left>0.09721in</Left>
-            <Height>0.40625in</Height>
-            <Width>6.53487in</Width>
+            <Top>6.01388in</Top>
+            <Left>0.10011in</Left>
+            <Height>0.6875in</Height>
+            <Width>5.93475in</Width>
             <ZIndex>17</ZIndex>
             <Style>
               <Border>
@@ -1151,17 +1254,20 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
                 <TextRuns>
                   <TextRun>
                     <Value>The Annuity payment will increase by 0% per centum of the first payment at each subsequent year                                                 </Value>
-                    <Style />
+                    <Style>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox46</rd:DefaultName>
-            <Top>5.51389in</Top>
-            <Left>0.08327in</Left>
-            <Height>0.26042in</Height>
-            <Width>6.54881in</Width>
+            <Top>6.84027in</Top>
+            <Left>0.10011in</Left>
+            <Height>0.61805in</Height>
+            <Width>5.93475in</Width>
             <ZIndex>18</ZIndex>
             <Style>
               <Border>
@@ -1174,10 +1280,10 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Textbox>
           <Line Name="Line8">
-            <Top>4.81944in</Top>
-            <Left>0.01529in</Left>
+            <Top>6.00346in</Top>
+            <Left>0.01309in</Left>
             <Height>0in</Height>
-            <Width>6.69472in</Width>
+            <Width>6.13814in</Width>
             <ZIndex>19</ZIndex>
             <Style>
               <Border>
@@ -1186,10 +1292,9 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Line>
           <Line Name="Line9">
-            <Top>5.45833in</Top>
-            <Left>0.01529in</Left>
+            <Top>6.77083in</Top>
             <Height>0in</Height>
-            <Width>6.69472in</Width>
+            <Width>6.15123in</Width>
             <ZIndex>20</ZIndex>
             <Style>
               <Border>
@@ -1198,10 +1303,9 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Line>
           <Line Name="Line10">
-            <Top>5.84375in</Top>
-            <Left>0.01529in</Left>
+            <Top>7.57291in</Top>
             <Height>0in</Height>
-            <Width>6.70513in</Width>
+            <Width>6.15123in</Width>
             <ZIndex>21</ZIndex>
             <Style>
               <Border>
@@ -1210,9 +1314,9 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Line>
           <Line Name="Line12">
-            <Top>5.83333in</Top>
-            <Left>3.50485in</Left>
-            <Height>0.90625in</Height>
+            <Top>7.56944in</Top>
+            <Left>3.33508in</Left>
+            <Height>1.10416in</Height>
             <Width>0in</Width>
             <ZIndex>22</ZIndex>
             <Style>
@@ -1222,7 +1326,6 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Line>
           <Textbox Name="Textbox47">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
@@ -1231,6 +1334,8 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
                     <Value>CURRENCY OF PAYMENT TO AND BY THE COMPANY UNDER THIS POLICY: NAIRA</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -1241,10 +1346,10 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox47</rd:DefaultName>
-            <Top>5.91319in</Top>
-            <Left>0.06276in</Left>
+            <Top>7.64235in</Top>
+            <Left>0.10011in</Left>
             <Height>0.51736in</Height>
-            <Width>3.39583in</Width>
+            <Width>3.1455in</Width>
             <ZIndex>23</ZIndex>
             <Style>
               <Border>
@@ -1257,7 +1362,6 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Textbox>
           <Textbox Name="Textbox48">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
@@ -1266,6 +1370,8 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
                     <Value>Principal Office </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -1275,6 +1381,8 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
                     <Value>of The Company is:</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -1289,6 +1397,8 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
                     <Value>16A, Commercial Avenue, Sabo, Yaba, P. O. Box 2101, Lagos.</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -1299,10 +1409,10 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox48</rd:DefaultName>
-            <Top>5.91319in</Top>
-            <Left>3.65763in</Left>
-            <Height>0.67708in</Height>
-            <Width>2.97506in</Width>
+            <Top>7.64235in</Top>
+            <Left>3.43435in</Left>
+            <Height>0.92708in</Height>
+            <Width>2.60051in</Width>
             <ZIndex>24</ZIndex>
             <Style>
               <Border>
@@ -1315,7 +1425,6 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Textbox>
           <Textbox Name="Textbox74">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
@@ -1324,6 +1433,8 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
                     <Value>OF ANNUITY :</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -1334,8 +1445,8 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox74</rd:DefaultName>
-            <Top>0.51736in</Top>
-            <Left>2.78721in</Left>
+            <Top>0.5868in</Top>
+            <Left>2.44494in</Left>
             <Height>0.25in</Height>
             <Width>1.08583in</Width>
             <ZIndex>25</ZIndex>
@@ -1350,9 +1461,9 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Textbox>
           <Line Name="Line11">
-            <Top>0.21181in</Top>
+            <Top>0.29514in</Top>
             <Height>0in</Height>
-            <Width>6.72043in</Width>
+            <Width>6.15123in</Width>
             <ZIndex>26</ZIndex>
             <Style>
               <Border>
@@ -1361,9 +1472,9 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Line>
           <Line Name="Line13">
-            <Top>1.30903in</Top>
+            <Top>1.36458in</Top>
             <Height>0in</Height>
-            <Width>6.71001in</Width>
+            <Width>6.15123in</Width>
             <ZIndex>27</ZIndex>
             <Style>
               <Border>
@@ -1372,10 +1483,10 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Line>
           <Line Name="Line14">
-            <Top>2.07292in</Top>
-            <Left>0.01529in</Left>
+            <Top>2.44789in</Top>
+            <Left>0.01217in</Left>
             <Height>0in</Height>
-            <Width>6.69472in</Width>
+            <Width>6.13906in</Width>
             <ZIndex>28</ZIndex>
             <Style>
               <Border>
@@ -1390,10 +1501,10 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
                 <Value>=First(Fields!TBIL_ANN_POLY_POLICY_NO.Value, "DataSet1")</Value>
               </Parameter>
             </Parameters>
-            <Top>2.77431in</Top>
-            <Left>0.09721in</Left>
+            <Top>3.20485in</Top>
+            <Left>0.16841in</Left>
             <Height>0.42014in</Height>
-            <Width>6.25125in</Width>
+            <Width>5.52574in</Width>
             <ZIndex>29</ZIndex>
             <Style>
               <Border>
@@ -1411,6 +1522,8 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
                     <Value>AGE ADMITTED</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -1421,10 +1534,10 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox28</rd:DefaultName>
-            <Top>1.39931in</Top>
-            <Left>4.92672in</Left>
+            <Top>1.60764in</Top>
+            <Left>4.61993in</Left>
             <Height>0.25in</Height>
-            <Width>1.41493in</Width>
+            <Width>1.26172in</Width>
             <ZIndex>30</ZIndex>
             <Style>
               <Border>
@@ -1437,7 +1550,6 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Textbox>
           <Textbox Name="Textbox30">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
@@ -1446,6 +1558,8 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
                     <Value>YEARS</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -1456,8 +1570,8 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox28</rd:DefaultName>
-            <Top>1.71875in</Top>
-            <Left>5.38506in</Left>
+            <Top>1.92708in</Top>
+            <Left>5.00535in</Left>
             <Height>0.25in</Height>
             <Width>0.63368in</Width>
             <ZIndex>31</ZIndex>
@@ -1472,7 +1586,6 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Textbox>
           <Textbox Name="TBIL_ANN_POLY_ASSRD_AGE">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
@@ -1480,6 +1593,8 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
                   <TextRun>
                     <Value>=First(Fields!TBIL_ANN_POLY_ASSRD_AGE.Value, "DataSet1")</Value>
                     <Style>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1488,9 +1603,9 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>TBIL_ANN_POLY_ASSRD_AGE</rd:DefaultName>
-            <Top>1.71875in</Top>
-            <Left>5.0604in</Left>
-            <Height>0.25in</Height>
+            <Top>1.9132in</Top>
+            <Left>4.66681in</Left>
+            <Height>0.23611in</Height>
             <Width>0.31076in</Width>
             <ZIndex>32</ZIndex>
             <Style>
@@ -1513,6 +1628,8 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
                     <Value>DECLARATION </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -1523,10 +1640,10 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox79</rd:DefaultName>
-            <Top>0.60764in</Top>
-            <Left>5.06673in</Left>
+            <Top>0.6493in</Top>
+            <Left>4.60467in</Left>
             <Height>0.25in</Height>
-            <Width>1.46161in</Width>
+            <Width>1.18892in</Width>
             <ZIndex>33</ZIndex>
             <Style>
               <Border>
@@ -1539,24 +1656,27 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Textbox>
           <Textbox Name="TBIL_ANN_POLY_ASSRD_BDATE">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
                     <Value>=Format(Fields!TBIL_ANN_POLY_ASSRD_BDATE.Value,"dd/MM/yyyy")</Value>
-                    <Style />
+                    <Style>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>TBIL_ANN_POLY_ASSRD_BDATE</rd:DefaultName>
-            <Top>1.71875in</Top>
-            <Left>3.7195in</Left>
+            <Top>1.87847in</Top>
+            <Left>3.32245in</Left>
             <Height>0.25in</Height>
-            <Width>1in</Width>
+            <Width>1.10207in</Width>
             <ZIndex>34</ZIndex>
             <Style>
               <Border>
@@ -1578,6 +1698,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
                     <Value>ANNUITY POLICY  </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
                       <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -1589,8 +1710,8 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox82</rd:DefaultName>
-            <Left>2.63915in</Left>
-            <Height>0.21181in</Height>
+            <Left>2.71278in</Left>
+            <Height>0.25347in</Height>
             <Width>1.47446in</Width>
             <ZIndex>35</ZIndex>
             <Style>
@@ -1604,24 +1725,26 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Textbox>
           <Textbox Name="FORMATTED_PROPOSAL_DT">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
                     <Value>=First(Fields!FORMATTED_PROPOSAL_DT.Value, "DataSet1")</Value>
-                    <Style />
+                    <Style>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>FORMATTED_PROPOSAL_DT</rd:DefaultName>
-            <Top>0.89931in</Top>
-            <Left>4.8445in</Left>
-            <Height>0.25in</Height>
-            <Width>1.71336in</Width>
+            <Top>0.94791in</Top>
+            <Left>4.53002in</Left>
+            <Height>0.25694in</Height>
+            <Width>1.53626in</Width>
             <ZIndex>36</ZIndex>
             <Style>
               <Border>
@@ -1634,24 +1757,26 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Textbox>
           <Textbox Name="FORMATTED_COMMENCEMENT_DT">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
                     <Value>=First(Fields!FORMATTED_COMMENCEMENT_DT.Value, "DataSet1")</Value>
-                    <Style />
+                    <Style>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>FORMATTED_COMMENCEMENT_DT</rd:DefaultName>
-            <Top>0.85069in</Top>
-            <Left>2.4529in</Left>
-            <Height>0.25in</Height>
-            <Width>1.89507in</Width>
+            <Top>0.92014in</Top>
+            <Left>2.40328in</Left>
+            <Height>0.26388in</Height>
+            <Width>2.00174in</Width>
             <ZIndex>37</ZIndex>
             <Style>
               <Border>
@@ -1664,22 +1789,24 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Textbox>
           <Textbox Name="TBIL_PREM_PAYABLE">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
                     <Value>=Sum(Fields!TBIL_PREM_PAYABLE.Value, "DataSet1")</Value>
-                    <Style />
+                    <Style>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>TBIL_PREM_PAYABLE</rd:DefaultName>
-            <Top>3.31944in</Top>
-            <Left>1.63693in</Left>
+            <Top>3.79165in</Top>
+            <Left>1.84707in</Left>
             <Height>0.22917in</Height>
             <Width>1.67963in</Width>
             <ZIndex>38</ZIndex>
@@ -1694,23 +1821,25 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Textbox>
           <Textbox Name="Textbox89">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
                     <Value>Single</Value>
-                    <Style />
+                    <Style>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox89</rd:DefaultName>
-            <Top>3.26389in</Top>
-            <Left>5.48228in</Left>
-            <Height>0.25in</Height>
+            <Top>3.76388in</Top>
+            <Left>5.34519in</Left>
+            <Height>0.28472in</Height>
             <Width>0.53646in</Width>
             <ZIndex>39</ZIndex>
             <Style>
@@ -1725,10 +1854,10 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
           </Textbox>
         </ReportItems>
         <KeepTogether>true</KeepTogether>
-        <Top>12.614in</Top>
-        <Left>0.10971in</Left>
-        <Height>6.73958in</Height>
-        <Width>6.72043in</Width>
+        <Top>12.71123in</Top>
+        <Left>0.1734in</Left>
+        <Height>8.6736in</Height>
+        <Width>6.15123in</Width>
         <ZIndex>4</ZIndex>
         <Style>
           <Border>
@@ -1736,16 +1865,184 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
           </Border>
         </Style>
       </Rectangle>
-      <Textbox Name="Textbox49">
+      <Textbox Name="Textbox50">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
             <TextRuns>
               <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
                 <Value>1. Annuity Benefits Payable</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>A life annuity of an amount stated in the policy schedule shall be payable instalmentally on the agreed frequency as stated on the schedule in advance, first installment shall fall due on the date of commencement of annuity and further installments on each subsequent period during the remainder of the lifetime of the annuitant or for a guaranteed period elected by the policyholder, whichever shall be longer.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>2.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">    </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Death Benefit</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -1754,12 +2051,1047 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </TextRuns>
             <Style />
           </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>If the death of the annuitant occurs during the guaranteed period, the payment of annuity will continue to the beneficiary nominated by the annuitant or his legal personal representative up to the end of the guaranteed period.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Where the beneficiary elects to take a single payment in lieu of periodical annuity payment, the amount equivalent to the surrender value of the remainder of the annuity payable during the guaranteed period shall be determined by the Actuary for the time being of the Insurance Company and paid to the beneficiary.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Provided that all premiums under the policy are paid in full as and when due the benefit payable upon the death of the policyholder prior to the commencement of annuity payment shall be a return of total premium paid up to the date of death compounded at the rate of interest that shall be determined by the Actuary for the time being of the Insurance Company.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>3.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">    </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Mode of Annuity Payment and Form of Discharge</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>The regular installment annuity payments shall be paid directly into the bank account advised to the insurance company by the annuitant at inception and the company shall not be held liable for any problems arising from the payment of the annuity benefits into this account.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>The insurance company shall not take cognizance of any change in an annuitant’s account details except it is formally advised by the annuitant and such advice acknowledged in writing by the insurance company.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>The annuitant shall in all cases sign and return to the insurance company, a Form of Discharge for every annuity payment made by the insurance company whether paid directly to the annuitant or into his bank account and this shall be a condition precedent to subsequent annuity payments.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>4.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">   </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Lapsed Policy</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>This policy shall not lapse under any condition provided the lump sum single premium was paid at inception.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>5.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">    </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Surrender Value</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>The annuitant shall have an option to cease collecting his annuity from the insurance company any time within and only during the guaranteed period. The present value of the annuity shall be determined by the actuary of the insurance company and the proceeds transferred to another insurance company chosen by the annuitant. It is a condition of this policy that the transfer value of an annuity as determined under this section shall under no circumstance be paid to the annuitant. Under no condition shall the annuitant demand for the present value of his annuity or surrender his annuity for value if the annuity has passed the guaranteed period.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>6.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">    </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Endorsements</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>No variations in the terms and conditions of this policy, either by endorsement or otherwise, shall bind the company in any way unless it be made by a duly authorized officer of the Company.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>7.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">    </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Admission of Age</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Evidence of age of the Policyholder acceptable to the directors must be produced at the inception of the policy and before any benefit under this policy can be paid.  If the said age has been misstated the company’s liability will be limited to the amount of benefit payable had the correct age been stated originally.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>8.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">    </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Receipts</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>No receipt for premiums will be valid unless issued by a duly authorized officer of the Company upon its printed form.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>9.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">     </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Valid discharge and/or Assignment</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>a)</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>   Unless otherwise stated in the policy or endorsed thereon, the policy and any benefits there under belong to the policyholder or his/her legal personal representatives who alone may give a valid discharge.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>b)</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>   The benefits under this policy are not assignable to any third party. This is without prejudice to the provisions of Section 1 of this policy.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>c)</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>   In the event of death of the policy holder, anybody claiming any benefit under the policy shall provide such evidence of proof of death which shall be the Medical Certificate of cause of Death and such documents to substantiate that he is entitled to the benefits and proof of his identity.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
         </Paragraphs>
-        <rd:DefaultName>Textbox49</rd:DefaultName>
-        <Top>22.01165in</Top>
-        <Left>0.29113in</Left>
-        <Height>0.25in</Height>
-        <Width>2.78125in</Width>
+        <rd:DefaultName>Textbox46</rd:DefaultName>
+        <Top>22.13491in</Top>
+        <Left>0.26042in</Left>
+        <Height>21.74914in</Height>
+        <Width>5.85426in</Width>
         <ZIndex>5</ZIndex>
         <Style>
           <Border>
@@ -1771,992 +3103,16 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="Textbox50">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>A life annuity of an amount stated in the policy schedule shall be payable instalmentally on the agreed frequency as stated on the schedule in advance, first installment shall fall due on the date of commencement of annuity and further installments on each subsequent period during the remainder of the lifetime of the annuitant or for a guaranteed period elected by the policyholder, whichever shall be longer.</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Left</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox46</rd:DefaultName>
-        <Top>22.35366in</Top>
-        <Left>0.27911in</Left>
-        <Height>0.72917in</Height>
-        <Width>6.47459in</Width>
-        <ZIndex>6</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox51">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>2.</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value xml:space="preserve">    </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>Death Benefit</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox49</rd:DefaultName>
-        <Top>23.32849in</Top>
-        <Left>0.26113in</Left>
-        <Height>0.25in</Height>
-        <Width>2.78125in</Width>
-        <ZIndex>7</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox52">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>If the death of the annuitant occurs during the guaranteed period, the payment of annuity will continue to the beneficiary nominated by the annuitant or his legal personal representative up to the end of the guaranteed period.</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox46</rd:DefaultName>
-        <Top>23.64272in</Top>
-        <Left>0.24128in</Left>
-        <Height>0.59375in</Height>
-        <Width>6.47459in</Width>
-        <ZIndex>8</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox54">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Where the beneficiary elects to take a single payment in lieu of periodical annuity payment, the amount equivalent to the surrender value of the remainder of the annuity payable during the guaranteed period shall be determined by the Actuary for the time being of the Insurance Company and paid to the beneficiary.</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox46</rd:DefaultName>
-        <Top>24.43786in</Top>
-        <Left>0.24128in</Left>
-        <Height>0.61459in</Height>
-        <Width>6.47459in</Width>
-        <ZIndex>9</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox55">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Provided that all premiums under the policy are paid in full as and when due the benefit payable upon the death of the policyholder prior to the commencement of annuity payment shall be a return of total premium paid up to the date of death compounded at the rate of interest that shall be determined by the Actuary for the time being of the Insurance Company.</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox46</rd:DefaultName>
-        <Top>25.20523in</Top>
-        <Left>0.24128in</Left>
-        <Height>0.74063in</Height>
-        <Width>6.47459in</Width>
-        <ZIndex>10</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox56">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>The regular installment annuity payments shall be paid directly into the bank account advised to the insurance company by the annuitant at inception and the company shall not be held liable for any problems arising from the payment of the annuity benefits into this account.</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox46</rd:DefaultName>
-        <Top>26.52919in</Top>
-        <Left>0.26113in</Left>
-        <Height>0.60417in</Height>
-        <Width>6.47459in</Width>
-        <ZIndex>11</ZIndex>
-        <Style>
-          <Border />
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox53">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>3.</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value xml:space="preserve">    </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>Mode of Annuity Payment and Form of Discharge</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox49</rd:DefaultName>
-        <Top>26.13683in</Top>
-        <Left>0.24128in</Left>
-        <Height>0.25in</Height>
-        <Width>4.32292in</Width>
-        <ZIndex>12</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox57">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>The insurance company shall not take cognizance of any change in an annuitant’s account details except it is formally advised by the annuitant and such advice acknowledged in writing by the insurance company.</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox46</rd:DefaultName>
-        <Top>27.31739in</Top>
-        <Left>0.24128in</Left>
-        <Height>0.4375in</Height>
-        <Width>6.47459in</Width>
-        <ZIndex>13</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox58">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>The annuitant shall in all cases sign and return to the insurance company, a Form of Discharge for every annuity payment made by the insurance company whether paid directly to the annuitant or into his bank account and this shall be a condition precedent to subsequent annuity payments.</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox46</rd:DefaultName>
-        <Top>27.90419in</Top>
-        <Left>0.24128in</Left>
-        <Height>0.5625in</Height>
-        <Width>6.47459in</Width>
-        <ZIndex>14</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox59">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>4.</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value xml:space="preserve">   </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>Lapsed Policy</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox49</rd:DefaultName>
-        <Top>28.67589in</Top>
-        <Left>0.24128in</Left>
-        <Height>0.25in</Height>
-        <Width>2.78125in</Width>
-        <ZIndex>15</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox60">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>This policy shall not lapse under any condition provided the lump sum single premium was paid at inception.</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox46</rd:DefaultName>
-        <Top>28.99534in</Top>
-        <Left>0.24128in</Left>
-        <Height>0.40626in</Height>
-        <Width>6.47459in</Width>
-        <ZIndex>16</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox61">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>5.</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value xml:space="preserve">    </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>Surrender Value</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox49</rd:DefaultName>
-        <Top>29.57172in</Top>
-        <Left>0.24128in</Left>
-        <Height>0.25in</Height>
-        <Width>2.78125in</Width>
-        <ZIndex>17</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox62">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>The annuitant shall have an option to cease collecting his annuity from the insurance company any time within and only during the guaranteed period. The present value of the annuity shall be determined by the actuary of the insurance company and the proceeds transferred to another insurance company chosen by the annuitant. It is a condition of this policy that the transfer value of an annuity as determined under this section shall under no circumstance be paid to the annuitant. Under no condition shall the annuitant demand for the present value of his annuity or surrender his annuity for value if the annuity has passed the guaranteed period. </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox46</rd:DefaultName>
-        <Top>29.98665in</Top>
-        <Left>0.24128in</Left>
-        <Height>1.27412in</Height>
-        <Width>6.47459in</Width>
-        <ZIndex>18</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox63">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>No variations in the terms and conditions of this policy, either by endorsement or otherwise, shall bind the company in any way unless it be made by a duly authorized officer of the Company.</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox46</rd:DefaultName>
-        <Top>32.96747in</Top>
-        <Left>0.26781in</Left>
-        <Height>0.38871in</Height>
-        <Width>6.47459in</Width>
-        <ZIndex>19</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox64">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>6.</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value xml:space="preserve">    </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>Endorsements</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox49</rd:DefaultName>
-        <Top>32.56296in</Top>
-        <Left>0.2672in</Left>
-        <Height>0.25in</Height>
-        <Width>2.78125in</Width>
-        <ZIndex>20</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox65">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>7.</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value xml:space="preserve">    </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>Admission of Age</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox49</rd:DefaultName>
-        <Top>33.53089in</Top>
-        <Left>0.26781in</Left>
-        <Height>0.25in</Height>
-        <Width>2.78125in</Width>
-        <ZIndex>21</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox66">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Evidence of age of the Policyholder acceptable to the directors must be produced at the inception of the policy and before any benefit under this policy can be paid.  If the said age has been misstated the company’s liability will be limited to the amount of benefit payable had the correct age been stated originally.</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox46</rd:DefaultName>
-        <Top>33.85033in</Top>
-        <Left>0.24128in</Left>
-        <Height>0.75329in</Height>
-        <Width>6.47459in</Width>
-        <ZIndex>22</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox67">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>8.</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value xml:space="preserve">    </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>Receipts</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox49</rd:DefaultName>
-        <Top>34.84147in</Top>
-        <Left>0.24128in</Left>
-        <Height>0.2797in</Height>
-        <Width>2.78125in</Width>
-        <ZIndex>23</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox68">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>No receipt for premiums will be valid unless issued by a duly authorized officer of the Company upon its printed form.</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox46</rd:DefaultName>
-        <Top>35.24269in</Top>
-        <Left>0.24128in</Left>
-        <Height>0.43037in</Height>
-        <Width>6.47459in</Width>
-        <ZIndex>24</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox69">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>9.</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value xml:space="preserve">     </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>Valid discharge and/or Assignment</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox49</rd:DefaultName>
-        <Top>35.83681in</Top>
-        <Left>0.24128in</Left>
-        <Height>0.2523in</Height>
-        <Width>3.3125in</Width>
-        <ZIndex>25</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox70">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>a)</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>   Unless otherwise stated in the policy or endorsed thereon, the policy and any benefits there under belong to the policyholder or his/her legal personal representatives who alone may give a valid discharge</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox46</rd:DefaultName>
-        <Top>36.20021in</Top>
-        <Left>0.24128in</Left>
-        <Height>0.40953in</Height>
-        <Width>6.47459in</Width>
-        <ZIndex>26</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox71">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>b)</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>   The benefits under this policy are not assignable to any third party. This is without prejudice to the provisions of Section 1 of this policy.</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox46</rd:DefaultName>
-        <Top>36.79377in</Top>
-        <Left>0.24128in</Left>
-        <Height>0.39912in</Height>
-        <Width>6.47459in</Width>
-        <ZIndex>27</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox72">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>c)</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>   In the event of death of the policy holder, anybody claiming any benefit under the policy shall provide such evidence of proof of death which shall be the Medical Certificate of cause of Death and such documents to substantiate that he is entitled to the benefits and proof of his identity.</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox46</rd:DefaultName>
-        <Top>37.26234in</Top>
-        <Left>0.24128in</Left>
-        <Height>0.62828in</Height>
-        <Width>6.47459in</Width>
-        <ZIndex>28</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
     </ReportItems>
-    <Height>38.41257in</Height>
+    <Height>44.00905in</Height>
     <Style />
   </Body>
-  <Width>7.05083in</Width>
+  <Width>6.41165in</Width>
   <Page>
     <PageHeight>11.69in</PageHeight>
     <PageWidth>8.27in</PageWidth>
-    <LeftMargin>0.5in</LeftMargin>
-    <RightMargin>0.5in</RightMargin>
+    <LeftMargin>0.25in</LeftMargin>
+    <RightMargin>0.25in</RightMargin>
     <TopMargin>0.25in</TopMargin>
     <BottomMargin>0.25in</BottomMargin>
     <Style />
@@ -2835,6 +3191,10 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
           <DataField>TBIL_ANN_POLY_MARITAL</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="ASSURED_GENDER">
+          <DataField>ASSURED_GENDER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="TBIL_ANN_POLY_OCCUPATN">
           <DataField>TBIL_ANN_POLY_OCCUPATN</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -2855,9 +3215,17 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
           <DataField>FORMATTED_COMMENCEMENT_DT</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="TBIL_POLICY_END_DT">
+          <DataField>TBIL_POLICY_END_DT</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
         <Field Name="TBIL_ANN_POLY_ASSRD_BDATE">
           <DataField>TBIL_ANN_POLY_ASSRD_BDATE</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="POLICY_PERIOD">
+          <DataField>POLICY_PERIOD</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="TODAYS_DATE">
           <DataField>TODAYS_DATE</DataField>
@@ -2885,6 +3253,10 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
         </Field>
         <Field Name="TBIL_ANN_POLY_LAST_EMPLOYER">
           <DataField>TBIL_ANN_POLY_LAST_EMPLOYER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ASSURED_ADDRESS">
+          <DataField>ASSURED_ADDRESS</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="TBIL_ANN_POLY_LAST_EMPLOYER_ADRES">
