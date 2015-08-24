@@ -50,7 +50,8 @@
                                         &nbsp;
                                     </td>
                                     <td align="right" colspan="1" valign="top">&nbsp;
-                                        <a href="PRG_ANNTY_PROP_POLICY.aspx?menu=AN_QUOTE" class="a_sub_menu">Return to Menu</a>&nbsp;                            
+                                        <%--<a href="PRG_ANNTY_PROP_POLICY.aspx?menu=AN_QUOTE" class="a_sub_menu">Return to Menu</a>&nbsp; --%>                           
+                                <a href="#" onclick="javascript:JSDO_RETURN('PRG_ANNTY_PROP_POLICY.aspx?menu=AN_QUOTE')">Go to Menu</a>
                                     </td>                           
                                     
                                     <td align="right" colspan="1" valign="top" style="display:none;">    
