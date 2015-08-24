@@ -54,7 +54,8 @@
                             </tr>
 
                             <tr>
-                                <td align="center" colspan="4" valign="top" style="height: 26px">&nbsp;&nbsp;<a href="#" onclick="javascript:JSDO_RETURN('PRG_LI_PROP_POLICY.aspx?menu=IL_QUOTE')">Go to Menu</a>
+                                <td align="center" colspan="4" valign="top" style="height: 26px">&nbsp;&nbsp;<%--<a href="#" onclick="javascript:JSDO_RETURN('PRG_LI_PROP_POLICY.aspx?menu=IL_QUOTE')">Go to Menu</a>--%>
+                                <a href="#" onclick="javascript:JSDO_RETURN('PRG_ANNTY_PROP_POLICY.aspx?menu=AN_QUOTE')">Go to Menu</a>
                                     &nbsp;&nbsp;<asp:Button ID="cmdPrev" CssClass="cmd_butt" Enabled="false" Text="«..Previous" runat="server" />
                                     &nbsp;&nbsp;<asp:Button ID="cmdNew_ASP" CssClass="cmd_butt" runat="server" Text="New Data" OnClientClick="JSNew_ASP();"></asp:Button>
                                     &nbsp;&nbsp;<asp:Button ID="cmdSave_ASP" CssClass="cmd_butt" runat="server" Text="Save Data"></asp:Button>
