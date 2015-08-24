@@ -587,7 +587,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
-        <Top>12.22511in</Top>
+        <Top>12.35011in</Top>
         <Left>1.25977in</Left>
         <Height>0.29167in</Height>
         <Width>4.58222in</Width>
@@ -615,6 +615,7 @@
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -625,7 +626,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox20</rd:DefaultName>
-            <Top>0.33681in</Top>
+            <Top>0.36458in</Top>
             <Left>0.10011in</Left>
             <Height>0.25in</Height>
             <Width>1.40972in</Width>
@@ -640,9 +641,9 @@
             </Style>
           </Textbox>
           <Line Name="Line2">
-            <Top>0.28125in</Top>
+            <Top>0.30902in</Top>
             <Left>2.3755in</Left>
-            <Height>0.9236in</Height>
+            <Height>1.05556in</Height>
             <Width>0in</Width>
             <ZIndex>1</ZIndex>
             <Style>
@@ -652,9 +653,9 @@
             </Style>
           </Line>
           <Line Name="Line3">
-            <Top>0.28125in</Top>
+            <Top>0.30902in</Top>
             <Left>4.47446in</Left>
-            <Height>2.01387in</Height>
+            <Height>2.13887in</Height>
             <Width>0in</Width>
             <ZIndex>2</ZIndex>
             <Style>
@@ -664,7 +665,6 @@
             </Style>
           </Line>
           <Textbox Name="TBIL_ANN_POLY_POLICY_NO">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
@@ -681,10 +681,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>TBIL_ANN_POLY_POLICY_NO</rd:DefaultName>
-            <Top>0.62848in</Top>
-            <Left>0.10011in</Left>
+            <Top>0.65625in</Top>
+            <Left>0.03175in</Left>
             <Height>0.35417in</Height>
-            <Width>2.21983in</Width>
+            <Width>2.28819in</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -697,7 +697,6 @@
             </Style>
           </Textbox>
           <Textbox Name="Textbox22">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
@@ -717,10 +716,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox22</rd:DefaultName>
-            <Top>0.30903in</Top>
+            <Top>0.32292in</Top>
             <Left>2.40328in</Left>
             <Height>0.25in</Height>
-            <Width>1.90896in</Width>
+            <Width>2.02124in</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -743,6 +742,7 @@
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -753,7 +753,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox25</rd:DefaultName>
-            <Top>0.30903in</Top>
+            <Top>0.3368in</Top>
             <Left>4.50224in</Left>
             <Height>0.28472in</Height>
             <Width>1.56404in</Width>
@@ -779,6 +779,7 @@
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -789,9 +790,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox26</rd:DefaultName>
-            <Top>1.28126in</Top>
+            <Top>1.43403in</Top>
             <Left>0.15674in</Left>
-            <Height>0.38888in</Height>
+            <Height>0.42361in</Height>
             <Width>2.9375in</Width>
             <ZIndex>6</ZIndex>
             <Style>
@@ -805,7 +806,6 @@
             </Style>
           </Textbox>
           <Textbox Name="Assured_Name">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
@@ -814,6 +814,7 @@
                     <Value>=First(Fields!Assured_Name.Value, "DataSet1")</Value>
                     <Style>
                       <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -822,7 +823,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Assured_Name</rd:DefaultName>
-            <Top>1.7882in</Top>
+            <Top>1.94097in</Top>
             <Left>0.13716in</Left>
             <Height>0.46526in</Height>
             <Width>3.06028in</Width>
@@ -838,7 +839,7 @@
             </Style>
           </Textbox>
           <Line Name="Line5">
-            <Top>1.21181in</Top>
+            <Top>1.36458in</Top>
             <Left>3.253in</Left>
             <Height>1.08331in</Height>
             <Width>0in</Width>
@@ -860,6 +861,7 @@
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -870,7 +872,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox28</rd:DefaultName>
-            <Top>1.42014in</Top>
+            <Top>1.57291in</Top>
             <Left>3.27347in</Left>
             <Height>0.25in</Height>
             <Width>1.15104in</Width>
@@ -896,6 +898,7 @@
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -908,7 +911,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox19</rd:DefaultName>
-            <Top>2.36457in</Top>
+            <Top>2.51734in</Top>
             <Left>0.16841in</Left>
             <Height>0.60417in</Height>
             <Width>5.89787in</Width>
@@ -924,9 +927,9 @@
             </Style>
           </Textbox>
           <Line Name="Line6">
-            <Top>3.66666in</Top>
+            <Top>3.69443in</Top>
             <Height>0in</Height>
-            <Width>6.13165in</Width>
+            <Width>6.15123in</Width>
             <ZIndex>11</ZIndex>
             <Style>
               <Border>
@@ -935,10 +938,10 @@
             </Style>
           </Line>
           <Line Name="Line7">
-            <Top>4.05555in</Top>
+            <Top>4.08332in</Top>
             <Left>0.01217in</Left>
             <Height>0in</Height>
-            <Width>6.11948in</Width>
+            <Width>6.13906in</Width>
             <ZIndex>12</ZIndex>
             <Style>
               <Border>
@@ -968,7 +971,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox41</rd:DefaultName>
-            <Top>3.73611in</Top>
+            <Top>3.76388in</Top>
             <Left>0.16841in</Left>
             <Height>0.25in</Height>
             <Width>1.6231in</Width>
@@ -1005,7 +1008,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox42</rd:DefaultName>
-            <Top>3.74305in</Top>
+            <Top>3.77082in</Top>
             <Left>4.17158in</Left>
             <Height>0.25in</Height>
             <Width>1.10417in</Width>
@@ -1042,7 +1045,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox43</rd:DefaultName>
-            <Top>4.125in</Top>
+            <Top>4.15277in</Top>
             <Left>0.15674in</Left>
             <Height>0.25in</Height>
             <Width>1.48958in</Width>
@@ -1058,7 +1061,6 @@
             </Style>
           </Textbox>
           <Textbox Name="Textbox44">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
@@ -1189,7 +1191,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox44</rd:DefaultName>
-            <Top>4.44444in</Top>
+            <Top>4.47221in</Top>
             <Left>0.15674in</Left>
             <Height>1.46181in</Height>
             <Width>5.87812in</Width>
@@ -1203,7 +1205,6 @@
             </Style>
           </Textbox>
           <Textbox Name="Textbox45">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
@@ -1230,7 +1231,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox45</rd:DefaultName>
-            <Top>5.98611in</Top>
+            <Top>6.01388in</Top>
             <Left>0.10011in</Left>
             <Height>0.6875in</Height>
             <Width>5.93475in</Width>
@@ -1263,7 +1264,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox46</rd:DefaultName>
-            <Top>6.8125in</Top>
+            <Top>6.84027in</Top>
             <Left>0.10011in</Left>
             <Height>0.61805in</Height>
             <Width>5.93475in</Width>
@@ -1279,10 +1280,10 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Textbox>
           <Line Name="Line8">
-            <Top>5.97569in</Top>
+            <Top>6.00346in</Top>
             <Left>0.01309in</Left>
             <Height>0in</Height>
-            <Width>6.11856in</Width>
+            <Width>6.13814in</Width>
             <ZIndex>19</ZIndex>
             <Style>
               <Border>
@@ -1291,10 +1292,9 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Line>
           <Line Name="Line9">
-            <Top>6.74306in</Top>
-            <Left>0.01309in</Left>
+            <Top>6.77083in</Top>
             <Height>0in</Height>
-            <Width>6.11856in</Width>
+            <Width>6.15123in</Width>
             <ZIndex>20</ZIndex>
             <Style>
               <Border>
@@ -1303,10 +1303,9 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Line>
           <Line Name="Line10">
-            <Top>7.54514in</Top>
-            <Left>0.03175in</Left>
+            <Top>7.57291in</Top>
             <Height>0in</Height>
-            <Width>6.0999in</Width>
+            <Width>6.15123in</Width>
             <ZIndex>21</ZIndex>
             <Style>
               <Border>
@@ -1315,7 +1314,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Line>
           <Line Name="Line12">
-            <Top>7.54167in</Top>
+            <Top>7.56944in</Top>
             <Left>3.33508in</Left>
             <Height>1.10416in</Height>
             <Width>0in</Width>
@@ -1327,7 +1326,6 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Line>
           <Textbox Name="Textbox47">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
@@ -1348,7 +1346,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox47</rd:DefaultName>
-            <Top>7.61458in</Top>
+            <Top>7.64235in</Top>
             <Left>0.10011in</Left>
             <Height>0.51736in</Height>
             <Width>3.1455in</Width>
@@ -1364,7 +1362,6 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Textbox>
           <Textbox Name="Textbox48">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
@@ -1412,7 +1409,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox48</rd:DefaultName>
-            <Top>7.61458in</Top>
+            <Top>7.64235in</Top>
             <Left>3.43435in</Left>
             <Height>0.92708in</Height>
             <Width>2.60051in</Width>
@@ -1428,7 +1425,6 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Textbox>
           <Textbox Name="Textbox74">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
@@ -1438,6 +1434,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -1448,8 +1445,8 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox74</rd:DefaultName>
-            <Top>0.57292in</Top>
-            <Left>2.41717in</Left>
+            <Top>0.5868in</Top>
+            <Left>2.44494in</Left>
             <Height>0.25in</Height>
             <Width>1.08583in</Width>
             <ZIndex>25</ZIndex>
@@ -1464,9 +1461,9 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Textbox>
           <Line Name="Line11">
-            <Top>0.28125in</Top>
+            <Top>0.29514in</Top>
             <Height>0in</Height>
-            <Width>6.13165in</Width>
+            <Width>6.15123in</Width>
             <ZIndex>26</ZIndex>
             <Style>
               <Border>
@@ -1475,10 +1472,9 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Line>
           <Line Name="Line13">
-            <Top>1.21181in</Top>
-            <Left>0.01309in</Left>
+            <Top>1.36458in</Top>
             <Height>0in</Height>
-            <Width>6.11856in</Width>
+            <Width>6.15123in</Width>
             <ZIndex>27</ZIndex>
             <Style>
               <Border>
@@ -1487,10 +1483,10 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Line>
           <Line Name="Line14">
-            <Top>2.29512in</Top>
+            <Top>2.44789in</Top>
             <Left>0.01217in</Left>
             <Height>0in</Height>
-            <Width>6.11948in</Width>
+            <Width>6.13906in</Width>
             <ZIndex>28</ZIndex>
             <Style>
               <Border>
@@ -1505,7 +1501,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
                 <Value>=First(Fields!TBIL_ANN_POLY_POLICY_NO.Value, "DataSet1")</Value>
               </Parameter>
             </Parameters>
-            <Top>3.03819in</Top>
+            <Top>3.20485in</Top>
             <Left>0.16841in</Left>
             <Height>0.42014in</Height>
             <Width>5.52574in</Width>
@@ -1527,6 +1523,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -1537,10 +1534,10 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox28</rd:DefaultName>
-            <Top>1.45487in</Top>
+            <Top>1.60764in</Top>
             <Left>4.61993in</Left>
             <Height>0.25in</Height>
-            <Width>1.07422in</Width>
+            <Width>1.26172in</Width>
             <ZIndex>30</ZIndex>
             <Style>
               <Border>
@@ -1553,7 +1550,6 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Textbox>
           <Textbox Name="Textbox30">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
@@ -1563,6 +1559,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -1573,7 +1570,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox28</rd:DefaultName>
-            <Top>1.77431in</Top>
+            <Top>1.92708in</Top>
             <Left>5.00535in</Left>
             <Height>0.25in</Height>
             <Width>0.63368in</Width>
@@ -1589,7 +1586,6 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Textbox>
           <Textbox Name="TBIL_ANN_POLY_ASSRD_AGE">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
@@ -1598,6 +1594,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
                     <Value>=First(Fields!TBIL_ANN_POLY_ASSRD_AGE.Value, "DataSet1")</Value>
                     <Style>
                       <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1606,7 +1603,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>TBIL_ANN_POLY_ASSRD_AGE</rd:DefaultName>
-            <Top>1.77431in</Top>
+            <Top>1.9132in</Top>
             <Left>4.66681in</Left>
             <Height>0.23611in</Height>
             <Width>0.31076in</Width>
@@ -1632,6 +1629,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -1642,7 +1640,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox79</rd:DefaultName>
-            <Top>0.61458in</Top>
+            <Top>0.6493in</Top>
             <Left>4.60467in</Left>
             <Height>0.25in</Height>
             <Width>1.18892in</Width>
@@ -1658,7 +1656,6 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Textbox>
           <Textbox Name="TBIL_ANN_POLY_ASSRD_BDATE">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
@@ -1667,6 +1664,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
                     <Value>=Format(Fields!TBIL_ANN_POLY_ASSRD_BDATE.Value,"dd/MM/yyyy")</Value>
                     <Style>
                       <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1675,7 +1673,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>TBIL_ANN_POLY_ASSRD_BDATE</rd:DefaultName>
-            <Top>1.7257in</Top>
+            <Top>1.87847in</Top>
             <Left>3.32245in</Left>
             <Height>0.25in</Height>
             <Width>1.10207in</Width>
@@ -1713,7 +1711,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Paragraphs>
             <rd:DefaultName>Textbox82</rd:DefaultName>
             <Left>2.71278in</Left>
-            <Height>0.23959in</Height>
+            <Height>0.25347in</Height>
             <Width>1.47446in</Width>
             <ZIndex>35</ZIndex>
             <Style>
@@ -1727,7 +1725,6 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Textbox>
           <Textbox Name="FORMATTED_PROPOSAL_DT">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
@@ -1736,6 +1733,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
                     <Value>=First(Fields!FORMATTED_PROPOSAL_DT.Value, "DataSet1")</Value>
                     <Style>
                       <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1743,7 +1741,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>FORMATTED_PROPOSAL_DT</rd:DefaultName>
-            <Top>0.92014in</Top>
+            <Top>0.94791in</Top>
             <Left>4.53002in</Left>
             <Height>0.25694in</Height>
             <Width>1.53626in</Width>
@@ -1759,7 +1757,6 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Textbox>
           <Textbox Name="FORMATTED_COMMENCEMENT_DT">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
@@ -1768,6 +1765,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
                     <Value>=First(Fields!FORMATTED_COMMENCEMENT_DT.Value, "DataSet1")</Value>
                     <Style>
                       <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>11pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1775,10 +1773,10 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>FORMATTED_COMMENCEMENT_DT</rd:DefaultName>
-            <Top>0.89237in</Top>
-            <Left>2.41717in</Left>
-            <Height>0.25in</Height>
-            <Width>1.89507in</Width>
+            <Top>0.92014in</Top>
+            <Left>2.40328in</Left>
+            <Height>0.26388in</Height>
+            <Width>2.00174in</Width>
             <ZIndex>37</ZIndex>
             <Style>
               <Border>
@@ -1791,7 +1789,6 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Textbox>
           <Textbox Name="TBIL_PREM_PAYABLE">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
@@ -1808,7 +1805,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>TBIL_PREM_PAYABLE</rd:DefaultName>
-            <Top>3.76388in</Top>
+            <Top>3.79165in</Top>
             <Left>1.84707in</Left>
             <Height>0.22917in</Height>
             <Width>1.67963in</Width>
@@ -1824,7 +1821,6 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             </Style>
           </Textbox>
           <Textbox Name="Textbox89">
-            <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
@@ -1841,7 +1837,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox89</rd:DefaultName>
-            <Top>3.73611in</Top>
+            <Top>3.76388in</Top>
             <Left>5.34519in</Left>
             <Height>0.28472in</Height>
             <Width>0.53646in</Width>
@@ -1858,10 +1854,10 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
           </Textbox>
         </ReportItems>
         <KeepTogether>true</KeepTogether>
-        <Top>12.739in</Top>
-        <Left>0.0484in</Left>
-        <Height>8.64583in</Height>
-        <Width>6.13165in</Width>
+        <Top>12.71123in</Top>
+        <Left>0.1734in</Left>
+        <Height>8.6736in</Height>
+        <Width>6.15123in</Width>
         <ZIndex>4</ZIndex>
         <Style>
           <Border>
@@ -1873,24 +1869,6 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Century Gothic</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Left</TextAlign>
-            </Style>
-          </Paragraph>
           <Paragraph>
             <TextRuns>
               <TextRun>
@@ -2686,22 +2664,6 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value />
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Century Gothic</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
                 <Value>6.</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
@@ -2757,22 +2719,6 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             <TextRuns>
               <TextRun>
                 <Value>No variations in the terms and conditions of this policy, either by endorsement or otherwise, shall bind the company in any way unless it be made by a duly authorized officer of the Company.</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Century Gothic</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Century Gothic</FontFamily>
@@ -2890,22 +2836,6 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value />
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Century Gothic</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
                 <Value>8.</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
@@ -2961,22 +2891,6 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             <TextRuns>
               <TextRun>
                 <Value>No receipt for premiums will be valid unless issued by a duly authorized officer of the Company upon its printed form.</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Century Gothic</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Century Gothic</FontFamily>
@@ -3148,22 +3062,6 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value />
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Century Gothic</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
                 <Value>c)</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
@@ -3192,7 +3090,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
         <rd:DefaultName>Textbox46</rd:DefaultName>
         <Top>22.13491in</Top>
         <Left>0.26042in</Left>
-        <Height>23.59289in</Height>
+        <Height>21.74914in</Height>
         <Width>5.85426in</Width>
         <ZIndex>5</ZIndex>
         <Style>
@@ -3206,10 +3104,10 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>45.94655in</Height>
+    <Height>44.00905in</Height>
     <Style />
   </Body>
-  <Width>6.21618in</Width>
+  <Width>6.41165in</Width>
   <Page>
     <PageHeight>11.69in</PageHeight>
     <PageWidth>8.27in</PageWidth>
