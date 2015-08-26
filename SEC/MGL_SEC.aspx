@@ -24,18 +24,26 @@
     <!-- start header -->
     <div id="div_header" align="center">
         <asp:Panel ID="menuPanel_main" CssClass="menuPanel_main" runat="server">&nbsp;&nbsp;
-            &nbsp;<a class="HREF_MENU2" href="#" onclick="javascript:JSDO_RETURN('../../M_MENU.aspx?menu=HOME')">Main Menu</a>&nbsp;
+                 
+            <asp:LinkButton ID="LNK_USER" Enabled="true" runat="server" Text="Account Settings" PostBackUrl="MGL_SEC.aspx?menu=SEC"></asp:LinkButton>&nbsp;
+           &nbsp;<a class="HREF_MENU2" href="#" onclick="javascript:JSDO_RETURN('../M_MENU.aspx?menu=HOME')">Main Menu</a>&nbsp;
             <asp:Label ID="lblAction" ForeColor="LightGray" Text="Status:" runat="server"></asp:Label>
             &nbsp;<asp:textbox id="txtAction" ForeColor="LightGray" Text="" Visible="true" runat="server" EnableViewState="False" Width="30px"></asp:textbox>
         </asp:Panel>
     </div>
     
-    <div =id="div_content" align="center">
-        <table id="tbl_content" align="center">
+    <div id="div_content" align="center">
+        <table border="1" id="tbl_content" align="center">
         <tr>
-            <td align="left" valign="top" class="td_menu_new">
-	            <table id="tbl_menu_new" align="center" border="0" cellspacing="0"
-                    style="background-color: White; border: 1px solid #c0c0c0; width: 75%">
+            <td align="center" valign="top" class="td_menu">
+	            <table align="center" border="0" cellspacing="0" class="tbl_menu_new">
+                    <tr style="display: none;">
+                        <td align="right" valign="top">
+                            &nbsp;<asp:Label ID="Label1" ForeColor="LightGray" Text="Status:" runat="server"></asp:Label>
+                            &nbsp;<asp:textbox id="Textbox1" ForeColor="LightGray" Text="" Visible="true" runat="server" EnableViewState="False" Width="30px"></asp:textbox>
+                        </td>
+                    </tr>
+
                     <tr>
                         <td align="left" colspan="2" valign="top" class="myMenu_Title"><%=STRMENU_TITLE%></td>
                     </tr>
