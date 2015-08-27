@@ -18,6 +18,15 @@
         {
         	display: inline;
         	}
+        .style2
+        {
+            width: 223px;
+        }
+        .style3
+        {
+            height: 30px;
+            width: 223px;
+        }
     </style>
 </head>
 
@@ -76,20 +85,24 @@
                     </tr>
 
                     <tr>
-                        <td align="right" colspan="1">
-                            <asp:Label ID="lblPol_Num" Text="Policy Number:" runat="server"></asp:Label>
+                        <td align="right" colspan="1" class="style2">
+                            <asp:Label ID="lblPro_Pol_Num" Text="Proposal Number:" runat="server"></asp:Label>
+           
                             &nbsp;
                             </td>
                         <td align="left" colspan="1">&nbsp;                     
-                            &nbsp;<asp:TextBox ID="txtPol_Num" Font-Bold="true" Font-Size="Large" 
-                                ForeColor="Red" Width="350px" runat="server"></asp:TextBox>
-                            <asp:Button ID="cmdFileNum" Enabled="true" Font-Bold="true" Text="Get Record" runat="server" />
+                            <asp:TextBox ID="txtPro_Pol_Num" Width="250px" runat="server"></asp:TextBox>
+                            &nbsp;<asp:Button ID="cmdFileNum" Enabled="true" Font-Bold="true" Text="Get Record" runat="server" />
                         </td>
                     </tr>
                     <tr>
-                        <td align="right" colspan="1">&nbsp;
+                        <td align="right" colspan="1" class="style2">
+                            <asp:Label ID="lblFileNum" Text="File Number:" runat="server"></asp:Label>
+                            &nbsp;
                             </td>
                         <td align="left" colspan="1">&nbsp;
+                            <asp:TextBox ID="txtFileNum" Font-Bold="true" ForeColor="Red" Width="250px" 
+                                runat="server"></asp:TextBox>
                             </td>
                     </tr>
 
@@ -98,25 +111,19 @@
                     </tr>
 
                     <tr>
-                        <td align="right" colspan="1">
-                            <asp:Label ID="lblPro_Pol_Num" Text="Proposal Number:" runat="server"></asp:Label>
+                        <td align="right" colspan="1" class="style3">
+                            <asp:Label ID="lblPol_Num" Text="Policy Number:" runat="server"></asp:Label>
            
                             </td>
-                        <td align="left" colspan="1">&nbsp;                     
-                            <asp:TextBox ID="txtPro_Pol_Num" Width="250px" runat="server" Enabled="False"></asp:TextBox>
+                        <td align="left" colspan="1" class="style1">&nbsp;                     
+                            <asp:TextBox ID="txtPol_Num" 
+                                Font-Bold="true" Font-Size="Large" 
+                                ForeColor="Red" Width="350px" runat="server" Enabled="False"></asp:TextBox>
                         </td>
                     </tr>
 
                     <tr>
-                        <td align="right" colspan="1" class="style1">
-                            <asp:Label ID="lblFileNum" Text="File Number:" runat="server"></asp:Label>
-                        </td>
-                        <td align="left" colspan="1" class="style1">&nbsp; 
-                            <asp:TextBox ID="txtFileNum" Enabled="False" Font-Bold="true" ForeColor="Red" Width="250px" runat="server"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="right" colspan="1">&nbsp;
+                        <td align="right" colspan="1" class="style2">&nbsp;
                             <asp:Label ID="lblAssuredName" Text="Assured Name:" runat="server"></asp:Label>
                         </td>
                         <td align="left" colspan="1">&nbsp;                     
@@ -126,7 +133,7 @@
                     </tr>
 
                     <tr>
-                        <td align="right" colspan="1" class="style1">&nbsp;
+                        <td align="right" colspan="1" class="style3">&nbsp;
                             <asp:Label ID="lblProduct_Num" Text="Product:" runat="server"></asp:Label>
                         </td>    
                         <td align="left" colspan="1" class="style1">&nbsp;
@@ -136,8 +143,8 @@
                     </tr>
 
                     <tr>
-                        <td align="right" valign="top">
-                            <asp:Label ID="lblPro_Pol_Num0" Text="Select document:" runat="server"></asp:Label>
+                        <td align="right" valign="top" class="style2">
+                            <asp:Label ID="lblReportType" Text="Select document:" runat="server"></asp:Label>
            
                             </td>                           
                         <td align="left" valign="top">

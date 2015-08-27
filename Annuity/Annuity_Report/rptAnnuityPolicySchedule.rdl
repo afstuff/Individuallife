@@ -468,7 +468,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>=Fields!FORMATTED_COMMENCEMENT_DT.Value</Value>
+                <Value>=Fields!FORMATTED_COMMENCEMENT_DT_WORD.Value</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Century Gothic</FontFamily>
@@ -553,7 +553,7 @@
         <Top>2.92302in</Top>
         <Left>0.19205in</Left>
         <Height>7.40625in</Height>
-        <Width>5.988in</Width>
+        <Width>6.2385in</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -616,7 +616,7 @@
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>11pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
+                      <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
@@ -674,6 +674,7 @@
                     <Style>
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>9pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -706,7 +707,7 @@
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
-                      <FontWeight>Normal</FontWeight>
+                      <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
@@ -743,7 +744,7 @@
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>11pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
+                      <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
@@ -929,7 +930,7 @@
           <Line Name="Line6">
             <Top>3.69443in</Top>
             <Height>0in</Height>
-            <Width>6.15123in</Width>
+            <Width>6.25715in</Width>
             <ZIndex>11</ZIndex>
             <Style>
               <Border>
@@ -941,7 +942,7 @@
             <Top>4.08332in</Top>
             <Left>0.01217in</Left>
             <Height>0in</Height>
-            <Width>6.13906in</Width>
+            <Width>6.24498in</Width>
             <ZIndex>12</ZIndex>
             <Style>
               <Border>
@@ -1154,29 +1155,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> for a guaranteed period of  </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>11pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>=Fields!POLICY_PERIOD.Value</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>11pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value> years and thereafter payable for the life time of the annuitant. No proportionate annuity payment will be made between the date of last annuity payment due and the date of death of the annuitant.</Value>
+                    <Value> for a guaranteed period of 10 years and thereafter payable for the life time of the annuitant. No proportionate annuity payment will be made between the date of last annuity payment due and the date of death of the annuitant.</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1283,7 +1262,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             <Top>6.00346in</Top>
             <Left>0.01309in</Left>
             <Height>0in</Height>
-            <Width>6.13814in</Width>
+            <Width>6.24406in</Width>
             <ZIndex>19</ZIndex>
             <Style>
               <Border>
@@ -1294,7 +1273,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
           <Line Name="Line9">
             <Top>6.77083in</Top>
             <Height>0in</Height>
-            <Width>6.15123in</Width>
+            <Width>6.25715in</Width>
             <ZIndex>20</ZIndex>
             <Style>
               <Border>
@@ -1305,7 +1284,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
           <Line Name="Line10">
             <Top>7.57291in</Top>
             <Height>0in</Height>
-            <Width>6.15123in</Width>
+            <Width>6.25715in</Width>
             <ZIndex>21</ZIndex>
             <Style>
               <Border>
@@ -1409,10 +1388,10 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox48</rd:DefaultName>
-            <Top>7.64235in</Top>
+            <Top>7.62847in</Top>
             <Left>3.43435in</Left>
             <Height>0.92708in</Height>
-            <Width>2.60051in</Width>
+            <Width>2.73193in</Width>
             <ZIndex>24</ZIndex>
             <Style>
               <Border>
@@ -1435,7 +1414,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>11pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
+                      <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
@@ -1462,8 +1441,9 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
           </Textbox>
           <Line Name="Line11">
             <Top>0.29514in</Top>
+            <Left>0.01217in</Left>
             <Height>0in</Height>
-            <Width>6.15123in</Width>
+            <Width>6.24498in</Width>
             <ZIndex>26</ZIndex>
             <Style>
               <Border>
@@ -1474,7 +1454,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
           <Line Name="Line13">
             <Top>1.36458in</Top>
             <Height>0in</Height>
-            <Width>6.15123in</Width>
+            <Width>6.24498in</Width>
             <ZIndex>27</ZIndex>
             <Style>
               <Border>
@@ -1486,7 +1466,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
             <Top>2.44789in</Top>
             <Left>0.01217in</Left>
             <Height>0in</Height>
-            <Width>6.13906in</Width>
+            <Width>6.24498in</Width>
             <ZIndex>28</ZIndex>
             <Style>
               <Border>
@@ -1630,7 +1610,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>11pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
+                      <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
@@ -1734,6 +1714,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
                     <Style>
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>11pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1766,6 +1747,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
                     <Style>
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>11pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1857,7 +1839,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
         <Top>12.71123in</Top>
         <Left>0.1734in</Left>
         <Height>8.6736in</Height>
-        <Width>6.15123in</Width>
+        <Width>6.25715in</Width>
         <ZIndex>4</ZIndex>
         <Style>
           <Border>
@@ -3091,7 +3073,7 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
         <Top>22.13491in</Top>
         <Left>0.26042in</Left>
         <Height>21.74914in</Height>
-        <Width>5.85426in</Width>
+        <Width>6.15796in</Width>
         <ZIndex>5</ZIndex>
         <Style>
           <Border>
@@ -3107,12 +3089,12 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
     <Height>44.00905in</Height>
     <Style />
   </Body>
-  <Width>6.41165in</Width>
+  <Width>6.55748in</Width>
   <Page>
     <PageHeight>11.69in</PageHeight>
     <PageWidth>8.27in</PageWidth>
-    <LeftMargin>0.25in</LeftMargin>
-    <RightMargin>0.25in</RightMargin>
+    <LeftMargin>0.5in</LeftMargin>
+    <RightMargin>0.5in</RightMargin>
     <TopMargin>0.25in</TopMargin>
     <BottomMargin>0.25in</BottomMargin>
     <Style />
@@ -3124,11 +3106,16 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
       <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>b936fa39-9245-455d-ad44-da09d6d18c3a</rd:DataSourceID>
     </DataSource>
+    <DataSource Name="ABS_LIFE_DS">
+      <DataSourceReference>ABS_LIFE_DS</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>f88a18e1-b371-4467-9c82-5afe8eeb9877</rd:DataSourceID>
+    </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="DataSet1">
       <Query>
-        <DataSourceName>ABS_LIFE_STAGING</DataSourceName>
+        <DataSourceName>ABS_LIFE_DS</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@pPolicyNo">
             <Value>=Parameters!pPolicyNo.Value</Value>
@@ -3165,10 +3152,6 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
         </Field>
         <Field Name="TBIL_ANN_POLY_PLAN_CD">
           <DataField>TBIL_ANN_POLY_PLAN_CD</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="TBIL_ANN_POLY_COVER_CD">
-          <DataField>TBIL_ANN_POLY_COVER_CD</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="TBIL_ANN_POLY_PROPSL_ACCPT_DT">
@@ -3231,6 +3214,10 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
           <DataField>TODAYS_DATE</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="FORMATTED_COMMENCEMENT_DT_WORD">
+          <DataField>FORMATTED_COMMENCEMENT_DT_WORD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="ASSURED_EMAIL">
           <DataField>ASSURED_EMAIL</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -3246,6 +3233,10 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
         <Field Name="TBIL_ANNUAL_PREM">
           <DataField>TBIL_ANNUAL_PREM</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TBIL_PREM_PAYABLE_WORD">
+          <DataField>TBIL_PREM_PAYABLE_WORD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="TBIL_MONTH_PREM">
           <DataField>TBIL_MONTH_PREM</DataField>
@@ -3299,9 +3290,37 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
           <DataField>TBIL_ANN_POLY_BANK_SORT_CODE</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="TBIL_ANN_POL_PRM_SA_CURRCY">
-          <DataField>TBIL_ANN_POL_PRM_SA_CURRCY</DataField>
+        <Field Name="TBIL_ANN_POL_PRM_CURRCY">
+          <DataField>TBIL_ANN_POL_PRM_CURRCY</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TBIL_PRDCT_DTL_DESC">
+          <DataField>TBIL_PRDCT_DTL_DESC</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TBIL_ANN_POL_PREM_WITHOUT_LS_LC">
+          <DataField>TBIL_ANN_POL_PREM_WITHOUT_LS_LC</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TBIL_ANN_POL_PREM_WITH_LS_LC">
+          <DataField>TBIL_ANN_POL_PREM_WITH_LS_LC</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="ANNUAL_ANNUITY">
+          <DataField>ANNUAL_ANNUITY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="MONTHLY_ANNUITY">
+          <DataField>MONTHLY_ANNUITY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="GUARANTEE_PERIOD">
+          <DataField>GUARANTEE_PERIOD</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="ANNUITY_PURCHASE">
+          <DataField>ANNUITY_PURCHASE</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>

@@ -867,4 +867,23 @@ MyRtn_Ok:
             Exit Sub
         End If
     End Sub
+
+    Protected Sub cmdNew_ASP_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdNew_ASP.Click
+        txtName.Text = ""
+        txtShortName.Text = ""
+        txtGroup.Text = ""
+        cboGroup.Text = "*"
+        cboRole.Text = "*** Select ***"
+        txtBranch.Text = ""
+        txtCustPhone01.Text = ""
+        txtCustPhone02.Text = ""
+        txtCustEmail01.Text = ""
+        txtCustEmail02.Text = ""
+        txtLoginName.Text = ""
+        txtPassword.Text = ""
+        txtConPassword.Text = ""
+        txtLoginName.Enabled = True
+        txtLoginName.ReadOnly = False
+
+    End Sub
 End Class

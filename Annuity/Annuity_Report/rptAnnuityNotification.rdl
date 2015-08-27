@@ -9,6 +9,27 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
+                <Value>IL/</Value>
+                <Style>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!USER_SHORT_NAME.Value</Value>
+                <Style>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
                 <Value>=Fields!TODAYS_DATE.Value</Value>
                 <Style>
                   <FontFamily>Century Gothic</FontFamily>
@@ -513,7 +534,18 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>DARAMOLA ABDULMUJEEB                                   NSISONG UBOCHI</Value>
+                <Value>=Fields!USER_FULL_NAME.Value</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>                                                    NSISONG UBOCHI</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Century Gothic</FontFamily>
@@ -638,11 +670,16 @@
       <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>f9210c02-6c37-42eb-8fc5-58601e859c1b</rd:DataSourceID>
     </DataSource>
+    <DataSource Name="ABS_LIFE_DS">
+      <DataSourceReference>ABS_LIFE_DS</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>f9bf18f6-3262-4776-8a98-51c56f6ff786</rd:DataSourceID>
+    </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="DT_ANNUITY_NOTF">
       <Query>
-        <DataSourceName>ABS_LIFE_STAGING</DataSourceName>
+        <DataSourceName>ABS_LIFE_DS</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@pPolicyNo">
             <Value>=Parameters!pPolicyNo.Value</Value>
@@ -681,10 +718,6 @@
           <DataField>TBIL_ANN_POLY_PLAN_CD</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="TBIL_ANN_POLY_COVER_CD">
-          <DataField>TBIL_ANN_POLY_COVER_CD</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="TBIL_ANN_POLY_PROPSL_ACCPT_DT">
           <DataField>TBIL_ANN_POLY_PROPSL_ACCPT_DT</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
@@ -701,12 +734,12 @@
           <DataField>TBIL_ANN_POLY_GENDER</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="TBIL_ANN_POLY_MARITAL">
-          <DataField>TBIL_ANN_POLY_MARITAL</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="ASSURED_GENDER">
           <DataField>ASSURED_GENDER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TBIL_ANN_POLY_MARITAL">
+          <DataField>TBIL_ANN_POLY_MARITAL</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="TBIL_ANN_POLY_OCCUPATN">
@@ -721,6 +754,14 @@
           <DataField>TBIL_ANN_POLY_ASSRD_BDATE</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
+        <Field Name="TBIL_POLICY_END_DT">
+          <DataField>TBIL_POLICY_END_DT</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="POLICY_PERIOD">
+          <DataField>POLICY_PERIOD</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
         <Field Name="FORMATTED_COMMENCEMENT_DT">
           <DataField>FORMATTED_COMMENCEMENT_DT</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -729,20 +770,16 @@
           <DataField>TODAYS_DATE</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="TBIL_POLICY_END_DT">
-          <DataField>TBIL_POLICY_END_DT</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
         <Field Name="FORMATTED_PROPOSAL_DT">
           <DataField>FORMATTED_PROPOSAL_DT</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="POLICY_PERIOD">
-          <DataField>POLICY_PERIOD</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
         <Field Name="Assured_Name">
           <DataField>Assured_Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FORMATTED_COMMENCEMENT_DT_WORD">
+          <DataField>FORMATTED_COMMENCEMENT_DT_WORD</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="ASSURED_PHONE_NUMBER">
@@ -753,12 +790,16 @@
           <DataField>ASSURED_EMAIL</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="ASSURED_ADDRESS">
+          <DataField>ASSURED_ADDRESS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="TBIL_PREM_PAYABLE">
           <DataField>TBIL_PREM_PAYABLE</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="ASSURED_ADDRESS">
-          <DataField>ASSURED_ADDRESS</DataField>
+        <Field Name="TBIL_PREM_PAYABLE_WORD">
+          <DataField>TBIL_PREM_PAYABLE_WORD</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="TBIL_ANNUAL_PREM">
@@ -775,10 +816,6 @@
         </Field>
         <Field Name="TBIL_ANN_POLY_LAST_EMPLOYER_ADRES">
           <DataField>TBIL_ANN_POLY_LAST_EMPLOYER_ADRES</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="TBIL_PREM_PAYABLE_WORD">
-          <DataField>TBIL_PREM_PAYABLE_WORD</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="TBIL_ANN_POLY_RETIREE_PFA">
@@ -817,12 +854,44 @@
           <DataField>TBIL_ANN_POLY_BANK_SORT_CODE</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="TBIL_ANN_POL_PRM_SA_CURRCY">
-          <DataField>TBIL_ANN_POL_PRM_SA_CURRCY</DataField>
+        <Field Name="TBIL_ANN_POL_PRM_CURRCY">
+          <DataField>TBIL_ANN_POL_PRM_CURRCY</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TBIL_ANN_POL_PREM_WITHOUT_LS_LC">
+          <DataField>TBIL_ANN_POL_PREM_WITHOUT_LS_LC</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TBIL_ANN_POL_PREM_WITH_LS_LC">
+          <DataField>TBIL_ANN_POL_PREM_WITH_LS_LC</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="ANNUAL_ANNUITY">
+          <DataField>ANNUAL_ANNUITY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="MONTHLY_ANNUITY">
+          <DataField>MONTHLY_ANNUITY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="GUARANTEE_PERIOD">
+          <DataField>GUARANTEE_PERIOD</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="ANNUITY_PURCHASE">
+          <DataField>ANNUITY_PURCHASE</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="TBIL_PRDCT_DTL_DESC">
           <DataField>TBIL_PRDCT_DTL_DESC</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="USER_SHORT_NAME">
+          <DataField>USER SHORT NAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="USER_FULL_NAME">
+          <DataField>USER FULL NAME</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>

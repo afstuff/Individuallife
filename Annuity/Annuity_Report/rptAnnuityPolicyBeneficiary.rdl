@@ -41,8 +41,7 @@
                       <rd:DefaultName>TBIL_ANN_BENF_NAME</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -54,25 +53,24 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox4">
+                    <Textbox Name="RELATIONSHIP">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Fields!RELATIONSHIP.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox4</rd:DefaultName>
+                      <rd:DefaultName>RELATIONSHIP</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -101,8 +99,7 @@
                       <rd:DefaultName>TBIL_ANN_BENF_PCENT</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -190,27 +187,23 @@
       <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>6d123501-f5d0-45d2-b0df-629857316313</rd:DataSourceID>
     </DataSource>
+    <DataSource Name="ABS_LIFE_DS">
+      <DataSourceReference>ABS_LIFE_DS</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>9152cf09-7f73-49b2-a58a-5510042a0352</rd:DataSourceID>
+    </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="DT_Annuity_Ben">
       <Query>
-        <DataSourceName>ABS_LIFE_STAGING</DataSourceName>
+        <DataSourceName>ABS_LIFE_DS</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@pPOLY_NO">
             <Value>=Parameters!pPOLY_NO.Value</Value>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>SELECT        TBIL_ANN_POLICY_BENEFRY.TBIL_ANN_BENF_REC_ID, TBIL_ANN_POLICY_BENEFRY.TBIL_ANN_BENF_FILE_NO, TBIL_ANN_POLICY_BENEFRY.TBIL_ANN_BENF_MDLE, 
-                         TBIL_ANN_POLICY_BENEFRY.TBIL_ANN_BENF_PROP_NO, TBIL_ANN_POLICY_BENEFRY.TBIL_ANN_BENF_BENF_COVER_ID, TBIL_ANN_POLICY_BENEFRY.TBIL_ANN_BENF_POLY_NO, 
-                         TBIL_ANN_POLICY_BENEFRY.TBIL_ANN_BENF_SNO, TBIL_ANN_POLICY_BENEFRY.TBIL_ANN_BENF_COVER_ID, TBIL_ANN_POLICY_BENEFRY.TBIL_ANN_BENF_TYPE, 
-                         TBIL_ANN_POLICY_BENEFRY.TBIL_ANN_BENF_CAT, TBIL_ANN_POLICY_BENEFRY.TBIL_ANN_BENF_BDATE, TBIL_ANN_POLICY_BENEFRY.TBIL_ANN_BENF_AGE, 
-                         TBIL_ANN_POLICY_BENEFRY.TBIL_ANN_BENF_RELATN_CD, TBIL_ANN_POLICY_BENEFRY.TBIL_ANN_BENF_NAME, TBIL_ANN_POLICY_BENEFRY.TBIL_ANN_BENF_PCENT, 
-                         TBIL_ANN_POLICY_BENEFRY.TBIL_ANN_BENF_GURDN_NM, TBIL_ANN_POLICY_BENEFRY.TBIL_ANN_BENF_ADRESS, TBIL_ANN_POLICY_BENEFRY.TBIL_ANN_BENF_TAG, 
-                         TBIL_ANN_POLICY_BENEFRY.TBIL_ANN_BENF_FLAG, TBIL_ANN_POLICY_BENEFRY.TBIL_ANN_BENF_OPERID, TBIL_ANN_POLICY_BENEFRY.TBIL_ANN_BENF_KEYDTE, 
-                         TBIL_ANN_POLICY_BENEFRY.TBIL_ANN_BENF_OLD_NEW
-FROM            TBIL_ANN_POLICY_PREM_INFO INNER JOIN
-                         TBIL_ANN_POLICY_BENEFRY ON TBIL_ANN_POLICY_BENEFRY.TBIL_ANN_BENF_POLY_NO = TBIL_ANN_POLICY_PREM_INFO.TBIL_ANN_POL_PRM_POLY_NO
-WHERE        (TBIL_ANN_POLICY_BENEFRY.TBIL_ANN_BENF_POLY_NO = @pPOLY_NO)</CommandText>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>SPAN_GET_BENE_RELATIONSHIP</CommandText>
       </Query>
       <Fields>
         <Field Name="TBIL_ANN_BENF_REC_ID">
@@ -299,6 +292,10 @@ WHERE        (TBIL_ANN_POLICY_BENEFRY.TBIL_ANN_BENF_POLY_NO = @pPOLY_NO)</Comman
         </Field>
         <Field Name="TBIL_ANN_BENF_OLD_NEW">
           <DataField>TBIL_ANN_BENF_OLD_NEW</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RELATIONSHIP">
+          <DataField>RELATIONSHIP</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
