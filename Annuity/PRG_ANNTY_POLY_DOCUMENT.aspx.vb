@@ -30,6 +30,7 @@ Partial Class Annuity_PRG_ANNTY_POLY_DOCUMENT
 
     Dim strErrMsg As String
     Protected strUpdate_Sw As String
+    'Dim rParams As String() = {"nw", "nw", "new", "new", "new", "new", "new", "new", "new", "new", "new"}
     Dim rParams As String() = {"nw", "nw", "new", "new", "new", "new", "new", "new", "new"}
     Dim ErrorInd As String
 
@@ -229,11 +230,13 @@ Partial Class Annuity_PRG_ANNTY_POLY_DOCUMENT
         rParams(1) = "pPolicyNo="
         rParams(2) = txtPol_Num.Text + "&"
         rParams(3) = "pParam1="
-        rParams(4) = CType(Session("MyUserIDX"), String) + "&"
+        rParams(4) = "null&"
         rParams(5) = "pParam2="
         rParams(6) = "null&"
         rParams(7) = "pParam3="
         rParams(8) = "null&"
+        'rParams(9) = "pLoggedName="
+        'rParams(10) = CType(Session("MyUserIDX"), String) + "&"
 
         Session("ReportParams") = rParams
         Response.Redirect("../PrintView.aspx")

@@ -13,15 +13,28 @@
                 <Style>
                   <FontFamily>Century Gothic</FontFamily>
                   <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
+                  <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>=Fields!USER_SHORT_NAME.Value</Value>
+                <Value>=UCase(Fields!USER_SHORT_NAME.Value)</Value>
                 <Style>
                   <FontFamily>Century Gothic</FontFamily>
                   <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -296,7 +309,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>) has been transferred to our insurance company (Custodian Life Assurance Limited) by the PFA (CRUSADER STERLING PENSION) on the </Value>
+                <Value>) has been transferred to our insurance company (Custodian Life Assurance Limited) by the PFA (</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Century Gothic</FontFamily>
@@ -307,7 +320,29 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>=Fields!FORMATTED_COMMENCEMENT_DT.Value</Value>
+                <Value>=Fields!TBIL_PFA_DESC.Value</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>) on the </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!RECIEPT_DATE.Value</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Century Gothic</FontFamily>
@@ -534,7 +569,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Fields!USER_FULL_NAME.Value</Value>
+                <Value>=Fields!USER_NAME.Value</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Century Gothic</FontFamily>
@@ -730,10 +765,6 @@
           <DataField>TBIL_ANN_POLY_ASSRD_AGE</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="TBIL_ANN_POLY_GENDER">
-          <DataField>TBIL_ANN_POLY_GENDER</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="ASSURED_GENDER">
           <DataField>ASSURED_GENDER</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -882,16 +913,36 @@
           <DataField>ANNUITY_PURCHASE</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="USER_SHORT_NAME">
+          <DataField>USER_SHORT_NAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="TBIL_PRDCT_DTL_DESC">
           <DataField>TBIL_PRDCT_DTL_DESC</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="USER_SHORT_NAME">
-          <DataField>USER SHORT NAME</DataField>
+        <Field Name="USER_NAME">
+          <DataField>USER_NAME</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="USER_FULL_NAME">
-          <DataField>USER FULL NAME</DataField>
+        <Field Name="RECIEPT_DATE">
+          <DataField>RECIEPT_DATE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PFA_PHONE_NUMBER">
+          <DataField>PFA_PHONE_NUMBER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TBIL_PFA_DESC">
+          <DataField>TBIL_PFA_DESC</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PFA_EMAIL">
+          <DataField>PFA_EMAIL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PFA_ADDRESS">
+          <DataField>PFA_ADDRESS</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>

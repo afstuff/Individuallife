@@ -156,7 +156,7 @@
         <Top>1.23436in</Top>
         <Left>1.21883in</Left>
         <Height>1.08556in</Height>
-        <Width>4.96122in</Width>
+        <Width>5.21172in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -174,7 +174,7 @@
         <Top>1.45552in</Top>
         <Left>0.04747in</Left>
         <Height>0.61458in</Height>
-        <Width>1in</Width>
+        <Width>1.05208in</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -3166,10 +3166,6 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
           <DataField>TBIL_ANN_POLY_ASSRD_AGE</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="TBIL_ANN_POLY_GENDER">
-          <DataField>TBIL_ANN_POLY_GENDER</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="TBIL_ANN_POLY_MARITAL">
           <DataField>TBIL_ANN_POLY_MARITAL</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -3318,9 +3314,37 @@ The annuity benefits are subject to any relevant laws of the Federal Republic of
           <DataField>GUARANTEE_PERIOD</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="USER_SHORT_NAME">
+          <DataField>USER_SHORT_NAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="ANNUITY_PURCHASE">
           <DataField>ANNUITY_PURCHASE</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="USER_NAME">
+          <DataField>USER_NAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RECIEPT_DATE">
+          <DataField>RECIEPT_DATE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PFA_PHONE_NUMBER">
+          <DataField>PFA_PHONE_NUMBER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TBIL_PFA_DESC">
+          <DataField>TBIL_PFA_DESC</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PFA_EMAIL">
+          <DataField>PFA_EMAIL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PFA_ADDRESS">
+          <DataField>PFA_ADDRESS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
