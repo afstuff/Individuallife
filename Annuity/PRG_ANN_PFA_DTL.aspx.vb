@@ -114,7 +114,7 @@ Partial Class Annuity_PRG_ANN_PFA_DTL
 
         strSQL = ""
         strSQL = "SELECT TOP 1 TBIL_PFA_CODE FROM " & strTable
-        strSQL = strSQL & " WHERE RTRIM(ISNULL(TBIL_PFA_DESC,'')) = '" & RTrim(Me.txtTBIL_PFA_DESC.Text) & "'"
+        strSQL = strSQL & " WHERE TBIL_PFA_DESC = '" & RTrim(Me.txtTBIL_PFA_DESC.Text) & "'"
         'strSQL = strSQL & " AND TBIL_PFA_ID = '" & RTrim(Me.txtCustID.Text) & "'"
 
         Dim chk_objOLECmd As OleDbCommand = New OleDbCommand(strSQL, objOLEConn)
@@ -292,8 +292,8 @@ Partial Class Annuity_PRG_ANN_PFA_DTL
 
         strTable = strTableName
         strSQL = ""
-        strSQL = strSQL & "SELECT TBIL_PFA_REC_ID, TBIL_PFA_CODE, RTRIM(ISNULL(TBIL_PFA_DESC,'')) AS TBIL_PFA_FULL_NAME" & _
-                        " RTRIM(ISNULL(TBIL_PFA_PHONE1,'')) + ' ' + RTRIM(ISNULL(TBIL_PFA_PHONE2,'')) AS TBIL_PFA_PHONE_NUM" & _
+        strSQL = strSQL & "SELECT TBIL_PFA_REC_ID, TBIL_PFA_CODE, RTRIM(ISNULL(TBIL_PFA_DESC,'')) AS TBIL_PFA_FULL_NAME, " & _
+                        " RTRIM(ISNULL(TBIL_PFA_PHONE1,'')) + ' ' + RTRIM(ISNULL(TBIL_PFA_PHONE2,'')) AS TBIL_PFA_PHONE_NUM " & _
                          " FROM " & strTable & " where TBIL_PFA_DESC = '" & RTrim(Me.txtTBIL_PFA_DESC.Text) & "'" & _
                          " ORDER BY TBIL_PFA_DESC, RTRIM(ISNULL(TBIL_PFA_DESC,''))"
 
