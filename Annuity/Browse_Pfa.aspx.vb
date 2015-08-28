@@ -1,7 +1,8 @@
-﻿Imports System.Data
+﻿
+Imports System.Data
 Imports System.Data.OleDb
 
-Partial Class WebForm3
+Partial Class Annuity_Browse_Pfa
     Inherits System.Web.UI.Page
 
     Protected FirstMsg As String
@@ -21,9 +22,6 @@ Partial Class WebForm3
     Dim strSQL As String
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        'strTableName = "TBIL_INS_DETAIL"
-        'strR_ID = "001"
-
         Try
             strQRY_TYPE = CType(Request.QueryString("QRY_TYPE"), String)
         Catch ex As Exception
@@ -77,14 +75,13 @@ Partial Class WebForm3
             Me.cmdOK.Disabled = True
             'Call Proc_DataBind(strR_ID)
             Me.txtAction.Text = ""
-            Call Proc_DataBind(strR_ID)
+            Call Proc_DataBind()
         Else
             strFT = "N"
         End If
-
     End Sub
 
-    Private Sub Proc_DataBind(ByVal pvID As String)
+    Private Sub Proc_DataBind()
         'Me.cmdDelItem.Enabled = True
 
         Select Case UCase(Trim(strQRY_TYPE))
@@ -94,67 +91,7 @@ Partial Class WebForm3
                 strTable = strTableName
 
                 strSQL = "SELECT * FROM " & strTableName & ""
-
-            Case "MKT"
-                STRPAGE_TITLE = "List of Agents Codes..."
-                strTableName = "TBIL_AGENCY_CD"
-                strTable = strTableName
-                strSQL = ""
-                strSQL = strSQL & "SELECT TBIL_AGCY_AGENT_REC_ID AS MyFld_Rec_ID, TBIL_AGCY_AGENT_ID AS MyFld_ID, TBIL_AGCY_AGENT_CD AS MyFld_Value"
-                strSQL = strSQL & ",RTRIM(ISNULL(TBIL_AGCY_AGENT_NAME,'')) AS MyFld_Text"
-                strSQL = strSQL & " FROM " & strTable & " "
-                strSQL = strSQL & " WHERE TBIL_AGCY_AGENT_ID = '" & RTrim(pvID) & "'"
-                If RTrim(Me.txtSearch.Value) = "Search..." Then
-                ElseIf RTrim(Me.txtSearch.Value) <> "" Then
-                    strSQL = strSQL & " AND (TBIL_AGCY_AGENT_NAME LIKE '%" & RTrim(Me.txtSearch.Value) & "%'"
-                    strSQL = strSQL & " OR TBIL_AGCY_AGENT_NAME LIKE '%" & RTrim(Me.txtSearch.Value) & "%')"
-                End If
-                If Trim(strFT) = "Y" Then
-                    strFT = "N"
-                    strSQL = strSQL & " AND TBIL_AGENT_KEYDTE >= '" & Format(DateAdd(DateInterval.Day, -7, Now), "MM/dd/yyyy") & "'"
-                End If
-                strSQL = strSQL & " ORDER BY TBIL_AGCY_AGENT_ID, RTRIM(ISNULL(TBIL_AGCY_AGENT_NAME,''))"
-
-            Case "BRK"
-                STRPAGE_TITLE = "List of Brokers Codes..."
-                strTableName = "TBIL_CUST_DETAIL"
-                strTable = strTableName
-                strSQL = ""
-                strSQL = strSQL & "SELECT TBIL_CUST_REC_ID AS MyFld_Rec_ID, TBIL_CUST_ID AS MyFld_ID, TBIL_CUST_CODE AS MyFld_Value"
-                strSQL = strSQL & ",RTRIM(ISNULL(TBIL_CUST_DESC,'')) AS MyFld_Text"
-                strSQL = strSQL & " FROM " & strTable & " "
-                strSQL = strSQL & " WHERE TBIL_CUST_ID = '" & RTrim(pvID) & "'"
-                If RTrim(Me.txtSearch.Value) = "Search..." Then
-                ElseIf RTrim(Me.txtSearch.Value) <> "" Then
-                    strSQL = strSQL & " AND (TBIL_CUST_DESC LIKE '%" & RTrim(Me.txtSearch.Value) & "%'"
-                    strSQL = strSQL & " OR TBIL_CUST_DESC LIKE '%" & RTrim(Me.txtSearch.Value) & "%')"
-                End If
-                If Trim(strFT) = "Y" Then
-                    strFT = "N"
-                    strSQL = strSQL & " AND TBIL_CUST_KEYDTE >= '" & Format(DateAdd(DateInterval.Day, -7, Now), "MM/dd/yyyy") & "'"
-                End If
-                strSQL = strSQL & " ORDER BY TBIL_CUST_ID, RTRIM(ISNULL(TBIL_CUST_DESC,''))"
-
-            Case "INS"
-                STRPAGE_TITLE = "List of Assured/Insured/Client Codes..."
-                strTableName = "TBIL_INS_DETAIL"
-                strTable = strTableName
-                strSQL = ""
-                strSQL = strSQL & "SELECT TBIL_INSRD_REC_ID AS MyFld_Rec_ID, TBIL_INSRD_ID AS MyFld_ID, TBIL_INSRD_CODE AS MyFld_Value"
-                strSQL = strSQL & ",RTRIM(ISNULL(TBIL_INSRD_SURNAME,'')) + ' ' + RTRIM(ISNULL(TBIL_INSRD_FIRSTNAME,'')) AS MyFld_Text"
-                strSQL = strSQL & " FROM " & strTable & " "
-                strSQL = strSQL & " WHERE TBIL_INSRD_ID = '" & RTrim(pvID) & "'"
-                If RTrim(Me.txtSearch.Value) = "Search..." Then
-                ElseIf RTrim(Me.txtSearch.Value) <> "" Then
-                    strSQL = strSQL & " AND (TBIL_INSRD_SURNAME LIKE '%" & RTrim(Me.txtSearch.Value) & "%'"
-                    strSQL = strSQL & " OR TBIL_INSRD_FIRSTNAME LIKE '%" & RTrim(Me.txtSearch.Value) & "%')"
-                End If
-                If Trim(strFT) = "Y" Then
-                    strFT = "N"
-                    strSQL = strSQL & " AND TBIL_INSRD_KEYDTE >= '" & Format(DateAdd(DateInterval.Day, -7, Now), "MM/dd/yyyy") & "'"
-                End If
-                strSQL = strSQL & " ORDER BY TBIL_INSRD_ID, RTRIM(ISNULL(TBIL_INSRD_SURNAME,'')) + ' ' + RTRIM(ISNULL(TBIL_INSRD_FIRSTNAME,''))"
-
+           
             Case Else
                 strSQL = ""
                 STRPAGE_TITLE = "List of ..."
@@ -230,38 +167,28 @@ Partial Class WebForm3
 
     End Sub
 
-    Protected Sub GridView1_PageIndexChanging(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewPageEventArgs) Handles GridView1.PageIndexChanging
-
-        'Dim row As GridViewRow = GridView1.Rows(e.NewSelectedIndex)
-
-        GridView1.PageIndex = e.NewPageIndex
-        Call Proc_DataBind(strR_ID)
-        Me.lblMessage.Text = "Page " & GridView1.PageIndex + 1 & " of " & Me.GridView1.PageCount
-
-    End Sub
-
+    
 
     Protected Sub GridView1_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles GridView1.SelectedIndexChanged
-        Me.txtCustID.Text = Now.ToString
+         Me.txtCustID.Text = Now.ToString
         ' Get the currently selected row using the SelectedRow property.
         Dim row As GridViewRow = GridView1.SelectedRow
 
         ' Display the required value from the selected row.
         Me.txtRecNo.Text = row.Cells(1).Text
         Me.txtCustID.Text = row.Cells(2).Text
-        Me.txtCustName.Text = row.Cells(3).Text
+        Me.txtCustName.Text = row.Cells(2).Text
 
         Me.hidRecNo.Value = Me.txtRecNo.Text
         Me.hidCustID.Value = Me.txtCustID.Text
         Me.hidCustName.Value = Me.txtCustName.Text
 
         Me.cmdOK.Disabled = False
-
-
     End Sub
 
-    Protected Sub cmdSearch_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdSearch.Click
-        Call Proc_DataBind(strR_ID)
-
+    Protected Sub GridView1_SelectedIndexChanging(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewSelectEventArgs) Handles GridView1.SelectedIndexChanging
+        'GridView1.PageIndex = e.NewPageIndex
+        'Call Proc_DataBind()
+        'Me.lblMessage.Text = "Page " & GridView1.PageIndex + 1 & " of " & Me.GridView1.PageCount
     End Sub
 End Class

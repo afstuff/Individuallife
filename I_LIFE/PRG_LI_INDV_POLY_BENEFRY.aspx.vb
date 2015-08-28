@@ -1050,9 +1050,9 @@ Proc_Skip_ANB:
         strSQL = ""
         strSQL = strSQL & "SELECT TOP 1 BEN_TBL.*"
         strSQL = strSQL & " FROM " & strTable & " AS BEN_TBL"
-        strSQL = strSQL & " WHERE BEN_TBL.TBIL_ANN_BENF_FILE_NO = '" & RTrim(strREC_ID) & "'"
+        strSQL = strSQL & " WHERE BEN_TBL.TBIL_POL_BENF_FILE_NO = '" & RTrim(strREC_ID) & "'"
         If Val(LTrim(RTrim(FVstrRecNo))) <> 0 Then
-            strSQL = strSQL & " AND BEN_TBL.TBIL_ANN_BENF_REC_ID = '" & Val(FVstrRecNo) & "'"
+            strSQL = strSQL & " AND BEN_TBL.TBIL_POL_BENF_REC_ID = '" & Val(FVstrRecNo) & "'"
         End If
         'strSQL = strSQL & " AND PT.TBIL_POLY_PROPSAL_NO = '" & RTrim(strQ_ID) & "'"
         'strSQL = strSQL & " AND PT.TBIL_POLY_POLICY_NO = '" & RTrim(strP_ID) & "'"
@@ -1073,37 +1073,37 @@ Proc_Skip_ANB:
         If (objOLEDR.Read()) Then
             strErrMsg = "true"
 
-            Me.txtFileNum.Text = RTrim(CType(objOLEDR("TBIL_ANN_BENF_FILE_NO") & vbNullString, String))
+            Me.txtFileNum.Text = RTrim(CType(objOLEDR("TBIL_POL_BENF_FILE_NO") & vbNullString, String))
             'Call Proc_DDL_Get(Me.ddlGroup, RTrim(Me.txtGroupNum.Text))
-            Me.txtRecNo.Text = RTrim(CType(objOLEDR("TBIL_ANN_BENF_REC_ID") & vbNullString, String))
+            Me.txtRecNo.Text = RTrim(CType(objOLEDR("TBIL_POL_BENF_REC_ID") & vbNullString, String))
 
-            Me.txtQuote_Num.Text = RTrim(CType(objOLEDR("TBIL_ANN_BENF_PROP_NO") & vbNullString, String))
+            Me.txtQuote_Num.Text = RTrim(CType(objOLEDR("TBIL_POL_BENF_PROP_NO") & vbNullString, String))
             Me.txtPolNum.Text = RTrim(CType(objOLEDR("TBIL_POL_BENF_POLY_NO") & vbNullString, String))
 
-            Me.txtBenef_Cover_ID.Text = RTrim(CType(objOLEDR("TBIL_ANN_BENF_COVER_ID") & vbNullString, String))
+            Me.txtBenef_Cover_ID.Text = RTrim(CType(objOLEDR("TBIL_POL_BENF_COVER_ID") & vbNullString, String))
             Call gnProc_DDL_Get(Me.cboBenef_Cover_ID, RTrim(Me.txtBenef_Cover_ID.Text))
 
-            Me.txtBenef_SN.Text = RTrim(CType(objOLEDR("TBIL_ANN_BENF_SNO") & vbNullString, String))
+            Me.txtBenef_SN.Text = RTrim(CType(objOLEDR("TBIL_POL_BENF_SNO") & vbNullString, String))
 
-            Me.txtBenef_Type.Text = RTrim(CType(objOLEDR("TBIL_ANN_BENF_TYPE") & vbNullString, String))
+            Me.txtBenef_Type.Text = RTrim(CType(objOLEDR("TBIL_POL_BENF_TYPE") & vbNullString, String))
             Call gnProc_DDL_Get(Me.cboBenef_Type, RTrim(Me.txtBenef_Type.Text))
 
-            Me.txtBenef_Category.Text = RTrim(CType(objOLEDR("TBIL_ANN_BENF_CAT") & vbNullString, String))
+            Me.txtBenef_Category.Text = RTrim(CType(objOLEDR("TBIL_POL_BENF_CAT") & vbNullString, String))
             Call gnProc_DDL_Get(Me.cboBenef_Category, RTrim(Me.txtBenef_Category.Text))
 
-            Me.txtBenef_Name.Text = RTrim(CType(objOLEDR("TBIL_ANN_BENF_NAME") & vbNullString, String))
-            Me.txtBenef_Percentage.Text = Val(objOLEDR("TBIL_ANN_BENF_PCENT") & vbNullString)
+            Me.txtBenef_Name.Text = RTrim(CType(objOLEDR("TBIL_POL_BENF_NAME") & vbNullString, String))
+            Me.txtBenef_Percentage.Text = Val(objOLEDR("TBIL_POL_BENF_PCENT") & vbNullString)
 
-            If IsDate(objOLEDR("TBIL_ANN_BENF_BDATE")) Then
-                Me.txtBenef_DOB.Text = Format(CType(objOLEDR("TBIL_ANN_BENF_BDATE"), DateTime), "dd/MM/yyyy")
+            If IsDate(objOLEDR("TBIL_POL_BENF_BDATE")) Then
+                Me.txtBenef_DOB.Text = Format(CType(objOLEDR("TBIL_POL_BENF_BDATE"), DateTime), "dd/MM/yyyy")
             End If
-            Me.txtBenef_Age.Text = Val(objOLEDR("TBIL_ANN_BENF_AGE") & vbNullString)
+            Me.txtBenef_Age.Text = Val(objOLEDR("TBIL_POL_BENF_AGE") & vbNullString)
 
-            Me.txtBenef_Relationship.Text = RTrim(CType(objOLEDR("TBIL_ANN_BENF_RELATN_CD") & vbNullString, String))
+            Me.txtBenef_Relationship.Text = RTrim(CType(objOLEDR("TBIL_POL_BENF_RELATN_CD") & vbNullString, String))
             Call gnProc_DDL_Get(Me.cboBenef_Relationship, RTrim(Me.txtBenef_Relationship.Text))
 
-            Me.txtBenef_Address.Text = RTrim(CType(objOLEDR("TBIL_ANN_BENF_ADRESS") & vbNullString, String))
-            Me.txtBenef_GuardianName.Text = RTrim(CType(objOLEDR("TBIL_ANN_BENF_GURDN_NM") & vbNullString, String))
+            Me.txtBenef_Address.Text = RTrim(CType(objOLEDR("TBIL_POL_BENF_ADRESS") & vbNullString, String))
+            Me.txtBenef_GuardianName.Text = RTrim(CType(objOLEDR("TBIL_POL_BENF_GURDN_NM") & vbNullString, String))
 
             Me.lblFileNum.Enabled = False
             'Call DisableBox(Me.txtFileNum)

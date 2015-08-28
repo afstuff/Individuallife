@@ -1,7 +1,5 @@
 ﻿Imports System.Data.OleDb
-Imports System.Data.SqlClient
 Imports System.Data
-Imports System.IO
 
 Partial Class Annuity_PRG_ANNUITY_POLY_BENEFRY
     Inherits System.Web.UI.Page
@@ -740,40 +738,6 @@ Proc_Skip_ANB:
         End If
 
 
-        'Me.lblMsg.Text = "About to submit data... "
-        'FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
-
-        'If RTrim(txtNum.Text) = "" Then
-        '    Me.txtNum.Text = MOD_GEN.gnGet_Serial_Und("GET_SN_IL_UNDW", Trim(strP_ID), Trim(Me.txtGroupNum.Text), "XXXX", "XXXX", "")
-        '    If Trim(txtNum.Text) = "" Or Trim(Me.txtNum.Text) = "0" Or Trim(Me.txtNum.Text) = "*" Then
-        '        Me.txtNum.Text = ""
-        '        Me.lblMessage.Text = "Sorry!. Unable to get the next record id. Please contact your service provider..."
-        '        FirstMsg = "Javascript:alert('" & Me.lblMessage.Text & "')"
-        '        Me.lblMessage.Text = "Status:"
-        '        Exit Sub
-        '    ElseIf Trim(Me.txtNum.Text) = "PARAM_ERR" Then
-        '        Me.txtNum.Text = ""
-        '        Me.lblMessage.Text = "Sorry!. Unable to get the next record id - INVALID PARAMETER(S) - " & Trim(strP_ID)
-        '        FirstMsg = "Javascript:alert('" & Me.lblMessage.Text & "')"
-        '        Me.lblMessage.Text = "Status:"
-        '        Exit Sub
-        '    ElseIf Trim(Me.txtNum.Text) = "DB_ERR" Then
-        '        Me.txtNum.Text = ""
-        '        Me.lblMessage.Text = "Sorry!. Unable to connect to database. Please contact your service provider..."
-        '        FirstMsg = "Javascript:alert('" & Me.lblMessage.Text & "')"
-        '        Me.lblMessage.Text = "Status:"
-        '        Exit Sub
-        '    ElseIf Trim(Me.txtNum.Text) = "ERR_ERR" Then
-        '        Me.txtNum.Text = ""
-        '        Me.lblMessage.Text = "Sorry!. Unable to get connection object. Please contact your service provider..."
-        '        FirstMsg = "Javascript:alert('" & Me.lblMessage.Text & "')"
-        '        Me.lblMessage.Text = "Status:"
-        '        Exit Sub
-        '    End If
-
-        'End If
-
-
         Dim myUserIDX As String = ""
         Try
             myUserIDX = CType(Session("MyUserIDX"), String)
@@ -869,13 +833,6 @@ Proc_Skip_ANB:
 
             Else
                 '   Update existing record
-
-                'm_rwContact = m_dtContacts.Rows(0)
-                'm_rwContact("ContactName") = "Bob Brown"
-                'm_rwContact.AcceptChanges()
-                'm_dtContacts.AcceptChanges()
-                'Dim intC As Integer = m_daDataAdapter.Update(m_dtContacts)
-
 
                 With obj_DT
                     .Rows(0)("TBIL_ANN_BENF_FILE_NO") = RTrim(Me.txtFileNum.Text)

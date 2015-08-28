@@ -1,7 +1,5 @@
 ﻿Imports System.Data.OleDb
-Imports System.Data.SqlClient
 Imports System.Data
-Imports System.IO
 
 Partial Class Annuity_PRG_ANNTY_POLY_PERSNAL
     Inherits System.Web.UI.Page
@@ -147,6 +145,79 @@ Partial Class Annuity_PRG_ANNTY_POLY_PERSNAL
 
     End Sub
 
+    Private Sub Proc_SearchPfa()
+
+        strTable = "TBIL_PFA_DETAIL"
+        strSQL = "SELECT *, RTRIM(ISNULL(TBIL_PFA_DESC,'')) AS TBIL_PFA_FULL_NAME FROM " & strTable & " where TBIL_PFA_DESC like '" & txtPfa_Search.Text & "%' or (TBIL_PFA_CODE like '" & txtPfa_Search.Text & "%') or (TBIL_PFA_SHRT_DESC like '" & txtPfa_Search.Text & "%') ORDER BY TBIL_PFA_DESC"
+
+        Dim mystrCONN As String = CType(Session("connstr"), String)
+        Dim objOLEConn As New OleDbConnection(mystrCONN)
+
+        Dim cmd As OleDbCommand = New OleDbCommand()
+        cmd.Connection = objOLEConn
+        cmd.CommandText = strSQL
+        cmd.CommandType = CommandType.Text
+
+        Try
+            objOLEConn.Open()
+            Dim adapter As OleDbDataAdapter = New OleDbDataAdapter()
+            adapter.SelectCommand = cmd
+            Dim ds As DataSet = New DataSet()
+            adapter.Fill(ds)
+            objOLEConn.Close()
+
+            Dim dt As DataTable = ds.Tables(0)
+            Dim dr As DataRow = dt.NewRow()
+            dr("TBIL_PFA_FULL_NAME") = "-- Selecct --"
+            dr("TBIL_PFA_CODE") = ""
+            dt.Rows.InsertAt(dr, 0)
+
+            cbo_PfaName.DataSource = dt
+            cbo_PfaName.DataTextField = "TBIL_PFA_FULL_NAME"
+            cbo_PfaName.DataValueField = "TBIL_PFA_CODE"
+            cbo_PfaName.DataBind()
+
+        Catch ex As Exception
+            '_rtnMessage = "Entry failed! " + ex.Message.ToString()
+
+        End Try
+
+    End Sub
+
+    Private Sub Proc_GetPfa()
+
+        strTable = "TBIL_PFA_DETAIL"
+        strSQL = "SELECT *, RTRIM(ISNULL(TBIL_PFA_DESC,'')) AS TBIL_PFA_FULL_NAME FROM " & strTable & " where TBIL_PFA_CODE = '" & cbo_PfaName.SelectedValue & "'"
+
+        Dim mystrCONN As String = CType(Session("connstr"), String)
+        Dim objOLEConn As New OleDbConnection(mystrCONN)
+
+        Dim cmd As OleDbCommand = New OleDbCommand()
+        cmd.Connection = objOLEConn
+        cmd.CommandText = strSQL
+        cmd.CommandType = CommandType.Text
+
+        Try
+            objOLEConn.Open()
+            Dim adapter As OleDbDataAdapter = New OleDbDataAdapter()
+            adapter.SelectCommand = cmd
+            Dim ds As DataSet = New DataSet()
+            adapter.Fill(ds)
+            objOLEConn.Close()
+
+            Dim dt As DataTable = ds.Tables(0)
+            For Each dr As DataRow In dt.Rows
+                txtPfaNum.Text = dr("TBIL_PFA_CODE").ToString()
+                txtPfaName.Text = dr("TBIL_PFA_FULL_NAME").ToString()
+            Next
+
+
+        Catch ex As Exception
+            '_rtnMessage = "Entry failed! " + ex.Message.ToString()
+
+        End Try
+
+    End Sub
     Protected Sub chkFileNum_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles chkFileNum.CheckedChanged
         If Me.chkFileNum.Checked = True Then
             Me.lblFileNum.Enabled = True
@@ -250,7 +321,12 @@ Partial Class Annuity_PRG_ANNTY_POLY_PERSNAL
         End If
 
     End Sub
+    Protected Sub DoProc_Pfa_Search()
+        If RTrim(Me.txtPfa_Search.Text) <> "" Then
+            Call gnProc_Populate_Box("IL_MARKETERS_LIST", "001", Me.cboAgcy_Search, RTrim(Me.txtAgcy_Search.Text))
+        End If
 
+    End Sub
     Protected Sub DoProc_Assured_Change()
         Call DoGet_SelectedItem(Me.cboAssured_Search, Me.txtAssured_Num, Me.txtAssured_Name, Me.lblMsg)
         Me.txtAssured_Search.Text = ""
@@ -502,7 +578,21 @@ Partial Class Annuity_PRG_ANNTY_POLY_PERSNAL
         Call gnProc_Populate_Box("IL_CODE_LIST", "008", Me.cboOccupation)
 
     End Sub
+    Protected Sub DoProc_Validate_Pfa()
+        If Trim(Me.txtPfaNum.Text) = "" Then
+            Me.txtPfaName.Text = ""
+        Else
+            blnStatus = gnValidate_Codes("AGENCY_UND_LIFE", Me.txtPfaNum, Me.txtPfaName)
+            If blnStatus = False Then
+                Me.lblMsg.Text = "Invalid Agency Code: " & Me.txtPfaNum.Text
+                Me.txtPfaNum.Text = ""
+                Me.txtPfaName.Text = ""
+                'Me.lblMsg.Text = "<script type='text/javascript'>myShowDialogue('" & strParam1 & "','" & strParam2 & "'" & ");</script>"
+                ClientScript.RegisterStartupScript(Me.GetType(), "Popup_Validation", "ShowPopup_Message('" & Me.lblMsg.Text & "');", True)
+            End If
+        End If
 
+    End Sub
     Protected Sub DoProc_Validate_Agency()
         If Trim(Me.txtAgcyNum.Text) = "" Then
             Me.txtAgcyName.Text = ""
@@ -1545,6 +1635,7 @@ Proc_Skip_Check:
                     'drNewRow("TBIL_ANN_POLY_ASSRD_AGE") = Trim(Me.txtDOB_ANB.Text)
                 End If
 
+                drNewRow("TBIL_ANN_POLY_RETIREE_PFA") = RTrim(txtPfaName.Text)
                 drNewRow("TBIL_ANN_POLY_BANK_NAME") = RTrim(Me.txtBankName.Text)
                 drNewRow("TBIL_ANN_POLY_BANK_ADRES") = RTrim(Me.txtBankAddress.Text)
                 drNewRow("TBIL_ANN_POLY_BANK_SORT_CODE") = RTrim(Me.txtBankSortCode.Text)
@@ -1636,6 +1727,7 @@ Proc_Skip_Check:
                         '.Rows(0)("TBIL_ANN_POLY_ASSRD_AGE") = Trim(Me.txtDOB_ANB.Text)
                     End If
 
+                    .Rows(0)("TBIL_ANN_POLY_RETIREE_PFA") = RTrim(txtPfaName.Text)
                     .Rows(0)("TBIL_ANN_POLY_BANK_NAME") = RTrim(Me.txtBankName.Text)
                     .Rows(0)("TBIL_ANN_POLY_BANK_ADRES") = RTrim(Me.txtBankAddress.Text)
                     .Rows(0)("TBIL_ANN_POLY_BANK_SORT_CODE") = RTrim(Me.txtBankSortCode.Text)
@@ -1989,16 +2081,24 @@ PUpdate_Date1:
 
     End Sub
 
-    'Protected Sub cmdNew_ASP_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdNew_ASP.Click
+    Protected Sub DoProc_Pfa_Search(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdPfa_Search.Click
+        If txtPfa_Search.Text <> "" Then
+            Proc_SearchPfa()
+        Else
+            Me.lblMsg.Text = "PFA search field can not be empty!"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            Exit Sub
+        End If
 
-    'End Sub
+    End Sub
+
+    Protected Sub cbo_PfaName_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbo_PfaName.SelectedIndexChanged
+        If cbo_PfaName.SelectedIndex <> 0 Then
+            Proc_GetPfa()
+            txtpfa_search.text=""
+            cbo_pfaname.selectedIndex=0
+        End If
+    End Sub
 
 
-    'Protected Sub cmdPrev_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdPrev.Click
-
-    'End Sub
-
-    'Protected Sub DoProc_Broker_Search(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdBroker_Search.Click
-
-    'End Sub
 End Class
