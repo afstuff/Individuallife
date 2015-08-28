@@ -199,7 +199,7 @@ Partial Class Annuity_PRG_ANNTY_POLY_DOCUMENT
         If ErrorInd = "Y" Then
             Exit Sub
         End If
-        ' To avoid document with no policy info
+        ' To avoid document with no policy detail
         If Session("PolicyNo_Retrieved") <> txtPol_Num.Text Then
             Me.lblMsg.Text = "Record not found for Policy No: " & Me.txtPol_Num.Text
             FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"

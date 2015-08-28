@@ -32,7 +32,7 @@
             <asp:LinkButton ID="LNK_GL" Enabled="true" runat="server"></asp:LinkButton>&nbsp;
             <asp:LinkButton ID="LNK_ANNUITY" Enabled="true" runat="server"></asp:LinkButton>&nbsp;
             <asp:LinkButton ID="LNK_ACC" Enabled="true" runat="server"></asp:LinkButton>&nbsp;
-            <asp:LinkButton ID="LNK_ADMIN" Enabled="false" runat="server"></asp:LinkButton>&nbsp;
+            <asp:LinkButton ID="LNK_ADMIN" Enabled="true" runat="server"></asp:LinkButton>&nbsp;
             <asp:LinkButton ID="LnkBut_LogOff" runat="server" Text="LOG OFF" OnClientClick="javascript:JSDO_LOG_OUT();"></asp:LinkButton>
 
             <div style="display: none;">

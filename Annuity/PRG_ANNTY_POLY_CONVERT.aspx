@@ -46,7 +46,8 @@
                             <table width="100%">
                                 <tr>
                                     <td>
-                                        &nbsp;<asp:button id="cmdNew_ASP" CssClass="cmd_butt" runat="server" text="New Data" OnClientClick="JSNew_ASP();"></asp:button>
+                                        &nbsp; <asp:Button ID="cmdPrev" CssClass="cmd_butt" Enabled="true" Text="«..Previous" runat="server" />
+                                        &nbsp;&nbsp;<asp:button id="cmdNew_ASP" CssClass="cmd_butt" runat="server" text="New Data" OnClientClick="JSNew_ASP();"></asp:button>
                                         &nbsp;
                                     </td>
                                     <td align="right" colspan="1" valign="top">&nbsp;

@@ -55,10 +55,12 @@ Partial Class SEC_MGL_SEC
 
             Case "SEC"
                 STRMENU_TITLE = "+++ Security Menu +++ "
+                AddMenuItem("", "Returns to Previous Page", "MGL_SEC.aspx?menu=home")
+                AddMenuItem("", "", "")
+                AddMenuItem("Entry", "Create New User", "PRG_SEC_USER_DETAIL.aspx?optid=NEW")
                 AddMenuItem("", "Administrator Password Change", "")
-                AddMenuItem("", "", "") 'blank link
-                AddMenuItem("", "Create New User", "")
                 AddMenuItem("", "User Password Change", "")
+                AddMenuItem("", "", "") 'blank link
                 AddMenuItem("", "", "") 'blank link
 
         End Select
@@ -195,4 +197,7 @@ Partial Class SEC_MGL_SEC
 
     End Sub
 
+    Protected Sub LNK_USER_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles LNK_USER.Click
+        Response.Redirect("MGL_SEC.aspx?menu=SEC")
+    End Sub
 End Class

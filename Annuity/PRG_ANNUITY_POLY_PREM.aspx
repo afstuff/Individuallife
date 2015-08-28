@@ -42,6 +42,7 @@
                                 </asp:DropDownList>
                             </td>
                         </tr>
+
                         <tr style="display: none;">
                             <td align="left" colspan="4" valign="top">
                                 <hr />
@@ -67,6 +68,15 @@
                             </td>
                         </tr>
                     </table>
+
+
+                                    <tr style="display: none;">
+                                        <td align="left" valign="top"><hr /></td>
+                                    </tr>
+                                    
+                        
+                    </table>                    
+
                 </td>
             </tr>
         </table>
