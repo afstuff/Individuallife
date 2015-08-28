@@ -16,6 +16,7 @@
         .cmdOK, .cmdCancel
         {
             width: 75px;
+            height: 26px;
         }
     </style>
 </head>
@@ -92,7 +93,7 @@
                         <tr>
                             <td align="left" colspan="4" valign="top">
                                 <input type="button" id="cmdOK" name="cmdOK"  class="cmdOK" value="OK..." runat="server" 
-                                    onclick="Sel_Func_OK('OK')" />
+                                    onclick="Sel_Func_OK('OK');" />
                                 &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="cmdCancel" name="cmdCancel" class="cmdCancel" value="Cancel..."
                                     onclick="Sel_Func_Cancel()" />
                             </td>

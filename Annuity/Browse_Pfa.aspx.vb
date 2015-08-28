@@ -176,7 +176,7 @@ Partial Class Annuity_Browse_Pfa
 
         ' Display the required value from the selected row.
         Me.txtRecNo.Text = row.Cells(1).Text
-        Me.txtCustID.Text = row.Cells(2).Text
+        Me.txtCustID.Text = row.Cells(1).Text
         Me.txtCustName.Text = row.Cells(2).Text
 
         Me.hidRecNo.Value = Me.txtRecNo.Text
