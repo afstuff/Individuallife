@@ -497,7 +497,8 @@ function cmdPfa_Browse_onclick() {
                                 <td align="left" valign="top">
                                     <asp:Label ID="Label14" Text="PFA CODE:" runat="server"></asp:Label></td>
                                 <td align="left" valign="top" colspan="3">
-                                    <asp:TextBox ID="txtPfaNum" AutoPostBack="true" MaxLength="10" runat="server" OnTextChanged="DoProc_Validate_Pfa"></asp:TextBox>
+                                    <asp:TextBox ID="txtPfaNum" AutoPostBack="True" MaxLength="10" runat="server" 
+                                        OnTextChanged="DoProc_Validate_Pfa"></asp:TextBox>
                                     &nbsp;<asp:Label ID="Label15" Text="PFA Name:" runat="server"></asp:Label>
                                     &nbsp;<asp:TextBox ID="txtPfaName" Enabled="False" runat="server" Width="250px"></asp:TextBox>
                                     &nbsp;<input type="button" id="cmdPfa_Setup" name="cmdPfa_Setup" value="Setup" onclick="javascript: jsDoPopNew_Full('PRG_ANN_PFA_DTL.aspx?optid=001&optd=pfa&popup=YES');" />
