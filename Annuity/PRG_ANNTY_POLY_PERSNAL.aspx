@@ -53,6 +53,10 @@
 
 
 
+function cmdPfa_Browse_onclick() {
+
+}
+
     </script>
 
 </head>
@@ -94,6 +98,7 @@
 
                             <tr>
                                 <td align="center" colspan="4" valign="top">&nbsp;&nbsp;<a href="#" onclick="javascript:JSDO_RETURN('PRG_ANNTY_PROP_POLICY.aspx?menu=AN_QUOTE')">Go to Menu</a>
+
                                     &nbsp;&nbsp;<asp:Button ID="cmdPrev" CssClass="cmd_butt" Enabled="false" Text="«..Previous" runat="server" />
                                     &nbsp;&nbsp;<asp:Button ID="cmdNew_ASP" CssClass="cmd_butt" runat="server" Text="New Data" OnClientClick="JSNew_ASP();"></asp:Button>
                                     &nbsp;&nbsp;<asp:Button ID="cmdSave_ASP" CssClass="cmd_butt" runat="server" Text="Save Data"></asp:Button>
@@ -466,15 +471,44 @@
                                 <td align="left" valign="top">
                                     <asp:Label ID="Label1" Text="Last Employer:" runat="server"></asp:Label></td>
                                 <td align="left" valign="top" colspan="0">
-                                    <asp:TextBox ID="txtLastEmployer" Visible="true" Enabled="true" Width="250px" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtLastEmployer" Visible="true" Enabled="true" Width="250px" 
+                                        runat="server" TextMode="MultiLine"></asp:TextBox>
                                 </td>
                                 <td align="left" valign="top">
                                     <asp:Label ID="Label3" Text="Last Emp. Addr:" runat="server"></asp:Label></td>
                                 <td>
-                                    <asp:TextBox ID="txtLastEmpAddr" Visible="true" Enabled="true" Width="300px" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtLastEmpAddr" Visible="true" Enabled="true" Width="300px" 
+                                        runat="server" TextMode="MultiLine"></asp:TextBox>
                                 </td>
                             </tr>
+                             <tr class="tr_frame_02">
+                                <td nowrap align="left" valign="top">
+                                    <asp:Label ID="Label13" Text="Search for PFA:" runat="server"></asp:Label></td>
+                                <td align="left" valign="top" colspan="3">
+                                    <asp:TextBox ID="txtPfa_Search" runat="server"></asp:TextBox>
+                                    &nbsp;<asp:Button ID="cmdPfa_Search" Text="Search..." runat="server" />
+                                    &nbsp;<asp:DropDownList ID="cbo_PfaName" AutoPostBack="True" Width="400px"
+                                        runat="server">
+                                    </asp:DropDownList>
+                                </td>
+                            </tr>
+
                             <tr>
+                                <td align="left" valign="top">
+                                    <asp:Label ID="Label14" Text="PFA CODE:" runat="server"></asp:Label></td>
+                                <td align="left" valign="top" colspan="3">
+                                    <asp:TextBox ID="txtPfaNum" AutoPostBack="true" MaxLength="10" runat="server" OnTextChanged="DoProc_Validate_Pfa"></asp:TextBox>
+                                    &nbsp;<asp:Label ID="Label15" Text="PFA Name:" runat="server"></asp:Label>
+                                    &nbsp;<asp:TextBox ID="txtPfaName" Enabled="False" runat="server" Width="250px"></asp:TextBox>
+                                    &nbsp;<input type="button" id="cmdPfa_Setup" name="cmdPfa_Setup" value="Setup" onclick="javascript: jsDoPopNew_Full('PRG_ANN_PFA_DTL.aspx?optid=001&optd=pfa&popup=YES');" />
+                                    &nbsp;<%--onclick="return cmdPfa_Browse_onclick()"--%>
+                                    <input id="cmdPfa_Browse" name="cmdPfa_Browse" 
+                                        onclick="javascript: Sel_Func_Open('PFA', 'Browse_Pfa.aspx?popup=YES', 'Form1', 'txtPfaNum', 'txtPfaName');"
+                                        type="button" value="Browse..." />
+                                    <%--<asp:Button ID="cmdPfa_Browse" runat="server" Text="Button" />--%>
+                                </td>
+                            </tr>
+                            <tr style="display: none;">
                                 <td align="left" valign="top">
                                     <asp:Label ID="Label4" Text="PFA:" runat="server"></asp:Label></td>
                                 <td align="left" valign="top" colspan="0">
@@ -517,10 +551,11 @@
                                 <td align="left" valign="top" colspan="0">
                                     <asp:TextBox ID="txtBankSortCode" Visible="true" Enabled="true" Width="250px" runat="server"></asp:TextBox>
                                 </td>
-                                <td align="left" valign="top">
+                                <td align="left" valign="top" rowspan="2">
                                     <asp:Label ID="Label11" Text="Bank Address:" runat="server"></asp:Label></td>
-                                <td>
-                                    <asp:TextBox ID="txtBankAddress" Visible="true" Enabled="true" Width="300px" runat="server"></asp:TextBox>
+                                <td rowspan="2" valign="top">
+                                    <asp:TextBox ID="txtBankAddress" Visible="true" Enabled="true" Width="300px" 
+                                        runat="server" TextMode="MultiLine"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>

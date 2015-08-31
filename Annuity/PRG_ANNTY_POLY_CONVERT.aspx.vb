@@ -1,7 +1,6 @@
 ﻿Imports System.Data.OleDb
-Imports System.Data.SqlClient
 Imports System.Data
-Imports System.IO
+
 Partial Class Annuity_PRG_ANNTY_POLY_CONVERT
     Inherits System.Web.UI.Page
     Protected FirstMsg As String
@@ -905,11 +904,11 @@ Partial Class Annuity_PRG_ANNTY_POLY_CONVERT
                         PaymentMode = dr("TBIL_ANN_POL_PRM_MODE_PAYT")
 
                         If PaymentMode = "Y" Then
-                            PremiumPayment = dr("TBIL_ANN_POL_PRM_ANN_CONTRIB_LC")
+                            'PremiumPayment = dr("TBIL_ANN_POL_PRM_ANN_CONTRIB_LC")
                         ElseIf PaymentMode = "M" Then
-                            PremiumPayment = dr("TBIL_ANN_POL_PRM_MTH_CONTRIB_LC")
+                            'PremiumPayment = dr("TBIL_ANN_POL_PRM_MTH_CONTRIB_LC")
                         ElseIf PaymentMode = "Q" Then
-                            PremiumPayment = dr("TBIL_ANN_POL_PRM_MTH_CONTRIB_LC") * 3
+                            'PremiumPayment = dr("TBIL_ANN_POL_PRM_MTH_CONTRIB_LC") * 3
                             'ElseIf PaymentMode = "W" Then
                             '    PremiumPayment = dr("TBIL_ANN_POL_PRM_MTH_CONTRIB_LC") / 4
                             'ElseIf PaymentMode = "H" Then
@@ -917,7 +916,7 @@ Partial Class Annuity_PRG_ANNTY_POLY_CONVERT
                             'ElseIf PaymentMode = "S" Then
                             '    PremiumPayment = dr("TBIL_ANN_POL_PRM_MTH_CONTRIB_LC") * 3
                         Else
-                            PremiumPayment = dr("TBIL_ANN_POL_PRM_MTH_CONTRIB_LC")
+                            'PremiumPayment = dr("TBIL_ANN_POL_PRM_MTH_CONTRIB_LC")
                         End If
                     End If
                 Next

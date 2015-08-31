@@ -1,1 +1,0 @@
-Data Source=ABS-SERVER;Initial Catalog=ABS_LIFE_STATGING;User ID=CustodianUser;Password=Custodian@123;

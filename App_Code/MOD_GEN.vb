@@ -316,7 +316,7 @@ Public Module MOD_GEN
 
         Select Case Trim(pvstr_GET_WHAT)
             Case "GET_IL_PREMIUM_RATE"
-                mystr_SQL = "SPIL_GET_PREM_RATE"
+                mystr_SQL = "SPAN_GET_PREM_RATE"
                 myole_CMD.CommandType = CommandType.StoredProcedure
                 myole_CMD.CommandText = mystr_SQL
                 myole_CMD.Parameters.Add("@p01", OleDbType.VarChar, 3).Value = RTrim(pvstr_MODULE)
@@ -661,7 +661,7 @@ Public Module MOD_GEN
                             .Insert(14, RTrim(myole_DR("TBIL_ANN_POL_PRM_RATE_CD").ToString & vbNullString))
                             .Insert(15, RTrim(myole_DR("TBIL_ANN_POL_PRM_ENROL_NO").ToString & vbNullString))
                             .Insert(16, RTrim(myole_DR("TBIL_ANN_POL_PRM_MODE_PAYT").ToString & vbNullString))
-                            .Insert(17, RTrim(myole_DR("TBIL_ANN_POL_PRM_ANN_CONTRIB_LC").ToString & vbNullString))
+                            '.Insert(17, RTrim(myole_DR("TBIL_ANN_POL_PRM_ANN_CONTRIB_LC").ToString & vbNullString))
 
                             .Insert(18, RTrim(myole_DR("TBIL_ANN_POLY_PROPSL_ACCPT_STATUS").ToString & vbNullString))
 
@@ -1809,7 +1809,7 @@ gnGet_SN_End:
                 strSQL = strSQL & "SELECT TBIL_RATE_TYP_CODE AS MyFld_Value, TBIL_RATE_TYP_DESC AS MyFld_Text"
                 strSQL = strSQL & " FROM " & strTable
                 strSQL = strSQL & " WHERE TBIL_RATE_TYP_PRDCT = '" & RTrim(pvTransType) & "'"
-                strSQL = strSQL & " AND TBIL_RATE_TYP_MDLE IN('IND','I')"
+                strSQL = strSQL & " AND TBIL_RATE_TYP_MDLE IN('ANN','A')"
                 strSQL = strSQL & " ORDER BY TBIL_RATE_TYP_PRDCT, TBIL_RATE_TYP_DESC"
                 Call gnPopulate_DropDownList(pvCODE, pvcboList, strSQL, "", "(Select item)", "*")
 
