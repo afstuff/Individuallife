@@ -194,7 +194,9 @@ Partial Class Annuity_PRG_ANNTY_POLY_DOCUMENT
             Else
                 Dim selectedText = Me.cboSearch.SelectedItem.Text
                 Dim ReturnText = Split(selectedText, "-")
-                txtPol_Num.Text = Trim(ReturnText(3))
+                'txtPol_Num.Text = Trim(ReturnText(3))
+                Me.txtPro_Pol_Num.Text = Trim(ReturnText(2))
+                Me.txtFileNum.Text = cboSearch.SelectedValue
                 'If txtPol_Num.Text = "" Then
                 '    Me.lblMsg.Text = "Policy no has not been generated, Proposal has not been converted to policy"
                 '    lblMsg.Visible = True
