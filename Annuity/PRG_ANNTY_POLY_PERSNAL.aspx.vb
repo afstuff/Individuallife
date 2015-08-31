@@ -145,10 +145,10 @@ Partial Class Annuity_PRG_ANNTY_POLY_PERSNAL
 
     End Sub
 
-    Private Sub Proc_SearchPfa()
+    Private Sub Proc_SearchPfa(ByVal sVal as string)
 
         strTable = "TBIL_PFA_DETAIL"
-        strSQL = "SELECT *, RTRIM(ISNULL(TBIL_PFA_DESC,'')) AS TBIL_PFA_FULL_NAME FROM " & strTable & " where TBIL_PFA_DESC like '" & txtPfa_Search.Text & "%' or (TBIL_PFA_CODE like '" & txtPfa_Search.Text & "%') or (TBIL_PFA_SHRT_DESC like '" & txtPfa_Search.Text & "%') ORDER BY TBIL_PFA_DESC"
+        strSQL = "SELECT *, RTRIM(ISNULL(TBIL_PFA_DESC,'')) AS TBIL_PFA_FULL_NAME FROM " & strTable & " where TBIL_PFA_DESC like '" & sVal.Trim & "%' or (TBIL_PFA_CODE like '" & sVal.trim & "%') or (TBIL_PFA_SHRT_DESC like '" & sVal.trim & "%') ORDER BY TBIL_PFA_DESC"
 
         Dim mystrCONN As String = CType(Session("connstr"), String)
         Dim objOLEConn As New OleDbConnection(mystrCONN)
@@ -2084,7 +2084,7 @@ PUpdate_Date1:
 
     Protected Sub DoProc_Pfa_Search(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdPfa_Search.Click
         If txtPfa_Search.Text <> "" Then
-            Proc_SearchPfa()
+            Proc_SearchPfa(txtPfa_Search.Text)
         Else
             Me.lblMsg.Text = "PFA search field can not be empty!"
             FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
@@ -2102,4 +2102,14 @@ PUpdate_Date1:
     End Sub
 
 
+    Protected Sub DoProc_Validate_Pfa(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtPfaNum.TextChanged
+        If txtPfa_Search.Text <> "" Then
+            Proc_SearchPfa(txtPfa_Search.Text)
+        'Else
+        '    Me.lblMsg.Text = "PFA search field can not be empty!"
+        '    FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+        '    Exit Sub
+        End If
+
+    End Sub
 End Class
