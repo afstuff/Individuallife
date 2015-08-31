@@ -73,7 +73,58 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Fields!ASSURED_ADDRESS.Value</Value>
+                <Value>=Split(First(Fields!ASSURED_ADDRESS.Value, "DT_ANNUITY_NOTF"),",")(0) + " " + Split(First(Fields!ASSURED_ADDRESS.Value, "DT_ANNUITY_NOTF"),",")(1) + ","</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Trim(Split(First(Fields!ASSURED_ADDRESS.Value, "DT_ANNUITY_NOTF"),",")(2) + (","))</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>= Trim(Split(First(Fields!ASSURED_ADDRESS.Value, "DT_ANNUITY_NOTF"),",")(3) + "" + Split(First(Fields!ASSURED_ADDRESS.Value, "DT_ANNUITY_NOTF"),",")(4))</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>= Trim(Split(First(Fields!ASSURED_ADDRESS.Value, "DT_ANNUITY_NOTF"),",")(5) +".")</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Century Gothic</FontFamily>

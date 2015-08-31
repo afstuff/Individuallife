@@ -983,6 +983,28 @@ Partial Class Annuity_PRG_ANNTY_POLY_CONVERT
     End Sub
 
     Protected Sub cmdPrev_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdPrev.Click
-        Response.Redirect("PRG_ANNUITY_POLY_BENEFRY.aspx")
+        'Response.Redirect("PRG_ANNUITY_POLY_BENEFRY.aspx")
+        'Dim pvURL As String = ""
+        'pvURL = "prg_li_indv_poly_prem.aspx?optfileid=" & Trim(Me.txtFileNum.Text)
+        'Select Case Trim(Me.txtProduct_Num.Text)
+        '    Case "F001", "F002"
+        '        pvURL = "prg_li_indv_poly_funeral.aspx?optfileid=" & Trim(Me.txtFileNum.Text)
+        'End Select
+
+        'pvURL = pvURL & "&optpolid=" & Trim(Me.txtPolNum.Text)
+        'pvURL = pvURL & "&optquotid=" & Trim(Me.txtQuote_Num.Text)
+        'Response.Redirect(pvURL)
+
+        Dim pvURL As String = ""
+        pvURL = "PRG_ANNUITY_POLY_BENEFRY.aspx?optfileid=" & Trim(Me.txtFileNum.Text)
+        'Select Case Trim(Me.txtProduct_Num.Text)
+        '    Case "F001", "F002"
+        '        pvURL = "prg_li_indv_poly_funeral.aspx?optfileid=" & Trim(Me.txtFileNum.Text)
+        'End Select
+
+        pvURL = pvURL & "&optpolid=" & Trim(Me.txtPol_Num.Text)
+        pvURL = pvURL & "&optquotid=" & Trim(txtPro_Pol_Num.Text)
+        Response.Redirect(pvURL)
+
     End Sub
 End Class

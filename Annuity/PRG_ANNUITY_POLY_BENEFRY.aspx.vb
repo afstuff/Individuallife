@@ -1181,4 +1181,7 @@ Proc_Skip_ANB:
     End Sub
 
 
+    Protected Sub txtPolNum_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtPolNum.TextChanged
+
+    End Sub
 End Class
