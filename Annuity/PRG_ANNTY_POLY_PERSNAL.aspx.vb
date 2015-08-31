@@ -184,10 +184,10 @@ Partial Class Annuity_PRG_ANNTY_POLY_PERSNAL
 
     End Sub
 
-    Private Sub Proc_GetPfa()
+    Private Sub Proc_GetPfa(byVal sVal as string)
 
         strTable = "TBIL_PFA_DETAIL"
-        strSQL = "SELECT *, RTRIM(ISNULL(TBIL_PFA_DESC,'')) AS TBIL_PFA_FULL_NAME FROM " & strTable & " where TBIL_PFA_CODE = '" & cbo_PfaName.SelectedValue & "'"
+        strSQL = "SELECT *, RTRIM(ISNULL(TBIL_PFA_DESC,'')) AS TBIL_PFA_FULL_NAME FROM " & strTable & " where TBIL_PFA_CODE = '" & sVal.trim & "'"
 
         Dim mystrCONN As String = CType(Session("connstr"), String)
         Dim objOLEConn As New OleDbConnection(mystrCONN)
@@ -1624,7 +1624,7 @@ Proc_Skip_Check:
 
                 drNewRow("TBIL_ANN_POLY_LAST_EMPLOYER") = RTrim(Me.txtLastEmployer.Text)
                 drNewRow("TBIL_ANN_POLY_LAST_EMPLOYER_ADRES") = RTrim(Me.txtLastEmpAddr.Text)
-                drNewRow("TBIL_ANN_POLY_RETIREE_PFA") = RTrim(Me.txtPFA.Text)
+                drNewRow("TBIL_ANN_POLY_RETIREE_PFA") = RTrim(Me.txtPfaNum.Text)
                 drNewRow("TBIL_ANN_POLY_RETIREE_PIN_NO") = RTrim(Me.txtPIN.Text)
                 drNewRow("TBIL_ANN_POLY_RETIREE_OCCUP") = RTrim(Me.txtLastOccupation.Text)
                 drNewRow("TBIL_ANN_POLY_ACCOUNT_NAME") = RTrim(Me.txtAccountName.Text)
@@ -1635,7 +1635,7 @@ Proc_Skip_Check:
                     'drNewRow("TBIL_ANN_POLY_ASSRD_AGE") = Trim(Me.txtDOB_ANB.Text)
                 End If
 
-                drNewRow("TBIL_ANN_POLY_RETIREE_PFA") = RTrim(txtPfaName.Text)
+                drNewRow("TBIL_ANN_POLY_RETIREE_PFA") = RTrim(txtPfaNum.Text)
                 drNewRow("TBIL_ANN_POLY_BANK_NAME") = RTrim(Me.txtBankName.Text)
                 drNewRow("TBIL_ANN_POLY_BANK_ADRES") = RTrim(Me.txtBankAddress.Text)
                 drNewRow("TBIL_ANN_POLY_BANK_SORT_CODE") = RTrim(Me.txtBankSortCode.Text)
@@ -1727,7 +1727,7 @@ Proc_Skip_Check:
                         '.Rows(0)("TBIL_ANN_POLY_ASSRD_AGE") = Trim(Me.txtDOB_ANB.Text)
                     End If
 
-                    .Rows(0)("TBIL_ANN_POLY_RETIREE_PFA") = RTrim(txtPfaName.Text)
+                    .Rows(0)("TBIL_ANN_POLY_RETIREE_PFA") = RTrim(txtPfaNum.Text)
                     .Rows(0)("TBIL_ANN_POLY_BANK_NAME") = RTrim(Me.txtBankName.Text)
                     .Rows(0)("TBIL_ANN_POLY_BANK_ADRES") = RTrim(Me.txtBankAddress.Text)
                     .Rows(0)("TBIL_ANN_POLY_BANK_SORT_CODE") = RTrim(Me.txtBankSortCode.Text)
@@ -2095,7 +2095,7 @@ PUpdate_Date1:
 
     Protected Sub cbo_PfaName_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbo_PfaName.SelectedIndexChanged
         If cbo_PfaName.SelectedIndex <> 0 Then
-            Proc_GetPfa()
+            Proc_GetPfa(cbo_PfaName.selectedValue)
             txtpfa_search.text=""
             cbo_pfaname.selectedIndex=0
         End If
@@ -2103,8 +2103,8 @@ PUpdate_Date1:
 
 
     Protected Sub DoProc_Validate_Pfa(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtPfaNum.TextChanged
-        If txtPfa_Search.Text <> "" Then
-            Proc_SearchPfa(txtPfa_Search.Text)
+        If txtPfaNum.Text <> "" Then
+            Proc_GetPfa(txtPfaNum.Text)
         'Else
         '    Me.lblMsg.Text = "PFA search field can not be empty!"
         '    FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
