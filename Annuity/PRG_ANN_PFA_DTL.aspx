@@ -22,6 +22,9 @@
         {
             width: 93px;
         }
+        .auto-style1 {
+            width: 104px;
+        }
     </style>
 </head>
 <body onload="<%= FirstMsg %>">
@@ -83,7 +86,7 @@
 
                     <tr>
                     <td align="center" colspan="5" valign="top">
-                                <asp:GridView id="GridView2" CellPadding="2" runat="server" CssClass="grd_ctrl"
+                               <%-- <asp:GridView id="GridView2" CellPadding="2" runat="server" CssClass="grd_ctrl"
                                     DataKeyNames="TBIL_PFA_REC_ID" HorizontalAlign="Left"
                                     AutoGenerateColumns="False" AllowPaging="True" 
                             AllowSorting="false" PageSize="10"
@@ -91,7 +94,7 @@
                                     PagerSettings-FirstPageText="First" PagerSettings-NextPageText="Next"
                                     PagerSettings-PreviousPageText="Previous" PagerSettings-LastPageText="Last"
                                     EmptyDataText="No data available..."
-                                    GridLines="Both" ShowFooter="True">                        
+                                    GridLines="Both" ShowFooter="True" Visible="False">                        
 
                         
                                     <PagerStyle CssClass="grd_page_style" />
@@ -117,12 +120,12 @@
                             
                                         <asp:BoundField readonly="true" DataField="TBIL_PFA_REC_ID" HeaderText="Ref.No" HeaderStyle-HorizontalAlign="Left" convertemptystringtonull="true" />
                                         <%--<asp:BoundField readonly="true" DataField="TBIL_PFA_ID" HeaderText="Ref.ID" HeaderStyle-HorizontalAlign="Left" convertemptystringtonull="true" />--%>
-                                        <asp:BoundField readonly="true" DataField="TBIL_PFA_CODE" HeaderText="Customer Code" HeaderStyle-HorizontalAlign="Left" convertemptystringtonull="true" />
+                                        <%--<asp:BoundField readonly="true" DataField="TBIL_PFA_CODE" HeaderText="Customer Code" HeaderStyle-HorizontalAlign="Left" convertemptystringtonull="true" />
                                         <asp:BoundField readonly="true" DataField="TBIL_PFA_FULL_NAME" HeaderText="Customer Name" HeaderStyle-HorizontalAlign="Left" convertemptystringtonull="true" />
                                         <asp:BoundField readonly="true" DataField="TBIL_PFA_PHONE_NUM" HeaderText="Phone No" HeaderStyle-HorizontalAlign="Left" convertemptystringtonull="true" />
                                     </Columns>
    
-                                </asp:GridView>
+                                </asp:GridView>--%>
                     <table align="center" style="background-color: White; width: 95%;">
                         <tr>
                             <td align="left" colspan="4" valign="top">
@@ -184,7 +187,7 @@
             	    	    <td align="left" nowrap class="style2"><asp:Label ID="lblTBIL_PFA_CODE" 
                                     Enabled="False" Text="PFA Code:" runat="server"></asp:Label>
                             </td>
-            	    	    <td align="left" nowrap>
+            	    	    <td align="left" nowrap class="auto-style1">
                                 <asp:TextBox ID="txtTBIL_PFA_CODE" runat="server"></asp:TextBox>
                             </td>
         	        	</tr>
@@ -200,7 +203,7 @@
             	    	    <td align="left" nowrap>
                                 <asp:Label ID="lblTBIL_PFA_MDLE" 
                                     Enabled="False" Text="PFA Module:" runat="server"></asp:Label></td>
-            	    	    <td align="left" nowrap>
+            	    	    <td align="left" nowrap class="auto-style1">
                                 <asp:TextBox ID="txtTBIL_PFA_MDLE" runat="server" Width="250px"></asp:TextBox>
                             </td>
         	        	</tr>
@@ -215,7 +218,7 @@
             	    	    <td align="left" nowrap valign="top">
                                 <asp:Label ID="lblTBIL_PFA_DESC0" 
                                     Enabled="False" Text="PFA Short Description:" runat="server"></asp:Label></td>
-            	    	    <td align="left" nowrap valign="top">
+            	    	    <td align="left" nowrap valign="top" class="auto-style1">
                                 <asp:TextBox ID="txtTBIL_PFA_SHRT_DESC" runat="server" TextMode="MultiLine" Width="250px"></asp:TextBox>
                             </td>
         	        	</tr>
@@ -241,7 +244,7 @@
             	    	    <td align="left" nowrap>
                                 <asp:Label ID="lblTBIL_PFA_BRANCH1" 
                                     Enabled="False" Text="Address 2:" runat="server"></asp:Label></td>
-            	    	    <td align="left" nowrap>
+            	    	    <td align="left" nowrap class="auto-style1">
                                 <asp:TextBox ID="txtTBIL_PFA_ADRES2" runat="server" TextMode="MultiLine" Width="250px"></asp:TextBox>
                             </td>
         	        	</tr>
@@ -256,7 +259,7 @@
             	    	    <td align="left" nowrap><asp:Label ID="lblTBIL_PFA_BRANCH3" Enabled="False" 
                                     Text="Phone 1:" runat="server"></asp:Label>
                             </td>
-            	    	    <td align="left" nowrap>
+            	    	    <td align="left" nowrap class="auto-style1">
                                 <asp:TextBox ID="txtTBIL_PFA_PHONE2" runat="server" Width="250px"></asp:TextBox>
                             </td>
         	        	</tr>
@@ -271,7 +274,7 @@
             	    	    <td align="left" nowrap><asp:Label ID="lblTBIL_PFA_BRANCH5" Enabled="False" 
                                     Text="Email 2:" runat="server"></asp:Label>
                             </td>
-            	    	    <td align="left" nowrap>
+            	    	    <td align="left" nowrap class="auto-style1">
                                 <asp:TextBox ID="txtTBIL_PFA_EMAIL2" runat="server" Width="250px"></asp:TextBox>
                             </td>
         	        	</tr>
