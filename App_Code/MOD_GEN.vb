@@ -1802,7 +1802,7 @@ gnGet_SN_End:
                 strSQL = strSQL & " ORDER BY TBIL_PLAN_PRDCT_CD, TBIL_PLAN_DESC"
                 Call gnPopulate_DropDownList(pvCODE, pvcboList, strSQL, "", "(Select item)", "*")
 
-            Case "IL_RATE_TYPE_CODE_LIST"
+                Case "AN_RATE_TYPE_CODE_LIST"
                 strTable = strTableName
                 strTable = RTrim("TBIL_RATE_TYPE_CODES")
                 strSQL = ""
@@ -1810,6 +1810,17 @@ gnGet_SN_End:
                 strSQL = strSQL & " FROM " & strTable
                 strSQL = strSQL & " WHERE TBIL_RATE_TYP_PRDCT = '" & RTrim(pvTransType) & "'"
                 strSQL = strSQL & " AND TBIL_RATE_TYP_MDLE IN('ANN','A')"
+                strSQL = strSQL & " ORDER BY TBIL_RATE_TYP_PRDCT, TBIL_RATE_TYP_DESC"
+                Call gnPopulate_DropDownList(pvCODE, pvcboList, strSQL, "", "(Select item)", "*")
+
+            Case "IL_RATE_TYPE_CODE_LIST"
+                strTable = strTableName
+                strTable = RTrim("TBIL_RATE_TYPE_CODES")
+                strSQL = ""
+                strSQL = strSQL & "SELECT TBIL_RATE_TYP_CODE AS MyFld_Value, TBIL_RATE_TYP_DESC AS MyFld_Text"
+                strSQL = strSQL & " FROM " & strTable
+                strSQL = strSQL & " WHERE TBIL_RATE_TYP_PRDCT = '" & RTrim(pvTransType) & "'"
+                strSQL = strSQL & " AND TBIL_RATE_TYP_MDLE IN('IND','I')"
                 strSQL = strSQL & " ORDER BY TBIL_RATE_TYP_PRDCT, TBIL_RATE_TYP_DESC"
                 Call gnPopulate_DropDownList(pvCODE, pvcboList, strSQL, "", "(Select item)", "*")
 
