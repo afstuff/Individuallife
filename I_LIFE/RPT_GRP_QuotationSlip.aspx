@@ -90,12 +90,22 @@ mso-bidi-language:AR-SA">Print Quotation Slip</span></b>&nbsp;</td>
                 </tr>
                 <tr>
                     <td align="center" valign="top" class="td_menu">
-                    <table align="center" border="0" class="tbl_menu_new"">
+                    <table align="center" border="0" class="tbl_menu_new">
                     <tr>
                         <td colspan="4">
                             <center>
                                 <asp:Label ID="lblMsg" runat="server" Font-Size="13pt" ForeColor="#FF3300"></asp:Label></center>
                         </td>
+                    </tr>
+                    <tr>
+                        <td align="left" valign="top" class="style2">
+                            &nbsp;</td>
+                        <td align="left" valign="top">
+                            &nbsp;</td>
+                        <td>
+                            &nbsp;</td>
+                        <td>
+                            &nbsp;</td>
                     </tr>
                     <tr>
                         <td align="left" valign="top" class="style2">
@@ -135,19 +145,9 @@ mso-bidi-language:AR-SA">Print Quotation Slip</span></b>&nbsp;</td>
                             &nbsp;</td>
                     </tr>
                     <tr>
-                        <td align="left" valign="top" class="style2">
+                        <td align="right" valign="top" class="style2">
                             &nbsp;</td>
-                        <td align="left" valign="top">
-                            &nbsp;</td>
-                        <td align="left" valign="top">
-                            &nbsp;</td>
-                        <td align="left" valign="top">
-                            &nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td align="left" valign="top" class="style2">
-                            &nbsp;</td>
-                        <td align="left" valign="top">
+                        <td align="right" valign="top">
                             <asp:button id="cmdPrint_ASP" CssClass="cmd_butt" runat="server" 
                                                 text="Print"></asp:button>
                         </td>
