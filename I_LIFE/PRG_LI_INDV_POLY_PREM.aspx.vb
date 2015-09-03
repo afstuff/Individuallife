@@ -288,7 +288,7 @@ Partial Class I_LIFE_PRG_LI_INDV_POLY_PREM
             'Response.Write("<BR/>Period: " & myTerm)
             'Response.Write("<BR/>Age: " & Me.txtDOB_ANB.Text)
 
-            myRetValue = MOD_GEN.gnGET_RATE("GET_IL_PREMIUM_RATE", "IND", Me.txtPrem_Rate_Code.Text, Me.txtProduct_Num.Text, myTerm, Me.txtDOB_ANB.Text, Me.lblMsg, Me.txtPrem_Rate_Per)
+            myRetValue = MOD_GEN.gnGET_RATE("GET_AN_PREMIUM_RATE", "A", Me.txtPrem_Rate_Code.Text, Me.txtProduct_Num.Text, myTerm, Me.txtDOB_ANB.Text, Me.lblMsg, Me.txtPrem_Rate_Per)
             If Left(LTrim(myRetValue), 3) = "ERR" Then
                 Me.cboPrem_Rate_Code.SelectedIndex = -1
                 Me.txtPrem_Rate.Text = "0.00"
