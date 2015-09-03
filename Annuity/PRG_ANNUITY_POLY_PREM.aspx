@@ -77,9 +77,9 @@
                         
                     </table>                    
 
-                </td>
+              <%--  </td>
             </tr>
-        </table>
+        </table>--%>
     </div>
     <!-- start content -->
     <div id="div_content" align="center">

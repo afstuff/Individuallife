@@ -316,6 +316,15 @@ Public Module MOD_GEN
 
         Select Case Trim(pvstr_GET_WHAT)
             Case "GET_IL_PREMIUM_RATE"
+                mystr_SQL = "SPIL_GET_PREM_RATE"
+                myole_CMD.CommandType = CommandType.StoredProcedure
+                myole_CMD.CommandText = mystr_SQL
+                myole_CMD.Parameters.Add("@p01", OleDbType.VarChar, 3).Value = RTrim(pvstr_MODULE)
+                myole_CMD.Parameters.Add("@p02", OleDbType.VarChar, 10).Value = RTrim(pvstr_RATE_CODE)
+                myole_CMD.Parameters.Add("@p03", OleDbType.VarChar, 10).Value = RTrim(pvstr_PRODUCT_REF_CODE)
+                myole_CMD.Parameters.Add("@p04", OleDbType.VarChar, 4).Value = RTrim(pvstr_PERIOD)
+                myole_CMD.Parameters.Add("@p05", OleDbType.VarChar, 4).Value = RTrim(pvstr_AGE)
+            Case "GET_AN_PREMIUM_RATE"
                 mystr_SQL = "SPAN_GET_PREM_RATE"
                 myole_CMD.CommandType = CommandType.StoredProcedure
                 myole_CMD.CommandText = mystr_SQL
@@ -366,6 +375,12 @@ Public Module MOD_GEN
                 'Me.UserCode.Text = Me.UserName.Text & " - " & oleDR("pwd_code").ToString & vbNullString
 
                 Select Case Trim(pvstr_GET_WHAT)
+                    Case "GET_AN_PREMIUM_RATE"
+                        myRetValue = RTrim(myole_DR("TBIL_PRM_RT_RATE") & vbNullString).ToString
+                        If pvRef_Misc Is Nothing Then
+                        Else
+                            pvRef_Misc.Text = RTrim(CType(myole_DR("TBIL_PRM_RT_PER") & vbNullString, String))
+                        End If
                     Case "GET_IL_PREMIUM_RATE"
                         myRetValue = RTrim(myole_DR("TBIL_PRM_RT_RATE") & vbNullString).ToString
                         If pvRef_Misc Is Nothing Then
@@ -1802,7 +1817,7 @@ gnGet_SN_End:
                 strSQL = strSQL & " ORDER BY TBIL_PLAN_PRDCT_CD, TBIL_PLAN_DESC"
                 Call gnPopulate_DropDownList(pvCODE, pvcboList, strSQL, "", "(Select item)", "*")
 
-                Case "AN_RATE_TYPE_CODE_LIST"
+            Case "AN_RATE_TYPE_CODE_LIST"
                 strTable = strTableName
                 strTable = RTrim("TBIL_RATE_TYPE_CODES")
                 strSQL = ""
@@ -1848,7 +1863,7 @@ gnGet_SN_End:
                 strSQL = strSQL & " ORDER BY RTRIM(ISNULL(TBIL_INSRD_SURNAME,'')) + ' ' + RTRIM(ISNULL(TBIL_INSRD_FIRSTNAME,''))"
                 Call gnPopulate_DropDownList(pvCODE, pvcboList, strSQL, "", "*** select insured name ***", "*")
 
-                 Case "AN_ASSURED_LIST"
+            Case "AN_ASSURED_LIST"
                 strTable = "TBIL_INS_DETAIL"
                 strSQL = ""
                 strSQL = "SELECT TBIL_INSRD_CODE AS MyFld_Value"
@@ -1944,7 +1959,7 @@ gnGet_SN_End:
                 strSQL = strSQL & " ORDER BY TBIL_CUST_DESC"
                 Call gnPopulate_DropDownList(pvCODE, pvcboList, strSQL, "", "*** select broker name ***", "*")
 
-                Case "AN_BROKERS_LIST"
+            Case "AN_BROKERS_LIST"
                 strTable = "TBIL_CUST_DETAIL"
                 strSQL = ""
                 strSQL = "SELECT TBIL_CUST_CODE AS MyFld_Value"
@@ -1955,7 +1970,7 @@ gnGet_SN_End:
                 strSQL = strSQL & " AND TBIL_CUST_MDLE IN('ANN','A')"
                 strSQL = strSQL & " ORDER BY TBIL_CUST_DESC"
                 Call gnPopulate_DropDownList(pvCODE, pvcboList, strSQL, "", "*** select broker name ***", "*")
-                               
+
 
             Case "IL_BROKERS_LIST_GL"
                 strTable = "TBIL_CUST_DETAIL"
