@@ -105,7 +105,7 @@ Partial Class Annuity_PRG_ANNTY_PROP_POLICY
                 'AddMenuItem("", "Change Policy - Endorsement", "")
                 AddMenuItem("", "", "") 'blank link
                 AddMenuItem("", "UNDER_LINE", "") 'blank link
-                AddMenuItem("", "Returns to Previous Page", "MENU_AN.aspx.aspx?menu=home")
+                AddMenuItem("", "Returns to Previous Page", "MENU_AN.aspx?menu=home")
 
 
             Case "AN_DOCUMENT"

@@ -112,8 +112,7 @@ mso-bidi-language:AR-SA">Print Quotation Slip</span></b>&nbsp;</td>
                             <asp:Label ID="Label2" runat="server" Text="Proposal Number: "></asp:Label>
                         </td>
                         <td align="left" valign="top">
-                            <asp:TextBox ID="txtProposalNo" runat="server" Width="269px" 
-                                AutoPostBack="True"></asp:TextBox>
+                            <asp:TextBox ID="txtProposalNo" runat="server" Width="269px"></asp:TextBox>
                         </td>
                         <td>
                             &nbsp;</td>
