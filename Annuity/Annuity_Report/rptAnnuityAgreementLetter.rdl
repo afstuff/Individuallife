@@ -719,6 +719,10 @@
           <DataField>TBIL_ANN_POLY_MARITAL</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="TBIL_ANN_POLY_GENDER">
+          <DataField>TBIL_ANN_POLY_GENDER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="ASSURED_GENDER">
           <DataField>ASSURED_GENDER</DataField>
           <rd:TypeName>System.String</rd:TypeName>
