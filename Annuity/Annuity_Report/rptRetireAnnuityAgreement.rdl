@@ -466,7 +466,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>=First(Fields!TBIL_ANN_POLY_LAST_EMPLOYER_ADRES.Value, "DataSet1")</Value>
+                <Value>=First(Fields!ASSURED_ADDRESS.Value, "DataSet1")</Value>
                 <Style>
                   <FontSize>11pt</FontSize>
                 </Style>
@@ -1447,7 +1447,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=First(Fields!TBIL_ANN_POLY_RETIREE_PFA.Value, "DataSet1")</Value>
+                    <Value>=First(Fields!TBIL_PFA_DESC.Value, "DataSet1")</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -1578,7 +1578,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=First(Fields!TBIL_ANN_POLY_LAST_EMPLOYER_ADRES.Value, "DataSet1")</Value>
+                    <Value>=First(Fields!TBIL_ANN_POL_PREM_WITH_LS_LC.Value, "DataSet1")</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -1965,7 +1965,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>Years</Value>
+                    <Value>Years and </Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -3095,6 +3095,10 @@
           <DataField>TBIL_ANN_POLY_MARITAL</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="TBIL_ANN_POLY_GENDER">
+          <DataField>TBIL_ANN_POLY_GENDER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="ASSURED_GENDER">
           <DataField>ASSURED_GENDER</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -3281,14 +3285,17 @@
     </ReportParameter>
     <ReportParameter Name="pParam1">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>p Param1</Prompt>
     </ReportParameter>
     <ReportParameter Name="pParam2">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>p Param2</Prompt>
     </ReportParameter>
     <ReportParameter Name="pParam3">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>p Param3</Prompt>
     </ReportParameter>
   </ReportParameters>
