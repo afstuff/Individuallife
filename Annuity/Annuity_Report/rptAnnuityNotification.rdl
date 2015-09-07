@@ -824,6 +824,10 @@
           <DataField>ASSURED_GENDER</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="TBIL_ANN_POLY_GENDER">
+          <DataField>TBIL_ANN_POLY_GENDER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="TBIL_ANN_POLY_MARITAL">
           <DataField>TBIL_ANN_POLY_MARITAL</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -1010,14 +1014,17 @@
     </ReportParameter>
     <ReportParameter Name="pParam1">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>p Param1</Prompt>
     </ReportParameter>
     <ReportParameter Name="pParam2">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>p Param2</Prompt>
     </ReportParameter>
     <ReportParameter Name="pParam3">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>p Param3</Prompt>
     </ReportParameter>
   </ReportParameters>

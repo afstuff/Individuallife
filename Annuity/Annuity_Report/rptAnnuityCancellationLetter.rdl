@@ -814,6 +814,10 @@
           <DataField>Assured_Name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="FORMATTED_COMMENCEMENT_DT_WORD">
+          <DataField>FORMATTED_COMMENCEMENT_DT_WORD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="ASSURED_PHONE_NUMBER">
           <DataField>ASSURED_PHONE_NUMBER</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -918,6 +922,34 @@
           <DataField>TBIL_PRDCT_DTL_DESC</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="USER_SHORT_NAME">
+          <DataField>USER_SHORT_NAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="USER_NAME">
+          <DataField>USER_NAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RECIEPT_DATE">
+          <DataField>RECIEPT_DATE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TBIL_PFA_DESC">
+          <DataField>TBIL_PFA_DESC</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PFA_PHONE_NUMBER">
+          <DataField>PFA_PHONE_NUMBER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PFA_EMAIL">
+          <DataField>PFA_EMAIL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PFA_ADDRESS">
+          <DataField>PFA_ADDRESS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
     </DataSet>
   </DataSets>
@@ -928,14 +960,17 @@
     </ReportParameter>
     <ReportParameter Name="pParam1">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>p Param1</Prompt>
     </ReportParameter>
     <ReportParameter Name="pParam2">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>p Param2</Prompt>
     </ReportParameter>
     <ReportParameter Name="pParam3">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>p Param3</Prompt>
     </ReportParameter>
   </ReportParameters>
