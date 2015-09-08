@@ -373,7 +373,7 @@ Public Module MOD_GEN
             ' with the new data reader parse values and place into the return variable
             If (myole_DR.Read()) Then
                 'Me.UserCode.Text = Me.UserName.Text & " - " & oleDR("pwd_code").ToString & vbNullString
-
+                pvCtr_Label.Text = string.Empty
                 Select Case Trim(pvstr_GET_WHAT)
                     Case "GET_AN_PREMIUM_RATE"
                         myRetValue = RTrim(myole_DR("TBIL_PRM_RT_RATE") & vbNullString).ToString
@@ -417,7 +417,7 @@ Public Module MOD_GEN
                 myRetValue = "ERR_RNF"
                 If pvCtr_Label IsNot Nothing Then
                     If TypeOf pvCtr_Label Is System.Web.UI.WebControls.Label Then
-                        pvCtr_Label.Text = "Record not found for parameters supplied..."
+                        pvCtr_Label.Text = "Record not found for parameters supplied...E.G. 'duration/term' and 'age'"
                     End If
                 End If
             End If
