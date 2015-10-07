@@ -337,8 +337,11 @@ Partial Class I_LIFE_MENU_IL
                 ''AddMenuItem("", "Convert Proposal to Policy", "il_3010.aspx")
                 ''AddMenuItem("", "New Policy", "il_3020.aspx")
                 'AddMenuItem("", "", "") 'blank link
-                AddMenuItem("Reports", "Proposal Status Report", "")
-                AddMenuItem("", "Endorsement Report", "")
+                AddMenuItem("Reports", "Commission Rebate Report", "RPT_LI_COMM_REBATE_REPORTS.aspx")
+                AddMenuItem("", "Maturity List Report", "PRG_LI_INDV_REPORTS.ASPX")
+                AddMenuItem("", "", "") 'blank link
+
+                AddMenuItem("", "Proposal Status Report", "")
                 AddMenuItem("", "Endorsement Report", "")
                 AddMenuItem("", "Definite Certificate", "")
                 AddMenuItem("", "Letter of Acceptance", "")
