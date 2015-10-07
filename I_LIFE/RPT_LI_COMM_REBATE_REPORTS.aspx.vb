@@ -14,7 +14,7 @@ Partial Class I_LIFE_RPT_LI_COMM_REBATE_REPORTS
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         ErrorInd = ""
-        rParams(0) = "rptCommissionRebate"
+        rParams(0) = "rptCommissionRebate1"
         Session("ReportParams") = rParams
         Response.Redirect("../PrintView.aspx")
     End Sub
