@@ -2,7 +2,7 @@
 Partial Class I_LIFE_PRG_LI_CLM_MATURE_RPT
     Inherits System.Web.UI.Page
     Protected FirstMsg As String
-    Dim rParams As String() = {"nw", "nw", "new", "new", "new", "new", "new"}
+    Dim rParams As String() = {"nw", "nw", "new", "new"}
 
 
 
@@ -15,7 +15,8 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE_RPT
             rParams(0)="PRG_LI_CLM_MATURE"
             rParams(1) = "pTBIL_CLM_PAID_POLY_NO="
             rParams(2) = txtPolyNumber.Text.Trim + "&"
-            'rParams(3) = pFilterOption.SelectedValue + "&"
+            Dim url As String = HttpContext.Current.Request.Url.AbsoluteUri
+            rParams(3) = url
             
 
             'rParams(3) = "pFilterOption="
@@ -34,5 +35,9 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE_RPT
             pFilterOption.Focus()
             Exit Sub
         End If
+    End Sub
+
+    Protected Sub butClose_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles butClose.Click
+        Response.Redirect("PRG_LI_CLM_MATURE.aspx")
     End Sub
 End Class
