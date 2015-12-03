@@ -1,7 +1,7 @@
 ﻿
 Partial Class I_LIFE_PRG_LI_LAPSE_PROCESS_RPT
     Inherits System.Web.UI.Page
-    Dim rParams As String() = {"nw", "nw", "new", "new", "new"}
+    Dim rParams As String() = {"nw", "nw", "new", "new", "new", "new"}
 
     Protected Sub butOK_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles butOK.Click
         Dim str() As String
@@ -53,6 +53,8 @@ Partial Class I_LIFE_PRG_LI_LAPSE_PROCESS_RPT
         rParams(2) = startDate + "&"
         rParams(3) = "pEnd_Date="
         rParams(4) = endDate + "&"
+        Dim url As String = HttpContext.Current.Request.Url.AbsoluteUri
+        rParams(5) = url
 
         Session("ReportParams") = rParams
         Response.Redirect("../PrintView.aspx")

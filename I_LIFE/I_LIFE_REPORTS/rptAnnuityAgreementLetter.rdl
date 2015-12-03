@@ -9,19 +9,14 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>IL/</Value>
+                <Value>IL/DARA</Value>
                 <Style>
+                  <FontStyle>Normal</FontStyle>
                   <FontFamily>Century Gothic</FontFamily>
                   <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=UCase(Fields!USER_SHORT_NAME.Value)</Value>
-                <Style>
-                  <FontFamily>Century Gothic</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -30,39 +25,29 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value />
+                <Value>=First(Fields!TODAYS_DATE.Value, "DataSet1")</Value>
                 <Style>
-                  <FontFamily>Century Gothic</FontFamily>
                   <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+              <LineHeight>13pt</LineHeight>
+            </Style>
           </Paragraph>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Fields!TODAYS_DATE.Value</Value>
+                <Value>The Managing Director</Value>
                 <Style>
+                  <FontStyle>Normal</FontStyle>
                   <FontFamily>Century Gothic</FontFamily>
                   <FontSize>11pt</FontSize>
                   <FontWeight>Normal</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Fields!Assured_Name.Value</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Century Gothic</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
                   <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -73,13 +58,14 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Split(First(Fields!ASSURED_ADDRESS.Value, "DT_ANNUITY_NOTF"),",")(0) + ", " + Split(First(Fields!ASSURED_ADDRESS.Value, "DT_ANNUITY_NOTF"),",")(1) + ","</Value>
+                <Value>ARM Pension Limited</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Century Gothic</FontFamily>
                   <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
+                  <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -90,13 +76,14 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Trim(Split(First(Fields!ASSURED_ADDRESS.Value, "DT_ANNUITY_NOTF"),",")(2) + (","))</Value>
+                <Value>5, Mekuwen Street</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Century Gothic</FontFamily>
                   <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
+                  <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -107,13 +94,14 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>= Trim(Split(First(Fields!ASSURED_ADDRESS.Value, "DT_ANNUITY_NOTF"),",")(3) + "" + Split(First(Fields!ASSURED_ADDRESS.Value, "DT_ANNUITY_NOTF"),",")(4))</Value>
+                <Value>Off Queen Drive</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Century Gothic</FontFamily>
                   <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
+                  <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -124,13 +112,32 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>= Trim(Split(First(Fields!ASSURED_ADDRESS.Value, "DT_ANNUITY_NOTF"),",")(5) +".")</Value>
+                <Value>Ikoyi</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Century Gothic</FontFamily>
                   <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
+                  <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Lagos</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -146,8 +153,9 @@
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Century Gothic</FontFamily>
                   <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
+                  <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -194,13 +202,13 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>RETIREE LIFE ANNUITY</Value>
+                <Value>RETIREMENT LIFE ANNUITY</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Century Gothic</FontFamily>
                   <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
+                  <TextDecoration>Underline</TextDecoration>
                   <Color>#000000</Color>
                 </Style>
               </TextRun>
@@ -212,13 +220,22 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Fields!Assured_Name.Value</Value>
+                <Value>PIN NUMBER: </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Century Gothic</FontFamily>
                   <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
+                  <TextDecoration>Underline</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!TBIL_ANN_POLY_RETIREE_PIN_NO.Value, "DataSet1")</Value>
+                <Style>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>Underline</TextDecoration>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -229,25 +246,22 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>POLICY NUMBER: </Value>
+                <Value>ANNUITY VALUE: N</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Century Gothic</FontFamily>
                   <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
+                  <TextDecoration>Underline</TextDecoration>
                   <Color>#000000</Color>
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>=Fields!TBIL_ANN_POLY_POLICY_NO.Value</Value>
+                <Value>=Format(First(Fields!TBIL_PREM_PAYABLE.Value, "DataSet1"), "N2")</Value>
                 <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Century Gothic</FontFamily>
                   <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
+                  <TextDecoration>Underline</TextDecoration>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -258,14 +272,22 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>NOTIFICATION OF PAYMENT</Value>
+                <Value>ANNUITANT: </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Century Gothic</FontFamily>
                   <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
+                  <TextDecoration>Underline</TextDecoration>
                   <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!Assured_Name.Value, "DataSet1")</Value>
+                <Style>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>Underline</TextDecoration>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -282,7 +304,7 @@
                   <FontFamily>Century Gothic</FontFamily>
                   <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
+                  <TextDecoration>Underline</TextDecoration>
                   <Color>#000000</Color>
                 </Style>
               </TextRun>
@@ -294,153 +316,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>We write to inform you that your Annuity purchase amount of </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Century Gothic</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>N</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Century Gothic</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!TBIL_PREM_PAYABLE.Value</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Century Gothic</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value xml:space="preserve"> </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Century Gothic</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>(</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Century Gothic</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!TBIL_PREM_PAYABLE_WORD.Value</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Century Gothic</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>) has been transferred to our insurance company (Custodian Life Assurance Limited) by the PFA (</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Century Gothic</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!TBIL_PFA_DESC.Value</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Century Gothic</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>) on the </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Century Gothic</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!RECIEPT_DATE.Value</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Century Gothic</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>.</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Century Gothic</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Left</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value xml:space="preserve">                        </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Century Gothic</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Left</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Hence, we will require you to come in for your policy document which serves as the basis of our contract and as well, sign the policy contract accordingly.</Value>
+                <Value>The above subject refers.</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Century Gothic</FontFamily>
@@ -476,7 +352,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>While wishing you a fruitful and rewarding retirement, we appreciate your patronage.</Value>
+                <Value>Please find attached a copy of the retirement annuity agreement between the annuitant and our Company, Custodian Life Assurance Limited for you to forward same to National Pension Commission (PENCOM) for approval, if the Purchase Amount is in order.</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Century Gothic</FontFamily>
@@ -581,156 +457,189 @@
               <TextAlign>Left</TextAlign>
             </Style>
           </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>DARAMOLA ABDULMUJEEB                                               NSISONG UBOCHI</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>INDIVIDUAL LIFE OPERATIONS                                HEAD, INDIVIDUAL LIFE OPERATIONS</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+              <LineHeight>13pt</LineHeight>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+              <LineHeight>13pt</LineHeight>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>CC:</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> National Pension Commission (PENCOM)</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+              <LineHeight>13pt</LineHeight>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+              <LineHeight>13pt</LineHeight>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+              <LineHeight>13pt</LineHeight>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+              <LineHeight>13pt</LineHeight>
+            </Style>
+          </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>0.79042in</Top>
-        <Height>5.6875in</Height>
-        <Width>6.25in</Width>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="USER_NAME">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=UCase(First(Fields!USER_NAME.Value, "DT_ANNUITY_NOTF"))</Value>
-                <Style>
-                  <FontFamily>Century Gothic</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>USER_NAME</rd:DefaultName>
-        <Top>6.8425in</Top>
-        <Left>0.0925in</Left>
-        <Height>0.25in</Height>
-        <Width>2.84375in</Width>
-        <ZIndex>1</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox3">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>INDIVIDUAL LIFE OPERATIONS</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Century Gothic</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox3</rd:DefaultName>
-        <Top>7.10639in</Top>
-        <Left>0.0925in</Left>
-        <Height>0.25in</Height>
-        <Width>2.83333in</Width>
-        <ZIndex>2</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox4">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>NSISONG UBOCHI</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Century Gothic</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>6.86333in</Top>
-        <Left>3.51958in</Left>
-        <Height>0.25in</Height>
-        <Width>2.29292in</Width>
-        <ZIndex>3</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox5">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>HEAD, INDIVIDUAL LIFE OPERATIONS</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Century Gothic</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>7.155in</Top>
-        <Left>3.51958in</Left>
-        <Height>0.25in</Height>
-        <Width>2.74083in</Width>
-        <ZIndex>4</ZIndex>
+        <Height>7.70833in</Height>
+        <Width>6.39583in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -742,10 +651,10 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>7.51959in</Height>
+    <Height>7.70833in</Height>
     <Style />
   </Body>
-  <Width>6.36458in</Width>
+  <Width>6.39583in</Width>
   <Page>
     <LeftMargin>1in</LeftMargin>
     <RightMargin>1in</RightMargin>
@@ -755,21 +664,19 @@
   </Page>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="ABS_LIFE_STAGING">
-      <DataSourceReference>ABS_LIFE_STAGING</DataSourceReference>
-      <rd:SecurityType>None</rd:SecurityType>
-      <rd:DataSourceID>f9210c02-6c37-42eb-8fc5-58601e859c1b</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="ABS_LIFE_DS">
-      <DataSourceReference>ABS_LIFE_DS</DataSourceReference>
-      <rd:SecurityType>None</rd:SecurityType>
-      <rd:DataSourceID>f9bf18f6-3262-4776-8a98-51c56f6ff786</rd:DataSourceID>
+    <DataSource Name="ABSLIFE">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString>Data Source=ABS-SERVER;Initial Catalog=ABS_LIFE_STAGING</ConnectString>
+      </ConnectionProperties>
+      <rd:SecurityType>DataBase</rd:SecurityType>
+      <rd:DataSourceID>660c3d6a-c695-4d1f-900c-8404e5140369</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="DT_ANNUITY_NOTF">
+    <DataSet Name="DataSet1">
       <Query>
-        <DataSourceName>ABS_LIFE_DS</DataSourceName>
+        <DataSourceName>ABSLIFE</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@pPolicyNo">
             <Value>=Parameters!pPolicyNo.Value</Value>
@@ -808,6 +715,10 @@
           <DataField>TBIL_ANN_POLY_PLAN_CD</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="TBIL_ANN_POLY_COVER_CD">
+          <DataField>TBIL_ANN_POLY_COVER_CD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="TBIL_ANN_POLY_PROPSL_ACCPT_DT">
           <DataField>TBIL_ANN_POLY_PROPSL_ACCPT_DT</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
@@ -820,16 +731,16 @@
           <DataField>TBIL_ANN_POLY_ASSRD_AGE</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ASSURED_GENDER">
-          <DataField>ASSURED_GENDER</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="TBIL_ANN_POLY_GENDER">
           <DataField>TBIL_ANN_POLY_GENDER</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="TBIL_ANN_POLY_MARITAL">
           <DataField>TBIL_ANN_POLY_MARITAL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ASSURED_GENDER">
+          <DataField>ASSURED_GENDER</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="TBIL_ANN_POLY_OCCUPATN">
@@ -844,14 +755,6 @@
           <DataField>TBIL_ANN_POLY_ASSRD_BDATE</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="TBIL_POLICY_END_DT">
-          <DataField>TBIL_POLICY_END_DT</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="POLICY_PERIOD">
-          <DataField>POLICY_PERIOD</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
         <Field Name="FORMATTED_COMMENCEMENT_DT">
           <DataField>FORMATTED_COMMENCEMENT_DT</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -860,16 +763,20 @@
           <DataField>TODAYS_DATE</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="TBIL_POLICY_END_DT">
+          <DataField>TBIL_POLICY_END_DT</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
         <Field Name="FORMATTED_PROPOSAL_DT">
           <DataField>FORMATTED_PROPOSAL_DT</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="POLICY_PERIOD">
+          <DataField>POLICY_PERIOD</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
         <Field Name="Assured_Name">
           <DataField>Assured_Name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="FORMATTED_COMMENCEMENT_DT_WORD">
-          <DataField>FORMATTED_COMMENCEMENT_DT_WORD</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="ASSURED_PHONE_NUMBER">
@@ -880,17 +787,9 @@
           <DataField>ASSURED_EMAIL</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ASSURED_ADDRESS">
-          <DataField>ASSURED_ADDRESS</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="TBIL_PREM_PAYABLE">
           <DataField>TBIL_PREM_PAYABLE</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="TBIL_PREM_PAYABLE_WORD">
-          <DataField>TBIL_PREM_PAYABLE_WORD</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="TBIL_ANNUAL_PREM">
           <DataField>TBIL_ANNUAL_PREM</DataField>
@@ -902,6 +801,10 @@
         </Field>
         <Field Name="TBIL_ANN_POLY_LAST_EMPLOYER">
           <DataField>TBIL_ANN_POLY_LAST_EMPLOYER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ASSURED_ADDRESS">
+          <DataField>ASSURED_ADDRESS</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="TBIL_ANN_POLY_LAST_EMPLOYER_ADRES">
@@ -944,64 +847,12 @@
           <DataField>TBIL_ANN_POLY_BANK_SORT_CODE</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="TBIL_ANN_POL_PRM_CURRCY">
-          <DataField>TBIL_ANN_POL_PRM_CURRCY</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="TBIL_ANN_POL_PREM_WITHOUT_LS_LC">
-          <DataField>TBIL_ANN_POL_PREM_WITHOUT_LS_LC</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="TBIL_ANN_POL_PREM_WITH_LS_LC">
-          <DataField>TBIL_ANN_POL_PREM_WITH_LS_LC</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="ANNUAL_ANNUITY">
-          <DataField>ANNUAL_ANNUITY</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="MONTHLY_ANNUITY">
-          <DataField>MONTHLY_ANNUITY</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="GUARANTEE_PERIOD">
-          <DataField>GUARANTEE_PERIOD</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="ANNUITY_PURCHASE">
-          <DataField>ANNUITY_PURCHASE</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="USER_SHORT_NAME">
-          <DataField>USER_SHORT_NAME</DataField>
+        <Field Name="TBIL_ANN_POL_PRM_SA_CURRCY">
+          <DataField>TBIL_ANN_POL_PRM_SA_CURRCY</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="TBIL_PRDCT_DTL_DESC">
           <DataField>TBIL_PRDCT_DTL_DESC</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="USER_NAME">
-          <DataField>USER_NAME</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="RECIEPT_DATE">
-          <DataField>RECIEPT_DATE</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PFA_PHONE_NUMBER">
-          <DataField>PFA_PHONE_NUMBER</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="TBIL_PFA_DESC">
-          <DataField>TBIL_PFA_DESC</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PFA_EMAIL">
-          <DataField>PFA_EMAIL</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PFA_ADDRESS">
-          <DataField>PFA_ADDRESS</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
@@ -1014,20 +865,17 @@
     </ReportParameter>
     <ReportParameter Name="pParam1">
       <DataType>String</DataType>
-      <Nullable>true</Nullable>
       <Prompt>p Param1</Prompt>
     </ReportParameter>
     <ReportParameter Name="pParam2">
       <DataType>String</DataType>
-      <Nullable>true</Nullable>
       <Prompt>p Param2</Prompt>
     </ReportParameter>
     <ReportParameter Name="pParam3">
       <DataType>String</DataType>
-      <Nullable>true</Nullable>
       <Prompt>p Param3</Prompt>
     </ReportParameter>
   </ReportParameters>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
-  <rd:ReportID>02663b8f-e2d2-4950-a1af-170a89bd62cc</rd:ReportID>
+  <rd:ReportID>6d26cccc-f58d-41d0-bdbe-8e6048ef1f78</rd:ReportID>
 </Report>

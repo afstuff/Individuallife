@@ -79,6 +79,8 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY_RPT
             rParams(4) = endDate + "&"
             rParams(5) = "pFilterOption="
             rParams(6) = pFilterOption1 + "&"
+            Dim url As String = HttpContext.Current.Request.Url.AbsoluteUri
+            rParams(7) = url
 
             Session("ReportParams") = rParams
             Response.Redirect("~/PrintView.aspx")
@@ -95,5 +97,9 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY_RPT
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+    End Sub
+
+    Protected Sub butClose_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles butClose.Click
+        Response.Redirect("PRG_LI_REQ_ENTRY.aspx")
     End Sub
 End Class
