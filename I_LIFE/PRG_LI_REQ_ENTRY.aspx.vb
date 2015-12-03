@@ -371,7 +371,7 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
                 _rtnMessage = "Claims record retrieved!"
 
             Else
-                _rtnMessage = "Unable to retrieve record. Invalid POLICY NUMBER!"
+                _rtnMessage = "Unable to retrieve record. Invalid CLAIM NUMBER!"
             End If
             conn.Close()
         Catch ex As Exception

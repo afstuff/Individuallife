@@ -560,6 +560,15 @@ Partial Class I_LIFE_MENU_IL
                 AddMenuItem("", "UNDER_LINE", "") 'blank link
                 AddMenuItem("", "Returns to Previous Page", "menu_il.aspx?menu=home")
 
+
+            Case "IL_RENEWAL"
+                STRMENU_TITLE = "+++ Individual Renewal Scheme +++ "
+                AddMenuItem("", "Returns to Previous Page", "menu_il.aspx?menu=home")
+                AddMenuItem("", "UNDER_LINE", "") 'blank link
+                AddMenuItem("Renewal", "Pre-Renewal Processing", "")
+                AddMenuItem("", "Renewal Scheme", "PRG_LI_POLICY_RENEW.ASPX")
+
+
         End Select
 
     End Sub
