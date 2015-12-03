@@ -1,7 +1,7 @@
 ﻿
 Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS_RPT
     Inherits System.Web.UI.Page
-    Dim rParams As String() = {"nw", "nw", "new", "new", "new", "new"}
+    Dim rParams As String() = {"nw", "nw", "new", "new", "new"}
 
     Protected Sub butOK_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles butOK.Click
         Dim str() As String
@@ -51,14 +51,13 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS_RPT
         Dim startDate = Format(startDate1, "MM/dd/yyyy")
         Dim endDate = Format(endDate1, "MM/dd/yyyy")
 
-
+   
         rParams(0) = "RPT_LI_CANCEL_PROCESS"
         rParams(1) = "pStart_Date="
         rParams(2) = startDate + "&"
         rParams(3) = "pEnd_Date="
         rParams(4) = endDate + "&"
-        Dim url As String = HttpContext.Current.Request.Url.AbsoluteUri
-        rParams(5) = url
+
         Session("ReportParams") = rParams
         Response.Redirect("../PrintView.aspx")
         ' Response.Redirect("PrintView.aspx")
@@ -66,9 +65,5 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS_RPT
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-    End Sub
-
-    Protected Sub butClose_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles butClose.Click
-        Response.Redirect("PRG_LI_CANCEL_PROCESS.aspx")
     End Sub
 End Class

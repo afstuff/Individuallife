@@ -3436,7 +3436,4 @@ END_MOP_RTN:
 
     End Sub
 
-    Protected Sub cmdFileNum_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdFileNum.Click
-
-    End Sub
 End Class

@@ -2001,7 +2001,7 @@ Skip_C001:
             'Call Proc_DDL_Get(Me.ddlGroup, RTrim(Me.txtGroupNum.Text))
             Me.txtRecNo.Text = RTrim(CType(objOLEDR("TBIL_POL_PRM_REC_ID") & vbNullString, String))
 
-            'Me.txtQuote_Num.Text = RTrim(CType(objOLEDR("TBIL_POL_PRM_PROP_NO") & vbNullString, String))
+            Me.txtQuote_Num.Text = RTrim(CType(objOLEDR("TBIL_POL_PRM_PROP_NO") & vbNullString, String))
             Me.txtPolNum.Text = RTrim(CType(objOLEDR("TBIL_POL_PRM_POLY_NO") & vbNullString, String))
 
             'Me.txtProductClass.Text = RTrim(CType(objOLEDR("TBIL_PRDCT_DTL_CAT") & vbNullString, String))
