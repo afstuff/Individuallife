@@ -539,7 +539,13 @@ Partial Class I_LIFE_MENU_IL
                 AddMenuItem("", "UNDER_LINE", "") 'blank link
                 AddMenuItem("", "", "") 'blank link
                 'AddMenuItem("", "MENU CAPTION", "PAGE URL")
+                AddMenuItem("Set up", "ReInsurance Settings", "../REINSURANCE/PRG_LI_REINS_SETTINGS.aspx")
+                '"~/m_menu.aspx?menu=home")
+                AddMenuItem("", "", "")
+
                 AddMenuItem("Transactions", "ReAssurer Data Registration", "")
+                AddMenuItem("", "", "")
+
                 'AddMenuItem("", "ReAssurer Facultative Entry", "")
                 AddMenuItem("Reports", "ReAssurer Data Register", "")
                 AddMenuItem("", "ReAssurer Bordeareaux", "")
