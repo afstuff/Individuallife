@@ -164,8 +164,10 @@
                             
                                         <asp:CommandField ShowSelectButton="True" />
                                         <asp:BoundField readonly="true" DataField="TBIL_REINS_REC_ID" HeaderText="SNo" HeaderStyle-HorizontalAlign="Left" convertemptystringtonull="true" />
-                                        <asp:BoundField readonly="true" DataField="TBIL_REINS_RETENTION" HeaderText="Retention" ItemStyle-Width="80px" HeaderStyle-HorizontalAlign="Left" convertemptystringtonull="true" />
-                                        <asp:BoundField readonly="true" DataField="TBIL_REINS_MED_COV_LMT" HeaderText="Med. Cov. Limit" HeaderStyle-HorizontalAlign="Left" convertemptystringtonull="true" />
+                                        <asp:BoundField readonly="true" DataField="TBIL_REINS_RETENTION" HeaderText="Retention" 
+                                        DataFormatString="{0:n}" ItemStyle-Width="80px" HeaderStyle-HorizontalAlign="Left" convertemptystringtonull="true" />
+                                        <asp:BoundField readonly="true" DataField="TBIL_REINS_MED_COV_LMT" HeaderText="Med. Cov. Limit" 
+                                        DataFormatString="{0:n}" HeaderStyle-HorizontalAlign="Left" convertemptystringtonull="true" />
                                         <asp:BoundField readonly="true" DataField="TBIL_REINS_COY_SHARE" HeaderText="CAI Share" HeaderStyle-HorizontalAlign="Left" convertemptystringtonull="true" />
                                         <asp:BoundField readonly="true" DataField="TBIL_REINS_EFF_DATE" HeaderText="Commencement Date" HeaderStyle-HorizontalAlign="Left" convertemptystringtonull="true"  DataFormatString="{0:dd/MM/yyyy}"/>
                                    </Columns>
