@@ -106,6 +106,7 @@ Partial Class REINSURANCE_PRG_LI_REINS_SETTINGS
             .txtCommDate.Text = ""
             .cmdDelete_ASP.Enabled = False
             .lblMessage.Text = "Status: New Entry..."
+            .txtCommDate.Enabled = True
         End With
 
     End Sub
@@ -492,7 +493,7 @@ Partial Class REINSURANCE_PRG_LI_REINS_SETTINGS
         strTable = strTableName
 
         strSQL = ""
-        strSQL = "SELECT * " & strTable
+        strSQL = "SELECT * FROM " & strTable
         strSQL = strSQL & " WHERE TBIL_REINS_REC_ID = '" & RTrim(strREC_ID) & "'"
         'strSQL = strSQL & " AND TBIL_COD_TYP = '" & RTrim(txtGroupNum.Text) & "'"
         'strSQL = strSQL & " AND TBIL_COD_TAB_ID = '" & RTrim(strP_ID) & "'"
@@ -610,9 +611,9 @@ Partial Class REINSURANCE_PRG_LI_REINS_SETTINGS
         objOLEDR = objOLECmd.ExecuteReader()
         If (objOLEDR.Read()) Then
 
-            Me.txtRetention.Text = RTrim(CType(objOLEDR("TBIL_REINS_RETENTION") & vbNullString, String))
+            Me.txtRetention.Text = Format(RTrim(CType(objOLEDR("TBIL_REINS_RETENTION") & vbNullString, String)), "Standard")
             Me.txtRecNo.Text = RTrim(CType(objOLEDR("TBIL_REINS_REC_ID") & vbNullString, String))
-            Me.txtFreeMedCovLmt.Text = RTrim(CType(objOLEDR("TBIL_REINS_MED_COV_LMT") & vbNullString, String))
+            Me.txtFreeMedCovLmt.Text = Format(RTrim(CType(objOLEDR("TBIL_REINS_MED_COV_LMT") & vbNullString, String)), "Standard")
             Me.txtCompShare.Text = RTrim(CType(objOLEDR("TBIL_REINS_COY_SHARE") & vbNullString, String))
 
             If Not IsDBNull(objOLEDR("TBIL_REINS_EFF_DATE")) Then _
@@ -685,12 +686,12 @@ Partial Class REINSURANCE_PRG_LI_REINS_SETTINGS
         ' Display the required value from the selected row.
         Me.txtRecNo.Text = row.Cells(2).Text
 
-        Me.txtRetention.Text = row.Cells(3).Text
-        Me.txtFreeMedCovLmt.Text = row.Cells(4).Text
+        Me.txtRetention.Text = Format(row.Cells(3).Text, "Standard")
+        Me.txtFreeMedCovLmt.Text = Format(row.Cells(4).Text, "Standard")
         Me.txtCompShare.Text = row.Cells(5).Text
         Me.txtCommDate.Text = row.Cells(6).Text
-
-        Call Proc_OpenRecord(Me.txtRecNo.Text)
+        txtCommDate.Enabled = False
+        ' Call Proc_OpenRecord(Me.txtRecNo.Text)
 
         lblMessage.Text = "You selected " & Me.txtRecNo.Text & " / " & Me.txtCommDate.Text & "."
 
@@ -720,5 +721,13 @@ Partial Class REINSURANCE_PRG_LI_REINS_SETTINGS
                 Exit Sub
             End If
         End If
+    End Sub
+
+    Protected Sub cmdDelItem_ASP_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdDelItem_ASP.Click
+        'Call DoDelItem()
+    End Sub
+
+    Protected Sub cmdDelItem_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdDelItem.Click
+
     End Sub
 End Class

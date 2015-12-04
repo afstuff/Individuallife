@@ -103,7 +103,7 @@ Partial Class I_LIFE_PRG_LI_INDV_POLY_PERSNAL
             Call Proc_DoNew()
             Me.cmdPrev.Enabled = False
             Me.cmdNext.Enabled = False
-
+            GetReInsValue()
             Me.txtTrans_Date.Text = Format(Now, "dd/MM/yyyy")
             If Me.txtProStatus.Text = "" Then
                 Me.txtProStatus.Text = "P"
@@ -1055,6 +1055,47 @@ Proc_Skip_Check:
             Exit Sub
         End If
 
+        If txtRetention.Text <> "" Then
+            If Not IsNumeric(txtRetention.Text) Then
+                Me.lblMsg.Text = "Retention must be numeric"
+                FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+                txtRetention.Focus()
+                Exit Sub
+            End If
+        Else
+            Me.lblMsg.Text = "Retention not be empty"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            txtRetention.Focus()
+            Exit Sub
+        End If
+
+        If txtFreeMedCovLmt.Text <> "" Then
+            If Not IsNumeric(txtFreeMedCovLmt.Text) Then
+                Me.lblMsg.Text = "Free medical cover limit must be numeric"
+                FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+                txtFreeMedCovLmt.Focus()
+                Exit Sub
+            End If
+        Else
+            Me.lblMsg.Text = "Free medical cover limit not be empty"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            txtFreeMedCovLmt.Focus()
+            Exit Sub
+        End If
+
+        If txtCompShare.Text <> "" Then
+            If Not IsNumeric(txtCompShare.Text) Then
+                Me.lblMsg.Text = "CIA share must be numeric"
+                FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+                txtCompShare.Focus()
+                Exit Sub
+            End If
+        Else
+            Me.lblMsg.Text = "CIA share must not be empty"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            txtCompShare.Focus()
+            Exit Sub
+        End If
 
 
 
@@ -1665,6 +1706,10 @@ Proc_Skip_Check:
 
                 drNewRow("TBIL_POLY_ASSRD_PLACE_BIRTH") = RTrim(Me.txtDOB_Place.Text)
 
+                drNewRow("TBIL_POLY_MED_COVER_LMT") = txtFreeMedCovLmt.Text
+                drNewRow("TBIL_POLY_RETENTION") = txtRetention.Text
+                drNewRow("TBIL_POLY_COMP_SHARE") = Val(Trim(txtCompShare.Text))
+
                 drNewRow("TBIL_POLY_FLAG") = "A"
                 drNewRow("TBIL_POLY_OPERID") = CType(myUserIDX, String)
                 drNewRow("TBIL_POLY_KEYDTE") = Now
@@ -1739,6 +1784,10 @@ Proc_Skip_Check:
                     .Rows(0)("TBIL_POLY_ASSRD_RELATN") = RTrim(Me.txtRelation.Text)
 
                     .Rows(0)("TBIL_POLY_ASSRD_PLACE_BIRTH") = RTrim(Me.txtDOB_Place.Text)
+
+                    .Rows(0)("TBIL_POLY_MED_COVER_LMT") = txtFreeMedCovLmt.Text
+                    .Rows(0)("TBIL_POLY_RETENTION") = txtRetention.Text
+                    .Rows(0)("TBIL_POLY_COMP_SHARE") = Val(Trim(txtCompShare.Text))
 
                     .Rows(0)("TBIL_POLY_FLAG") = "C"
                     .Rows(0)("TBIL_POLY_FLAG") = "C"
@@ -2253,6 +2302,18 @@ PUpdate_Date1:
             Me.txtOtherRefNo.Text = RTrim(CType(objOLEDR("TBIL_POLY_REF_NEW") & vbNullString, String))
 
 
+            Me.txtFreeMedCovLmt.Text = Format(RTrim(CType(objOLEDR("TBIL_POLY_MED_COVER_LMT") & vbNullString, String)), "Standard")
+            Me.txtRetention.Text = Format(RTrim(CType(objOLEDR("TBIL_POLY_RETENTION") & vbNullString, String)), "Standard")
+            Me._txtCompShare.Text = RTrim(CType(objOLEDR("TBIL_POLY_COMP_SHARE") & vbNullString, String))
+
+            'If Not IsDBNull(objOLEDR("TBIL_POLY_MED_COVER_LMT")) Then _
+            '                        txtFreeMedCovLmt.Text = Format(objOLEDR("TBIL_POLY_MED_COVER_LMT"), "Standard")
+            'If Not IsDBNull(objOLEDR("TBIL_POLY_RETENTION")) Then _
+            '                        txtRetention.Text = Format(objOLEDR("TBIL_POLY_RETENTION"), "Standard")
+            'If Not IsDBNull(objOLEDR("TBIL_POLY_COMP_SHARE")) Then _txtCompShare.Text = objOLEDR("TBIL_POLY_COMP_SHARE")
+
+
+
             Me.lblFileNum.Enabled = False
             'Call DisableBox(Me.txtFileNum)
             Me.chkFileNum.Enabled = False
@@ -2388,5 +2449,107 @@ PUpdate_Date1:
 
     End Sub
 
-  
+
+    Protected Sub txtRetention_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtRetention.TextChanged
+        If txtRetention.Text <> "" Then
+            If IsNumeric(txtRetention.Text) Then
+                txtRetention.Text = Format(txtRetention.Text, "Standard")
+            Else
+                Me.lblMsg.Text = "Retention must be numeric"
+                FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+                txtRetention.Focus()
+                Exit Sub
+            End If
+        End If
+    End Sub
+
+    Protected Sub txtFreeMedCovLmt_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtFreeMedCovLmt.TextChanged
+        If txtFreeMedCovLmt.Text <> "" Then
+            If IsNumeric(txtFreeMedCovLmt.Text) Then
+                txtFreeMedCovLmt.Text = Format(txtFreeMedCovLmt.Text, "Standard")
+            Else
+                Me.lblMsg.Text = "Free medical cover limit must be numeric"
+                FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+                txtFreeMedCovLmt.Focus()
+                Exit Sub
+            End If
+        End If
+    End Sub
+    Private Sub GetReInsValue()
+        Dim mystrCONN As String = CType(Session("connstr"), String)
+        Dim objOLEConn As New OleDbConnection(mystrCONN)
+
+        Try
+            'open connection to database
+            objOLEConn.Open()
+        Catch ex As Exception
+            Me.lblMsg.Text = "Unable to connect to database. Reason: " & ex.Message
+            objOLEConn = Nothing
+            Exit Sub
+        End Try
+
+
+        strTable = strTableName
+        strSQL = ""
+        strSQL = strSQL & "SELECT *"
+        strSQL = strSQL & " FROM TBIL_REINSURANCE_SETTINGS"
+        strSQL = strSQL & " WHERE YEAR(TBIL_REINS_EFF_DATE) = '" & Year(DateTime.Now) & "'"
+        strSQL = strSQL & " AND TBIL_REINS_FLAG <> 'D'"
+        strSQL = strSQL & " ORDER BY TBIL_REINS_REC_ID DESC"
+
+
+
+        Dim objOLECmd As OleDbCommand = New OleDbCommand(strSQL, objOLEConn)
+
+        objOLECmd.CommandType = CommandType.Text
+        'objOLECmd.Parameters.Add("p01", OleDbType.VarChar, 50).Value = strREC_ID
+
+        Dim objOLEDR As OleDbDataReader
+
+
+        objOLEDR = objOLECmd.ExecuteReader()
+        If (objOLEDR.Read()) Then
+
+            Me.txtRetention.Text = Format(RTrim(CType(objOLEDR("TBIL_REINS_RETENTION") & vbNullString, String)), "Standard")
+            Me.txtFreeMedCovLmt.Text = Format(RTrim(CType(objOLEDR("TBIL_REINS_MED_COV_LMT") & vbNullString, String)), "Standard")
+            Me.txtCompShare.Text = Format(RTrim(CType(objOLEDR("TBIL_REINS_COY_SHARE") & vbNullString, String)), "Standard")
+        Else
+            objOLECmd.Dispose()
+            objOLECmd = Nothing
+            objOLEDR.Close()
+            objOLEDR = Nothing
+
+            strSQL = ""
+            strSQL = strSQL & "SELECT TOP 1 *"
+            strSQL = strSQL & " FROM TBIL_REINSURANCE_SETTINGS"
+            strSQL = strSQL & " ORDER BY TBIL_REINS_REC_ID DESC"
+            strSQL = strSQL & " AND TBIL_REINS_FLAG <> 'D'"
+
+            objOLECmd = New OleDbCommand(strSQL, objOLEConn)
+            objOLECmd.CommandType = CommandType.Text
+            objOLEDR = objOLECmd.ExecuteReader()
+            If (objOLEDR.Read()) Then
+
+                Me.txtRetention.Text = Format(RTrim(CType(objOLEDR("TBIL_REINS_RETENTION") & vbNullString, String)), "Standard")
+                Me.txtFreeMedCovLmt.Text = Format(RTrim(CType(objOLEDR("TBIL_REINS_MED_COV_LMT") & vbNullString, String)), "Standard")
+                Me.txtCompShare.Text = Format(RTrim(CType(objOLEDR("TBIL_REINS_COY_SHARE") & vbNullString, String)), "Standard")
+            End If
+
+        End If
+
+
+        ' dispose of open objects
+        objOLECmd.Dispose()
+        objOLECmd = Nothing
+
+        If objOLEDR.IsClosed = False Then
+            objOLEDR.Close()
+        End If
+        objOLEDR = Nothing
+
+        If objOLEConn.State = ConnectionState.Open Then
+            objOLEConn.Close()
+        End If
+        objOLEConn = Nothing
+    End Sub
 End Class
