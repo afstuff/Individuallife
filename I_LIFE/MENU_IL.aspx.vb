@@ -377,7 +377,13 @@ Partial Class I_LIFE_MENU_IL
                 AddMenuItem("", "Loans Statement", "")
                 AddMenuItem("", "", "") 'blank link
                 AddMenuItem("", "UNDER_LINE", "") 'blank link
-                AddMenuItem("", "Returns to Previous Page", "menu_il.aspx?menu=home")
+                'AddMenuItem("", "Returns to Previous Page", "menu_il.aspx?menu=home")
+
+                'AddMenuItem("", "", "") 'blank link
+                'AddMenuItem("", "", "") 'blank link
+                AddMenuItem("Medical Examination", "Medical Examination Test Requirement List", "PRG_LI_INDV_MEDICAL_EXAM_LIST.aspx")
+                'AddMenuItem("", "", "") 'blank link
+
 
             Case "IL_UND_INVEST_PLUS"
                 STRMENU_TITLE = "+++ Underwriting >>> Investment Plan Menu +++ "
@@ -573,6 +579,8 @@ Partial Class I_LIFE_MENU_IL
                 AddMenuItem("", "UNDER_LINE", "") 'blank link
                 AddMenuItem("Renewal", "Pre-Renewal Processing", "")
                 AddMenuItem("", "Renewal Scheme", "PRG_LI_POLICY_RENEW.ASPX")
+
+
 
 
         End Select

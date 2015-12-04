@@ -1,10 +1,9 @@
-﻿Imports System.Data.OleDb
+﻿
 Imports System.Data
+Imports System.Data.OleDb
 
-Partial Class I_LIFE_PRG_LI_POLICY_RENEW
+Partial Class I_LIFE_PRG_LI_INDV_MEDICAL_EXAM_LIST
     Inherits System.Web.UI.Page
-
-
 
     Protected FirstMsg As String
     Protected PageLinks As String
@@ -55,44 +54,6 @@ Partial Class I_LIFE_PRG_LI_POLICY_RENEW
     Dim dblAnnual_Basic_Prem_FC As Double = 0
 
     Dim dblTmp_Amt As Double = 0
-
-    Public Sub DoClaimRenewal(ByVal polyNumber As String, ByVal fileNumber As String, ByVal propNumber As String, ByVal startDate As Date, ByVal endDate As Date)
-        ', ByVal batchNumber As String       
-        Dim mystrConn As String = CType(Session("connstr"), String)
-        Dim conn As OleDbConnection
-        conn = New OleDbConnection(mystrConn)
-        Dim cmd As OleDbCommand = New OleDbCommand()
-        cmd.Connection = conn
-        cmd.CommandText = "SPIL_IND_CLAIMRENEWALBY_POLY_NO"
-        cmd.CommandType = CommandType.StoredProcedure
-        cmd.Parameters.AddWithValue("@TBIL_POL_MEMB_POLY_NO", polyNumber)
-        'cmd.Parameters.AddWithValue("@TBIL_POL_MEMB_FILE_NO", fileNumber)
-        'cmd.Parameters.AddWithValue("@TBIL_POL_MEMB_PROP_NO", propNumber)
-        cmd.Parameters.AddWithValue("@TBIL_POL_PREM_INFO_STARTDATE", startDate)
-        cmd.Parameters.AddWithValue("@TBIL_POL_PREM_INFO_ENDDATE", endDate)
-
-        Try
-            conn.Open()
-            Dim objOledr As OleDbDataReader
-            objOledr = cmd.ExecuteReader()
-
-            Dim dt As DataTable = New DataTable
-            dt.Load(objOledr)
-            Dim numRows As Integer = dt.Rows.Count
-            lblMsg.Text = "Result: " + numRows.ToString + " members listed."
-
-
-            'Else
-            '    _rtnMessage = "Sorry. The system cannot find record with IDs: " + txtPolNum.Text
-            'End If
-            lblMsg.Text = "The policy " + polyNumber.ToString + " hes been renewed successfully!"
-            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
-            conn.Close()
-        Catch ex As Exception
-            strErrMsg = "Error retrieving data! " + ex.Message
-        End Try
-    End Sub
-
     Protected Sub cboSearch_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboSearch.SelectedIndexChanged
         Try
             If Me.cboSearch.SelectedIndex = -1 Or Me.cboSearch.SelectedIndex = 0 Or _
@@ -238,25 +199,17 @@ Partial Class I_LIFE_PRG_LI_POLICY_RENEW
         End If
     End Sub
 
-    Protected Sub btnRenewPolicy_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnRenewPolicy.Click
+    Protected Sub btnGo0_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnGo0.Click
 
         If txtPolNum.Text <> "" Then
-            'ClientScript.RegisterClientScriptBlock(Me.GetType(), "Yes", "Check();", True)
-            'FirstMsg = "javascript:confirm('Field policy number cannot be empty!')"
-            DoClaimRenewal(txtPolNum.Text, txtFileNum.Text, txtQuote_Num.Text, MOD_GEN.DoConvertToDbDateFormat(txtPrem_Start_Date.Text), MOD_GEN.DoConvertToDbDateFormat(txtPrem_End_Date.Text))
-        Else
-            FirstMsg = "javascript:alert('Field policy number cannot be empty!')"
-            Exit Sub
-        End If
-    End Sub
-
-    Protected Sub btnGo_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnGo.Click
-
-        If Trim(Me.txtPolNum.Text) <> "" Then
             strStatus = Proc_DoOpenRecord(RTrim("POL"), Me.txtPolNum.Text, RTrim("0"))
             GET_POLICYDATE_BY_FILENO(txtPolNum.Text)
+            Else 
+            FirstMsg ="javascript:alert('Policy Number Field cannot be empty!');"
         End If
+
     End Sub
+
 
 
 
