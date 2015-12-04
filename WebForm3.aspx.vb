@@ -108,6 +108,7 @@ Partial Class WebForm3
                 ElseIf RTrim(Me.txtSearch.Value) <> "" Then
                     strSQL = strSQL & " AND (TBIL_AGCY_AGENT_NAME LIKE '%" & RTrim(Me.txtSearch.Value) & "%'"
                     strSQL = strSQL & " OR TBIL_AGCY_AGENT_NAME LIKE '%" & RTrim(Me.txtSearch.Value) & "%')"
+                    strSQL = strSQL & " AND TBIL_AGCY_CD_MDLE  IN('IND','I')"
                 End If
                 If Trim(strFT) = "Y" Then
                     strFT = "N"
@@ -128,6 +129,7 @@ Partial Class WebForm3
                 ElseIf RTrim(Me.txtSearch.Value) <> "" Then
                     strSQL = strSQL & " AND (TBIL_CUST_DESC LIKE '%" & RTrim(Me.txtSearch.Value) & "%'"
                     strSQL = strSQL & " OR TBIL_CUST_DESC LIKE '%" & RTrim(Me.txtSearch.Value) & "%')"
+                    strSQL = strSQL & " AND TBIL_CUST_MDLE IN('IND','I')"
                 End If
                 If Trim(strFT) = "Y" Then
                     strFT = "N"
@@ -148,6 +150,7 @@ Partial Class WebForm3
                 ElseIf RTrim(Me.txtSearch.Value) <> "" Then
                     strSQL = strSQL & " AND (TBIL_INSRD_SURNAME LIKE '%" & RTrim(Me.txtSearch.Value) & "%'"
                     strSQL = strSQL & " OR TBIL_INSRD_FIRSTNAME LIKE '%" & RTrim(Me.txtSearch.Value) & "%')"
+                    strSQL = strSQL & " AND TBIL_INSRD_MDLE  IN('IND','I')"
                 End If
                 If Trim(strFT) = "Y" Then
                     strFT = "N"
