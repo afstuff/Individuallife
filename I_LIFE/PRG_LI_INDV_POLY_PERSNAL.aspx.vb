@@ -2524,7 +2524,7 @@ PUpdate_Date1:
             strSQL = ""
             strSQL = strSQL & "SELECT TOP 1 *"
             strSQL = strSQL & " FROM TBIL_REINSURANCE_SETTINGS"
-            strSQL = strSQL & " AND TBIL_REINS_FLAG <> 'D'"
+            strSQL = strSQL & " WHERE TBIL_REINS_FLAG <> 'D'"
             strSQL = strSQL & " ORDER BY TBIL_REINS_REC_ID DESC"
 
 
