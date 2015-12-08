@@ -341,6 +341,7 @@ Partial Class I_LIFE_MENU_IL
                 AddMenuItem("", "Claims Weekly Report", "RPT_LI_CLAIM_WEEKLY_REPORT.aspx")
                 AddMenuItem("", "Weekly Business Report", "RPT_LI_BUSINESS_WEEKLY_REPORT.aspx")
                 AddMenuItem("", "Maturity List Report", "PRG_LI_INDV_REPORTS.ASPX")
+                AddMenuItem("", "Reinsurance List Report", "RPT_LI_REINS_CERT.aspx")
                 AddMenuItem("", "", "") 'blank link
 
                 AddMenuItem("", "Proposal Status Report", "")
