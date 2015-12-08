@@ -41,7 +41,7 @@
             <tr>
                 <td align="left" valign="top" class="myMenu_Title_02">
                     <table border="0" width="100%">
-                        <tr>
+                        <tr style="display: none;">
                             <td align="left" colspan="2" valign="top">
                                 <%=STRMENU_TITLE%>
                             </td>
@@ -85,7 +85,7 @@
                                 <asp:Label ID="lblMsg" ForeColor="Red" Font-Size="Small" runat="server"></asp:Label>
                             </td>
                         </tr>
-                        <tr>
+                        <tr style="display: none;">
                             <td nowrap align="left" valign="top" class="style3">
                                 <asp:Label ID="lblFileNum" Enabled="true" Text="File No:" runat="server"></asp:Label>
                             </td>
@@ -102,7 +102,7 @@
                                     Font-Bold="True" />
                             </td>
                         </tr>
-                        <tr>
+                        <tr style="display: none;">
                             <td align="left" valign="top" class="style3">
                                 <asp:Label ID="lblQuote_Num" Enabled="true" Text="Proposal No:" runat="server"></asp:Label>
                             </td>
@@ -126,7 +126,7 @@
                             </td>
                             <td align="left" valign="top" colspan="1" class="style2">
                                 <asp:TextBox ID="txtPrem_Start_Date" MaxLength="10" runat="server" 
-                                    Enabled="False"></asp:TextBox>
+                                    Enabled="True"></asp:TextBox>
                                                     <asp:Label ID="lblPrem_Start_Date_Format" Visible="true" Text="dd/mm/yyyy" runat="server"></asp:Label>
                             </td>
                             <td align="left" valign="top" colspan="1">
@@ -134,7 +134,7 @@
                             </td>
                             <td align="left" valign="top">
                                 <asp:TextBox ID="txtPrem_End_Date" MaxLength="10" runat="server" 
-                                    Enabled="False"></asp:TextBox>
+                                    Enabled="True"></asp:TextBox>
                                                     <asp:Label ID="lblPrem_Start_Date_Format0" Visible="true" 
                                     Text="dd/mm/yyyy" runat="server"></asp:Label>
                             </td>
