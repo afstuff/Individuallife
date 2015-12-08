@@ -5,6 +5,7 @@ Partial Class PrintView
     Protected FirstMsg As String
     Protected ReportURL As String
     Dim rParams As String()
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If IsNothing(Session("ReportParams")) Then
             Response.Redirect("~/LoginP.aspx")

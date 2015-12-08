@@ -54,6 +54,9 @@ Partial Class I_LIFE_PRG_LI_INDV_MEDICAL_EXAM_LIST
     Dim dblAnnual_Basic_Prem_FC As Double = 0
 
     Dim dblTmp_Amt As Double = 0
+
+    Dim rParams As String() = {"nw", "nw", "nw", "nw", "new", "new"}
+
     Protected Sub cboSearch_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboSearch.SelectedIndexChanged
         Try
             If Me.cboSearch.SelectedIndex = -1 Or Me.cboSearch.SelectedIndex = 0 Or _
@@ -204,13 +207,38 @@ Partial Class I_LIFE_PRG_LI_INDV_MEDICAL_EXAM_LIST
         If txtPolNum.Text <> "" Then
             strStatus = Proc_DoOpenRecord(RTrim("POL"), Me.txtPolNum.Text, RTrim("0"))
             GET_POLICYDATE_BY_FILENO(txtPolNum.Text)
-            Else 
-            FirstMsg ="javascript:alert('Policy Number Field cannot be empty!');"
+        Else
+            FirstMsg = "javascript:alert('Policy Number Field cannot be empty!');"
+            Exit Sub
         End If
 
     End Sub
 
+    Protected Sub btnGo_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnGo.Click
+        'FIRST CHECK FOR DATE VALUES BEFORE SENDING DATA
+        Dim sDate as String
+        Dim eDate As String
+        If txtPrem_End_Date.Text <> "" Or txtPrem_Start_Date.Text <> "" Then
+            sDate = DoConvertToDbDateFormat(txtPrem_Start_Date.Text)
+            eDate = DoConvertToDbDateFormat(txtPrem_End_Date.Text)
+        Else
+            FirstMsg = "javascript:alert('Start or end date cannot be empty!');"
+            Exit Sub
+        End If
+              
 
 
+
+        Dim url As String = HttpContext.Current.Request.Url.AbsoluteUri
+        rParams(0) = "rptIND_MEDICAL_UNDER_CLASS_TEST"
+        rParams(1) = "pSTART_DATE="
+        rParams(2) = sDate + "&"
+        rParams(3) = "pEND_DATE="
+        rParams(4) = eDate + "&"
+        rParams(5) = url
+
+        Session("ReportParams") = rParams
+        Response.Redirect("../PrintView.aspx")
+    End Sub
 
 End Class
