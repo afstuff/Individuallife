@@ -61,7 +61,7 @@ Partial Class I_LIFE_PRG_LI_INDV_MEDICAL_EXAM_LIST
         Try
             If Me.cboSearch.SelectedIndex = -1 Or Me.cboSearch.SelectedIndex = 0 Or _
             Me.cboSearch.SelectedItem.Value = "" Or Me.cboSearch.SelectedItem.Value = "*" Then
-                Me.txtFileNum.Text = ""
+                'Me.txtFileNum.Text = ""
                 Me.txtQuote_Num.Text = ""
                 Me.txtPolNum.Text = ""
                 'Me.txtSearch.Value = ""
@@ -171,7 +171,7 @@ Partial Class I_LIFE_PRG_LI_INDV_MEDICAL_EXAM_LIST
         Else
 
             strOPT = "1"
-            Me.lblMsg.Text = "Status: New Entry..."
+            Me.lblMsg.Text = "Status: Invalid Policy Number..."
 
         End If
 
@@ -216,29 +216,66 @@ Partial Class I_LIFE_PRG_LI_INDV_MEDICAL_EXAM_LIST
 
     Protected Sub btnGo_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnGo.Click
         'FIRST CHECK FOR DATE VALUES BEFORE SENDING DATA
-        Dim sDate as String
+        Dim sDate As String
         Dim eDate As String
-        If txtPrem_End_Date.Text <> "" Or txtPrem_Start_Date.Text <> "" Then
-            sDate = DoConvertToDbDateFormat(txtPrem_Start_Date.Text)
-            eDate = DoConvertToDbDateFormat(txtPrem_End_Date.Text)
+
+        If rBtnOption.SelectedIndex < 0 Then
+            FirstMsg = "javascript:alert('Please select print option!');"
         Else
-            FirstMsg = "javascript:alert('Start or end date cannot be empty!');"
-            Exit Sub
+
+            If rBtnOption.SelectedIndex = 0 Then
+                If txtFileNum.Text <> "" Then
+                    Dim url As String = HttpContext.Current.Request.Url.AbsoluteUri
+                    rParams(0) = "rptIND_MEDICAL_UNDER_CLASS_TEST"
+                    rParams(1) = "pSTART_DATE="
+                    rParams(2) = sDate + "&"
+                    rParams(3) = "pEND_DATE="
+                    rParams(4) = eDate + "&"
+                    rParams(5) = url
+                Else
+                    FirstMsg = "javascript:alert('Policy number field cannot be empty!');"
+                    Exit Sub
+                End If
+
+            ElseIf rBtnOption.SelectedIndex = 1 Then
+                If txtPrem_End_Date.Text <> "" Or txtPrem_Start_Date.Text <> "" Then
+                    sDate = DoConvertToDbDateFormat(txtPrem_Start_Date.Text)
+                    eDate = DoConvertToDbDateFormat(txtPrem_End_Date.Text)
+                Else
+                    FirstMsg = "javascript:alert('Start or end date cannot be empty!');"
+                    Exit Sub
+                End If
+
+                Dim url As String = HttpContext.Current.Request.Url.AbsoluteUri
+                rParams(0) = "rptIND_MEDICAL_UNDER_CLASS_TEST"
+                rParams(1) = "pSTART_DATE="
+                rParams(2) = sDate + "&"
+                rParams(3) = "pEND_DATE="
+                rParams(4) = eDate + "&"
+                rParams(5) = url
+
+            End If
+
+
         End If
-              
 
 
 
-        Dim url As String = HttpContext.Current.Request.Url.AbsoluteUri
-        rParams(0) = "rptIND_MEDICAL_UNDER_CLASS_TEST"
-        rParams(1) = "pSTART_DATE="
-        rParams(2) = sDate + "&"
-        rParams(3) = "pEND_DATE="
-        rParams(4) = eDate + "&"
-        rParams(5) = url
+
 
         Session("ReportParams") = rParams
         Response.Redirect("../PrintView.aspx")
     End Sub
 
+    Protected Sub rBtnOption_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rBtnOption.SelectedIndexChanged
+
+        If rBtnOption.SelectedIndex = 0 Then
+            singleRecPanel.Visible = True
+            manyRecPanel.Visible = False
+        Else
+            singleRecPanel.Visible = False
+            manyRecPanel.Visible = True
+        End If
+
+    End Sub
 End Class
