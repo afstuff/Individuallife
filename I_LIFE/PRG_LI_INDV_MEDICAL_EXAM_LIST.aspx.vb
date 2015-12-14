@@ -55,7 +55,7 @@ Partial Class I_LIFE_PRG_LI_INDV_MEDICAL_EXAM_LIST
 
     Dim dblTmp_Amt As Double = 0
 
-    Dim rParams As String() = {"nw", "nw", "nw", "nw", "new", "new"}
+    Dim rParams As String() = {"nw", "nw", "nw", "nw", "nw", "nw", "new", "new"}
 
     Protected Sub cboSearch_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboSearch.SelectedIndexChanged
         Try
@@ -102,6 +102,76 @@ Partial Class I_LIFE_PRG_LI_INDV_MEDICAL_EXAM_LIST
             End If
 
             conn.Close()
+        Catch ex As Exception
+            strErrMsg = "Error retrieving data! " + ex.Message
+        End Try
+    End Sub
+
+    Public Sub GET_SUPERVISORS()
+        Dim mystrConn As String = CType(Session("connstr"), String)
+        Dim sqlQry As String = "SELECT SEC_USER_REC_ID, SEC_USER_NAME FROM SEC_USER_LIFE_DETAIL WHERE SEC_USER_ROLE = 'SUPERVISOR'"
+        Dim conn As OleDbConnection
+        conn = New OleDbConnection(mystrConn)
+        Dim cmd As OleDbCommand = New OleDbCommand()
+        cmd.Connection = conn
+        cmd.CommandText = sqlQry
+        cmd.CommandType = CommandType.Text
+
+        Try
+            conn.Open()
+            Dim adapter As OleDbDataAdapter = New OleDbDataAdapter()
+            adapter.SelectCommand = cmd
+            Dim ds As DataSet = New DataSet()
+            adapter.Fill(ds)
+            conn.Close()
+
+            Dim dt As DataTable = ds.Tables(0)
+            Dim dr As DataRow = dt.NewRow()
+
+            dr("SEC_USER_REC_ID") = 0
+            dr("SEC_USER_NAME") = "-- Select --"
+            dt.Rows.InsertAt(dr, 0)
+
+            cboSupervisor.DataSource = dt
+            cboSupervisor.DataValueField = "SEC_USER_REC_ID"
+            cboSupervisor.DataTextField = "SEC_USER_NAME"
+            cboSupervisor.DataBind()
+
+        Catch ex As Exception
+            strErrMsg = "Error retrieving data! " + ex.Message
+        End Try
+    End Sub
+
+    Public Sub GET_ASSOCIATE_COMPANY()
+        Dim mystrConn As String = CType(Session("connstr"), String)
+        Dim sqlQry As String = "SELECT TBGL_REC_ID, TBGL_DESC FROM TBGL_REINSURANCE WHERE TBGL_COMPANY_TYPE = 'A'"
+        Dim conn As OleDbConnection
+        conn = New OleDbConnection(mystrConn)
+        Dim cmd As OleDbCommand = New OleDbCommand()
+        cmd.Connection = conn
+        cmd.CommandText = sqlQry
+        cmd.CommandType = CommandType.Text
+
+        Try
+            conn.Open()
+            Dim adapter As OleDbDataAdapter = New OleDbDataAdapter()
+            adapter.SelectCommand = cmd
+            Dim ds As DataSet = New DataSet()
+            adapter.Fill(ds)
+            conn.Close()
+
+            Dim dt As DataTable = ds.Tables(0)
+            Dim dr As DataRow = dt.NewRow()
+
+            dr("TBGL_REC_ID") = 0
+            dr("TBGL_DESC") = "-- Select --"
+            dt.Rows.InsertAt(dr, 0)
+
+            cboAssCompany.DataSource = dt
+            cboAssCompany.DataValueField = "TBGL_REC_ID"
+            cboAssCompany.DataTextField = "TBGL_DESC"
+            cboAssCompany.DataBind()
+
         Catch ex As Exception
             strErrMsg = "Error retrieving data! " + ex.Message
         End Try
@@ -220,18 +290,31 @@ Partial Class I_LIFE_PRG_LI_INDV_MEDICAL_EXAM_LIST
         Dim eDate As String
 
         If rBtnOption.SelectedIndex < 0 Then
-            FirstMsg = "javascript:alert('Please select print option!');"
+            FirstMsg = "javascript:alert('Please select report option!');"
+            Exit Sub
         Else
 
             If rBtnOption.SelectedIndex = 0 Then
-                If txtFileNum.Text <> "" Then
+
+                If cboAssCompany.SelectedIndex < 0 Then
+                    FirstMsg = "javascript:alert('Associate Company field cannot be empty!');"
+                    Exit Sub
+                End If
+                If cboSupervisor.SelectedIndex < 0 Then
+                    FirstMsg = "javascript:alert('Doc. Supervisor field cannot be empty!');"
+                    Exit Sub
+                End If
+
+                If txtPolNum.Text <> "" Then
                     Dim url As String = HttpContext.Current.Request.Url.AbsoluteUri
-                    rParams(0) = "rptIND_MEDICAL_UNDER_CLASS_TEST"
-                    rParams(1) = "pSTART_DATE="
-                    rParams(2) = sDate + "&"
-                    rParams(3) = "pEND_DATE="
-                    rParams(4) = eDate + "&"
-                    rParams(5) = url
+                    rParams(0) = "rptINDV_GET_MED_UNDWR_REQUIREMENT"
+                    rParams(1) = "pPOLICYNUMBER="
+                    rParams(2) = txtPolNum.Text + "&"
+                    rParams(3) = "pASSOCIATE_REC_ID="
+                    rParams(4) = cboAssCompany.SelectedValue.ToString() + "&"
+                    rParams(5) = "pSUPERVISOR="
+                    rParams(6) = cboSupervisor.SelectedValue.ToString() + "&"
+                    rParams(7) = url
                 Else
                     FirstMsg = "javascript:alert('Policy number field cannot be empty!');"
                     Exit Sub
@@ -263,7 +346,7 @@ Partial Class I_LIFE_PRG_LI_INDV_MEDICAL_EXAM_LIST
 
 
 
-        Session("ReportParams") = rParams
+Session("ReportParams") = rParams
         Response.Redirect("../PrintView.aspx")
     End Sub
 
@@ -275,6 +358,15 @@ Partial Class I_LIFE_PRG_LI_INDV_MEDICAL_EXAM_LIST
         Else
             singleRecPanel.Visible = False
             manyRecPanel.Visible = True
+        End If
+
+    End Sub
+
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If (Not IsPostBack) Then
+            GET_SUPERVISORS()
+            GET_ASSOCIATE_COMPANY()
         End If
 
     End Sub

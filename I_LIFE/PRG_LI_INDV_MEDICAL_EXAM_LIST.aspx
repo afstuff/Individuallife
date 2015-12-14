@@ -6,7 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>Medical Exam.</title>
+    <title>Medical Underwriting Req.</title>
     <link rel="Stylesheet" href="../SS_ILIFE.css" type="text/css" />
 
     <script language="javascript" type="text/javascript" src="../Script/ScriptJS.js">
@@ -77,8 +77,7 @@
         <table class="tbl_cont" align="center">
             <tr>
                 <td nowrap class="myheader">
-                    <span id="Label2">Medical Examination Test Requirement Report</span>
-                </td>
+                    <span id="Label2">Medical Underwriting Requirement</span></td>
             </tr>
             <tr>
                 <td align="center" valign="top" class="td_menu">
@@ -132,6 +131,32 @@
                                                 <asp:Button ID="btnGo0" runat="server" Text="Go" Width="41px" />
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <td align="left" class="style3" valign="top">
+                                                <asp:Label ID="Label9" runat="server" Text="Doc. Supervisor:"></asp:Label>
+                                            </td>
+                                            <td align="left" class="style2" colspan="1" valign="top">
+                                                <asp:DropDownList ID="cboSupervisor" runat="server" Height="26px" Width="250px">
+                                                </asp:DropDownList>
+                                            </td>
+                                            <td align="left" colspan="1" valign="top">
+                                                <asp:Label ID="Label8" runat="server" Text="Associate Company:"></asp:Label>
+                                            </td>
+                                            <td align="left" valign="top">
+                                                <asp:DropDownList ID="cboAssCompany" runat="server" Height="26px" Width="250px">
+                                                </asp:DropDownList>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" class="style3" valign="top">
+                                                &nbsp;</td>
+                                            <td align="left" class="style2" colspan="1" valign="top">
+                                                &nbsp;</td>
+                                            <td align="left" colspan="1" valign="top">
+                                                &nbsp;</td>
+                                            <td align="left" valign="top">
+                                                &nbsp;</td>
+                                        </tr>
                                     </table>
                                 </asp:Panel>
                                 <asp:Panel ID="manyRecPanel" runat="server" Visible="False">
@@ -152,6 +177,16 @@
                                                 <asp:TextBox ID="txtPrem_End_Date" MaxLength="10" runat="server" Enabled="True"></asp:TextBox>
                                                 <asp:Label ID="Label7" Visible="true" Text="dd/mm/yyyy" runat="server"></asp:Label>
                                             </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" class="style3" valign="top">
+                                                &nbsp;</td>
+                                            <td align="left" class="style5" colspan="1" valign="top">
+                                                &nbsp;</td>
+                                            <td align="left" colspan="1" valign="top">
+                                                &nbsp;</td>
+                                            <td align="left" valign="top">
+                                                &nbsp;</td>
                                         </tr>
                                     </table>
                                 </asp:Panel>
