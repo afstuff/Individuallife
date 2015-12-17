@@ -341,12 +341,12 @@ Partial Class I_LIFE_MENU_IL
                 AddMenuItem("", "Claims Weekly Report", "RPT_LI_CLAIM_WEEKLY_REPORT.aspx")
                 AddMenuItem("", "Weekly Business Report", "RPT_LI_BUSINESS_WEEKLY_REPORT.aspx")
                 AddMenuItem("", "Maturity List Report", "PRG_LI_INDV_REPORTS.ASPX")
-                AddMenuItem("", "Reinsurance List Report", "RPT_LI_REINS_CERT.aspx")
+                'AddMenuItem("", "Reinsurance List Report", "RPT_LI_REINS_CERT.aspx")
                 AddMenuItem("", "", "") 'blank link
 
+                'AddMenuItem("", "Definite Certificate", "RPT_LI_DEFINITE_CERT.aspx")
                 AddMenuItem("", "Proposal Status Report", "")
                 AddMenuItem("", "Endorsement Report", "")
-                AddMenuItem("", "Definite Certificate", "")
                 AddMenuItem("", "Letter of Acceptance", "")
                 AddMenuItem("", "", "") 'blank link
                 AddMenuItem("", "Statement of Account", "")
@@ -553,7 +553,9 @@ Partial Class I_LIFE_MENU_IL
                 AddMenuItem("", "", "")
 
                 'AddMenuItem("", "ReAssurer Facultative Entry", "")
-                AddMenuItem("Reports", "ReAssurer Data Register", "")
+                AddMenuItem("Reports", "Definite Certificate", "RPT_LI_DEFINITE_CERT.aspx")
+                AddMenuItem("", "Reinsurance List Report", "RPT_LI_REINS_CERT.aspx")
+                AddMenuItem("", "ReAssurer Data Register", "")
                 AddMenuItem("", "ReAssurer Bordeareaux", "")
                 AddMenuItem("", "Definite Certificate", "")
                 AddMenuItem("", "", "") 'blank link
