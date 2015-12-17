@@ -55,13 +55,13 @@ Partial Class I_LIFE_PRG_LI_INDV_MEDICAL_EXAM_LIST
 
     Dim dblTmp_Amt As Double = 0
 
-    Dim rParams As String() = {"nw", "nw", "nw", "nw", "new", "new"}
+    Dim rParams As String() = {"nw", "nw", "nw", "nw", "nw", "nw", "new", "new"}
 
     Protected Sub cboSearch_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboSearch.SelectedIndexChanged
         Try
             If Me.cboSearch.SelectedIndex = -1 Or Me.cboSearch.SelectedIndex = 0 Or _
             Me.cboSearch.SelectedItem.Value = "" Or Me.cboSearch.SelectedItem.Value = "*" Then
-                Me.txtFileNum.Text = ""
+                'Me.txtFileNum.Text = ""
                 Me.txtQuote_Num.Text = ""
                 Me.txtPolNum.Text = ""
                 'Me.txtSearch.Value = ""
@@ -102,6 +102,76 @@ Partial Class I_LIFE_PRG_LI_INDV_MEDICAL_EXAM_LIST
             End If
 
             conn.Close()
+        Catch ex As Exception
+            strErrMsg = "Error retrieving data! " + ex.Message
+        End Try
+    End Sub
+
+    Public Sub GET_SUPERVISORS()
+        Dim mystrConn As String = CType(Session("connstr"), String)
+        Dim sqlQry As String = "SELECT SEC_USER_REC_ID, SEC_USER_NAME FROM SEC_USER_LIFE_DETAIL WHERE SEC_USER_ROLE = 'SUPERVISOR'"
+        Dim conn As OleDbConnection
+        conn = New OleDbConnection(mystrConn)
+        Dim cmd As OleDbCommand = New OleDbCommand()
+        cmd.Connection = conn
+        cmd.CommandText = sqlQry
+        cmd.CommandType = CommandType.Text
+
+        Try
+            conn.Open()
+            Dim adapter As OleDbDataAdapter = New OleDbDataAdapter()
+            adapter.SelectCommand = cmd
+            Dim ds As DataSet = New DataSet()
+            adapter.Fill(ds)
+            conn.Close()
+
+            Dim dt As DataTable = ds.Tables(0)
+            Dim dr As DataRow = dt.NewRow()
+
+            dr("SEC_USER_REC_ID") = 0
+            dr("SEC_USER_NAME") = "-- Select --"
+            dt.Rows.InsertAt(dr, 0)
+
+            cboSupervisor.DataSource = dt
+            cboSupervisor.DataValueField = "SEC_USER_REC_ID"
+            cboSupervisor.DataTextField = "SEC_USER_NAME"
+            cboSupervisor.DataBind()
+
+        Catch ex As Exception
+            strErrMsg = "Error retrieving data! " + ex.Message
+        End Try
+    End Sub
+
+    Public Sub GET_ASSOCIATE_COMPANY()
+        Dim mystrConn As String = CType(Session("connstr"), String)
+        Dim sqlQry As String = "SELECT TBGL_REC_ID, TBGL_DESC FROM TBGL_REINSURANCE WHERE TBGL_COMPANY_TYPE = 'A'"
+        Dim conn As OleDbConnection
+        conn = New OleDbConnection(mystrConn)
+        Dim cmd As OleDbCommand = New OleDbCommand()
+        cmd.Connection = conn
+        cmd.CommandText = sqlQry
+        cmd.CommandType = CommandType.Text
+
+        Try
+            conn.Open()
+            Dim adapter As OleDbDataAdapter = New OleDbDataAdapter()
+            adapter.SelectCommand = cmd
+            Dim ds As DataSet = New DataSet()
+            adapter.Fill(ds)
+            conn.Close()
+
+            Dim dt As DataTable = ds.Tables(0)
+            Dim dr As DataRow = dt.NewRow()
+
+            dr("TBGL_REC_ID") = 0
+            dr("TBGL_DESC") = "-- Select --"
+            dt.Rows.InsertAt(dr, 0)
+
+            cboAssCompany.DataSource = dt
+            cboAssCompany.DataValueField = "TBGL_REC_ID"
+            cboAssCompany.DataTextField = "TBGL_DESC"
+            cboAssCompany.DataBind()
+
         Catch ex As Exception
             strErrMsg = "Error retrieving data! " + ex.Message
         End Try
@@ -171,7 +241,7 @@ Partial Class I_LIFE_PRG_LI_INDV_MEDICAL_EXAM_LIST
         Else
 
             strOPT = "1"
-            Me.lblMsg.Text = "Status: New Entry..."
+            Me.lblMsg.Text = "Status: Invalid Policy Number..."
 
         End If
 
@@ -216,29 +286,88 @@ Partial Class I_LIFE_PRG_LI_INDV_MEDICAL_EXAM_LIST
 
     Protected Sub btnGo_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnGo.Click
         'FIRST CHECK FOR DATE VALUES BEFORE SENDING DATA
-        Dim sDate as String
+        Dim sDate As String
         Dim eDate As String
-        If txtPrem_End_Date.Text <> "" Or txtPrem_Start_Date.Text <> "" Then
-            sDate = DoConvertToDbDateFormat(txtPrem_Start_Date.Text)
-            eDate = DoConvertToDbDateFormat(txtPrem_End_Date.Text)
-        Else
-            FirstMsg = "javascript:alert('Start or end date cannot be empty!');"
+
+        If rBtnOption.SelectedIndex < 0 Then
+            FirstMsg = "javascript:alert('Please select report option!');"
             Exit Sub
+        Else
+
+            If rBtnOption.SelectedIndex = 0 Then
+
+                If cboAssCompany.SelectedIndex < 0 Then
+                    FirstMsg = "javascript:alert('Associate Company field cannot be empty!');"
+                    Exit Sub
+                End If
+                If cboSupervisor.SelectedIndex < 0 Then
+                    FirstMsg = "javascript:alert('Doc. Supervisor field cannot be empty!');"
+                    Exit Sub
+                End If
+
+                If txtPolNum.Text <> "" Then
+                    Dim url As String = HttpContext.Current.Request.Url.AbsoluteUri
+                    rParams(0) = "rptINDV_GET_MED_UNDWR_REQUIREMENT"
+                    rParams(1) = "pPOLICYNUMBER="
+                    rParams(2) = txtPolNum.Text + "&"
+                    rParams(3) = "pASSOCIATE_REC_ID="
+                    rParams(4) = cboAssCompany.SelectedValue.ToString() + "&"
+                    rParams(5) = "pSUPERVISOR="
+                    rParams(6) = cboSupervisor.SelectedValue.ToString() + "&"
+                    rParams(7) = url
+                Else
+                    FirstMsg = "javascript:alert('Policy number field cannot be empty!');"
+                    Exit Sub
+                End If
+
+            ElseIf rBtnOption.SelectedIndex = 1 Then
+                If txtPrem_End_Date.Text <> "" Or txtPrem_Start_Date.Text <> "" Then
+                    sDate = DoConvertToDbDateFormat(txtPrem_Start_Date.Text)
+                    eDate = DoConvertToDbDateFormat(txtPrem_End_Date.Text)
+                Else
+                    FirstMsg = "javascript:alert('Start or end date cannot be empty!');"
+                    Exit Sub
+                End If
+
+                Dim url As String = HttpContext.Current.Request.Url.AbsoluteUri
+                rParams(0) = "rptIND_MEDICAL_UNDER_CLASS_TEST"
+                rParams(1) = "pSTART_DATE="
+                rParams(2) = sDate + "&"
+                rParams(3) = "pEND_DATE="
+                rParams(4) = eDate + "&"
+                rParams(5) = url
+
+            End If
+
+
         End If
-              
 
 
 
-        Dim url As String = HttpContext.Current.Request.Url.AbsoluteUri
-        rParams(0) = "rptIND_MEDICAL_UNDER_CLASS_TEST"
-        rParams(1) = "pSTART_DATE="
-        rParams(2) = sDate + "&"
-        rParams(3) = "pEND_DATE="
-        rParams(4) = eDate + "&"
-        rParams(5) = url
 
-        Session("ReportParams") = rParams
+
+Session("ReportParams") = rParams
         Response.Redirect("../PrintView.aspx")
     End Sub
 
+    Protected Sub rBtnOption_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rBtnOption.SelectedIndexChanged
+
+        If rBtnOption.SelectedIndex = 0 Then
+            singleRecPanel.Visible = True
+            manyRecPanel.Visible = False
+        Else
+            singleRecPanel.Visible = False
+            manyRecPanel.Visible = True
+        End If
+
+    End Sub
+
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If (Not IsPostBack) Then
+            GET_SUPERVISORS()
+            GET_ASSOCIATE_COMPANY()
+        End If
+
+    End Sub
 End Class
