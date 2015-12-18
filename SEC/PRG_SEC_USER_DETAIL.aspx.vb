@@ -65,6 +65,7 @@ Partial Class SEC_PRG_SEC_USER_DETAIL
             cboRole.Items.Add("Data Manager")
             cboRole.Items.Add("Officers")
             cboRole.Items.Add("Super User")
+            cboRole.Items.Add("Supervisor")
 
 
             Call Proc_DataBind()

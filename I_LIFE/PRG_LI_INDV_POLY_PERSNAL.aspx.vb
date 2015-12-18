@@ -2454,6 +2454,7 @@ PUpdate_Date1:
         If txtRetention.Text <> "" Then
             If IsNumeric(txtRetention.Text) Then
                 txtRetention.Text = Format(txtRetention.Text, "Standard")
+                txtFreeMedCovLmt.Focus()
             Else
                 Me.lblMsg.Text = "Retention must be numeric"
                 FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
@@ -2467,6 +2468,7 @@ PUpdate_Date1:
         If txtFreeMedCovLmt.Text <> "" Then
             If IsNumeric(txtFreeMedCovLmt.Text) Then
                 txtFreeMedCovLmt.Text = Format(txtFreeMedCovLmt.Text, "Standard")
+                txtCompShare.Focus()
             Else
                 Me.lblMsg.Text = "Free medical cover limit must be numeric"
                 FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
