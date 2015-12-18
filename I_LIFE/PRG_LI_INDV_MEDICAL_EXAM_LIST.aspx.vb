@@ -152,7 +152,7 @@ Partial Class I_LIFE_PRG_LI_INDV_MEDICAL_EXAM_LIST
         End If
 
         Dim url As String = HttpContext.Current.Request.Url.AbsoluteUri
-        rParams(0) = "rptIND_MEDICAL_UNDER_CLASS_TEST"
+        rParams(0) = "rptIND_MEDICAL_UNDER_CLASS_TEST_LIST"
         rParams(1) = "pSTART_DATE="
         rParams(2) = sDate + "&"
         rParams(3) = "pEND_DATE="
