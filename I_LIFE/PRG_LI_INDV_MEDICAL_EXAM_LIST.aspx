@@ -121,7 +121,7 @@
                                                 <asp:Label ID="Label6" Enabled="true" Text="Expiry Date:" runat="server"></asp:Label>
                                             </td>
                                             <td align="left" valign="top">
-                                                <asp:TextBox ID="txtPrem_End_Date" MaxLength="10" runat="server" Enabled="True"></asp:TextBox>
+                                                <asp:TextBox ID="txtPrem_End_Date" MaxLength="10" runat="server"></asp:TextBox>
                                                 <asp:Label ID="Label7" Visible="true" Text="dd/mm/yyyy" runat="server"></asp:Label>
                                             </td>
                                         </tr>
