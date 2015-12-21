@@ -1,5 +1,4 @@
-﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="PRG_LI_INDV_MEDICAL_EXAM_LIST.aspx.vb"
-    Inherits="I_LIFE_PRG_LI_INDV_MEDICAL_EXAM_LIST" %>
+﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="PRG_LI_INDV_MEDICAL_UNDERWRITING.aspx.vb" Inherits="I_LIFE_PRG_LI_INDV_MEDICAL_UNDERWRITING" %>
 
 <%@ Register Src="../UC_BANT.ascx" TagName="UC_BANT" TagPrefix="uc1" %>
 <%@ Register Src="../UC_FOOT.ascx" TagName="UC_FOOT" TagPrefix="uc2" %>
@@ -20,6 +19,9 @@
         {
             height: 22px;
         }
+        .style2
+        {            width: 273px;
+        }
         .style3
         {
         }
@@ -27,17 +29,9 @@
         {
             width: 212px;
         }
-        .style5
-        {
-            width: 262px;
-        }
-        .style6
-        {
-            width: 152px;
-        }
         .style7
         {
-            width: 126px;
+            width: 274px;
         }
         .style8
         {
@@ -90,76 +84,88 @@
         <table class="tbl_cont" align="center">
             <tr>
                 <td nowrap class="myheader">
-                    <span id="Label2">Medical Examination List</span></td>
+                    <span id="Label2">Medical Underwriting Requirement</span></td>
             </tr>
             <tr>
                 <td align="center" valign="top" class="td_menu">
                     <table align="center" border="0" class="tbl_menu_new">
                         <tr>
-                            <td align="left" colspan="4" valign="top">
+                            <td align="left" colspan="2" valign="top">
                                 <asp:Label ID="lblMsg" ForeColor="Red" Font-Size="Small" runat="server"></asp:Label>
                             </td>
                         </tr>
                         <tr style="">
-                            <td nowrap align="left" valign="top" class="style3" colspan="4">
+                            <td nowrap align="left" valign="top" class="style3" colspan="2">
                                 &nbsp;</td>
                         </tr>
                         <tr style="">
-                            <td nowrap align="left" valign="top" class="style3" colspan="4">
-                                <asp:Panel ID="manyRecPanel" runat="server">
+                            <td nowrap align="left" valign="top" class="style3" colspan="2">
+                                <asp:Panel ID="singleRecPanel" runat="server">
                                     <table width="100%">
                                         <tr>
-                                            <td align="left" valign="top" class="style9">
-                                                <asp:Label ID="Label4" Text="Start Date:" runat="server"></asp:Label>
+                                            <td align="right" valign="top" class="style3" colspan="2">
+                                                &nbsp;
+                                                <asp:TextBox ID="txtFileNum" runat="server" Enabled="false" Visible="False" 
+                                                    Width="250px"></asp:TextBox>
                                             </td>
-                                            <td align="left" valign="top" colspan="1" class="style5">
-                                                <asp:TextBox ID="txtPrem_Start_Date" MaxLength="10" runat="server" 
-                                                    Enabled="True"></asp:TextBox>
-                                                <asp:Label ID="Label5" Visible="true" Text="dd/mm/yyyy" runat="server"></asp:Label>
+                                            <td align="right" valign="top" class="style3" colspan="2">
+                                                Find:&nbsp;<input type="text" id="txtSearch" name="txtSearch" value="Search..." runat="server"
+                                                    onfocus="if (this.value == 'Search...') {this.value = '';}" 
+                                                    onblur="if (this.value == '') {this.value = 'Search...';}" />
+                                                &nbsp;&nbsp;<asp:Button ID="cmdSearch" Text="Search" runat="server" />
+                                                &nbsp;&nbsp;<asp:DropDownList ID="cboSearch" runat="server" Height="26px" Width="150px"
+                                                    AutoPostBack="True">
+                                                </asp:DropDownList>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" valign="top" class="style9">
+                                                <asp:Label ID="Label1" Enabled="true" Text="Proposal No:" runat="server"></asp:Label>
+                                            </td>
+                                            <td align="left" valign="top" colspan="1" class="style2">
+                                                <asp:TextBox ID="txtQuote_Num" Enabled="false" Width="250px" runat="server"></asp:TextBox>
                                             </td>
                                             <td align="left" valign="top" colspan="1">
-                                                <asp:Label ID="Label6" Enabled="true" Text="Expiry Date:" runat="server"></asp:Label>
+                                                <asp:Label ID="Label3" Text="Policy Number:" Enabled="true" runat="server"></asp:Label>
                                             </td>
                                             <td align="left" valign="top">
-                                                <asp:TextBox ID="txtPrem_End_Date" MaxLength="10" runat="server"></asp:TextBox>
-                                                <asp:Label ID="Label7" Visible="true" Text="dd/mm/yyyy" runat="server"></asp:Label>
+                                                <asp:TextBox ID="txtPolNum" Width="244px" runat="server"></asp:TextBox>
+                                                <asp:Button ID="btnGo0" runat="server" Text="Go" Width="41px" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" class="style9" valign="top">
+                                                <asp:Label ID="Label9" runat="server" Text="Doc. Supervisor:"></asp:Label>
+                                            </td>
+                                            <td align="left" class="style2" colspan="1" valign="top">
+                                                <asp:DropDownList ID="cboSupervisor" runat="server" Height="26px" Width="250px">
+                                                </asp:DropDownList>
+                                            </td>
+                                            <td align="left" colspan="1" valign="top">
+                                                <asp:Label ID="Label8" runat="server" Text="Associate Company:"></asp:Label>
+                                            </td>
+                                            <td align="left" valign="top">
+                                                <asp:DropDownList ID="cboAssCompany" runat="server" Height="26px" Width="250px">
+                                                </asp:DropDownList>
                                             </td>
                                         </tr>
                                     </table>
                                 </asp:Panel>
                             </td>
                         </tr>
-                        <tr style="">
-                            <td nowrap align="left" valign="top" class="style6">
-                                                <asp:Label ID="Label9" runat="server" Text="Doc. Supervisor:"></asp:Label>
-                            </td>
-                            <td nowrap align="left" valign="top" class="style7">
-                                                <asp:DropDownList ID="cboSupervisor" runat="server" 
-                                    Height="26px" Width="250px">
-                                                </asp:DropDownList>
-                            </td>
-                            <td nowrap align="right" valign="top" class="style3">
-                                                <asp:Label ID="Label8" runat="server" Text="Associate Company:"></asp:Label>
-                            </td>
-                            <td nowrap align="left" valign="top" class="style3">
-                                                <asp:DropDownList ID="cboAssCompany" runat="server" 
-                                    Height="26px" Width="250px">
-                                                </asp:DropDownList>
-                            </td>
-                        </tr>
                         <tr>
-                            <td nowrap align="center" valign="top" class="style8" colspan="4">
+                            <td nowrap align="center" valign="top" class="style8" colspan="2">
                                 <asp:Button ID="btnGo" runat="server" Height="25px" Text="View/Print Report" Width="165px"
                                     Font-Bold="True" />
                             </td>
                         </tr>
                         <tr>
-                            <td align="left" valign="top" class="style4" colspan="2">
+                            <td align="left" valign="top" class="style4">
                                 &nbsp;
                                 &nbsp;
                                 &nbsp;
                             </td>
-                            <td align="left" valign="top" class="style3" colspan="2">
+                            <td align="left" valign="top" class="style3">
                                 &nbsp;</td>
                         </tr>
                     </table>

@@ -55,57 +55,7 @@ Partial Class I_LIFE_PRG_LI_INDV_MEDICAL_EXAM_LIST
 
     Dim dblTmp_Amt As Double = 0
 
-    Dim rParams As String() = {"nw", "nw", "nw", "nw", "nw", "nw", "new", "new"}
-
-    Protected Sub cboSearch_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboSearch.SelectedIndexChanged
-        Try
-            If Me.cboSearch.SelectedIndex = -1 Or Me.cboSearch.SelectedIndex = 0 Or _
-            Me.cboSearch.SelectedItem.Value = "" Or Me.cboSearch.SelectedItem.Value = "*" Then
-                'Me.txtFileNum.Text = ""
-                Me.txtQuote_Num.Text = ""
-                Me.txtPolNum.Text = ""
-                'Me.txtSearch.Value = ""
-            Else
-                Me.txtFileNum.Text = Me.cboSearch.SelectedItem.Value
-                strStatus = Proc_DoOpenRecord(RTrim("FIL"), Me.txtFileNum.Text, RTrim("0"))
-                GET_POLICYDATE_BY_FILENO(txtPolNum.Text)
-            End If
-        Catch ex As Exception
-            Me.lblMsg.Text = "Error. Reason: " & ex.Message.ToString
-        End Try
-
-    End Sub
-
-    Public Sub GET_POLICYDATE_BY_FILENO(ByVal fileNumber As String)
-        Dim mystrConn As String = CType(Session("connstr"), String)
-        Dim conn As OleDbConnection
-        conn = New OleDbConnection(mystrConn)
-        Dim cmd As OleDbCommand = New OleDbCommand()
-        cmd.Connection = conn
-        cmd.CommandText = "SPIL_IND_POLICYDATE_BY_FILENO"
-        cmd.CommandType = CommandType.StoredProcedure
-        cmd.Parameters.AddWithValue("@TBIL_POL_PRM_POLY_NO", fileNumber)
-
-        Try
-            conn.Open()
-            Dim objOledr As OleDbDataReader
-            objOledr = cmd.ExecuteReader()
-            If (objOledr.Read()) Then
-                Dim newStartDate As Date = Convert.ToDateTime(objOledr("TBIL_POL_PRM_FROM"))
-                Dim newEndDate As Date = Convert.ToDateTime(objOledr("TBIL_POL_PRM_TO"))
-
-                newStartDate = newStartDate.AddYears(1)
-                newEndDate = newEndDate.AddYears(1)
-                txtPrem_Start_Date.Text = newStartDate.ToString("dd/MM/yyyy")
-                txtPrem_End_Date.Text = newEndDate.ToString("dd/MM/yyyy")
-
-            End If
-
-            conn.Close()
-        Catch ex As Exception
-            strErrMsg = "Error retrieving data! " + ex.Message
-        End Try
-    End Sub
+    Dim rParams As String() = {"nw", "nw", "nw", "nw", "nw", "nw", "nw", "nw", "new", "new"}
 
     Public Sub GET_SUPERVISORS()
         Dim mystrConn As String = CType(Session("connstr"), String)
@@ -177,190 +127,46 @@ Partial Class I_LIFE_PRG_LI_INDV_MEDICAL_EXAM_LIST
         End Try
     End Sub
 
-    Private Function Proc_DoOpenRecord(ByVal FVstrGetType As String, ByVal FVstrRefNum As String, Optional ByVal FVstrRecNo As String = "", Optional ByVal strSearchByWhat As String = "FILE_NUM") As String
-
-        strErrMsg = "false"
-
-        lblMsg.Text = ""
-        If Trim(FVstrRefNum) = "" Then
-            Return strErrMsg
-            Exit Function
-        End If
-
-        Dim mystrCONN As String = CType(Session("connstr"), String)
-        Dim objOLEConn As New OleDbConnection(mystrCONN)
-
-        Try
-            'open connection to database
-            objOLEConn.Open()
-        Catch ex As Exception
-            Me.lblMsg.Text = "Unable to connect to database. Reason: " & ex.Message
-            objOLEConn = Nothing
-            Return strErrMsg
-            Exit Function
-        End Try
-
-
-        strREC_ID = Trim(FVstrRefNum)
-
-        strTable = strTableName
-        strSQL = ""
-        strSQL = strSQL & "SELECT TOP 1 PT.*"
-        strSQL = strSQL & " FROM " & strTable & " AS PT"
-        strSQL = strSQL & " WHERE PT.TBIL_POLY_FILE_NO = '" & RTrim(strREC_ID) & "'"
-        If Val(LTrim(RTrim(FVstrRecNo))) <> 0 Then
-            strSQL = strSQL & " AND PT.TBIL_POLY_REC_ID = '" & Val(FVstrRecNo) & "'"
-        End If
-        'strSQL = strSQL & " AND PT.TBIL_POLY_PROPSAL_NO = '" & RTrim(strQ_ID) & "'"
-        'strSQL = strSQL & " AND PT.TBIL_POLY_POLICY_NO = '" & RTrim(strP_ID) & "'"
-
-        strSQL = "SPIL_GET_POLICY_DET"
-
-        Dim objOLECmd As OleDbCommand = New OleDbCommand(strSQL, objOLEConn)
-        objOLECmd.CommandTimeout = 180
-        'objOLECmd.CommandType = CommandType.Text
-        objOLECmd.CommandType = CommandType.StoredProcedure
-        objOLECmd.Parameters.Add("p01", OleDbType.VarChar, 3).Value = LTrim(RTrim(FVstrGetType))
-        objOLECmd.Parameters.Add("p02", OleDbType.VarChar, 40).Value = strREC_ID
-        objOLECmd.Parameters.Add("p03", OleDbType.VarChar, 18).Value = Val(FVstrRecNo)
-
-        Dim objOLEDR As OleDbDataReader
-
-        objOLEDR = objOLECmd.ExecuteReader()
-        If (objOLEDR.Read()) Then
-            strErrMsg = "true"
-
-            Me.txtFileNum.Text = RTrim(CType(objOLEDR("TBIL_POLY_FILE_NO") & vbNullString, String))
-
-            Me.txtQuote_Num.Text = RTrim(CType(objOLEDR("TBIL_POLY_PROPSAL_NO") & vbNullString, String))
-            Me.txtPolNum.Text = RTrim(CType(objOLEDR("TBIL_POLY_POLICY_NO") & vbNullString, String))
-
-
-
-
-        Else
-
-            strOPT = "1"
-            Me.lblMsg.Text = "Status: Invalid Policy Number..."
-
-        End If
-
-
-        ' dispose of open objects
-        objOLECmd.Dispose()
-        objOLECmd = Nothing
-
-        If objOLEDR.IsClosed = False Then
-            objOLEDR.Close()
-        End If
-        objOLEDR = Nothing
-
-        If objOLEConn.State = ConnectionState.Open Then
-            objOLEConn.Close()
-        End If
-        objOLEConn = Nothing
-
-        Return strErrMsg
-
-    End Function
-
-
-    Protected Sub cmdSearch_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdSearch.Click
-        If LTrim(RTrim(Me.txtSearch.Value)) = "Search..." Then
-        ElseIf LTrim(RTrim(Me.txtSearch.Value)) <> "" Then
-            Call gnProc_Populate_Box("IL_ASSURED_HELP_SP", "001", Me.cboSearch, RTrim(Me.txtSearch.Value))
-        End If
-    End Sub
-
-    Protected Sub btnGo0_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnGo0.Click
-
-        If txtPolNum.Text <> "" Then
-            strStatus = Proc_DoOpenRecord(RTrim("POL"), Me.txtPolNum.Text, RTrim("0"))
-            GET_POLICYDATE_BY_FILENO(txtPolNum.Text)
-        Else
-            FirstMsg = "javascript:alert('Policy Number Field cannot be empty!');"
-            Exit Sub
-        End If
-
-    End Sub
 
     Protected Sub btnGo_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnGo.Click
         'FIRST CHECK FOR DATE VALUES BEFORE SENDING DATA
         Dim sDate As String
         Dim eDate As String
 
-        If rBtnOption.SelectedIndex < 0 Then
-            FirstMsg = "javascript:alert('Please select report option!');"
+
+        If cboAssCompany.SelectedIndex < 0 Then
+            FirstMsg = "javascript:alert('Associate Company field cannot be empty!');"
             Exit Sub
-        Else
-
-            If rBtnOption.SelectedIndex = 0 Then
-
-                If cboAssCompany.SelectedIndex < 0 Then
-                    FirstMsg = "javascript:alert('Associate Company field cannot be empty!');"
-                    Exit Sub
-                End If
-                If cboSupervisor.SelectedIndex < 0 Then
-                    FirstMsg = "javascript:alert('Doc. Supervisor field cannot be empty!');"
-                    Exit Sub
-                End If
-
-                If txtPolNum.Text <> "" Then
-                    Dim url As String = HttpContext.Current.Request.Url.AbsoluteUri
-                    rParams(0) = "rptINDV_GET_MED_UNDWR_REQUIREMENT"
-                    rParams(1) = "pPOLICYNUMBER="
-                    rParams(2) = txtPolNum.Text + "&"
-                    rParams(3) = "pASSOCIATE_REC_ID="
-                    rParams(4) = cboAssCompany.SelectedValue.ToString() + "&"
-                    rParams(5) = "pSUPERVISOR="
-                    rParams(6) = cboSupervisor.SelectedValue.ToString() + "&"
-                    rParams(7) = url
-                Else
-                    FirstMsg = "javascript:alert('Policy number field cannot be empty!');"
-                    Exit Sub
-                End If
-
-            ElseIf rBtnOption.SelectedIndex = 1 Then
-                If txtPrem_End_Date.Text <> "" Or txtPrem_Start_Date.Text <> "" Then
-                    sDate = DoConvertToDbDateFormat(txtPrem_Start_Date.Text)
-                    eDate = DoConvertToDbDateFormat(txtPrem_End_Date.Text)
-                Else
-                    FirstMsg = "javascript:alert('Start or end date cannot be empty!');"
-                    Exit Sub
-                End If
-
-                Dim url As String = HttpContext.Current.Request.Url.AbsoluteUri
-                rParams(0) = "rptIND_MEDICAL_UNDER_CLASS_TEST"
-                rParams(1) = "pSTART_DATE="
-                rParams(2) = sDate + "&"
-                rParams(3) = "pEND_DATE="
-                rParams(4) = eDate + "&"
-                rParams(5) = url
-
-            End If
-
-
+        End If
+        If cboSupervisor.SelectedIndex < 0 Then
+            FirstMsg = "javascript:alert('Doc. Supervisor field cannot be empty!');"
+            Exit Sub
         End If
 
+        If txtPrem_End_Date.Text <> "" Or txtPrem_Start_Date.Text <> "" Then
+            sDate = DoConvertToDbDateFormat(txtPrem_Start_Date.Text)
+            eDate = DoConvertToDbDateFormat(txtPrem_End_Date.Text)
+        Else
+            FirstMsg = "javascript:alert('Start or end date cannot be empty!');"
+            Exit Sub
+        End If
 
+        Dim url As String = HttpContext.Current.Request.Url.AbsoluteUri
+        rParams(0) = "rptIND_MEDICAL_UNDER_CLASS_TEST_LIST"
+        rParams(1) = "pSTART_DATE="
+        rParams(2) = sDate + "&"
+        rParams(3) = "pEND_DATE="
+        rParams(4) = eDate + "&"
+        rParams(5) = "pASSOCIATE_REC_ID="
+        rParams(6) = cboAssCompany.SelectedValue.ToString() + "&"
+        rParams(7) = "pSUPERVISOR="
+        rParams(8) = cboSupervisor.SelectedValue.ToString() + "&"
+        rParams(9) = url
 
-
-
-Session("ReportParams") = rParams
+        Session("ReportParams") = rParams
         Response.Redirect("../PrintView.aspx")
     End Sub
 
-    Protected Sub rBtnOption_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rBtnOption.SelectedIndexChanged
-
-        If rBtnOption.SelectedIndex = 0 Then
-            singleRecPanel.Visible = True
-            manyRecPanel.Visible = False
-        Else
-            singleRecPanel.Visible = False
-            manyRecPanel.Visible = True
-        End If
-
-    End Sub
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 

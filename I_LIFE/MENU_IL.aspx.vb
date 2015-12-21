@@ -382,7 +382,9 @@ Partial Class I_LIFE_MENU_IL
 
                 'AddMenuItem("", "", "") 'blank link
                 'AddMenuItem("", "", "") 'blank link
-                AddMenuItem("Medical Examination", "Medical Underwriting Requirement", "PRG_LI_INDV_MEDICAL_EXAM_LIST.aspx")
+                AddMenuItem("Medical Examination", "Medical Underwriting Requirement", "PRG_LI_INDV_MEDICAL_UNDERWRITING.aspx")
+                AddMenuItem("", "Medical Examination List", "PRG_LI_INDV_MEDICAL_EXAM_LIST.aspx")
+
                 'AddMenuItem("", "", "") 'blank link
 
 
