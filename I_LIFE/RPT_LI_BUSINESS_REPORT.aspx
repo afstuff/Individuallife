@@ -20,7 +20,7 @@
 	<form id="RPT_LI_BUSINESS_REPORT" runat="server">
 	  <div>
 	</div>
-	<div  class="newpage">
+	<div  class="newpage" align="center">
 	<table>
 	<tr>
 	<td>
@@ -64,7 +64,7 @@
 				</tr>
 
 				<tr>
-					<td></td>
+					<td align="center"></td>
 					<td>
 						<asp:Button ID="butOK" runat="server" Text="OK" style="height: 26px"/>
 						<asp:Button ID="butClose" runat="server" Text="Close" />
