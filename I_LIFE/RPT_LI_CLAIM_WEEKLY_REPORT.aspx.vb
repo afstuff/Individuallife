@@ -3,7 +3,7 @@ Partial Class I_LIFE_RPT_LI_CLAIM_WEEKLY_REPORT
     Inherits System.Web.UI.Page
     Protected FirstMsg As String
     Protected STRMENU_TITLE As String
-    Dim rParams As String() = {"nw", "nw", "new", "new", "new"}
+    Dim rParams As String() = {"nw", "nw", "new", "new", "new", "new"}
 
     Protected Sub butOK_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles butOK.Click
         Dim str() As String
@@ -50,11 +50,13 @@ Partial Class I_LIFE_RPT_LI_CLAIM_WEEKLY_REPORT
         Dim startDate = Format(startDate1, "MM/dd/yyyy")
         Dim endDate = Format(endDate1, "MM/dd/yyyy")
 
+        Dim url As String = HttpContext.Current.Request.Url.AbsoluteUri
         rParams(0) = "rptClaimWeeklyRpt"
         rParams(1) = "pStartDate="
         rParams(2) = startDate + "&"
         rParams(3) = "pEndDate="
         rParams(4) = endDate + "&"
+        rParams(5) = url
         Session("ReportParams") = rParams
         Response.Redirect("../PrintView.aspx")
     End Sub

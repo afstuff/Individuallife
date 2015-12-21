@@ -72,6 +72,8 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY_RPT
             Dim endDate = Format(endDate1, "MM/dd/yyyy")
             Dim pFilterOption1 = pFilterOption.SelectedValue
 
+
+            Dim url As String = HttpContext.Current.Request.Url.AbsoluteUri
             rParams(0) = "PRG_LI_REQ_ENTRY_1"
             rParams(1) = "startDate="
             rParams(2) = startDate + "&"
@@ -79,6 +81,7 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY_RPT
             rParams(4) = endDate + "&"
             rParams(5) = "pFilterOption="
             rParams(6) = pFilterOption1 + "&"
+            rParams(7) = url
 
             Session("ReportParams") = rParams
             Response.Redirect("~/PrintView.aspx")

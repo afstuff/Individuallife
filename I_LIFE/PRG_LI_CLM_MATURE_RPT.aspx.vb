@@ -2,7 +2,7 @@
 Partial Class I_LIFE_PRG_LI_CLM_MATURE_RPT
     Inherits System.Web.UI.Page
     Protected FirstMsg As String
-    Dim rParams As String() = {"nw", "nw", "new", "new", "new", "new", "new"}
+    Dim rParams As String() = {"nw", "nw", "new", "new"}
 
 
 
@@ -12,9 +12,12 @@ Partial Class I_LIFE_PRG_LI_CLM_MATURE_RPT
 
             
             'rParams(0) = rblTransType.SelectedValue.Trim
+
+            Dim url As String = HttpContext.Current.Request.Url.AbsoluteUri
             rParams(0)="PRG_LI_CLM_MATURE"
             rParams(1) = "pTBIL_CLM_PAID_POLY_NO="
             rParams(2) = txtPolyNumber.Text.Trim + "&"
+            rParams(3) = url
             'rParams(3) = pFilterOption.SelectedValue + "&"
             
 
