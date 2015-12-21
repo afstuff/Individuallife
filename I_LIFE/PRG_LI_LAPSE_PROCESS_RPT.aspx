@@ -19,7 +19,7 @@
     <form id="PRG_LI_LAPSE_PROCESS_RPT" runat="server">
       <div>
     </div>
-    <div  class="newpage">
+    <div  class="newpage" style="margin-left: 20%!important; margin-right: 20%!important;>
     <table>
     <tr>
     <td>

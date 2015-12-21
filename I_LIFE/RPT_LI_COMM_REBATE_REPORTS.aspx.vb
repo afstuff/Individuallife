@@ -65,4 +65,8 @@ Partial Class I_LIFE_RPT_LI_COMM_REBATE_REPORTS
         Session("ReportParams") = rParams
         Response.Redirect("../PrintView.aspx")
     End Sub
+
+    Protected Sub butClose_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles butClose.Click
+        Response.Redirect("MENU_IL.aspx?menu=IL_UND")
+    End Sub
 End Class

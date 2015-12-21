@@ -34,7 +34,7 @@ Partial Class I_LIFE_PRG_LI_INDV_REPORTS
     End Function
 
     Protected Sub butClose_Click(ByVal sender As Object, ByVal e As EventArgs) Handles butClose.Click
-        Response.Redirect("MENU_IL.aspx")
-
+        'Response.Redirect("MENU_IL.aspx")
+        Response.Redirect("MENU_IL.aspx?menu=IL_UND")
     End Sub
 End Class

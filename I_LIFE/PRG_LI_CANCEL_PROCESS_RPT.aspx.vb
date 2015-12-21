@@ -69,4 +69,8 @@ Partial Class I_LIFE_PRG_LI_CANCEL_PROCESS_RPT
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
     End Sub
+
+    Protected Sub butClose_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles butClose.Click
+        Response.Redirect("PRG_LI_CANCEL_PROCESS.aspx")
+    End Sub
 End Class
