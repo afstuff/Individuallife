@@ -82,7 +82,7 @@ Partial Class I_LIFE_RPT_LI_DEFINITE_CERT
             Dim objOLEReader As OleDbDataReader = objOLEComm.ExecuteReader()
             If objOLEReader.HasRows = True Then
                 objOLEReader.Read()
-                txtAssuredName.Text = objOLEReader("TBIL_INSRD_SURNAME") & "" & objOLEReader("TBIL_INSRD_FIRSTNAME")
+                txtAssuredName.Text = objOLEReader("TBIL_INSRD_SURNAME") & " " & objOLEReader("TBIL_INSRD_FIRSTNAME")
                 txtPolicyClass.Text = objOLEReader("TBIL_PRDCT_DTL_DESC")
                 txtStartDate.Text = Format(objOLEReader("TBIL_POL_PRM_FROM"), "dd/MM/yyyy")
                 txtEndDate.Text = Format(objOLEReader("TBIL_POL_PRM_TO"), "dd/MM/yyyy")
@@ -249,13 +249,12 @@ Partial Class I_LIFE_RPT_LI_DEFINITE_CERT
         Dim myResult As Boolean
         myResult = DetermineReInsurance(txtPolNum.Text)
         If myResult = False Then
-            lblMsg.Text = "No member to reassure for this scheme"
+            lblMsg.Text = "Policy holder cannot be Reassured"
             FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             Exit Sub
         End If
 
         Dim url As String = HttpContext.Current.Request.Url.AbsoluteUri
-
         rParams(0) = radReportType.SelectedValue
         rParams(1) = "pPolicyNo="
         rParams(2) = txtPolNum.Text + "&"
@@ -265,6 +264,8 @@ Partial Class I_LIFE_RPT_LI_DEFINITE_CERT
         rParams(6) = cboSupervisor.SelectedValue + "&"
         rParams(7) = "pReInsId="
         rParams(8) = cboReinsurance.SelectedValue + "&"
+        rParams(9) = url
+
         Session("ReportParams") = rParams
 
         Response.Redirect("../PrintView.aspx")
