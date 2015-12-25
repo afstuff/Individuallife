@@ -415,7 +415,7 @@ Partial Class REINSURANCE_PRG_LI_REINSURANCE
     Private Sub Proc_SearchPfa(ByVal sVal As String)
 
         strTable = "TBGL_REINSURANCE"
-        strSQL = "SELECT *, RTRIM(ISNULL(TBGL_DESC,'')) AS TBGL_FULL_NAME FROM " & strTable & " where TBGL_DESC like '" & sVal.Trim & "%' or (TBGL_CODE like '" & sVal.Trim & "%') or (TBGL_SHRT_DESC like '" & sVal.Trim & "%') AND (TBGL_MODULE = 'I')) ORDER BY TBGL_DESC"
+        strSQL = "SELECT *, RTRIM(ISNULL(TBGL_DESC,'')) AS TBGL_FULL_NAME FROM " & strTable & " where (TBGL_DESC like '" & sVal.Trim & "%' or TBGL_CODE like '" & sVal.Trim & "%' or TBGL_SHRT_DESC like '" & sVal.Trim & "%') AND (TBGL_MODULE = 'I') ORDER BY TBGL_DESC"
 
         Dim mystrCONN As String = CType(Session("connstr"), String)
         Dim objOLEConn As New OleDbConnection(mystrCONN)
