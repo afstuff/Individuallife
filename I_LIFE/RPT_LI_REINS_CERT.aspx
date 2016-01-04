@@ -22,8 +22,7 @@
     <form id="LifeReportsPrint" runat="server">
     <div>
     </div>
-    <div class="newpage" style="margin-left: 20%!important; margin-right: 20%!important;
-        width: 100%;">
+    <div class="newpage" style="margin-left: 20%!important; margin-right: 20%!important; width: 100%;">
         <table align="center" width="100%">
             <tr>
                 <td>
