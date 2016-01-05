@@ -339,7 +339,7 @@ Partial Class I_LIFE_MENU_IL
                 'AddMenuItem("", "", "") 'blank link
                 AddMenuItem("Reports", "Commission Rebate Report", "RPT_LI_COMM_REBATE_REPORTS.aspx")
                 AddMenuItem("", "Claims Weekly Report", "RPT_LI_CLAIM_WEEKLY_REPORT.aspx")
-                AddMenuItem("", "Weekly Business Report", "RPT_LI_BUSINESS_WEEKLY_REPORT.aspx")
+                AddMenuItem("", "Weekly Business Report", "RPT_LI_BUSINESS_REPORT.aspx")
                 AddMenuItem("", "Maturity List Report", "PRG_LI_INDV_REPORTS.ASPX")
                 'AddMenuItem("", "Reinsurance List Report", "RPT_LI_REINS_CERT.aspx")
                 AddMenuItem("", "", "") 'blank link
@@ -548,6 +548,7 @@ Partial Class I_LIFE_MENU_IL
                 AddMenuItem("", "", "") 'blank link
                 'AddMenuItem("", "MENU CAPTION", "PAGE URL")
                 AddMenuItem("Set up", "ReInsurance Settings", "../REINSURANCE/PRG_LI_REINS_SETTINGS.aspx")
+                AddMenuItem("", "ReInsurance Data Entry", "../REINSURANCE/PRG_LI_REINSURANCE.aspx")
                 '"~/m_menu.aspx?menu=home")
                 AddMenuItem("", "", "")
 

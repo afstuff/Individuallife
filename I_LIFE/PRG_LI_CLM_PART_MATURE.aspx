@@ -111,7 +111,7 @@
         <table class="tbl_cont" align="center">
             <tr>
                 <td nowrap class="myheader">
-                    Multiple Maturity Claim Process
+                    Partial Maturity Claim Process
                 </td>
             </tr>
             <tr>

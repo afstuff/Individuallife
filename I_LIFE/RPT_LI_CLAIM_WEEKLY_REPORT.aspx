@@ -51,7 +51,7 @@
                 <div class="mid-outer">
                     <div class="mid-inner">
                         <div class="mid">
-                            <table class="tbl_menu_new">
+                            <table class="tbl_menu_new" align="center">
                                 <tr>
                                     <td colspan="2" class="myMenu_Title" align="center">
                                         <asp:Label ID="lblDesc1" runat="server" Text="List Print" Visible="False"></asp:Label>

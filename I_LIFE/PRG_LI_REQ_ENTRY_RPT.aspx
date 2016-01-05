@@ -116,7 +116,8 @@
                                     </td>
                                     <td>
                                         <asp:Button ID="butOK" runat="server" Text="OK" Style="height: 26px" />
-                                        <asp:Button ID="butClose" runat="server" Text="Close" />
+                                        <asp:Button ID="butClose" runat="server" Text="Close" 
+                                            PostBackUrl="~/I_LIFE/PRG_LI_REQ_ENTRY.aspx" />
                                     </td>
                                 </tr>
                             </table>
