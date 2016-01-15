@@ -1,7 +1,7 @@
 ﻿
 Partial Class I_LIFE_RPT_LI_REINS_CERT
     Inherits System.Web.UI.Page
-    Dim rParams As String() = {"nw", "nw", "new", "new", "new"}
+    Dim rParams As String() = {"nw", "nw", "new", "new", "new", "new"}
     Protected FirstMsg As String
 
     Protected Sub butOK_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles butOK.Click
@@ -53,11 +53,13 @@ Partial Class I_LIFE_RPT_LI_REINS_CERT
         Dim endDate = Format(endDate1, "MM/dd/yyyy")
 
 
+        Dim url As String = HttpContext.Current.Request.Url.AbsoluteUri
         rParams(0) = "rptIndReAssuranceCertRpt"
         rParams(1) = "pStart_Date="
         rParams(2) = startDate + "&"
         rParams(3) = "pEnd_Date="
         rParams(4) = endDate + "&"
+        rParams(5) = url
 
         Session("ReportParams") = rParams
         Response.Redirect("../PrintView.aspx")

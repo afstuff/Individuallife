@@ -339,14 +339,14 @@ Partial Class I_LIFE_MENU_IL
                 'AddMenuItem("", "", "") 'blank link
                 AddMenuItem("Reports", "Commission Rebate Report", "RPT_LI_COMM_REBATE_REPORTS.aspx")
                 AddMenuItem("", "Claims Weekly Report", "RPT_LI_CLAIM_WEEKLY_REPORT.aspx")
-                AddMenuItem("", "Weekly Business Report", "RPT_LI_BUSINESS_WEEKLY_REPORT.aspx")
+                AddMenuItem("", "Weekly Business Report", "RPT_LI_BUSINESS_REPORT.aspx")
                 AddMenuItem("", "Maturity List Report", "PRG_LI_INDV_REPORTS.ASPX")
-                AddMenuItem("", "Reinsurance List Report", "RPT_LI_REINS_CERT.aspx")
+                'AddMenuItem("", "Reinsurance List Report", "RPT_LI_REINS_CERT.aspx")
                 AddMenuItem("", "", "") 'blank link
 
+                'AddMenuItem("", "Definite Certificate", "RPT_LI_DEFINITE_CERT.aspx")
                 AddMenuItem("", "Proposal Status Report", "")
                 AddMenuItem("", "Endorsement Report", "")
-                AddMenuItem("", "Definite Certificate", "")
                 AddMenuItem("", "Letter of Acceptance", "")
                 AddMenuItem("", "", "") 'blank link
                 AddMenuItem("", "Statement of Account", "")
@@ -382,7 +382,9 @@ Partial Class I_LIFE_MENU_IL
 
                 'AddMenuItem("", "", "") 'blank link
                 'AddMenuItem("", "", "") 'blank link
-                AddMenuItem("Medical Examination", "Medical Underwriting Requirement", "PRG_LI_INDV_MEDICAL_EXAM_LIST.aspx")
+                AddMenuItem("Medical Examination", "Medical Underwriting Requirement", "PRG_LI_INDV_MEDICAL_UNDERWRITING.aspx")
+                AddMenuItem("", "Medical Examination List", "PRG_LI_INDV_MEDICAL_EXAM_LIST.aspx")
+
                 'AddMenuItem("", "", "") 'blank link
 
 
@@ -546,6 +548,7 @@ Partial Class I_LIFE_MENU_IL
                 AddMenuItem("", "", "") 'blank link
                 'AddMenuItem("", "MENU CAPTION", "PAGE URL")
                 AddMenuItem("Set up", "ReInsurance Settings", "../REINSURANCE/PRG_LI_REINS_SETTINGS.aspx")
+                AddMenuItem("", "ReInsurance Data Entry", "../REINSURANCE/PRG_LI_REINSURANCE.aspx")
                 '"~/m_menu.aspx?menu=home")
                 AddMenuItem("", "Associated Companies", "PRG_LI_ASSOCIATE_COY.aspx")
                 AddMenuItem("", "", "") 'blank link
@@ -555,7 +558,9 @@ Partial Class I_LIFE_MENU_IL
                 AddMenuItem("", "", "")
 
                 'AddMenuItem("", "ReAssurer Facultative Entry", "")
-                AddMenuItem("Reports", "ReAssurer Data Register", "")
+                AddMenuItem("Reports", "Definite Certificate", "RPT_LI_DEFINITE_CERT.aspx")
+                AddMenuItem("", "Reinsurance List Report", "RPT_LI_REINS_CERT.aspx")
+                AddMenuItem("", "ReAssurer Data Register", "")
                 AddMenuItem("", "ReAssurer Bordeareaux", "")
                 AddMenuItem("", "Definite Certificate", "")
                 AddMenuItem("", "", "") 'blank link

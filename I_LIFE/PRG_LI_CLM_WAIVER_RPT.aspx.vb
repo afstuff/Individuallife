@@ -1,6 +1,6 @@
 ﻿Partial Class I_LIFE_RPT_LI_CLM_WAIVER
     Inherits System.Web.UI.Page
-    Dim rParams As String() = {"nw", "nw", "new", "new", "new"}
+    Dim rParams As String() = {"nw", "nw", "new", "new", "new", "new"}
 
     Protected Sub butOK_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles butOK.Click
         Dim str() As String
@@ -50,11 +50,13 @@
         Dim endDate = Format(endDate1, "MM/dd/yyyy")
 
 
+        Dim url As String = HttpContext.Current.Request.Url.AbsoluteUri
         rParams(0) = "RPT_LI_CLM_WAIVER"
         rParams(1) = "RPT_ST_DATE="
         rParams(2) = startDate + "&"
         rParams(3) = "RPT_END_DATE="
         rParams(4) = endDate + "&"
+        rParams(5) = url
 
         Session("ReportParams") = rParams
         Response.Redirect("../PrintView.aspx")

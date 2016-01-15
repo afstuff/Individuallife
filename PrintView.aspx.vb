@@ -43,5 +43,10 @@ Partial Class PrintView
 
     Protected Sub butClsoe_Click(ByVal sender As Object, ByVal e As EventArgs) Handles butClsoe.Click
         'Response.Redirect("I_LIFE/PRG_LI_INDV_REPORTS.aspx")
+         Dim i As Integer
+        Dim url As String
+        i = rParams.Length() - 1
+        url = rParams(i)
+        Response.Redirect(url)
     End Sub
 End Class

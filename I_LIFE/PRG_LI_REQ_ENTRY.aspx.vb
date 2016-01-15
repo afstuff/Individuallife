@@ -205,12 +205,12 @@ Partial Class I_LIFE_PRG_LI_REQ_ENTRY
         Dim dt As DataTable = ds.Tables(0)
         Dim dr As DataRow = dt.NewRow()
 
-        dr("TBIL_COD_SHORT_DESC") = "-- Selecct --"
+        dr("TBIL_COD_LONG_DESC") = "-- Selecct --"
         dr("TBIL_COD_ITEM") = ""
         dt.Rows.InsertAt(dr, 0)
 
         DdnLossType.DataSource = dt
-        DdnLossType.DataTextField = "TBIL_COD_SHORT_DESC"
+        DdnLossType.DataTextField = "TBIL_COD_LONG_DESC"
         DdnLossType.DataValueField = "TBIL_COD_ITEM"
         DdnLossType.DataBind()
 

@@ -799,6 +799,10 @@ Partial Class I_LIFE_PRG_LI_INDV_POLY_PERSNAL
         Me.lblQuote_Num.Enabled = True
         Me.txtQuote_Num.Enabled = True
 
+        txtFreeMedCovLmt.Text = "0.00"
+        txtRetention.Text = "0.00"
+        txtCompShare.Text = "0.00"
+
         Select Case UCase(strP_TYPE)
             Case "NEW"
                 Me.lblPolNum.Enabled = False
@@ -1063,10 +1067,11 @@ Proc_Skip_Check:
                 Exit Sub
             End If
         Else
-            Me.lblMsg.Text = "Retention not be empty"
-            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
-            txtRetention.Focus()
-            Exit Sub
+            'Me.lblMsg.Text = "Retention not be empty"
+            'FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            'txtRetention.Focus()
+            'Exit Sub
+            txtRetention.Text = "0.00"
         End If
 
         If txtFreeMedCovLmt.Text <> "" Then
@@ -1077,10 +1082,11 @@ Proc_Skip_Check:
                 Exit Sub
             End If
         Else
-            Me.lblMsg.Text = "Free medical cover limit not be empty"
-            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
-            txtFreeMedCovLmt.Focus()
-            Exit Sub
+            'Me.lblMsg.Text = "Free medical cover limit not be empty"
+            'FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            'txtFreeMedCovLmt.Focus()
+            'Exit Sub
+            txtFreeMedCovLmt.Text = "0.00"
         End If
 
         If txtCompShare.Text <> "" Then
@@ -1091,10 +1097,11 @@ Proc_Skip_Check:
                 Exit Sub
             End If
         Else
-            Me.lblMsg.Text = "CIA share must not be empty"
-            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
-            txtCompShare.Focus()
-            Exit Sub
+            'Me.lblMsg.Text = "CIA share must not be empty"
+            'FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            'txtCompShare.Focus()
+            'Exit Sub
+            txtCompShare.Text = "0.00"
         End If
 
 
@@ -2302,15 +2309,29 @@ PUpdate_Date1:
             Me.txtOtherRefNo.Text = RTrim(CType(objOLEDR("TBIL_POLY_REF_NEW") & vbNullString, String))
 
 
-            Me.txtFreeMedCovLmt.Text = Format(RTrim(CType(objOLEDR("TBIL_POLY_MED_COVER_LMT") & vbNullString, String)), "Standard")
-            Me.txtRetention.Text = Format(RTrim(CType(objOLEDR("TBIL_POLY_RETENTION") & vbNullString, String)), "Standard")
-            Me._txtCompShare.Text = RTrim(CType(objOLEDR("TBIL_POLY_COMP_SHARE") & vbNullString, String))
+            'Me.txtFreeMedCovLmt.Text = Format(RTrim(CType(objOLEDR("TBIL_POLY_MED_COVER_LMT") & vbNullString, String)), "Standard")
+            'Me.txtRetention.Text = Format(RTrim(CType(objOLEDR("TBIL_POLY_RETENTION") & vbNullString, String)), "Standard")
+            'Me._txtCompShare.Text = RTrim(CType(objOLEDR("TBIL_POLY_COMP_SHARE") & vbNullString, String))
 
-            'If Not IsDBNull(objOLEDR("TBIL_POLY_MED_COVER_LMT")) Then _
-            '                        txtFreeMedCovLmt.Text = Format(objOLEDR("TBIL_POLY_MED_COVER_LMT"), "Standard")
-            'If Not IsDBNull(objOLEDR("TBIL_POLY_RETENTION")) Then _
-            '                        txtRetention.Text = Format(objOLEDR("TBIL_POLY_RETENTION"), "Standard")
-            'If Not IsDBNull(objOLEDR("TBIL_POLY_COMP_SHARE")) Then _txtCompShare.Text = objOLEDR("TBIL_POLY_COMP_SHARE")
+            If Not IsDBNull(objOLEDR("TBIL_POLY_MED_COVER_LMT")) Then
+                txtFreeMedCovLmt.Text = Format(objOLEDR("TBIL_POLY_MED_COVER_LMT"), "Standard")
+            Else
+                txtFreeMedCovLmt.Text = "0.00"
+            End If
+
+
+            If Not IsDBNull(objOLEDR("TBIL_POLY_RETENTION")) Then
+                txtRetention.Text = Format(objOLEDR("TBIL_POLY_RETENTION"), "Standard")
+            Else
+                txtRetention.Text = "0.00"
+            End If
+
+            If Not IsDBNull(objOLEDR("TBIL_POLY_COMP_SHARE")) Then
+                txtCompShare.Text = objOLEDR("TBIL_POLY_COMP_SHARE")
+            Else
+                txtCompShare.Text = "0.00"
+            End If
+
 
 
 
@@ -2394,21 +2415,21 @@ PUpdate_Date1:
         End If
 
 
-        ' dispose of open objects
-        objOLECmd.Dispose()
-        objOLECmd = Nothing
+            ' dispose of open objects
+            objOLECmd.Dispose()
+            objOLECmd = Nothing
 
-        If objOLEDR.IsClosed = False Then
-            objOLEDR.Close()
-        End If
-        objOLEDR = Nothing
+            If objOLEDR.IsClosed = False Then
+                objOLEDR.Close()
+            End If
+            objOLEDR = Nothing
 
-        If objOLEConn.State = ConnectionState.Open Then
-            objOLEConn.Close()
-        End If
-        objOLEConn = Nothing
+            If objOLEConn.State = ConnectionState.Open Then
+                objOLEConn.Close()
+            End If
+            objOLEConn = Nothing
 
-        Return strErrMsg
+            Return strErrMsg
 
     End Function
 
@@ -2454,6 +2475,7 @@ PUpdate_Date1:
         If txtRetention.Text <> "" Then
             If IsNumeric(txtRetention.Text) Then
                 txtRetention.Text = Format(txtRetention.Text, "Standard")
+                txtFreeMedCovLmt.Focus()
             Else
                 Me.lblMsg.Text = "Retention must be numeric"
                 FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
@@ -2467,6 +2489,7 @@ PUpdate_Date1:
         If txtFreeMedCovLmt.Text <> "" Then
             If IsNumeric(txtFreeMedCovLmt.Text) Then
                 txtFreeMedCovLmt.Text = Format(txtFreeMedCovLmt.Text, "Standard")
+                txtCompShare.Focus()
             Else
                 Me.lblMsg.Text = "Free medical cover limit must be numeric"
                 FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
@@ -2532,10 +2555,13 @@ PUpdate_Date1:
             objOLECmd.CommandType = CommandType.Text
             objOLEDR = objOLECmd.ExecuteReader()
             If (objOLEDR.Read()) Then
-
                 Me.txtRetention.Text = Format(RTrim(CType(objOLEDR("TBIL_REINS_RETENTION") & vbNullString, String)), "Standard")
                 Me.txtFreeMedCovLmt.Text = Format(RTrim(CType(objOLEDR("TBIL_REINS_MED_COV_LMT") & vbNullString, String)), "Standard")
                 Me.txtCompShare.Text = Format(RTrim(CType(objOLEDR("TBIL_REINS_COY_SHARE") & vbNullString, String)), "Standard")
+            Else
+                Me.txtRetention.Text = "0.00"
+                Me.txtFreeMedCovLmt.Text = "0.00"
+                Me.txtCompShare.Text = "0.00"
             End If
 
         End If
