@@ -547,7 +547,9 @@ Partial Class I_LIFE_MENU_IL
                 'AddMenuItem("", "MENU CAPTION", "PAGE URL")
                 AddMenuItem("Set up", "ReInsurance Settings", "../REINSURANCE/PRG_LI_REINS_SETTINGS.aspx")
                 '"~/m_menu.aspx?menu=home")
-                AddMenuItem("", "", "")
+                AddMenuItem("", "Associated Companies", "PRG_LI_ASSOCIATE_COY.aspx")
+                AddMenuItem("", "", "") 'blank link
+
 
                 AddMenuItem("Transactions", "ReAssurer Data Registration", "")
                 AddMenuItem("", "", "")

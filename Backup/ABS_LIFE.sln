@@ -1,26 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
-MinimumVisualStudioVersion = 10.0.40219.1
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ABS_LIFE", "..\ABS_LIFE", "{FD0E686F-E860-480C-9EDB-39966966CD10}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.VirtualPath = "/ABS_LIFE"
-		Debug.AspNetCompiler.PhysicalPath = "..\ABS_LIFE\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\ABS_LIFE\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/ABS_LIFE"
-		Release.AspNetCompiler.PhysicalPath = "..\ABS_LIFE\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\ABS_LIFE\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "49172"
-	EndProjectSection
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFramework = "3.5"
 		Debug.AspNetCompiler.VirtualPath = "/ABS_LIFE"

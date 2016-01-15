@@ -25,8 +25,7 @@
 
         <div>
                     <asp:Button ID="butView" Text="View/Print" runat="server" />
-                    <asp:Button ID="butClsoe" Text="Back" runat="server" 
-                        OnClientClick="javascript:history.go(-1);" />
+                    <asp:Button ID="butClsoe" Text="Back" runat="server"  />
         </div>
         <div id="PrintDialog">
             

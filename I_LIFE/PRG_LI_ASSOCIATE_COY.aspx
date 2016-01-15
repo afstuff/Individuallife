@@ -148,7 +148,7 @@
                                     EnableViewState="true"></asp:TextBox>
                             </td>
                             <td align="left" nowrap class="style2">
-                                <asp:Label ID="lblTBGL_CODE" Enabled="False" Text="Re-Ins. Code:" runat="server"></asp:Label>
+                                <asp:Label ID="lblTBGL_CODE" Enabled="False" Text="Ass.  Code:" runat="server"></asp:Label>
                             </td>
                             <td align="left" nowrap>
                                 <asp:TextBox ID="txtTBGL_CODE" runat="server"></asp:TextBox>
@@ -156,7 +156,7 @@
                         </tr>
                         <tr style="">
                             <td align="right" nowrap class="style4">
-                                <asp:Label ID="lblTBGL_DESC1" Enabled="False" Text="Reinsurance Module:" runat="server"></asp:Label>
+                                <asp:Label ID="lblTBGL_DESC1" Enabled="False" Text="Ass. Module:" runat="server"></asp:Label>
                             </td>
                             <td align="left" nowrap class="style3">
                                 <asp:DropDownList ID="ddnReinsuranceMdl" runat="server" Width="250px">
@@ -179,13 +179,13 @@
                         </tr>
                         <tr>
                             <td align="right" nowrap valign="top" class="style4">
-                                <asp:Label ID="lblTBGL_DESC" Enabled="False" Text="Reinsurance Name:" runat="server"></asp:Label>
+                                <asp:Label ID="lblTBGL_DESC" Enabled="False" Text="Ass.  Name:" runat="server"></asp:Label>
                             </td>
                             <td align="left" nowrap class="style3">
                                 <asp:TextBox ID="txtTBGL_DESC" runat="server" TextMode="MultiLine" Width="250px"></asp:TextBox>
                             </td>
                             <td align="left" nowrap valign="top" class="style2">
-                                <asp:Label ID="lblTBGL_DESC0" Enabled="False" Text="Reinsurance Short Name:" runat="server"></asp:Label>
+                                <asp:Label ID="lblTBGL_DESC0" Enabled="False" Text="Ass.  Short Name:" runat="server"></asp:Label>
                             </td>
                             <td align="left" nowrap valign="top">
                                 <asp:TextBox ID="txtTBGL_SHRT_DESC" runat="server" TextMode="MultiLine" Width="250px"></asp:TextBox>

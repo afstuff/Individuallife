@@ -55,7 +55,7 @@ Partial Class I_LIFE_PRG_LI_INDV_MEDICAL_EXAM_LIST
 
     Dim dblTmp_Amt As Double = 0
 
-    Dim rParams As String() = {"nw", "nw", "nw", "nw", "nw", "nw", "new", "new"}
+    Dim rParams As String() = {"nw", "nw", "nw", "nw", "nw", "nw", "new", "new", "new", "new"}
 
     Protected Sub cboSearch_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboSearch.SelectedIndexChanged
         Try
@@ -293,17 +293,24 @@ Partial Class I_LIFE_PRG_LI_INDV_MEDICAL_EXAM_LIST
             FirstMsg = "javascript:alert('Please select report option!');"
             Exit Sub
         Else
-
+            If cboAssCompany.SelectedIndex < 0 Then
+                FirstMsg = "javascript:alert('Associate Company field cannot be empty!');"
+                Exit Sub
+            End If
+            If cboSupervisor.SelectedIndex < 0 Then
+                FirstMsg = "javascript:alert('Doc. Supervisor field cannot be empty!');"
+                Exit Sub
+            End If
             If rBtnOption.SelectedIndex = 0 Then
 
-                If cboAssCompany.SelectedIndex < 0 Then
-                    FirstMsg = "javascript:alert('Associate Company field cannot be empty!');"
-                    Exit Sub
-                End If
-                If cboSupervisor.SelectedIndex < 0 Then
-                    FirstMsg = "javascript:alert('Doc. Supervisor field cannot be empty!');"
-                    Exit Sub
-                End If
+                'If cboAssCompany.SelectedIndex < 0 Then
+                '    FirstMsg = "javascript:alert('Associate Company field cannot be empty!');"
+                '    Exit Sub
+                'End If
+                'If cboSupervisor.SelectedIndex < 0 Then
+                '    FirstMsg = "javascript:alert('Doc. Supervisor field cannot be empty!');"
+                '    Exit Sub
+                'End If
 
                 If txtPolNum.Text <> "" Then
                     Dim url As String = HttpContext.Current.Request.Url.AbsoluteUri
@@ -335,7 +342,11 @@ Partial Class I_LIFE_PRG_LI_INDV_MEDICAL_EXAM_LIST
                 rParams(2) = sDate + "&"
                 rParams(3) = "pEND_DATE="
                 rParams(4) = eDate + "&"
-                rParams(5) = url
+                rParams(5) = "pASSOCIATE_REC_ID="
+                rParams(6) = cboAssCompany.SelectedValue.ToString() + "&"
+                rParams(7) = "pSUPERVISOR="
+                rParams(8) = cboSupervisor.SelectedValue.ToString() + "&"
+                rParams(9) = url
 
             End If
 
@@ -346,7 +357,7 @@ Partial Class I_LIFE_PRG_LI_INDV_MEDICAL_EXAM_LIST
 
 
 
-Session("ReportParams") = rParams
+        Session("ReportParams") = rParams
         Response.Redirect("../PrintView.aspx")
     End Sub
 

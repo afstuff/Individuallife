@@ -21,18 +21,34 @@
             height: 22px;
         }
         .style2
-        {
+        {            width: 273px;
         }
         .style3
         {
         }
         .style4
         {
-            width: 366px;
+            width: 212px;
         }
         .style5
         {
-            width: 290px;
+            width: 262px;
+        }
+        .style6
+        {
+            width: 152px;
+        }
+        .style7
+        {
+            width: 126px;
+        }
+        .style8
+        {
+            height: 24px;
+        }
+        .style9
+        {
+            width: 148px;
         }
     </style>
 </head>
@@ -83,12 +99,12 @@
                 <td align="center" valign="top" class="td_menu">
                     <table align="center" border="0" class="tbl_menu_new">
                         <tr>
-                            <td align="left" colspan="2" valign="top">
+                            <td align="left" colspan="4" valign="top">
                                 <asp:Label ID="lblMsg" ForeColor="Red" Font-Size="Small" runat="server"></asp:Label>
                             </td>
                         </tr>
                         <tr style="">
-                            <td nowrap align="left" valign="top" class="style3" colspan="2">
+                            <td nowrap align="left" valign="top" class="style3" colspan="4">
                                 <asp:RadioButtonList ID="rBtnOption" runat="server" 
                                     RepeatDirection="Horizontal" AutoPostBack="True">
                                     <asp:ListItem Value="0" Selected="True">Proposal By Policy Number</asp:ListItem>
@@ -97,7 +113,7 @@
                             </td>
                         </tr>
                         <tr style="">
-                            <td nowrap align="left" valign="top" class="style3" colspan="2">
+                            <td nowrap align="left" valign="top" class="style3" colspan="4">
                                 <asp:Panel ID="singleRecPanel" runat="server">
                                     <table width="100%">
                                         <tr>
@@ -117,7 +133,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td align="left" valign="top" class="style3">
+                                            <td align="left" valign="top" class="style9">
                                                 <asp:Label ID="Label1" Enabled="true" Text="Proposal No:" runat="server"></asp:Label>
                                             </td>
                                             <td align="left" valign="top" colspan="1" class="style2">
@@ -131,38 +147,12 @@
                                                 <asp:Button ID="btnGo0" runat="server" Text="Go" Width="41px" />
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td align="left" class="style3" valign="top">
-                                                <asp:Label ID="Label9" runat="server" Text="Doc. Supervisor:"></asp:Label>
-                                            </td>
-                                            <td align="left" class="style2" colspan="1" valign="top">
-                                                <asp:DropDownList ID="cboSupervisor" runat="server" Height="26px" Width="250px">
-                                                </asp:DropDownList>
-                                            </td>
-                                            <td align="left" colspan="1" valign="top">
-                                                <asp:Label ID="Label8" runat="server" Text="Associate Company:"></asp:Label>
-                                            </td>
-                                            <td align="left" valign="top">
-                                                <asp:DropDownList ID="cboAssCompany" runat="server" Height="26px" Width="250px">
-                                                </asp:DropDownList>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td align="left" class="style3" valign="top">
-                                                &nbsp;</td>
-                                            <td align="left" class="style2" colspan="1" valign="top">
-                                                &nbsp;</td>
-                                            <td align="left" colspan="1" valign="top">
-                                                &nbsp;</td>
-                                            <td align="left" valign="top">
-                                                &nbsp;</td>
-                                        </tr>
                                     </table>
                                 </asp:Panel>
                                 <asp:Panel ID="manyRecPanel" runat="server" Visible="False">
                                     <table width="100%">
                                         <tr>
-                                            <td align="left" valign="top" class="style3">
+                                            <td align="left" valign="top" class="style9">
                                                 <asp:Label ID="Label4" Text="Start Date:" runat="server"></asp:Label>
                                             </td>
                                             <td align="left" valign="top" colspan="1" class="style5">
@@ -178,39 +168,41 @@
                                                 <asp:Label ID="Label7" Visible="true" Text="dd/mm/yyyy" runat="server"></asp:Label>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td align="left" class="style3" valign="top">
-                                                &nbsp;</td>
-                                            <td align="left" class="style5" colspan="1" valign="top">
-                                                &nbsp;</td>
-                                            <td align="left" colspan="1" valign="top">
-                                                &nbsp;</td>
-                                            <td align="left" valign="top">
-                                                &nbsp;</td>
-                                        </tr>
                                     </table>
                                 </asp:Panel>
                             </td>
                         </tr>
                         <tr style="">
-                            <td nowrap align="left" valign="top" class="style4">
-                                &nbsp;
-                                &nbsp;
-                                &nbsp;
-                                &nbsp;
+                            <td nowrap align="left" valign="top" class="style6">
+                                                <asp:Label ID="Label9" runat="server" Text="Doc. Supervisor:"></asp:Label>
+                            </td>
+                            <td nowrap align="left" valign="top" class="style7">
+                                                <asp:DropDownList ID="cboSupervisor" runat="server" 
+                                    Height="26px" Width="250px">
+                                                </asp:DropDownList>
                             </td>
                             <td nowrap align="right" valign="top" class="style3">
+                                                <asp:Label ID="Label8" runat="server" Text="Associate Company:"></asp:Label>
+                            </td>
+                            <td nowrap align="left" valign="top" class="style3">
+                                                <asp:DropDownList ID="cboAssCompany" runat="server" 
+                                    Height="26px" Width="250px">
+                                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td nowrap align="center" valign="top" class="style8" colspan="4">
                                 <asp:Button ID="btnGo" runat="server" Height="25px" Text="View/Print Report" Width="165px"
                                     Font-Bold="True" />
                             </td>
                         </tr>
                         <tr>
-                            <td align="left" valign="top" class="style4">
+                            <td align="left" valign="top" class="style4" colspan="2">
                                 &nbsp;
                                 &nbsp;
                                 &nbsp;
                             </td>
-                            <td align="left" valign="top" class="style3">
+                            <td align="left" valign="top" class="style3" colspan="2">
                                 &nbsp;</td>
                         </tr>
                     </table>
