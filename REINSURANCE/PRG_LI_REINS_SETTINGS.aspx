@@ -68,7 +68,7 @@
                 <tr>
                     <td align="left" colspan="3" valign="top"><asp:Label ID="lblMessage" Text="Status:" ForeColor="Red" runat="server"></asp:Label></td>
                     <td align="right" valign="top">
-                        &nbsp;<a id="PageAnchor_Return_Link" runat="server" class="a_return_menu" href="#" onclick="javascript:JSDO_RETURN('../I_LIFE/MENU_IL.aspx?menu=il_code_std')">Returns to Previous Page</a>
+                        &nbsp;<a id="PageAnchor_Return_Link" runat="server" class="a_return_menu" href="#" onclick="javascript:JSDO_RETURN('../I_LIFE/MENU_IL.aspx?menu=IL_REINS')">Returns to Previous Page</a>
                         &nbsp;<%=PageLinks%>
                     </td>
                 </tr>    
@@ -112,7 +112,9 @@
                     </td>                    
                     <td align="left" valign="top" colspan="3"><asp:TextBox ID="txtCommDate" 
                             MaxLength="18" runat="server" 
-                            Width="142px"></asp:TextBox></td>                    
+                            Width="142px"></asp:TextBox>
+                        <asp:Label ID="lblCommDate0" runat="server" Text="dd/mm/yyyy"></asp:Label>
+                    </td>                    
                 </tr>
           &nbsp;</td>
                 </tr>
