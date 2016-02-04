@@ -44,7 +44,7 @@
                     <div class="top-inner">
                         <div class="top">
                             <h2>
-                                PRINT: Claims Weekly report</h2>
+                                PRINT: New Entrants Report</h2>
                         </div>
                     </div>
                 </div>
@@ -54,15 +54,12 @@
                             <table class="tbl_menu_new" align="center">
                                 <tr>
                                     <td colspan="2" class="myMenu_Title" align="center">
-                                        <asp:Label ID="lblDesc1" runat="server" Text="List Print" Visible="False"></asp:Label>
-                                        <br />
                                         <br />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        Start Date :
-                                    </td>
+                                        Start Proposal Date :                                     </td>
                                     <td>
                                         <asp:TextBox ID="txtStartDate" runat="server" Width="150px" MaxLength="10"></asp:TextBox>
 
@@ -74,7 +71,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        End Date :
+                                        End Proposal Date :
                                     </td>
                                     <td>
                                         <asp:TextBox ID="txtEndDate" runat="server" Width="150px" MaxLength="10"></asp:TextBox>
