@@ -20,6 +20,12 @@
         {
             height: 22px;
         }
+<<<<<<< HEAD
+        .style2
+        {            width: 273px;
+        }
+=======
+>>>>>>> origin/master
         .style3
         {
         }
@@ -101,32 +107,20 @@
                             </td>
                         </tr>
                         <tr style="">
-                            <td nowrap align="left" valign="top" class="style3" colspan="4">
-                                &nbsp;</td>
-                        </tr>
-                        <tr style="">
-                            <td nowrap align="left" valign="top" class="style3" colspan="4">
-                                <asp:Panel ID="manyRecPanel" runat="server">
-                                    <table width="100%">
-                                        <tr>
-                                            <td align="left" valign="top" class="style9">
+                            <td nowrap align="left" valign="top" class="style6">
                                                 <asp:Label ID="Label4" Text="Start Date:" runat="server"></asp:Label>
-                                            </td>
-                                            <td align="left" valign="top" colspan="1" class="style5">
+                            </td>
+                            <td nowrap align="left" valign="top" class="style7">
                                                 <asp:TextBox ID="txtPrem_Start_Date" MaxLength="10" runat="server" 
                                                     Enabled="True"></asp:TextBox>
                                                 <asp:Label ID="Label5" Visible="true" Text="dd/mm/yyyy" runat="server"></asp:Label>
-                                            </td>
-                                            <td align="left" valign="top" colspan="1">
+                            </td>
+                            <td nowrap align="right" valign="top" class="style3">
                                                 <asp:Label ID="Label6" Enabled="true" Text="Expiry Date:" runat="server"></asp:Label>
-                                            </td>
-                                            <td align="left" valign="top">
+                            </td>
+                            <td nowrap align="left" valign="top" class="style3">
                                                 <asp:TextBox ID="txtPrem_End_Date" MaxLength="10" runat="server"></asp:TextBox>
                                                 <asp:Label ID="Label7" Visible="true" Text="dd/mm/yyyy" runat="server"></asp:Label>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </asp:Panel>
                             </td>
                         </tr>
                         <tr style="">

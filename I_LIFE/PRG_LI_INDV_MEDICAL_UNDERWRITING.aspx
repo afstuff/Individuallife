@@ -70,7 +70,7 @@
                         </tr>
                         <tr>
                             <td align="left" colspan="4" valign="top" class="style1">
-                                &nbsp;&nbsp;<a href="#" onclick="javascript:JSDO_RETURN('PRG_LI_PROP_POLICY.aspx?menu=IL_QUOTE')">Go
+                                &nbsp;&nbsp;<a href="#" onclick="javascript:JSDO_RETURN('../I_LIFE/MENU_IL.aspx?menu=IL_UND');">Go
                                     to Menu</a>
                             </td>
                         </tr>

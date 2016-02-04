@@ -25,7 +25,9 @@
 
         <div>
                     <asp:Button ID="butView" Text="View/Print" runat="server" />
-                    <asp:Button ID="butClsoe" Text="Back" runat="server" />
+
+                    <asp:Button ID="butClsoe" Text="Back" runat="server"  />
+
         </div>
         <div id="PrintDialog">
             

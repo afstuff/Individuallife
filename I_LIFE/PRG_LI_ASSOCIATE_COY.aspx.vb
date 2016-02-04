@@ -32,7 +32,7 @@ Partial Class I_LIFE_PRG_LI_ASSOCIATE_COY
 
         PageLinks = ""
         'PageLinks = PageLinks & "<a href='javascript:window.close();' runat='server'>Close...</a>"
-        PageLinks = "<a href='../MENU_GL.aspx?menu=GL_REINS' class='a_sub_menu' style='float:right;'>Return to Menu</a>&nbsp;<br/>"
+        PageLinks = "<a href='../I_LIFE/MENU_IL.aspx?menu=IL_REINS' class='a_sub_menu' style='float:right;'>Return to Menu</a>&nbsp;<br/>"
 
         strTableName = "TBGL_REINSURANCE"
     End Sub

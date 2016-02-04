@@ -38,11 +38,7 @@ Partial Class PrintView
         End Try
     End Sub
     Protected Sub analyseParams()
-
-
         '        myParams = Replace(myParams, "=", "", 1, , CompareMethod.Text)
-
-
     End Sub
 
     Protected Sub butClsoe_Click(ByVal sender As Object, ByVal e As EventArgs) Handles butClsoe.Click

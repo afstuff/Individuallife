@@ -55,7 +55,44 @@ Partial Class I_LIFE_PRG_LI_INDV_MEDICAL_EXAM_LIST
 
     Dim dblTmp_Amt As Double = 0
 
-    Dim rParams As String() = {"nw", "nw", "nw", "nw", "nw", "nw", "nw", "nw", "new", "new"}
+
+    Dim rParams As String() = {"nw", "nw", "nw", "nw", "nw", "new"}
+
+
+
+    Public Sub GET_POLICYDATE_BY_FILENO(ByVal fileNumber As String)
+        Dim mystrConn As String = CType(Session("connstr"), String)
+        Dim conn As OleDbConnection
+        conn = New OleDbConnection(mystrConn)
+        Dim cmd As OleDbCommand = New OleDbCommand()
+        cmd.Connection = conn
+        cmd.CommandText = "SPIL_IND_POLICYDATE_BY_FILENO"
+        cmd.CommandType = CommandType.StoredProcedure
+        cmd.Parameters.AddWithValue("@TBIL_POL_PRM_POLY_NO", fileNumber)
+
+        Try
+            conn.Open()
+            Dim objOledr As OleDbDataReader
+            objOledr = cmd.ExecuteReader()
+            If (objOledr.Read()) Then
+                Dim newStartDate As Date = Convert.ToDateTime(objOledr("TBIL_POL_PRM_FROM"))
+                Dim newEndDate As Date = Convert.ToDateTime(objOledr("TBIL_POL_PRM_TO"))
+
+                newStartDate = newStartDate.AddYears(1)
+                newEndDate = newEndDate.AddYears(1)
+                txtPrem_Start_Date.Text = newStartDate.ToString("dd/MM/yyyy")
+                txtPrem_End_Date.Text = newEndDate.ToString("dd/MM/yyyy")
+
+            End If
+
+            conn.Close()
+        Catch ex As Exception
+            strErrMsg = "Error retrieving data! " + ex.Message
+        End Try
+    End Sub
+
+    'Dim rParams As String() = {"nw", "nw", "nw", "nw", "nw", "nw", "nw", "nw", "new", "new"}
+
 
     Public Sub GET_SUPERVISORS()
         Dim mystrConn As String = CType(Session("connstr"), String)
@@ -132,40 +169,68 @@ Partial Class I_LIFE_PRG_LI_INDV_MEDICAL_EXAM_LIST
         'FIRST CHECK FOR DATE VALUES BEFORE SENDING DATA
         Dim sDate As String
         Dim eDate As String
-
-
-        If cboAssCompany.SelectedIndex < 0 Then
-            FirstMsg = "javascript:alert('Associate Company field cannot be empty!');"
-            Exit Sub
-        End If
-        If cboSupervisor.SelectedIndex < 0 Then
-            FirstMsg = "javascript:alert('Doc. Supervisor field cannot be empty!');"
-            Exit Sub
-        End If
-
         If txtPrem_End_Date.Text <> "" Or txtPrem_Start_Date.Text <> "" Then
             sDate = DoConvertToDbDateFormat(txtPrem_Start_Date.Text)
             eDate = DoConvertToDbDateFormat(txtPrem_End_Date.Text)
+
         Else
             FirstMsg = "javascript:alert('Start or end date cannot be empty!');"
             Exit Sub
         End If
 
-        Dim url As String = HttpContext.Current.Request.Url.AbsoluteUri
-        rParams(0) = "rptIND_MEDICAL_UNDER_CLASS_TEST_LIST"
-        rParams(1) = "pSTART_DATE="
-        rParams(2) = sDate + "&"
-        rParams(3) = "pEND_DATE="
-        rParams(4) = eDate + "&"
-        rParams(5) = "pASSOCIATE_REC_ID="
-        rParams(6) = cboAssCompany.SelectedValue.ToString() + "&"
-        rParams(7) = "pSUPERVISOR="
-        rParams(8) = cboSupervisor.SelectedValue.ToString() + "&"
-        rParams(9) = url
+        If cboAssCompany.SelectedIndex <> 0 Or cboSupervisor.SelectedIndex <> 0 Then
+
+            Dim url As String = HttpContext.Current.Request.Url.AbsoluteUri
+            rParams(0) = "rptIND_MEDICAL_UNDER_CLASS_TEST"
+            rParams(1) = "pSTART_DATE="
+            rParams(2) = sDate + "&"
+            rParams(3) = "pEND_DATE="
+            rParams(4) = eDate + "&"
+            'rParams(5) = "pASSOCIATE_REC_ID="
+            'rParams(6) = cboAssCompany.SelectedValue.ToString() + "&"
+            'rParams(7) = "pSUPERVISOR="
+            'rParams(8) = cboSupervisor.SelectedValue.ToString() + "&"
+            rParams(5) = url
+        Else
+            FirstMsg = "javascript:alert('Select Supervisor or Associated company!');"
+            Exit Sub
+        End If
+
+
 
         Session("ReportParams") = rParams
         Response.Redirect("../PrintView.aspx")
     End Sub
+
+    'Protected Sub rBtnOption_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rBtnOption.SelectedIndexChanged
+
+
+    '    Dim sDate, eDate
+
+    '    If txtPrem_End_Date.Text <> "" Or txtPrem_Start_Date.Text <> "" Then
+    '        sDate = DoConvertToDbDateFormat(txtPrem_Start_Date.Text)
+    '        eDate = DoConvertToDbDateFormat(txtPrem_End_Date.Text)
+
+    '    Else
+    '        FirstMsg = "javascript:alert('Start or end date cannot be empty!');"
+    '        Exit Sub
+    '    End If
+
+    '    Dim url As String = HttpContext.Current.Request.Url.AbsoluteUri
+    '    rParams(0) = "rptIND_MEDICAL_UNDER_CLASS_TEST_LIST"
+    '    rParams(1) = "pSTART_DATE="
+    '    rParams(2) = CType((sDate + "&"), String)
+    '    rParams(3) = "pEND_DATE="
+    '    rParams(4) = CType((eDate + "&"), String)
+    '    rParams(5) = "pASSOCIATE_REC_ID="
+    '    rParams(6) = cboAssCompany.SelectedValue.ToString() + "&"
+    '    rParams(7) = "pSUPERVISOR="
+    '    rParams(8) = cboSupervisor.SelectedValue.ToString() + "&"
+    '    rParams(9) = url
+
+    '    Session("ReportParams") = rParams
+    '    Response.Redirect("../PrintView.aspx")
+    'End Sub
 
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
