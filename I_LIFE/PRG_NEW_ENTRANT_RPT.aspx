@@ -20,7 +20,7 @@
 
     <script language="JavaScript" src="calendar_eu.js" type="text/javascript"></script>
 
-    <title></title>
+    <title>New Entrants Report</title>
 </head>
 <body onload="<%= FirstMsg %>">
     <form id="LifeReportsPrint" runat="server">
