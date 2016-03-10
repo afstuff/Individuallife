@@ -338,7 +338,8 @@ Partial Class I_LIFE_MENU_IL
                 ''AddMenuItem("", "New Policy", "il_3020.aspx")
                 'AddMenuItem("", "", "") 'blank link
                 AddMenuItem("Reports", "New Entrants Report", "PRG_NEW_ENTRANT_RPT.aspx")
-                AddMenuItem("", "Policies Agents Report", "PRG_POLICIES_AGENTS_RPT.aspx")
+                'AddMenuItem("", "Policies Agents Report", "PRG_POLICIES_AGENTS_RPT.aspx") Only Individual
+                AddMenuItem("", "Policies Agents Report", "RPT_LI_POLICY_AGENT.aspx") 'Include both Annuity and Individual
                 AddMenuItem("", "Commission Rebate Report", "RPT_LI_COMM_REBATE_REPORTS.aspx")
                 AddMenuItem("", "Claims Weekly Report", "RPT_LI_CLAIM_WEEKLY_REPORT.aspx")
                 AddMenuItem("", "Weekly Business Report", "RPT_LI_BUSINESS_REPORT.aspx")
