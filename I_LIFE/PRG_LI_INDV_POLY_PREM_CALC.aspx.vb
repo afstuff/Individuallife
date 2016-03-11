@@ -1790,9 +1790,14 @@ Proc_DoSave_End:
                                     dblRate_Per = CType(Trim(Me.txtPrem_Fixed_Rate_PerNum.Text), Integer)
                                 End If
 
-                                If Val(dblFree_Life_Cover_Lmt_LC) > 0 And Val(Me.txtPrem_Sch_Fee_Prd.Text) > 0 And Val(dblPrem_Rate) <> 0 And Val(dblRate_Per) <> 0 Then
-                                    dblTmp_Amt = (dblFree_Life_Cover_Lmt_LC / (3 * Val(Me.txtPrem_Sch_Fee_Prd.Text))) / dblRate_Per * dblPrem_Rate
+                                'If Val(dblFree_Life_Cover_Lmt_LC) > 0 And Val(Me.txtPrem_Sch_Fee_Prd.Text) > 0 And Val(dblPrem_Rate) <> 0 And Val(dblRate_Per) <> 0 Then
+                                '    dblTmp_Amt = (dblFree_Life_Cover_Lmt_LC / (3 * Val(Me.txtPrem_Sch_Fee_Prd.Text))) / dblRate_Per * dblPrem_Rate
+                                'End If
+
+                                If Val(dblFree_Life_Cover_Lmt_LC) > 0 And Val(dblPrem_Rate) <> 0 And Val(dblRate_Per) <> 0 Then
+                                    dblTmp_Amt = (dblFree_Life_Cover_Lmt_LC / dblRate_Per) * dblPrem_Rate
                                 End If
+
 
                                 dblTmp_Amt = Format(dblTmp_Amt, "###########0.00")
                                 dblAnnual_Basic_Prem_LC = dblTmp_Amt
@@ -1828,8 +1833,11 @@ Proc_DoSave_End:
                                     dblRate_Per = CType(Trim(Me.txtPrem_Rate_PerNum.Text), Integer)
                                 End If
 
-                                If Val(dblFree_Life_Cover_Lmt_LC) > 0 And Val(Me.txtPrem_Sch_Fee_Prd.Text) > 0 And Val(dblPrem_Rate) <> 0 And Val(dblRate_Per) <> 0 Then
-                                    dblTmp_Amt = (dblFree_Life_Cover_Lmt_LC / (3 * Val(Me.txtPrem_Sch_Fee_Prd.Text))) / dblRate_Per * dblPrem_Rate
+                                'If Val(dblFree_Life_Cover_Lmt_LC) > 0 And Val(Me.txtPrem_Sch_Fee_Prd.Text) > 0 And Val(dblPrem_Rate) <> 0 And Val(dblRate_Per) <> 0 Then
+                                '    dblTmp_Amt = (dblFree_Life_Cover_Lmt_LC / (3 * Val(Me.txtPrem_Sch_Fee_Prd.Text))) / dblRate_Per * dblPrem_Rate
+                                'End If
+                                If Val(dblFree_Life_Cover_Lmt_LC) > 0 And Val(dblPrem_Rate) <> 0 And Val(dblRate_Per) <> 0 Then
+                                    dblTmp_Amt = (dblFree_Life_Cover_Lmt_LC / dblRate_Per) * dblPrem_Rate
                                 End If
 
                                 dblTmp_Amt = Format(dblTmp_Amt, "###########0.00")
@@ -1888,10 +1896,15 @@ Proc_DoSave_End:
                                 If IsNumeric(Trim(Me.txtPrem_Fixed_Rate_PerNum.Text)) Then
                                     dblRate_Per = CType(Trim(Me.txtPrem_Fixed_Rate_PerNum.Text), Integer)
                                 End If
+                                'change in calculation mode
+                                'If Val(dblTmp_Amt) > 0 And Val(Me.txtPrem_Sch_Fee_Prd.Text) > 0 And Val(dblPrem_Rate) <> 0 And Val(dblRate_Per) <> 0 Then
+                                '    dblSum_Assured_LC = ((dblTmp_Amt / dblMOP_Rate) * (3 * Val(Me.txtPrem_Sch_Fee_Prd.Text))) / dblPrem_Rate * dblRate_Per
+                                'End If
 
-                                If Val(dblTmp_Amt) > 0 And Val(Me.txtPrem_Sch_Fee_Prd.Text) > 0 And Val(dblPrem_Rate) <> 0 And Val(dblRate_Per) <> 0 Then
-                                    dblSum_Assured_LC = ((dblTmp_Amt / dblMOP_Rate) * (3 * Val(Me.txtPrem_Sch_Fee_Prd.Text))) / dblPrem_Rate * dblRate_Per
+                                If Val(dblTmp_Amt) > 0 And Val(dblPrem_Rate) <> 0 And Val(dblRate_Per) <> 0 Then
+                                    dblSum_Assured_LC = (dblTmp_Amt / dblMOP_Rate) / (dblPrem_Rate * dblRate_Per)
                                 End If
+
 
                                 dblSum_Assured_LC = Format(dblSum_Assured_LC, "###########0.00")
                                 dblSum_Assured_FC = dblSum_Assured_LC
@@ -1937,9 +1950,15 @@ Proc_DoSave_End:
                                     dblRate_Per = CType(Trim(Me.txtPrem_Rate_PerNum.Text), Integer)
                                 End If
 
-                                If Val(dblTmp_Amt) > 0 And Val(Me.txtPrem_Sch_Fee_Prd.Text) > 0 And Val(dblPrem_Rate) <> 0 And Val(dblRate_Per) <> 0 Then
-                                    dblSum_Assured_LC = ((dblTmp_Amt / dblMOP_Rate) * (3 * Val(Me.txtPrem_Sch_Fee_Prd.Text))) / dblPrem_Rate * dblRate_Per
+                                'change in calculation mode
+                                'If Val(dblTmp_Amt) > 0 And Val(Me.txtPrem_Sch_Fee_Prd.Text) > 0 And Val(dblPrem_Rate) <> 0 And Val(dblRate_Per) <> 0 Then
+                                '    dblSum_Assured_LC = ((dblTmp_Amt / dblMOP_Rate) * (3 * Val(Me.txtPrem_Sch_Fee_Prd.Text))) / dblPrem_Rate * dblRate_Per
+                                'End If
+
+                                If Val(dblTmp_Amt) > 0 And Val(dblPrem_Rate) <> 0 And Val(dblRate_Per) <> 0 Then
+                                    dblSum_Assured_LC = (dblTmp_Amt / dblMOP_Rate) / (dblPrem_Rate * dblRate_Per)
                                 End If
+
 
                                 dblSum_Assured_LC = Format(dblSum_Assured_LC, "###########0.00")
                                 dblSum_Assured_FC = dblSum_Assured_LC
@@ -1970,7 +1989,7 @@ Proc_DoSave_End:
         End Select
 
         '******************************************************
-        ' END CODES - Education Endowment
+        ' END CODES - Education Endowment -- E001
         '******************************************************
 
 
