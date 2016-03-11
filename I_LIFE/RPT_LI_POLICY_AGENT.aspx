@@ -88,7 +88,7 @@
                                     <td align="left" valign="top" colspan="1">
                                         <asp:RadioButtonList ID="radReportType" runat="server">
                                             <asp:ListItem Value="rptAnnuityPolicyAgents">Annuity</asp:ListItem>
-                                           <%-- <asp:ListItem Value="rptDefiniteCertLetter">Definite Cert. Letter</asp:ListItem>--%>
+                                         <asp:ListItem Value="rptPolicyAgents">Annuity and Other Products</asp:ListItem>
                                         </asp:RadioButtonList>
                                     </td>
                                 </tr>
