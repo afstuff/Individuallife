@@ -1,9 +1,8 @@
 ﻿
-Partial Class I_LIFE_RPT_LI_POLICY_AGENT
+Partial Class I_LIFE_RPT_LI_TECH_REPORTS
     Inherits System.Web.UI.Page
     Dim rParams As String() = {"nw", "nw", "new", "new", "new", "new"}
     Protected FirstMsg As String
-
 
     Protected Sub butOK_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles butOK.Click
         Dim str() As String
