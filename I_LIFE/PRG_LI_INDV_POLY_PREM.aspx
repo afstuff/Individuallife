@@ -14,6 +14,12 @@
     </script>
     <script language="javascript" type="text/javascript" src="../Script/SJS_02.js">
     </script>
+    <style>
+        .RecordOriginator
+        {
+            margin-left:100px;
+        }
+    </style>
         
 </head>
 
@@ -83,7 +89,7 @@
                                             <tr>
                                                 <td align="left" colspan="4" valign="top">
                                                     <asp:Label ID="lblMsg" ForeColor="Red" Font-Size="Small" runat="server"></asp:Label>
-                                                    <asp:Label ID="lblOriginator" ForeColor="Red" Font-Size="Small" runat="server"></asp:Label>
+                                                    <asp:Label ID="lblOriginator" ForeColor="Red" Font-Size="Small" runat="server" CssClass="RecordOriginator"></asp:Label>
                                                 </td>
                                             </tr>
 

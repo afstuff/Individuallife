@@ -69,6 +69,10 @@
             height: 22px;
             width: 173px;
         }
+        .RecordOriginator
+        {
+            margin-left:100px;
+        }
     </style>
 
 </head>
@@ -139,7 +143,7 @@
                                             <tr>
                                                 <td align="left" colspan="5" valign="top">
                                                     <asp:Label ID="lblMsg" ForeColor="Red" Font-Size="Small" runat="server"></asp:Label>
-                                                    <asp:Label ID="lblOriginator" ForeColor="Red" Font-Size="Small" runat="server"></asp:Label>
+                                                    <asp:Label ID="lblOriginator" ForeColor="Red" Font-Size="Small" runat="server" CssClass="RecordOriginator"></asp:Label>
                                                 </td>
                                             </tr>
                                             
