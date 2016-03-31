@@ -1037,6 +1037,7 @@ Proc_DoSave_End:
 
             Me.txtPrem_Rate_Applied_On.Text = RTrim(CType(objOLEDR("TBIL_POL_PRM_RT_APPLIED_ON") & vbNullString, String))
             Me.txtPrem_Is_SA_From_PremNum.Text = RTrim(CType(objOLEDR("TBIL_POL_SA_FROM_PRM") & vbNullString, String))
+            lblOriginator.Text = "Record Originally created by " & GetRecordOriginator(RTrim(CType(objOLEDR("TBIL_POL_PRM_DTL_OPERID") & vbNullString, String)))
 
 
             Select Case Trim(Me.txtPrem_Life_CoverNum.Text)
@@ -1211,6 +1212,7 @@ Proc_DoSave_End:
 
                 Me.txtPrem_Rate_Applied_On.Text = RTrim(CType(objOLEDR("TBIL_POL_PRM_RT_APPLIED_ON") & vbNullString, String))
                 Me.txtPrem_Is_SA_From_PremNum.Text = RTrim(CType(objOLEDR("TBIL_POL_SA_FROM_PRM") & vbNullString, String))
+                lblOriginator.Text = "Record Originally created by " & GetRecordOriginator(RTrim(CType(objOLEDR("TBIL_POL_PRM_OPERID") & vbNullString, String)))
 
                 Select Case Trim(Me.txtPrem_Life_CoverNum.Text)
                     Case "N"

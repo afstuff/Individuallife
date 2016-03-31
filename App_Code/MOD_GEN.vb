@@ -2766,5 +2766,26 @@ MyTestDate_Err1:
         Return newDate
     End Function
 
+    Public Function GetRecordOriginator(ByVal UserId As String) As String
+        Dim result As String = ""
+        Dim objOLEDR As OleDbDataReader
+        Dim mystrConn As String = CType("Provider=SQLOLEDB;" + gnGET_CONN_STRING(), String)
+        Dim conn As OleDbConnection
+        conn = New OleDbConnection(mystrConn)
+        Dim cmd As OleDbCommand = New OleDbCommand()
+        cmd.Connection = conn
+        cmd.CommandText = "SELECT * FROM SEC_USER_LIFE_DETAIL WHERE SEC_USER_LOGIN='" + UserId + "'"
+        cmd.CommandType = CommandType.Text
+        Try
+            conn.Open()
+            objOLEDR = cmd.ExecuteReader()
+            If (objOLEDR.Read()) Then
+                result = RTrim(CType(objOLEDR("SEC_USER_NAME") & vbNullString, String))
+                conn.Close()
+            End If
+        Catch ex As Exception
+        End Try
+        Return result
+    End Function
 
 End Module

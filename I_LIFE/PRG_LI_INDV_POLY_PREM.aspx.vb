@@ -2159,6 +2159,8 @@ Skip_C001:
 
             Me.txtPrem_Enrollee_Num.Text = RTrim(CType(objOLEDR("TBIL_POL_PRM_ENROL_NO") & vbNullString, String))
 
+            lblOriginator.Text = "Record Originally created by " & GetRecordOriginator(RTrim(CType(objOLEDR("TBIL_POL_PRM_OPERID") & vbNullString, String)))
+
             Me.lblFileNum.Enabled = False
             'Call DisableBox(Me.txtFileNum)
             Me.chkFileNum.Enabled = False

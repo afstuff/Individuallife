@@ -140,6 +140,7 @@ Partial Class I_LIFE_PRG_LI_INDV_POLY_PERSNAL
             Me.lblMsg.Text = "Status:"
         End If
 
+        txtUWYear.Text = Year(DateTime.Now)
 
         If Me.txtAction.Text = "New" Then
             Me.txtQuote_Num.Text = ""
@@ -2332,8 +2333,7 @@ PUpdate_Date1:
                 txtCompShare.Text = "0.00"
             End If
 
-
-
+            lblOriginator.Text = "Record Originally created by " & GetRecordOriginator(RTrim(CType(objOLEDR("TBIL_POLY_OPERID") & vbNullString, String)))
 
             Me.lblFileNum.Enabled = False
             'Call DisableBox(Me.txtFileNum)
@@ -2366,7 +2366,7 @@ PUpdate_Date1:
             End If
 
             strOPT = "2"
-            Me.lblMsg.Text = "Status: Data Modification"
+            Me.lblMsg.Text = "Status: Data Modification."
 
         Else
 
@@ -2581,4 +2581,7 @@ PUpdate_Date1:
         End If
         objOLEConn = Nothing
     End Sub
+
+
+
 End Class

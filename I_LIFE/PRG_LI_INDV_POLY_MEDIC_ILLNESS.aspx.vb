@@ -934,7 +934,7 @@ Partial Class I_LIFE_PRG_LI_INDV_POLY_MEDIC_ILLNESS
             Me.txtMed_Illness_Code.Text = RTrim(CType(objOLEDR("TBIL_POL_ILLNESS_CD") & vbNullString, String))
             Call gnProc_DDL_Get(Me.cboMed_Illness_Code, RTrim(Me.txtMed_Illness_Code.Text))
             'Me.txtMed_Illness_Name.Text = RTrim(CType(objOLEDR("TBIL_POL_ILLNESS_NAME") & vbNullString, String))
-
+            lblOriginator.Text = "Record Originally created by " & GetRecordOriginator(RTrim(CType(objOLEDR("TBIL_POL_ILL_OPERID") & vbNullString, String)))
 
         Me.lblFileNum.Enabled = False
         'Call DisableBox(Me.txtFileNum)

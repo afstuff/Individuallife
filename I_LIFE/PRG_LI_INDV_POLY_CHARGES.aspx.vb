@@ -1016,7 +1016,7 @@ Partial Class I_LIFE_PRG_LI_INDV_POLY_CHARGES
 
             Me.txtChg_Amount_LC.Text = RTrim(CType(objOLEDR("TBIL_POLY_CHG_AMT_LC") & vbNullString, String))
             Me.txtChg_Amount_FC.Text = RTrim(CType(objOLEDR("TBIL_POLY_CHG_AMT_FC") & vbNullString, String))
-
+            lblOriginator.Text = "Record Originally created by " & GetRecordOriginator(RTrim(CType(objOLEDR("TBIL_POLY_CHG_OPERID") & vbNullString, String)))
 
             Me.lblFileNum.Enabled = False
             'Call DisableBox(Me.txtFileNum)

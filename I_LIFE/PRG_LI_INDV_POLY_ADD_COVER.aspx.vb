@@ -1484,6 +1484,7 @@ Partial Class I_LIFE_PRG_LI_INDV_POLY_ADD_COVER
             Me.txtAdd_Prem_Rate_Applied_On_Num.Text = RTrim(CType(objOLEDR("TBIL_POL_ADD_RATE_APPLY") & vbNullString, String))
             Call gnProc_DDL_Get(Me.cboAdd_Prem_Rate_Applied_On, RTrim(Me.txtAdd_Prem_Rate_Applied_On_Num.Text))
             'Me.txtAdd_Prem_Rate_Code.Text = RTrim(CType(objOLEDR("TBIL_POL_ADD_SA_RT_AMT_CD") & vbNullString, String))
+            lblOriginator.Text = "Record Originally created by " & GetRecordOriginator(RTrim(CType(objOLEDR("TBIL_POL_ADD_OPERID") & vbNullString, String)))
 
             Me.lblFileNum.Enabled = False
             'Call DisableBox(Me.txtFileNum)

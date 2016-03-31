@@ -1230,6 +1230,7 @@ Partial Class I_LIFE_PRG_LI_INDV_POLY_LOAD_DISC
 
             Me.txtLoad_Disc_SA_LC.Text = RTrim(CType(objOLEDR("TBIL_POL_DISC_LOAD_VALUE_LC") & vbNullString, String))
             Me.txtLoad_Disc_SA_FC.Text = RTrim(CType(objOLEDR("TBIL_POL_DISC_LOAD_VALUE_FC") & vbNullString, String))
+            lblOriginator.Text = "Record Originally created by " & GetRecordOriginator(RTrim(CType(objOLEDR("TBIL_POL_DISC_LOAD_OPERID") & vbNullString, String)))
 
 
             Me.lblFileNum.Enabled = False
