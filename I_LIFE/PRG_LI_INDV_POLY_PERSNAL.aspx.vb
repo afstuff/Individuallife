@@ -572,6 +572,19 @@ Partial Class I_LIFE_PRG_LI_INDV_POLY_PERSNAL
                 Me.txtProductClass.Text = myarrData(1)
                 Me.txtProduct_Num.Text = ""
                 Call DoProc_CreateDataSource("IL_PRODUCT_DET_LIST", Me.txtProductClass.Text, Me.cboProduct)
+
+                If cboProduct.Items.Count >= 1 Then
+                    cboProduct.SelectedIndex = 1
+                    DoProc_Product_Change()
+                End If
+
+                If cboCover_Name.Items.Count >= 1 Then
+                    cboCover_Name.SelectedIndex = 1
+                End If
+                If cboPlan_Name.Items.Count >= 1 Then
+                    cboPlan_Name.SelectedIndex = 1
+                End If
+
             End If
         Catch ex As Exception
 
@@ -587,7 +600,12 @@ Partial Class I_LIFE_PRG_LI_INDV_POLY_PERSNAL
         Me.txtPlan_Num.Text = ""
         Me.txtPlan_Name.Text = ""
         Call gnProc_Populate_Box("IL_PLAN_LIST", RTrim(Me.txtProduct_Num.Text), Me.cboPlan_Name)
-
+        If cboCover_Name.Items.Count >= 1 Then
+            cboCover_Name.SelectedIndex = 1
+        End If
+        If cboPlan_Name.Items.Count >= 1 Then
+            cboPlan_Name.SelectedIndex = 1
+        End If
     End Sub
 
 
@@ -2366,7 +2384,7 @@ PUpdate_Date1:
             End If
 
             strOPT = "2"
-            Me.lblMsg.Text = "Status: Data Modification."
+            Me.lblMsg.Text = "Status: Data Modification"
 
         Else
 
@@ -2467,7 +2485,8 @@ PUpdate_Date1:
     End Sub
 
     Protected Sub cmdNew_ASP_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdNew_ASP.Click
-
+        lblOriginator.Text = ""
+        txtUWYear.Text = Year(DateTime.Now)
     End Sub
 
 

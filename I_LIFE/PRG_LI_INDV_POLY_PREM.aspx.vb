@@ -121,6 +121,14 @@ Partial Class I_LIFE_PRG_LI_INDV_POLY_PREM
                         Me.cmdDelete_ASP.Visible = False
                         Me.cmdPrint_ASP.Visible = False
                     End If
+
+                    If Me.txtProduct_Num.Text = "E003" Then
+                        cboPrem_Life_Cover.SelectedValue = "Y"
+                        cboPrem_Bonus_YN.SelectedValue = "Y"
+                        cboPrem_Allocation_YN.SelectedValue = "N"
+                    End If
+
+
                 Else
                     '    'Destroy i.e remove the array list object from memory
                     '    Response.Write("<br/>Status: " & oAL.Item(0))
@@ -146,7 +154,7 @@ Partial Class I_LIFE_PRG_LI_INDV_POLY_PREM
                 Me.txtPrem_School_Term.Enabled = True
                 Me.txtPrem_School_Term_Name.Enabled = True
                 Me.lblPrem_Sch_Fee_Prd.Enabled = False
-                 Me.txtPrem_Sch_Fee_Prd.Enabled = False
+                Me.txtPrem_Sch_Fee_Prd.Enabled = False
             Else
                 Me.lblPrem_School_Term.Enabled = False
                 Me.txtPrem_School_Term.Enabled = False
