@@ -89,6 +89,7 @@
                                         <asp:RadioButtonList ID="radReportType" runat="server">
                                             <asp:ListItem Value="rptAnnuityPolicyAgents">Annuity</asp:ListItem>
                                          <asp:ListItem Value="rptPolicyAgents">Annuity and Other Products</asp:ListItem>
+                                         <asp:ListItem Value="rptRegionalManager">Regional Manager Report</asp:ListItem>
                                         </asp:RadioButtonList>
                                     </td>
                                 </tr>
