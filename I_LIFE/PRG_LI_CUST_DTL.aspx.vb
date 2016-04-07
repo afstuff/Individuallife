@@ -323,6 +323,14 @@ Partial Class I_LIFE_PRG_LI_CUST_DTL
             Exit Sub
         End If
 
+
+        If Trim(Me.txtShortName.Text) = "" Then
+            Me.lblMessage.Text = "Missing/Invalid " & Me.lblShortName.Text
+            FirstMsg = "Javascript:alert('" & Me.lblMessage.Text & "')"
+            txtShortName.Focus()
+            Exit Sub
+        End If
+
         If LTrim(RTrim(Me.txtCustPhone01.Text)) = "" Then
             Me.lblMessage.Text = "Missing " & Me.lblCustPhone01.Text
             FirstMsg = "Javascript:alert('" & Me.lblMessage.Text & "')"
@@ -372,7 +380,19 @@ Partial Class I_LIFE_PRG_LI_CUST_DTL
             End If
         End If
 
+        If Trim(Me.txtCustAddr01.Text) = "" Then
+            Me.lblMessage.Text = "Missing/Invalid " & Me.lblCustAddr01.Text
+            FirstMsg = "Javascript:alert('" & Me.lblMessage.Text & "')"
+            txtCustAddr01.Focus()
+            Exit Sub
+        End If
 
+        If Trim(Me.txtCustAddr02.Text) = "" Then
+            Me.lblMessage.Text = "Missing/Invalid " & Me.lblCustAddr02.Text
+            FirstMsg = "Javascript:alert('" & Me.lblMessage.Text & "')"
+            txtCustAddr02.Focus()
+            Exit Sub
+        End If
 
         Dim myUserIDX As String = ""
         Try
@@ -402,7 +422,7 @@ Partial Class I_LIFE_PRG_LI_CUST_DTL
 
         strSQL = ""
         strSQL = "SELECT TOP 1 TBIL_INSRD_CODE FROM " & strTable
-        strSQL = strSQL & " WHERE RTRIM(ISNULL(TBIL_INSRD_SURNAME,'')) + ' ' + RTRIM(ISNULL(TBIL_INSRD_FIRSTNAME,'')) = '" & RTrim(Me.txtCustName.Text) & "'"
+        strSQL = strSQL & " WHERE RTRIM(ISNULL(TBIL_INSRD_SURNAME,'')) + ' ' + RTRIM(ISNULL(TBIL_INSRD_FIRSTNAME,'')) = '" & Trim(Me.txtCustName.Text) & " " & Trim(Me.txtShortName.Text) & "'"
         strSQL = strSQL & " AND TBIL_INSRD_ID = '" & RTrim(Me.txtCustID.Text) & "'"
 
         Dim chk_objOLECmd As OleDbCommand = New OleDbCommand(strSQL, objOLEConn)
@@ -413,15 +433,21 @@ Partial Class I_LIFE_PRG_LI_CUST_DTL
         chk_objOLEDR = chk_objOLECmd.ExecuteReader()
         If (chk_objOLEDR.Read()) Then
             If Trim(Me.txtCustNum.Text) <> Trim(chk_objOLEDR("TBIL_INSRD_CODE") & vbNullString) Then
-                Me.lblMessage.Text = "Warning!. The code description you enter already exist..." & _
-                  "<br />Please check code: " & RTrim(chk_objOLEDR("TBIL_INSRD_CODE") & vbNullString)
-                chk_objOLECmd = Nothing
-                chk_objOLEDR = Nothing
-                If objOLEConn.State = ConnectionState.Open Then
-                    objOLEConn.Close()
+                'Me.lblMessage.Text = "Warning!. The code description you enter already exist..." & _
+                '  "<br />Please check code: " & RTrim(chk_objOLEDR("TBIL_INSRD_CODE") & vbNullString)
+                Me.lblMessage.Text = ""
+                'FirstMsg = "Javascript:confirm('" & Me.lblMessage.Text & "')"
+                Dim MsgResult As Integer = MsgBox("Warning!. Assured Full name already exist, Do you want to continue?", MsgBoxStyle.OkCancel, "Assured Set Up")
+                If (MsgResult = 1) Then
+                Else
+                    chk_objOLECmd = Nothing
+                    chk_objOLEDR = Nothing
+                    If objOLEConn.State = ConnectionState.Open Then
+                        objOLEConn.Close()
+                    End If
+                    objOLEConn = Nothing
+                    Exit Sub
                 End If
-                objOLEConn = Nothing
-                Exit Sub
             End If
         End If
 
@@ -968,7 +994,7 @@ MyRtn_Ok:
     End Sub
 
     Private Sub cboCustClass_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboCustClass.SelectedIndexChanged
-        Me.txtCustClass.Text = RTrim(Me.cboCustClass.SelectedItem.Value)
+        Me.txtCustClass.Text = Trim(Me.cboCustClass.SelectedItem.Value)
         If RTrim(Me.txtCustClass.Text) = "*" Or RTrim(Me.txtCustClass.Text) = "" Or RTrim(Me.txtCustClass.Text) = "0" Then
             Me.txtCustClass.Text = ""
             Exit Sub
