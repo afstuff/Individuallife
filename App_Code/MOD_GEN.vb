@@ -2788,4 +2788,29 @@ MyTestDate_Err1:
         Return result
     End Function
 
+    Public Function removeDateSeperators(ByVal dte As String) As String
+        'split to constituents
+        Dim dparts() As String
+        Dim dy, myday, mt, mth As String
+        dparts = Split(Trim(dte), "/")
+
+        If (dparts.Length <> 3) Then
+            Return "ERROR: Invalid Date Format!"
+        Else
+            dy = dparts(0)
+            myday = dparts(0)
+            mt = dparts(1)
+            mth = dparts(1)
+            If (mt.Length = 1) Then
+                mth = "0" + mt
+
+                If (dy.Length = 1) Then
+                    myday = "0" + dy
+                End If
+            End If
+        End If
+        Dim ky = dparts(2) + mth + myday
+        Return ky
+    End Function
+
 End Module

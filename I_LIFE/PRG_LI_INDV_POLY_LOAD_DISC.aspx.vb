@@ -105,6 +105,7 @@ Partial Class I_LIFE_PRG_LI_INDV_POLY_LOAD_DISC
                     End If
 
                     Call Proc_DataBind()
+                    GetSumAssured()
                 Else
                     '    'Destroy i.e remove the array list object from memory
                     '    Response.Write("<br/>Status: " & oAL.Item(0))
@@ -788,11 +789,7 @@ Partial Class I_LIFE_PRG_LI_INDV_POLY_LOAD_DISC
             Exit Sub
         End If
 
-        If Me.txtProduct_Num.Text = "" Then
-            Me.lblMsg.Text = "Missing " & Me.lblProduct_Num.Text
-            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
-            Exit Sub
-        End If
+      
 
         Me.txtLoad_Disc_SN.Text = Trim(Me.txtLoad_Disc_SN.Text)
 
@@ -816,6 +813,7 @@ Partial Class I_LIFE_PRG_LI_INDV_POLY_LOAD_DISC
         If Trim(Me.txtLoad_Disc_Prem_Rate_TypeNum.Text) = "A" And Val(Me.txtLoad_Disc_Amt.Text) = 0 Then
             Me.lblMsg.Text = "Missing " & "Loading or Discount Amount. Please enter valid amount..."
             FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            txtLoad_Disc_Amt.Focus()
             Exit Sub
         End If
 
@@ -829,12 +827,7 @@ Partial Class I_LIFE_PRG_LI_INDV_POLY_LOAD_DISC
 
 
 
-        Call MOD_GEN.gnGET_SelectedItem(Me.cboLoad_Disc_Num, Me.txtLoad_Disc_Num, Me.txtLoad_Disc_NumName, Me.lblMsg)
-        If Me.txtLoad_Disc_Num.Text = "" Then
-            Me.lblMsg.Text = "Missing " & Me.lblLoad_Disc_Num.Text
-            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
-            Exit Sub
-        End If
+       
 
 
         Me.txtLoad_Disc_SA_LC.Text = Trim(Me.txtLoad_Disc_SA_LC.Text)
@@ -845,35 +838,62 @@ Partial Class I_LIFE_PRG_LI_INDV_POLY_LOAD_DISC
         Call MOD_GEN.gnInitialize_Numeric(Me.txtLoad_Disc_SA_FC)
 
 
-        Call MOD_GEN.gnGET_SelectedItem(Me.cboLoad_Disc_Applied_On, Me.txtLoad_Disc_Applied_On, Me.txtLoad_Disc_Applied_OnName, Me.lblMsg)
-        If Me.txtLoad_Disc_Applied_On.Text = "" Then
-            Me.lblMsg.Text = "Missing " & Me.lblLoad_Disc_Applied_On.Text
-            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
-            Exit Sub
-        End If
-
 
         Call MOD_GEN.gnGET_SelectedItem(Me.cboCover_Name, Me.txtCover_Num, Me.txtCover_Name, Me.lblMsg)
         If Me.txtCover_Num.Text = "" Then
             Me.lblMsg.Text = "Missing " & Me.lblCover_Num.Text
             FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            Me.cboCover_Name.Focus()
             Exit Sub
         End If
 
         Me.txtCover_Rate.Text = Trim(Me.txtCover_Rate.Text)
         Call MOD_GEN.gnInitialize_Numeric(Me.txtCover_Rate)
 
-        If Trim(Me.txtLoad_Disc_Prem_Rate_TypeNum.Text) = "R" And Val(Me.txtCover_Rate.Text) = 0 Then
-            Me.lblMsg.Text = "Missing " & "premium rate or percentage. Please enter valid percentage..."
+        'If Trim(Me.txtLoad_Disc_Prem_Rate_TypeNum.Text) = "R" And Val(Me.txtCover_Rate.Text) = 0 Then
+        '    Me.lblMsg.Text = "Missing " & "premium rate or percentage. Please enter valid percentage..."
+        '    FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+        '    Exit Sub
+        'End If
+
+        If Trim(Me.cboLoad_Disc_Prem_Rate_Type.SelectedValue) = "R" And Val(Me.txtCover_Rate.Text) = 0 Then
+            Me.lblMsg.Text = "Missing " & "premium rate. Please enter valid rate..."
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            Me.txtCover_Rate.Focus()
+            Exit Sub
+        End If
+
+        Call MOD_GEN.gnGET_SelectedItem(Me.cboLoad_Disc_Num, Me.txtLoad_Disc_Num, Me.txtLoad_Disc_NumName, Me.lblMsg)
+        If Trim(Me.cboLoad_Disc_Prem_Rate_Type.SelectedValue) = "R" And Me.txtLoad_Disc_Num.Text = "" Then
+            Me.lblMsg.Text = "Missing " & Me.lblProduct_Num.Text
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            txtProduct_Num.Focus()
+            Exit Sub
+        End If
+
+        Call MOD_GEN.gnGET_SelectedItem(Me.cboLoad_Disc_Applied_On, Me.txtLoad_Disc_Applied_On, Me.txtLoad_Disc_Applied_OnName, Me.lblMsg)
+        If (Trim(Me.cboLoad_Disc_Prem_Rate_Type.SelectedValue) = "R" Or Trim(Me.cboLoad_Disc_Prem_Rate_Type.SelectedValue) = "F") And Me.txtLoad_Disc_Applied_On.Text = "" Then
+            Me.lblMsg.Text = "Missing " & Me.lblLoad_Disc_Applied_On.Text
             FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             Exit Sub
         End If
 
+
+        If Trim(Me.cboLoad_Disc_Prem_Rate_Type.SelectedValue) = "F" And Val(Me.txtLoad_Disc_Percent.Text) = 0 Then
+            Me.lblMsg.Text = "Missing " & "premium percentage. Please enter valid percentage..."
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            Me.txtLoad_Disc_Percent.Focus()
+            Exit Sub
+        End If
+
+
         Call MOD_GEN.gnGET_SelectedItem(Me.cboCover_Rate_Per, Me.txtCover_Rate_Per, Me.txtCover_Rate_PerName, Me.lblMsg)
-        If Me.txtCover_Rate_Per.Text = "" Then
+        If (Trim(Me.cboLoad_Disc_Prem_Rate_Type.SelectedValue) = "R" Or Trim(Me.cboLoad_Disc_Prem_Rate_Type.SelectedValue) = "F") And Me.txtCover_Rate_Per.Text = "" Then
             Me.lblMsg.Text = "Missing " & Me.lblCover_Rate_Per.Text
             FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
             Exit Sub
+        Else
+            txtCover_Rate_Per.Text = 100
         End If
 
 
@@ -1352,5 +1372,103 @@ Partial Class I_LIFE_PRG_LI_INDV_POLY_LOAD_DISC
 
     End Sub
 
+    Private Sub GetSumAssured()
+        Dim mystrCONN As String = CType(Session("connstr"), String)
+        Dim objOLEConn As New OleDbConnection(mystrCONN)
+        Try
+            'open connection to database
+            objOLEConn.Open()
+        Catch ex As Exception
+            Me.lblMsg.Text = "Unable to connect to database. Reason: " & ex.Message
+            objOLEConn = Nothing
+            Exit Sub
+        End Try
+        strSQL = "SELECT * FROM TBIL_POLICY_PREM_INFO WHERE TBIL_POL_PRM_FILE_NO='" + txtFileNum.Text + "'"
 
+        Try
+            Dim objOLECmd As OleDbCommand = New OleDbCommand(strSQL, objOLEConn)
+
+            objOLECmd.CommandType = CommandType.Text
+            Dim objOLEDR As OleDbDataReader
+            objOLEDR = objOLECmd.ExecuteReader()
+            If (objOLEDR.Read()) Then
+                Me.txtLoad_Disc_SA_LC.Text = Format(objOLEDR("TBIL_POL_PRM_SA_LC"), "Standard")
+                Me.txtLoad_Disc_SA_FC.Text = Format(objOLEDR("TBIL_POL_PRM_SA_LC"), "Standard")
+            End If
+            ' dispose of open objects
+            objOLECmd.Dispose()
+            objOLECmd = Nothing
+
+            If objOLEDR.IsClosed = False Then
+                objOLEDR.Close()
+            End If
+            objOLEDR = Nothing
+
+            If objOLEConn.State = ConnectionState.Open Then
+                objOLEConn.Close()
+            End If
+            objOLEConn = Nothing
+        Catch ex As Exception
+            Me.lblMsg.Text = "Error. Reason: " & ex.Message.ToString
+        End Try
+    End Sub
+
+    Protected Sub cmdNew_ASP_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdNew_ASP.Click
+        DoNew()
+    End Sub
+
+    Private Sub DoNew()
+        cboLoad_Disc_Type.SelectedIndex = -1
+        txtLoad_Disc_Type.Text = ""
+        txtLoad_Disc_TypeName.Text = ""
+        cboLoad_Disc_Prem_Rate_Type.SelectedIndex = -1
+        txtLoad_Disc_Prem_Rate_TypeNum.Text = ""
+        txtLoad_Disc_Prem_Rate_TypeName.Text = ""
+        txtLoad_Disc_Percent.Text = ""
+        txtLoad_Disc_Amt.Text = ""
+        cboLoad_Disc_Num.SelectedIndex = -1
+        txtLoad_Disc_Num.Text = ""
+        txtLoad_Disc_NumName.Text = ""
+        cboLoad_Disc_Applied_On.SelectedIndex = -1
+        txtLoad_Disc_Applied_On.Text = ""
+        txtLoad_Disc_Applied_OnName.Text = ""
+        cboCover_Name.SelectedIndex = -1
+        txtCover_Name.Text = ""
+        txtCover_Num.Text = ""
+        txtCover_Rate.Text = ""
+        cboCover_Rate_Per.SelectedIndex = -1
+        txtCover_Rate_Per.Text = ""
+        txtCover_Rate_PerName.Text = ""
+    End Sub
+
+    Protected Sub cboLoad_Disc_Prem_Rate_Type_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboLoad_Disc_Prem_Rate_Type.SelectedIndexChanged
+        If cboLoad_Disc_Prem_Rate_Type.SelectedValue = "A" Then
+            UnlockAll()
+            txtLoad_Disc_Percent.Enabled = False
+            cboLoad_Disc_Applied_On.Enabled = False
+            cboCover_Rate_Per.Enabled = False
+            txtCover_Rate.Enabled = False
+        ElseIf cboLoad_Disc_Prem_Rate_Type.SelectedValue = "R" Then
+            UnlockAll()
+            txtLoad_Disc_Percent.Enabled = False
+            txtLoad_Disc_Amt.Enabled = False
+        ElseIf cboLoad_Disc_Prem_Rate_Type.SelectedValue = "F" Then
+            UnlockAll()
+            txtCover_Rate.Enabled = False
+            txtLoad_Disc_Amt.Enabled = False
+        End If
+    End Sub
+
+    Private Sub UnlockAll()
+        txtLoad_Disc_Percent.Enabled = True
+        cboLoad_Disc_Num.Enabled = True
+        cboLoad_Disc_Applied_On.Enabled = True
+        cboCover_Name.Enabled = True
+        cboCover_Rate_Per.Enabled = True
+        txtCover_Rate.Enabled = True
+        txtLoad_Disc_Percent.Enabled = True
+        txtLoad_Disc_Amt.Enabled = True
+        txtCover_Rate.Enabled = True
+        txtLoad_Disc_Amt.Enabled = True
+    End Sub
 End Class

@@ -21,6 +21,17 @@
             margin-left: 100px;
         }
     </style>
+    <script>
+        function ConfirmDoNew() {
+            var r = confirm("Are you sure you want to clear screen?")
+            if (r) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    </script>
 </head>
 
 <body onload="<%= FirstMsg %>">
@@ -61,7 +72,7 @@
                                         <td align="center" colspan="4" valign="top">
                                             &nbsp;&nbsp;<a href="#" onclick="javascript:JSDO_RETURN('PRG_LI_PROP_POLICY.aspx?menu=IL_QUOTE')">Go to Menu</a>
                                             &nbsp;&nbsp;<asp:Button ID="cmdPrev" CssClass="cmd_butt" Enabled="false" Text="«..Previous" runat="server" />
-                                            &nbsp;&nbsp;<asp:button id="cmdNew_ASP" CssClass="cmd_butt" runat="server" text="New Data" OnClientClick="JSNew_ASP();"></asp:button>
+                                            &nbsp;&nbsp;<asp:button id="cmdNew_ASP" CssClass="cmd_butt" runat="server" text="New Data" OnClientClick="return ConfirmDoNew();"></asp:button>
 	                                        &nbsp;&nbsp;<asp:button id="cmdSave_ASP" CssClass="cmd_butt" runat="server" text="Save Data"></asp:button>
 		                		        	&nbsp;&nbsp;<asp:Button ID="cmdDelItem_ASP" CssClass="cmd_butt" Enabled="false" Font-Bold="true" Text="Delete Item" OnClientClick="JSDelItem_ASP()" runat="server" />
                                             &nbsp;&nbsp;<asp:button id="cmdPrint_ASP" CssClass="cmd_butt" Enabled="False" runat="server" text="Print"></asp:button>
@@ -144,7 +155,8 @@
                                                 </asp:DropDownList>
                                                 &nbsp;<asp:TextBox ID="txtLoad_Disc_Type" Enabled="false" Width="30px" runat="server"></asp:TextBox>&nbsp;<asp:TextBox ID="txtLoad_Disc_TypeName" Visible="false" Enabled="false" Width="30px" runat="server"></asp:TextBox></td>
                                             <td align="left" valign="top" colspan="1">
-                                                    <asp:DropDownList ID="cboLoad_Disc_Prem_Rate_Type" Width="120px" runat="server">
+                                                    <asp:DropDownList ID="cboLoad_Disc_Prem_Rate_Type" Width="120px" runat="server" 
+                                                        AutoPostBack="True">
                                                         <asp:ListItem Selected="True" Value="*">(Select)</asp:ListItem>
                                                         <asp:ListItem Value="A">Fixed Amount</asp:ListItem>
                                                         <asp:ListItem Value="F">Fixed Rate</asp:ListItem>

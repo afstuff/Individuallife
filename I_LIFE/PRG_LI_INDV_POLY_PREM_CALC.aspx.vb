@@ -2774,40 +2774,112 @@ START_ADD_PREM_RTN:
 
                     End Select
 
-            End Select
+                Case "F"    ' USE Fixed Rate
+                    dblDisc_Load_Rate_Per = 0
+                    dblDisc_Load_SA_LC = 0
+                    dblDisc_Load_SA_FC = 0
 
+                    dblTmp_Amt = 0
+
+                    If IsNumeric(CType(objOLEDR_DL("TBIL_POL_DISC_LOAD_PCENT") & vbNullString, String)) Then
+                        dblDisc_Load_Percent = CType(objOLEDR_DL("TBIL_POL_DISC_LOAD_PCENT") & vbNullString, Double)
+                    End If
+                    If IsNumeric(CType(objOLEDR_DL("TBIL_POL_DISC_RATE_PER") & vbNullString, String)) Then
+                        dblDisc_Load_Rate_Per = CType(objOLEDR_DL("TBIL_POL_DISC_RATE_PER") & vbNullString, Double)
+                    End If
+                    If IsNumeric(CType(objOLEDR_DL("TBIL_POL_DISC_LOAD_VALUE_LC") & vbNullString, String)) Then
+                        dblDisc_Load_SA_LC = CType(objOLEDR_DL("TBIL_POL_DISC_LOAD_VALUE_LC") & vbNullString, Double)
+                    End If
+                    dblDisc_Load_SA_FC = dblDisc_Load_SA_LC
+
+
+                    Select Case UCase(Trim(CType(objOLEDR_DL("TBIL_POL_DISC_LOAD_TYPE") & vbNullString, String)))
+                        Case "D"    ' DISCOUNT
+                            Select Case UCase(Trim(CType(objOLEDR_DL("TBIL_POL_DISC_APPLIED_ON") & vbNullString, String)))
+                                Case "S"    ' ON SUM ASSURED
+                                    dblTmp_Amt = 0
+                                    If Val(dblDisc_Load_SA_LC) <> 0 And Val(dblDisc_Load_Percent) <> 0 And Val(dblDisc_Load_Rate_Per) <> 0 Then
+                                        dblTmp_Amt = dblDisc_Load_SA_LC * dblDisc_Load_Percent / dblDisc_Load_Rate_Per
+                                    End If
+                                    dblTotal_Disc_Prem_LC = dblTotal_Disc_Prem_LC + dblTmp_Amt
+                                Case "P"    'compute discount base on basic premium
+                                    dblTmp_Amt = 0
+                                    If Val(dblAnnual_Basic_Prem_LC) <> 0 And Val(dblDisc_Load_Percent) <> 0 And Val(dblDisc_Load_Rate_Per) <> 0 Then
+                                        dblTmp_Amt = dblAnnual_Basic_Prem_LC * dblDisc_Load_Percent / dblDisc_Load_Rate_Per
+                                    End If
+                                    dblTotal_Disc_Prem_LC = dblTotal_Disc_Prem_LC + dblTmp_Amt
+
+                                Case "T"    'compute discount premium base on total premium
+                                    dblTmp_Amt = 0
+                                    If Val(dblTotal_Prem_LC) <> 0 And Val(dblDisc_Load_Percent) <> 0 And Val(dblDisc_Load_Rate_Per) <> 0 Then
+                                        dblTmp_Amt = dblTotal_Prem_LC * dblDisc_Load_Percent / dblDisc_Load_Rate_Per
+                                    End If
+                                    dblTotal_Disc_Prem_LC = dblTotal_Disc_Prem_LC + dblTmp_Amt
+                            End Select
+
+                        Case "L"    ' LOADING
+                            Select Case UCase(Trim(CType(objOLEDR_DL("TBIL_POL_DISC_APPLIED_ON") & vbNullString, String)))
+                                Case "S"    ' ON SUM ASSURED
+                                    dblTmp_Amt = 0
+                                    If Val(dblDisc_Load_SA_LC) <> 0 And Val(dblDisc_Load_Percent) <> 0 And Val(dblDisc_Load_Rate_Per) <> 0 Then
+                                        dblTmp_Amt = dblDisc_Load_SA_LC * dblDisc_Load_Percent / dblDisc_Load_Rate_Per
+                                    End If
+                                    dblTotal_Load_Prem_LC = dblTotal_Load_Prem_LC + dblTmp_Amt
+                                Case "P"    'compute discount base on basic premium
+                                    dblTmp_Amt = 0
+                                    If Val(dblAnnual_Basic_Prem_LC) <> 0 And Val(dblDisc_Load_Percent) <> 0 And Val(dblDisc_Load_Rate_Per) <> 0 Then
+                                        dblTmp_Amt = dblAnnual_Basic_Prem_LC * dblDisc_Load_Percent / dblDisc_Load_Rate_Per
+                                    End If
+                                    dblTotal_Load_Prem_LC = dblTotal_Load_Prem_LC + dblTmp_Amt
+
+                                Case "T"    'compute discount premium base on total premium
+                                    dblTmp_Amt = 0
+                                    If Val(dblTotal_Prem_LC) <> 0 And Val(dblDisc_Load_Percent) <> 0 And Val(dblDisc_Load_Rate_Per) <> 0 Then
+                                        dblTmp_Amt = dblTotal_Prem_LC * dblDisc_Load_Percent / dblDisc_Load_Rate_Per
+                                    End If
+                                    dblTotal_Load_Prem_LC = dblTotal_Load_Prem_LC + dblTmp_Amt
+                            End Select
+
+                    End Select
+
+            End Select
 
             dblDisc_Load_Percent = 0
             dblTmp_Amt = 0
 
-            If IsNumeric(CType(objOLEDR_DL("TBIL_POL_DISC_LOAD_PCENT") & vbNullString, String)) Then
-                dblDisc_Load_Percent = CType(objOLEDR_DL("TBIL_POL_DISC_LOAD_PCENT") & vbNullString, Double)
-            End If
+            'Calculation for fixed rate was not specified in the existing code. Duplicated table rate calculation for fixed rate 
+            'and made changes where neccessary.
+            ' --- Azeez comment start here
+            'If IsNumeric(CType(objOLEDR_DL("TBIL_POL_DISC_LOAD_PCENT") & vbNullString, String)) Then
+            '    dblDisc_Load_Percent = CType(objOLEDR_DL("TBIL_POL_DISC_LOAD_PCENT") & vbNullString, Double)
+            'End If
 
-            Select Case UCase(Trim(CType(objOLEDR_DL("TBIL_POL_DISC_LOAD_TYPE") & vbNullString, String)))
-                Case "D"    ' DISCOUNT
-                    dblTmp_Amt = 0
-                    If Val(dblTotal_Disc_Prem_LC) <> 0 And Val(dblDisc_Load_Percent) <> 0 And Val(dblDisc_Load_Rate_Per) <> 0 Then
-                        dblTmp_Amt = dblTotal_Disc_Prem_LC * dblDisc_Load_Percent / dblDisc_Load_Rate_Per
-                    End If
-                    dblTotal_Disc_Amt_LC = dblTotal_Disc_Amt_LC + dblTmp_Amt
+            'Select Case UCase(Trim(CType(objOLEDR_DL("TBIL_POL_DISC_LOAD_TYPE") & vbNullString, String)))
+            '    Case "D"    ' DISCOUNT
+            '        dblTmp_Amt = 0
+            '        If Val(dblTotal_Disc_Prem_LC) <> 0 And Val(dblDisc_Load_Percent) <> 0 And Val(dblDisc_Load_Rate_Per) <> 0 Then
+            '            dblTmp_Amt = dblTotal_Disc_Prem_LC * dblDisc_Load_Percent / dblDisc_Load_Rate_Per
+            '        End If
+            '        dblTotal_Disc_Amt_LC = dblTotal_Disc_Amt_LC + dblTmp_Amt
 
-                Case "L"    ' LOADING
-                    dblTmp_Amt = 0
-                    If Val(dblTotal_Load_Prem_LC) <> 0 And Val(dblDisc_Load_Percent) <> 0 And Val(dblDisc_Load_Rate_Per) <> 0 Then
-                        dblTmp_Amt = dblTotal_Load_Prem_LC * dblDisc_Load_Percent / dblDisc_Load_Rate_Per
-                    End If
-                    dblTotal_Load_Amt_LC = dblTotal_Load_Amt_LC + dblTmp_Amt
-            End Select
-
-            '
+            '    Case "L"    ' LOADING
+            '        dblTmp_Amt = 0
+            '        If Val(dblTotal_Load_Prem_LC) <> 0 And Val(dblDisc_Load_Percent) <> 0 And Val(dblDisc_Load_Rate_Per) <> 0 Then
+            '            dblTmp_Amt = dblTotal_Load_Prem_LC * dblDisc_Load_Percent / dblDisc_Load_Rate_Per
+            '        End If
+            '        dblTotal_Load_Amt_LC = dblTotal_Load_Amt_LC + dblTmp_Amt
+            'End Select
+            ' ---Azeez comment ends here
         Loop
 
         objOLECmd_DL = Nothing
         objOLEDR_DL = Nothing
+        'Initially this but Azeez reverse this based on how it was calculated above
+        'dblTotal_Load_Prem_LC = dblTotal_Load_Amt_LC
+        'dblTotal_Disc_Prem_LC = dblTotal_Disc_Amt_LC
 
-        dblTotal_Load_Prem_LC = dblTotal_Load_Amt_LC
-        dblTotal_Disc_Prem_LC = dblTotal_Disc_Amt_LC
+        dblTotal_Load_Amt_LC = dblTotal_Load_Prem_LC
+        dblTotal_Disc_Amt_LC = dblTotal_Disc_Prem_LC
 
         Me.txtCalc_Prem_Loading_LC.Text = dblTotal_Load_Prem_LC.ToString()
         dblTotal_Load_Prem_FC = dblTotal_Load_Prem_LC
@@ -3456,5 +3528,218 @@ END_MOP_RTN:
         'Response.Redirect(pvURL)
 
     End Sub
+
+
+    '    Private Sub Proc_DoCalc_Loading(ByVal pv_objOLEConn As OleDbConnection)
+    '        Dim dblDisc_Load_Prem_Amt As Double = 0
+    '        Dim dblDisc_Load_Prem_Rate As Double = 0
+    '        Dim dblDisc_Load_Rate_Per As Integer = 0
+    '        Dim dblDisc_Load_SA_LC As Double = 0
+    '        Dim dblDisc_Load_SA_FC As Double = 0
+    '        Dim dblDisc_Load_Percent As Double = 0
+    '        Dim dblTotal_Load_Amt_LC As Double = 0
+    '        Dim dblTotal_Load_Prem_LC As Double = 0
+    '        Dim dblTotal_Load_Prem_FC As Double = 0
+
+    '        Dim my_Rate_Type As String = ""
+    '        Dim my_Applied_On As String = ""
+    '        Dim my_Load_Amt As Double = 0
+
+    '        dblTotal_Load_Amt_LC = 0
+    '        'dblTotal_Disc_Amt_LC = 0
+
+    '        strTable = strTableName
+    '        strTable = "TBIL_POLICY_DISCT_LOAD"
+
+    '        strSQL = ""
+    '        strSQL = strSQL & "SELECT DL_TBL.*"
+    '        strSQL = strSQL & " FROM " & strTable & " AS DL_TBL"
+    '        strSQL = strSQL & " WHERE DL_TBL.TBIL_POL_DISC_FILE_NO = '" & RTrim(strREC_ID) & "'"
+    '        strSQL = strSQL & " AND DL_TBL.TBIL_POL_DISC_PROP_NO = '" & RTrim(strQ_ID) & "'"
+    '        strSQL = strSQL & " AND DL_TBL.TBIL_POL_DISC_LOAD_TYPE IN('L')"
+
+    '        Dim objOLECmd_DL As OleDbCommand = New OleDbCommand(strSQL, pv_objOLEConn)
+    '        objOLECmd_DL.CommandType = CommandType.Text
+    '        Dim objOLEDR_DL As OleDbDataReader
+
+    '        objOLEDR_DL = objOLECmd_DL.ExecuteReader()
+
+    '        Do While objOLEDR_DL.Read()
+    '            dblDisc_Load_Prem_Amt = 0
+
+    '            dblDisc_Load_Prem_Rate = 0
+    '            dblDisc_Load_Rate_Per = 0
+    '            dblDisc_Load_SA_LC = 0
+    '            dblDisc_Load_SA_FC = 0
+
+    '            dblTmp_Amt = 0
+    '            dblTmp_AmtX = 0
+
+    '            dblDisc_Load_Percent = 0
+
+    '            my_Load_Amt = 0
+
+    '            strCover_Num = CType(objOLEDR_DL("TBIL_POL_DISC_COVER_CD") & vbNullString, String)
+    '            my_Rate_Type = CType(objOLEDR_DL("TBIL_POL_DISC_LOAD_RT_AMT_CD") & vbNullString, String)
+    '            my_Applied_On = CType(objOLEDR_DL("TBIL_POL_DISC_APPLIED_ON") & vbNullString, String)
+
+
+    '            If IsNumeric(CType(objOLEDR_DL("TBIL_POL_DISC_LOAD_PCENT") & vbNullString, String)) Then
+    '                dblDisc_Load_Percent = CType(objOLEDR_DL("TBIL_POL_DISC_LOAD_PCENT") & vbNullString, Double)
+    '            End If
+
+    '            If IsNumeric(CType(objOLEDR_DL("TBIL_POL_DISC_RATE") & vbNullString, String)) Then
+    '                dblDisc_Load_Prem_Rate = CType(objOLEDR_DL("TBIL_POL_DISC_RATE") & vbNullString, Double)
+    '            End If
+    '            If IsNumeric(CType(objOLEDR_DL("TBIL_POL_DISC_RATE_PER") & vbNullString, String)) Then
+    '                dblDisc_Load_Rate_Per = CType(objOLEDR_DL("TBIL_POL_DISC_RATE_PER") & vbNullString, Double)
+    '            End If
+
+    '            If IsNumeric(CType(objOLEDR_DL("TBIL_POL_DISC_LOAD_VALUE_LC") & vbNullString, String)) Then
+    '                my_Load_Amt = CType(objOLEDR_DL("TBIL_POL_DISC_LOAD_VALUE_LC") & vbNullString, Double)
+    '            End If
+
+
+    '            Select Case UCase(Trim(CType(objOLEDR_DL("TBIL_POL_DISC_LOAD_RT_AMT_CD") & vbNullString, String)))
+    '                Case "A"    'USE FIXED AMOUNT
+    '                    If IsNumeric(CType(objOLEDR_DL("TBIL_POL_DISC_LOAD_VALUE_LC") & vbNullString, String)) Then
+    '                        dblTmp_Amt = CType(objOLEDR_DL("TBIL_POL_DISC_LOAD_VALUE_LC") & vbNullString, Double)
+    '                    End If
+    '                    dblTmp_Amt = 0
+    '                    dblTmp_AmtX = 0
+    '                    dblTmp_Amt = Proc_DoLoading(pv_objOLEConn, my_Rate_Type, my_Applied_On, my_Load_Amt, dblDisc_Load_Prem_Rate, dblDisc_Load_Rate_Per, dblDisc_Load_Percent)
+    '                    'dblTmp_AmtX = Proc_DoLoading_Add_Member(pv_objOLEConn, my_Rate_Type, my_Applied_On, my_Load_Amt, dblDisc_Load_Prem_Rate, dblDisc_Load_Rate_Per, dblDisc_Load_Percent, strCover_Num)
+    '                    dblTotal_Load_Amt_LC = dblTotal_Load_Amt_LC + dblTmp_Amt
+    '            End Select
+
+    '                Case "F"    'USE FIXED RATE
+    '            Select Case UCase(Trim(CType(objOLEDR_DL("TBIL_POL_DISC_LOAD_TYPE") & vbNullString, String)))
+    '                Case "D"    ' DISCOUNT
+    '                Case "L"    ' LOADING
+    '                    dblTmp_Amt = 0
+    '                    dblTmp_AmtX = 0
+    '                    dblTmp_Amt = Proc_DoLoading(pv_objOLEConn, my_Rate_Type, my_Applied_On, my_Load_Amt, dblDisc_Load_Prem_Rate, dblDisc_Load_Rate_Per, dblDisc_Load_Percent)
+    '                    'dblTmp_AmtX = Proc_DoLoading_Add_Member(pv_objOLEConn, my_Rate_Type, my_Applied_On, my_Load_Amt, dblDisc_Load_Prem_Rate, dblDisc_Load_Rate_Per, dblDisc_Load_Percent, strCover_Num)
+    '                    dblTotal_Load_Amt_LC = dblTotal_Load_Amt_LC + (dblTmp_Amt + dblTmp_AmtX)
+    '            End Select
+
+    '                Case "R"    'USE RATE RATE
+    '            Select Case UCase(Trim(CType(objOLEDR_DL("TBIL_POL_DISC_LOAD_TYPE") & vbNullString, String)))
+    '                Case "D"    ' DISCOUNT
+    '                Case "L"    ' LOADING
+    '                    dblTmp_Amt = 0
+    '                    dblTmp_AmtX = 0
+    '                    dblTmp_Amt = Proc_DoLoading(pv_objOLEConn, my_Rate_Type, my_Applied_On, my_Load_Amt, dblDisc_Load_Prem_Rate, dblDisc_Load_Rate_Per, dblDisc_Load_Percent)
+    '                    'dblTmp_AmtX = Proc_DoLoading_Add_Member(pv_objOLEConn, my_Rate_Type, my_Applied_On, my_Load_Amt, dblDisc_Load_Prem_Rate, dblDisc_Load_Rate_Per, dblDisc_Load_Percent, strCover_Num)
+    '                    'dblTotal_Load_Amt_LC = dblTotal_Load_Amt_LC + (dblTmp_Amt + dblTmp_AmtX)
+    '                    dblTotal_Load_Amt_LC = dblTotal_Load_Amt_LC + dblTmp_Amt
+    '            End Select
+
+    '            End Select
+    '        Loop
+
+    '        objOLECmd_DL = Nothing
+    '        objOLEDR_DL = Nothing
+
+    '        dblTotal_Load_Prem_LC = dblTotal_Load_Amt_LC
+
+    '        Me.txtCalc_Prem_Loading_LC.Text = dblTotal_Load_Prem_LC.ToString()
+    '        dblTotal_Load_Prem_FC = dblTotal_Load_Prem_LC
+    '        Me.txtCalc_Prem_Loading_FC.Text = dblTotal_Load_Prem_FC.ToString()
+
+    '    End Sub
+
+    '    Private Function Proc_DoLoading(ByVal pv_objOLEConn As OleDbConnection, ByVal pvRate_Type As String, ByVal pvApplied_On As String, ByVal pvLoad_Amt As Double, ByVal pvLoad_Rate As Double, ByVal pvLoad_Rate_Per As Integer, ByVal pvLoad_Percent As Double) As Double
+
+    '        'strTable = strTableName
+    '        'strTable = "TBIL_GRP_POLICY_MEMBERS"
+
+    '        Dim myRID As String = ""
+    '        Dim mySN As String = ""
+
+    '        Dim myLoad_Amt As Double = 0
+
+    '        Dim myResult As Double = 0
+    '        Dim mySA_Amt As Double = 0
+    '        Dim myAmt As Double = 0
+    '        Dim myFixed_Amt As Double = 0
+    '        Dim myPercent As Double = 0
+    '        Dim myRate As Double = 0
+    '        Dim myPer As Double = 0
+
+    '        Dim myole_cmd As OleDbCommand
+    '        Dim mystr As String = ""
+
+    '        Dim myCNT_T As Integer = 0
+    '        Dim myCNT As Integer = 0
+    '        Dim myC As Integer = 0
+
+    '        Dim oAL_ID As New ArrayList
+    '        Dim oAL_Rec As New ArrayList
+
+    '        myFixed_Amt = Val(pvLoad_Amt)
+    '        myPercent = Val(pvLoad_Percent)
+    '        myRate = Val(pvLoad_Rate)
+    '        myPer = Val(pvLoad_Rate_Per)
+
+    '        myLoad_Amt = 0
+    '        myCNT_T = 0
+    '        myCNT = 0
+    '        Select Case UCase(pvRate_Type)
+    '            Case "A"
+    '                myResult = Val(myFixed_Amt)
+    '            Case "F"
+    '                Select Case UCase(pvApplied_On)
+    '                    Case "S"    'Sum Assured
+    '                        If mySA_Amt <> 0 And myPercent <> 0 And myPer <> 0 Then
+    '                            myResult = mySA_Amt * myPercent / myPer
+    '                        End If
+    '                    Case "P"    'Basic Premium
+    '                        If myAmt <> 0 And myPercent <> 0 And myPer <> 0 Then
+    '                            myResult = myAmt * myPercent / myPer
+    '                        End If
+    '                    Case "T"    'Total Premium
+    '                        ' NO CALCULATION SPECIFICATION
+    '                End Select
+    '            Case "R"
+    '                Select Case UCase(pvApplied_On)
+    '                    Case "S"    'Sum Assured
+    '                        If mySA_Amt <> 0 And myRate <> 0 And myPer <> 0 Then
+    '                            myResult = mySA_Amt * myRate / myPer
+    '                        End If
+    '                    Case "P"    'Basic Premium
+    '                        If myAmt <> 0 And myRate <> 0 And myPer <> 0 Then
+    '                            myResult = myAmt * myRate / myPer
+    '                        End If
+    '                    Case "T"    'Total Premium
+    '                        ' NO CALCULATION SPECIFICATION
+    '                End Select
+    '        End Select
+
+
+
+    '        myLoad_Amt = myLoad_Amt + myResult
+
+    '        myCNT_T = myCNT_T + 1
+    '        oAL_ID.Insert(myCNT_T - 1, myRID)
+    '        oAL_Rec.Insert(myCNT_T - 1, myResult.ToString)
+    '        If myCNT_T <= 0 Then
+    '            GoTo Proc_End_Rtn
+    '        End If
+
+    '        myCNT = 0
+    'Proc_End_Rtn:
+
+    '        'myole_cmd.Dispose()
+    '        myole_cmd = Nothing
+
+    '        oAL_ID.Clear()
+    '        oAL_ID = Nothing
+    '        oAL_Rec.Clear()
+    '        oAL_Rec = Nothing
+
+    '        Return myLoad_Amt
+
+    '    End Function
 
 End Class
