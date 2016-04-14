@@ -39,6 +39,21 @@ Partial Class SEC_PRG_SEC_USER_DETAIL
             'Call Proc_Populate_Box("IL_BRK_MODULE_LIST", Trim("001"), Me.cboWorkGroup)
             'Call Proc_Populate_Box("IL_BRK_CLASS_LIST", Trim("001"), Me.cboRole)
             '    Call Proc_Populate_Box("IL_BRK_DETAIL_LIST", Trim(Me.txtCustID.Text), Me.cboTransList)
+            txtPassExpDays.Text = 90
+            Me.txtPassExpDate.Text = Format(DateAdd(DateInterval.Day, CInt(txtPassExpDays.Text), DateTime.Now), "dd/MM/yyyy")
+
+            Dim UserRole As String = ""
+            Try
+                UserRole = CType(Session("MyUserRole"), String)
+            Catch ex As Exception
+                UserRole = ""
+            End Try
+
+            If UserRole <> "Administrator" Then
+                cmdSave_ASP.Visible = False
+            End If
+
+
             li = New ListItem
             li.Text = "*** Select ***"
             li.Value = "*"
@@ -507,6 +522,9 @@ Partial Class SEC_PRG_SEC_USER_DETAIL
                 drNewRow("SEC_USER_ROLE") = LTrim(Me.cboRole.Text)
                 drNewRow("SEC_USER_BRANCH") = LTrim(Me.txtBranch.Text)
                 drNewRow("SEC_USER_PASSWORD") = EncryptNew(LTrim(Me.txtPassword.Text))
+                drNewRow("firstpassword") = EncryptNew(LTrim(Me.txtPassword.Text))
+                drNewRow("passwordexpirydays") = CInt(txtPassExpDays.Text)
+                drNewRow("passwordexpirydate") = Convert.ToDateTime(DoConvertToDbDateFormat(txtPassExpDate.Text))
                 drNewRow("SEC_USER_PHONE1") = Left(LTrim(Me.txtCustPhone01.Text), 11)
                 drNewRow("SEC_USER_PHONE2") = Left(LTrim(Me.txtCustPhone02.Text), 11)
                 drNewRow("SEC_USER_EMAIL1") = Left(LTrim(Me.txtCustEmail01.Text), 49)
@@ -526,8 +544,6 @@ Partial Class SEC_PRG_SEC_USER_DETAIL
 
             Else
                 '   Update existing record
-
-
                 With obj_DT
                     .Rows(0)("SEC_USER_ID") = RTrim(Me.txtUserID.Text)
                     .Rows(0)("SEC_USER_LOGIN") = RTrim(Me.txtLoginName.Text)
@@ -545,7 +561,6 @@ Partial Class SEC_PRG_SEC_USER_DETAIL
                     '.Rows(0)("TBIL_CUST_OPERID") = CType(myUserIDX, String)
                     '.Rows(0)("TBIL_CUST_KEYDTE") = Now
                 End With
-
                 'obj_DT.AcceptChanges()
                 intC = objDA.Update(obj_DT)
 
@@ -558,6 +573,7 @@ Partial Class SEC_PRG_SEC_USER_DETAIL
             Exit Sub
         End Try
 
+OnlyAdmin:
         m_cbCommandBuilder.Dispose()
         m_cbCommandBuilder = Nothing
 

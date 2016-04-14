@@ -59,7 +59,7 @@ Partial Class SEC_MGL_SEC
                 AddMenuItem("", "", "")
                 AddMenuItem("Entry", "Create New User", "PRG_SEC_USER_DETAIL.aspx?optid=NEW")
                 AddMenuItem("", "Administrator Password Change", "")
-                AddMenuItem("", "User Password Change", "")
+                AddMenuItem("", "User Password Change", "PRG_SEC_USER_CHG_PASS.aspx")
                 AddMenuItem("", "", "") 'blank link
                 AddMenuItem("", "", "") 'blank link
 

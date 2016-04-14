@@ -76,19 +76,19 @@
                 <td align="center" colspan="4" valign="top" class="td_menu">
                     <table align="center" border="0" cellpadding="1" cellspacing="1"  class="tbl_menu_new">
                         <tr>
-                            <td align="left" colspan="3" class="myheader"><%=STRPAGE_TITLE%></td>
+                            <td align="left" colspan="5" class="myheader"><%=STRPAGE_TITLE%></td>
                         </tr>
                 	    <tr>
-                	        <td align="left" nowrap colspan="2"><asp:Label id="lblMessage" Text="Staus:" runat="server" Font-Size="Small" ForeColor="Red" Font-Bold="True"></asp:Label>
+                	        <td align="left" nowrap colspan="3"><asp:Label id="lblMessage" Text="Staus:" runat="server" Font-Size="Small" ForeColor="Red" Font-Bold="True"></asp:Label>
                             </td>
-                            <td align="right" valign="top">
+                            <td align="right" valign="top" colspan="2">
                             &nbsp;<a id="PageAnchor_Return_Link" runat="server" class="a_return_menu" href="#" onclick="javascript:JSDO_RETURN('MGL_SEC.aspx?menu=SEC')">Returns to Previous Page</a>
                                 &nbsp;<%=PageLinks%>&nbsp;
                             </td>
     	               	</tr>
 
                     <tr>
-                    <td align="center" colspan="3" valign="top">
+                    <td align="center" colspan="5" valign="top">
                     <table align="center" style="background-color: White; width: 95%;">
                         <tr>
                             <td align="left" colspan="4" valign="top">
@@ -138,13 +138,13 @@
                     </tr>
 
                     <tr>
-                        <td colspan="3"><hr /></td>
+                        <td colspan="5"><hr /></td>
                     </tr>
 
 
                 		<tr>
     	                    <td align="right" nowrap><asp:Label ID="lblCustID" Enabled="false" Text="Record ID:" runat="server"></asp:Label>&nbsp;</td>
-            	    	    <td align="left" nowrap colspan="2"><asp:textbox id="txtUserID" Enabled="false" 
+            	    	    <td align="left" nowrap colspan="4"><asp:textbox id="txtUserID" Enabled="false" 
                                     MaxLength="3" Width="100px" runat="server" EnableViewState="true"></asp:textbox>
             	    	        &nbsp;<asp:Label ID="lblRecNo" Text="Rec. No:" Enabled="false" runat="server"></asp:Label>
             	    	        &nbsp;<asp:TextBox ID="txtRecNo" Enabled="false" runat="server" MaxLength="18"></asp:TextBox>
@@ -153,7 +153,7 @@
                 		<tr>
     	                    <td align="right" nowrap>&nbsp;<asp:Label ID="lblFullName" Text="FullName:" 
                                     runat="server"></asp:Label>&nbsp;</td>
-                		    <td align="left" nowrap colspan="2">&nbsp;<asp:textbox id="txtName" MaxLength="49" 
+                		    <td align="left" nowrap colspan="4">&nbsp;<asp:textbox id="txtName" MaxLength="49" 
                                     Width="450px" runat="server" EnableViewState="true" ></asp:textbox>
                             </td>
     		            </tr>
@@ -161,13 +161,13 @@
     		                <td align="right" nowrap>
                                 <asp:Label ID="lblShortName" Text="Short Name :" 
                                     runat="server"></asp:Label>&nbsp;</td>
-                		    <td align="left" nowrap colspan="2"><asp:textbox id="txtShortName" MaxLength="10" 
+                		    <td align="left" nowrap colspan="4"><asp:textbox id="txtShortName" MaxLength="10" 
                                     Width="100px" AutoPostBack="true" runat="server" EnableViewState="true"></asp:textbox>
                 		        </td>
     		            </tr>
         	        	<tr>
     	                    <td align="right" nowrap><asp:Label ID="lblGroup" Text="Group:" runat="server"></asp:Label>&nbsp;</td>
-        	        	    <td align="left" nowrap colspan="2"><asp:textbox id="txtGroup" Enabled="false" 
+        	        	    <td align="left" nowrap colspan="4"><asp:textbox id="txtGroup" Enabled="false" 
                                     MaxLength="3" Width="100px" runat="server" EnableViewState="true"></asp:textbox>
                 		        &nbsp;<asp:DropDownList id="cboGroup" Visible="true" Width="200px" 
                                     AutoPostBack="True" runat="server"></asp:DropDownList>
@@ -175,7 +175,7 @@
         	        	</tr>
         	        	<tr>
     	                    <td align="right" nowrap><asp:Label ID="lblRole" Text="Role:" runat="server"></asp:Label>&nbsp;</td>
-        	        	    <td align="left" nowrap colspan="2">&nbsp;<asp:DropDownList 
+        	        	    <td align="left" nowrap colspan="4">&nbsp;<asp:DropDownList 
                                     id="cboRole" Visible="true" Width="200px" runat="server"></asp:DropDownList>
                             </td>
         	        	</tr>
@@ -184,29 +184,45 @@
     		                <td align="right" nowrap>
                                 <asp:Label ID="lblBranch" Text="Branch:" 
                                     runat="server"></asp:Label>&nbsp;</td>
-                		    <td align="left" nowrap colspan="2"><asp:textbox id="txtBranch" MaxLength="39" 
+                		    <td align="left" nowrap colspan="4"><asp:textbox id="txtBranch" MaxLength="39" 
                                     Width="400px" runat="server" EnableViewState="true" ></asp:textbox></td>
     		            </tr>
                 		<tr>
     		                <td align="right" nowrap><asp:Label ID="lblCustPhone01" Text="GSM/Mobile No:" runat="server"></asp:Label>&nbsp;</td>
-                		    <td align="left" nowrap colspan="2"><asp:textbox id="txtCustPhone01" MaxLength="11" Width="200px" runat="server" EnableViewState="true" ></asp:textbox>
+                		    <td align="left" nowrap colspan="4"><asp:textbox id="txtCustPhone01" MaxLength="11" Width="200px" runat="server" EnableViewState="true" ></asp:textbox>
                 		        &nbsp;<asp:Label ID="lblCustPhone02" Text="Land Line No:" runat="server"></asp:Label>
-                		        &nbsp;<asp:textbox id="txtCustPhone02" MaxLength="11" Width="200px" runat="server" EnableViewState="true" ></asp:textbox>
+                		        &nbsp;<asp:textbox id="txtCustPhone02" MaxLength="11" Width="102px" 
+                                    runat="server" EnableViewState="true" ></asp:textbox>
                 		    </td>
     		            </tr>
 
                 		<tr>
     		                <td align="right" nowrap><asp:Label ID="lblCustEmail01" Text="Email Address - 1:" runat="server"></asp:Label>&nbsp;</td>
-                		    <td align="left" nowrap colspan="2"><asp:textbox id="txtCustEmail01" MaxLength="49" Width="450px" runat="server" EnableViewState="true" ></asp:textbox></td>
+                		    <td align="left" nowrap colspan="4"><asp:textbox id="txtCustEmail01" MaxLength="49" Width="450px" runat="server" EnableViewState="true" ></asp:textbox></td>
     		            </tr>
 
                 		<tr>
     		                <td align="right" nowrap><asp:Label ID="lblCustEmail02" Text="Email Address - 2:" runat="server"></asp:Label>&nbsp;</td>
-                		    <td align="left" nowrap colspan="2"><asp:textbox id="txtCustEmail02" MaxLength="49" Width="450px" runat="server" EnableViewState="true" ></asp:textbox></td>
+                		    <td align="left" nowrap colspan="4"><asp:textbox id="txtCustEmail02" MaxLength="49" Width="450px" runat="server" EnableViewState="true" ></asp:textbox></td>
     		            </tr>
                     
                 		<tr>
-    		                <td align="left" nowrap colspan="3" class="myMenu_Title"><asp:Label ID="lblCustEmail5" 
+    		                <td align="right" nowrap><asp:Label ID="lblCustEmail6" Text="Password Expiry Days:" 
+                                    runat="server"></asp:Label></td>
+                		    <td align="left" nowrap>
+                                <asp:textbox id="txtPassExpDays" MaxLength="11" Width="79px" 
+                                    runat="server" EnableViewState="true" Enabled="False" ></asp:textbox>
+                		    </td>
+                		    <td align="left" nowrap colspan="2" align="right"><asp:Label ID="lblCustEmail7" 
+                                    Text="Password Expiry Date:" runat="server"></asp:Label></td>
+                		    <td align="left" nowrap><asp:textbox id="txtPassExpDate" MaxLength="11" 
+                                    Width="99px" runat="server" EnableViewState="true" Enabled="False" 
+                                    Height="19px" ></asp:textbox>
+                		    </td>
+    		            </tr>
+                    
+                		<tr>
+    		                <td align="left" nowrap colspan="5" class="myMenu_Title"><asp:Label ID="lblCustEmail5" 
                                     Text="Login Detail:" runat="server"></asp:Label></td>
     		            </tr>
                     
@@ -214,7 +230,7 @@
     		                <td align="right" nowrap class="style1">
                                 <asp:Label ID="lblLoginName" 
                                     Text="Username:" runat="server"></asp:Label></td>
-                		    <td align="left" nowrap colspan="2" class="style1">
+                		    <td align="left" nowrap colspan="4" class="style1">
                                 <asp:textbox id="txtLoginName" 
                                     MaxLength="11" Width="200px" runat="server" EnableViewState="true" 
                                     AutoPostBack="True" ></asp:textbox>
@@ -225,8 +241,8 @@
     		                <td align="right" nowrap class="style1">
                                 <asp:Label ID="lblPassword" 
                                     Text="Password:" runat="server"></asp:Label></td>
-                		    <td align="left" nowrap colspan="2" class="style1"><asp:textbox id="txtPassword" 
-                                    MaxLength="11" Width="200px" runat="server" EnableViewState="true" 
+                		    <td align="left" nowrap colspan="4" class="style1"><asp:textbox id="txtPassword" 
+                                   Width="200px" runat="server" EnableViewState="true" 
                                     TextMode="Password" ></asp:textbox>
                 		        </td>
     		            </tr>
@@ -235,14 +251,14 @@
     		                <td align="right" nowrap class="style1">
                                 <asp:Label ID="lblConPassword" 
                                     Text="Confirm Password:" runat="server"></asp:Label></td>
-                		    <td align="left" nowrap colspan="2" class="style1"><asp:textbox id="txtConPassword" 
-                                    MaxLength="11" Width="200px" runat="server" EnableViewState="true" 
+                		    <td align="left" nowrap colspan="4" class="style1"><asp:textbox id="txtConPassword" 
+                                  Width="200px" runat="server" EnableViewState="true" 
                                     TextMode="Password" ></asp:textbox>
                 		        </td>
     		            </tr>
                     
                     <tr>
-                        <td colspan="3">&nbsp;</td>
+                        <td colspan="5">&nbsp;</td>
                     </tr>
     		
                     </table>
