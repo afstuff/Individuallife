@@ -68,21 +68,11 @@ Partial Class I_LIFE_PRG_LI_INDV_ENQUIRY
             Me.lblMsg.Text = "Error. Reason: " & ex.Message.ToString
         End Try
     End Sub
-
-    Protected Sub chkFileNum_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles chkFileNum.CheckedChanged
-        If Me.chkFileNum.Checked = True Then
-            Me.lblFileNum.Enabled = True
-            Me.txtFileNum.Enabled = True
-            Me.cmdFileNum.Enabled = True
-        Else
-            Me.lblFileNum.Enabled = False
-            Me.txtFileNum.Enabled = False
-            Me.cmdFileNum.Enabled = False
-        End If
-    End Sub
-
     Protected Sub cmdFileNum_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdFileNum.Click
         If LTrim(RTrim(Me.txtFileNum.Text)) <> "" Then
+            Me.txtRecNo.Text = ""
+            Me.txtQuote_Num.Text = ""
+            Me.txtPolNum.Text = ""
             strStatus = Proc_DoOpenRecord(RTrim("FIL"), Me.txtFileNum.Text, RTrim("0"))
         Else
             Me.lblMsg.Text = "Please enter a file number"
@@ -91,9 +81,35 @@ Partial Class I_LIFE_PRG_LI_INDV_ENQUIRY
             Exit Sub
         End If
     End Sub
+    Protected Sub cmdGetPol_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdGetPol.Click
+        If Trim(Me.txtPolNum.Text) <> "" Then
+            Me.txtFileNum.Text = ""
+            Me.txtRecNo.Text = ""
+            Me.txtQuote_Num.Text = ""
+            strStatus = Proc_DoOpenRecord(RTrim("POL"), Me.txtPolNum.Text, RTrim("0"))
+        Else
+            Me.lblMsg.Text = "Please enter a policy number"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            Me.txtPolNum.Focus()
+            Exit Sub
+        End If
+    End Sub
+    Protected Sub cmdGetPro_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdGetPro.Click
+        If Trim(Me.txtQuote_Num.Text) <> "" Then
+            Me.txtFileNum.Text = ""
+            Me.txtRecNo.Text = ""
+            Me.txtPolNum.Text = ""
+            strStatus = Proc_DoOpenRecord(RTrim("QUO"), Me.txtQuote_Num.Text, RTrim("0"))
+        Else
+            Me.lblMsg.Text = "Please enter a policy number"
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+            Me.txtPolNum.Focus()
+            Exit Sub
+        End If
+    End Sub
 
     Private Function Proc_DoOpenRecord(ByVal FVstrGetType As String, ByVal FVstrRefNum As String, Optional ByVal FVstrRecNo As String = "", Optional ByVal strSearchByWhat As String = "FILE_NUM") As String
-
+        DoNew()
         strErrMsg = "false"
 
         lblMsg.Text = ""
@@ -160,6 +176,7 @@ Partial Class I_LIFE_PRG_LI_INDV_ENQUIRY
             Me.txtAssuredName.Text = RTrim(CType(objOLEDR("TBIL_INSRD_NAME") & vbNullString, String))
             Me.txtTelephone.Text = RTrim(CType(objOLEDR("TBIL_INSRD_PHONE_NO") & vbNullString, String))
             Me.txtAddress.Text = RTrim(CType(objOLEDR("TBIL_INSRD_ADDRESS") & vbNullString, String))
+            Me.txtEmail.Text = RTrim(CType(objOLEDR("TBIL_INSRD_EMAIL") & vbNullString, String))
 
             If Not IsDBNull(objOLEDR("TBIL_POL_PRM_SA_LC")) Then _
                         txtSumAssured.Text = Format(objOLEDR("TBIL_POL_PRM_SA_LC"), "Standard")
@@ -169,9 +186,6 @@ Partial Class I_LIFE_PRG_LI_INDV_ENQUIRY
 
             txtMop.Text = RTrim(CType(objOLEDR("TBIL_POL_PRM_MODE_PAYT") & vbNullString, String))
             txtTenure.Text = RTrim(CType(objOLEDR("TBIL_POL_PRM_PERIOD_YRS") & vbNullString, String))
-
-            Me.txtCoverPeriod.Text = RTrim(CType(objOLEDR("ReceiptCoverPeriod") & vbNullString, String))
-
 
             If Not IsDBNull(objOLEDR("TBIL_POLY_CUST_CODE")) Then
                 If CType(objOLEDR("TBIL_POLY_CUST_CODE") & vbNullString, String) <> "" Then
@@ -192,23 +206,29 @@ Partial Class I_LIFE_PRG_LI_INDV_ENQUIRY
                 End If
             End If
 
+            Dim coverperiod As String
+            Dim CoverPeriodArray(2) As String
+            'Me.txtCoverPeriod.Text = RTrim(CType(objOLEDR("ReceiptCoverPeriod") & vbNullString, String))
+            coverperiod = RTrim(CType(objOLEDR("ReceiptCoverPeriod") & vbNullString, String))
+
+            CoverPeriodArray = coverperiod.Split("To")
+
+            Dim CoverFrom As String
+            Dim CoverTo As String
+
+            CoverFrom = Left(Trim(coverperiod), 10)
+            CoverTo = Right(Trim(coverperiod), 10)
+
+            If Trim(CoverFrom) <> Trim(CoverTo) Then
+                Me.txtCoverPeriod.Text = RTrim(CType(objOLEDR("ReceiptCoverPeriod") & vbNullString, String))
+            Else
+                Me.txtCoverPeriod.Text = RTrim(CType(objOLEDR("ReceiptCoverPeriodByProplNo") & vbNullString, String))
+            End If
+
+
             'GetReceiptCoverPeriod(txtPolNum.Text, mop, Me.txtEffDate.Text, mopContrib)
 
             'GetReceiptCoverPeriod(txtPolNum.Text, mop, "2014-01-01", mopContrib)
-
-            Me.lblFileNum.Enabled = False
-            Me.chkFileNum.Enabled = False
-            Me.cmdFileNum.Enabled = False
-            Me.txtFileNum.Enabled = False
-            Me.txtQuote_Num.Enabled = False
-            Me.cmdGetPol.Enabled = False
-            Me.lblPlan_Num.Enabled = False
-            Me.txtPolNum.Enabled = False
-            Me.lblPolNum.Enabled = False
-            Me.txtPolNum.Enabled = False
-            Me.cmdGetPol.Enabled = False
-
-
             Me.cmdNew_ASP.Enabled = True
             Proc_DataBind()
             strOPT = "2"
@@ -330,22 +350,7 @@ Partial Class I_LIFE_PRG_LI_INDV_ENQUIRY
             Me.lblMsg.Text = "Error. Reason: " & ex.Message.ToString
         End Try
     End Sub
-
-    Protected Sub cmdGetPol_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdGetPol.Click
-        If Trim(Me.txtPolNum.Text) <> "" Then
-            strStatus = Proc_DoOpenRecord(RTrim("POL"), Me.txtPolNum.Text, RTrim("0"))
-        Else
-            Me.lblMsg.Text = "Please enter a policy number"
-            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
-            Me.txtPolNum.Focus()
-            Exit Sub
-        End If
-    End Sub
     Private Sub DoNew()
-        Me.txtFileNum.Text = ""
-        Me.txtRecNo.Text = ""
-        Me.txtQuote_Num.Text = ""
-        Me.txtPolNum.Text = ""
         Me.txtCommenceDate.Text = ""
         Me.txtMaturityDate.Text = ""
         Me.txtProposalDate.Text = ""
@@ -353,30 +358,33 @@ Partial Class I_LIFE_PRG_LI_INDV_ENQUIRY
         Me.txtAssuredName.Text = ""
         Me.txtTelephone.Text = ""
         Me.txtAddress.Text = ""
-        Me.txtMarketerCode.Text = ""
-        Me.txtMarketerName.Text = ""
         Me.txtEffDate.Text = ""
         Me.txtCoverPeriod.Text = ""
+        Me.txtProduct_Name.Text = ""
+        Me.txtEmail.Text = ""
+        Me.txtSumAssured.Text = ""
+        Me.txtPremAmt.Text = ""
+        Me.txtMop.Text = ""
+        Me.txtTenure.Text = ""
+        Me.txtMarketerCode.Text = ""
+        Me.txtMarketerName.Text = ""
+        Me.txtMarketerPhone.Text = ""
+        Me.txtMarketerAddress.Text = ""
+        Me.txtMarketerEmail.Text = ""
+
+        cboProductClass.SelectedIndex = -1
+
         GridView1.DataSource = Nothing
         GridView1.DataBind()
         Me.lblMsg.Text = ""
-        Me.chkFileNum.Enabled = True
     End Sub
 
     Protected Sub cmdNew_ASP_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdNew_ASP.Click
         DoNew()
-    End Sub
-
-    Protected Sub chkPolNum_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles chkPolNum.CheckedChanged
-        If Me.chkPolNum.Checked = True Then
-            Me.lblPolNum.Enabled = True
-            Me.txtPolNum.Enabled = True
-            Me.cmdGetPol.Enabled = True
-        Else
-            Me.lblPolNum.Enabled = False
-            Me.txtPolNum.Enabled = False
-            Me.cmdGetPol.Enabled = False
-        End If
+        Me.txtFileNum.Text = ""
+        Me.txtRecNo.Text = ""
+        Me.txtQuote_Num.Text = ""
+        Me.txtPolNum.Text = ""
     End Sub
     Private Sub DoProc_CreateDataSource(ByVal pvCODE As String, ByVal pvTransType As String, ByVal pvcboDDList As DropDownList)
 
@@ -552,6 +560,19 @@ Partial Class I_LIFE_PRG_LI_INDV_ENQUIRY
         End With
 
         'Execute this if no payment history found with proposal no.
+        If GridView1.Rows.Count = 0 Then
+            objDA = New OleDbDataAdapter(strSQL, objOLEConn)
+            objDA.SelectCommand.CommandType = CommandType.StoredProcedure
+            objDA.SelectCommand.Parameters.Clear()
+            objDA.SelectCommand.Parameters.Add("p01", OleDbType.VarChar, 50).Value = "P"
+            objDA.SelectCommand.Parameters.Add("p02", OleDbType.VarChar, 50).Value = Trim(txtQuote_Num.Text)
+            objDA.Fill(objDS)
+            With GridView1
+                .DataSource = objDS
+                .DataBind()
+            End With
+        End If
+
         If GridView1.Rows.Count = 0 Then
             objDA = New OleDbDataAdapter(strSQL, objOLEConn)
             objDA.SelectCommand.CommandType = CommandType.StoredProcedure

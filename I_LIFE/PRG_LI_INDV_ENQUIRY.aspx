@@ -138,7 +138,7 @@
     <div id="div_content" align="center">
         <table class="tbl_cont" align="center">
                 <tr>
-                    <td nowrap class="myheader">Policy Enquiry Screen</td>
+                    <td nowrap class="myheader">Policy Enquiry</td>
                 </tr>
                 <tr>
                     <td align="center" valign="top" class="td_menu">
@@ -155,15 +155,15 @@
                                             </tr>
 
                             <tr>
-                                                <td align="left" valign="top" class="style2"><asp:CheckBox ID="chkFileNum" AutoPostBack="true" Text="" runat="server" />
-                                                    &nbsp;<asp:Label ID="lblFileNum" Text="File No:" runat="server"></asp:Label></td>
-                                                <td align="left" valign="top" colspan="1"><asp:TextBox ID="txtFileNum" Enabled="false" Width="150px" runat="server"></asp:TextBox>
-                                                    &nbsp;<asp:Button ID="cmdFileNum" Enabled="false" Text="Get Record" runat="server" />
+                                                <td align="left" valign="top" class="style2"><asp:Label ID="lblFileNum" Text="File No:" runat="server"></asp:Label></td>
+                                                <td align="left" valign="top" colspan="1"><asp:TextBox ID="txtFileNum" 
+                                                        Width="150px" runat="server"></asp:TextBox>
+                                                    &nbsp;<asp:Button ID="cmdFileNum" Text="Go" runat="server" />
                                                     &nbsp;<asp:TextBox ID="txtRecNo" Visible="false" Enabled="false" MaxLength="18" Width="40" runat="server"></asp:TextBox></td>
-                                                <td nowrap align="left" valign="top"><asp:CheckBox ID="chkPolNum" AutoPostBack="true" Text="" runat="server" />&nbsp;<asp:Label ID="lblPolNum" Text="Policy Number:" Enabled="false" runat="server"></asp:Label></td>
-                                                <td align="left" valign="top" colspan="1"><asp:TextBox ID="txtPolNum" Width="200px"
-                                                        Enabled="false" runat="server"></asp:TextBox>
-                                                    &nbsp;<asp:Button ID="cmdGetPol" Enabled="false" Text="Go" runat="server" />
+                                                <td nowrap align="left" valign="top"><asp:Label ID="lblPolNum" Text="Policy Number:" Enabled="false" runat="server"></asp:Label></td>
+                                                <td align="left" valign="top" colspan="1"><asp:TextBox ID="txtPolNum" Width="200px" 
+                                                        runat="server"></asp:TextBox>
+                                                    &nbsp;<asp:Button ID="cmdGetPol" Text="Go" runat="server" />
                                                     
                                                 </td>
                             </tr>
@@ -178,6 +178,8 @@
                                                     &nbsp;</td>
                                                 <td align="left" valign="top"><asp:Label ID="lblQuote_Num" Text="Proposal No:" runat="server"></asp:Label></td>
                                                 <td align="left" valign="top"><asp:TextBox ID="txtQuote_Num" Width="200px" Enabled="true" runat="server"></asp:TextBox>
+                                                  &nbsp;  <asp:Button ID="cmdGetPro" Text="Go" runat="server" />
+                                                    
                                                 </td>
                             </tr>
 
@@ -198,23 +200,6 @@
                                                                                                         <asp:TextBox ID="txtProduct_Name" Enabled="false" 
                                                         Width="200px" runat="server" Height="22px"></asp:TextBox></td>
                                             </tr>
-                                            
-
-                                            <tr>
-                                                <td align="left" valign="top" class="style5"><asp:Label ID="lblProduct_Num" 
-                                                        Text="Renewal Date:" runat="server"></asp:Label></td>
-                                                <td align="left" valign="top" colspan="1" class="style6">                                                    
-                                                    <asp:TextBox ID="txtRenewalDate" MaxLength="10" runat="server" Enabled="False" 
-                                                        Width="80px"></asp:TextBox>
-                                                    </td>
-                                                <td align="left" valign="top" class="style6"><asp:Label ID="lblProductClass" 
-                                                        Text="Payment Cover Period:" runat="server"></asp:Label></td>
-                                                <td align="left" valign="top" colspan="1" class="style6">                                                    
-                                                    <asp:TextBox ID="txtCoverPeriod" MaxLength="10" runat="server" Width="200px" 
-                                                        Enabled="false"></asp:TextBox>
-                                                    &nbsp;&nbsp;</td>
-                                            </tr>
-                                            
                                             <tr>
                                                 <td align="left" valign="top" class="style2">
                                                     <asp:Label ID="lblCover_Num" 
@@ -223,12 +208,26 @@
                                                     <asp:TextBox ID="txtTelephone" MaxLength="10" runat="server" Enabled="False" 
                                                         Width="239px"></asp:TextBox>
                                                     </td>                                            
-                                                <td align="left" valign="top"><asp:Label ID="lblPlan_Num" Text="Assured Address:" 
+                                                <td align="left" valign="top">
+                                                    <asp:Label ID="lblCover_Num0" 
+                                                        Text="Assured Email:" runat="server"></asp:Label></td>
+                                                <td align="left" valign="top" colspan="1">                                                    
+                                                    <asp:TextBox ID="txtEmail" MaxLength="10" runat="server" Enabled="False" 
+                                                        Width="239px"></asp:TextBox>
+                                                    </td>                                            
+                                            </tr>
+                                            
+                                            <tr>
+                                                <td align="left" valign="top" class="style2">
+                                                    <asp:Label ID="lblPlan_Num" Text="Assured Address:" 
                                                         runat="server"></asp:Label></td>
                                                 <td align="left" valign="top" colspan="1">                                                    
                                                     <asp:TextBox ID="txtAddress" MaxLength="10" runat="server" Enabled="False" 
                                                         TextMode="MultiLine" Width="200px"></asp:TextBox>
-                                                    &nbsp;&nbsp;</td>                                            
+                                                    </td>                                            
+                                                <td align="left" valign="top">&nbsp;</td>
+                                                <td align="left" valign="top" colspan="1">                                                    
+                                                    &nbsp;</td>                                            
                                             </tr>
                                             
                                               <tr>
@@ -265,17 +264,17 @@
                             </tr>
 
                             <tr>
-                                                <td align="left" valign="top" class="style5">
+                                                <td align="left" valign="top" class="style2">
                                                     <asp:Label ID="Label5" 
                                                         Text="Proposal Date:" runat="server"></asp:Label></td>
-                                                <td align="left" valign="top" class="style6">
+                                                <td align="left" valign="top">
                                                     <asp:TextBox ID="txtProposalDate" Enabled="False" 
                                                         MaxLength="4" Width="80" runat="server"></asp:TextBox>
                                                 </td>
-                                                <td nowrap align="left" valign="top" class="style6">
+                                                <td nowrap align="left" valign="top">
                                                     <asp:Label ID="Label6" 
                                                         Text="Commencement Date" runat="server"></asp:Label></td>
-                                                <td align="left" valign="top" colspan="1" class="style6">
+                                                <td align="left" valign="top" colspan="1">
                                                     <asp:TextBox ID="txtCommenceDate" MaxLength="10" runat="server" Enabled="False" 
                                                         Width="80px"></asp:TextBox>
                                                     &nbsp;&nbsp;<asp:TextBox ID="txtEffDate" MaxLength="10" runat="server" Enabled="False" 
@@ -295,6 +294,20 @@
                                                 <td align="left" valign="top" colspan="1">
                                                     &nbsp;</td>    
                             </tr>
+                              <tr>
+                                                <td align="left" valign="top" class="style5"><asp:Label ID="lblProduct_Num" 
+                                                        Text="Renewal Date:" runat="server"></asp:Label></td>
+                                                <td align="left" valign="top" colspan="1" class="style6">                                                    
+                                                    <asp:TextBox ID="txtRenewalDate" MaxLength="10" runat="server" Enabled="False" 
+                                                        Width="80px"></asp:TextBox>
+                                                    </td>
+                                                <td align="left" valign="top" class="style6"><asp:Label ID="lblProductClass" 
+                                                        Text="Payment Cover Period:" runat="server"></asp:Label></td>
+                                                <td align="left" valign="top" colspan="1" class="style6">                                                    
+                                                    <asp:TextBox ID="txtCoverPeriod" MaxLength="10" runat="server" Width="200px" 
+                                                        Enabled="false"></asp:TextBox>
+                                                    &nbsp;&nbsp;</td>
+                                            </tr>
                             
                               <tr>
                                                 <td align="left" colspan="4" valign="top" class="myMenu_Title">broker/marketer info</td>
@@ -337,7 +350,7 @@
                                                         runat="server"></asp:Label></td>
                                                 <td align="left" valign="top">
                                                     <asp:TextBox ID="txtMarketerAddress" MaxLength="10" 
-                                                        runat="server" Enabled="False" Width="239px"></asp:TextBox>
+                                                        runat="server" Enabled="False" Width="239px" TextMode="MultiLine"></asp:TextBox>
                                                     &nbsp;</td>
                                                 <td align="left" valign="top">&nbsp;</td>
                                                 <td align="left" valign="top">&nbsp;</td>
@@ -368,13 +381,13 @@
                                                     <PagerSettings FirstPageText="First" LastPageText="Last" NextPageText="Next" Position="TopAndBottom"
                                                         PreviousPageText="Previous"></PagerSettings>
                                                     <Columns>
-                                                        <asp:TemplateField>
+                                                        <%--<asp:TemplateField>
         			                                        <ItemTemplate>
         						                                <asp:CheckBox id="chkSel" runat="server" Width="20px"></asp:CheckBox>
                                                             </ItemTemplate>                                                            
                                                         </asp:TemplateField>
-                                
-                                                        <asp:CommandField ShowSelectButton="True" ItemStyle-Width="50px" />
+                                --%>
+                                                        <%--<asp:CommandField ShowSelectButton="True" ItemStyle-Width="50px" />--%>
                             
                                                         <asp:BoundField readonly="true" DataField="TBFN_ACCT_ENTRY_DATE" HeaderText="Entry Date" ItemStyle-Width="70px" HeaderStyle-HorizontalAlign="Left" convertemptystringtonull="true" DataFormatString="{0:dd/MM/yyyy}" />
                                                         <asp:BoundField readonly="true" DataField="TBFN_ACCT_DOC_NO" HeaderText="Receipt No" ItemStyle-Width="120px" HeaderStyle-HorizontalAlign="Left" convertemptystringtonull="true" />
@@ -383,8 +396,8 @@
                                                         <asp:BoundField readonly="true" DataField="TBFN_ACCT_TRANS_MODE" HeaderText="Receipt Mode" ItemStyle-Width="40px" HeaderStyle-HorizontalAlign="Left" convertemptystringtonull="true" />
                                                          <asp:BoundField readonly="true" DataField="TBFN_ACCT_RECP_TYP" HeaderText="Receipt Type" ItemStyle-Width="40px" HeaderStyle-HorizontalAlign="Left" convertemptystringtonull="true" />
                                                         <asp:BoundField readonly="true" DataField="TBFN_ACCT_CHQ_TELLER_NO" HeaderText="Cheque No" ItemStyle-Width="60px" HeaderStyle-HorizontalAlign="Left" convertemptystringtonull="true" />
-                                                        <asp:BoundField readonly="true" DataField="TBFN_ACCT_CHQ_INWARD_DATE" HeaderText="Cheque Date" ItemStyle-Width="60px" />
-                                                           <asp:BoundField readonly="true" DataField="TBFN_ACCT_TRANS_DESC1" HeaderText="Trabs Desc 1" ItemStyle-Width="80px" DataFormatString="{0:dd/MM/yyyy}" HeaderStyle-HorizontalAlign="Left" convertemptystringtonull="true" />
+                                                        <asp:BoundField readonly="true" DataField="TBFN_ACCT_CHQ_INWARD_DATE" HeaderText="Cheque Date" ItemStyle-Width="60px" convertemptystringtonull="true" DataFormatString="{0:dd/MM/yyyy}" />
+                                                           <asp:BoundField readonly="true" DataField="TBFN_ACCT_TRANS_DESC1" HeaderText="Trabs Desc 1" ItemStyle-Width="80px" HeaderStyle-HorizontalAlign="Left" convertemptystringtonull="true" />
                                                          <asp:BoundField readonly="true" DataField="TBFN_ACCT_TRANS_DESC2" HeaderText="Trabs Desc 2" ItemStyle-Width="80px"  HeaderStyle-HorizontalAlign="Left" convertemptystringtonull="true" /> 
                                                           <asp:BoundField ReadOnly="true" DataField="TBFN_ACCT_DR_MAIN" HeaderText="Main Acct(Debit)"
                                                             ItemStyle-Width="80px" HeaderStyle-HorizontalAlign="Left" ConvertEmptyStringToNull="true" />
