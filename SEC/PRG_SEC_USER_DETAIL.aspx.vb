@@ -40,7 +40,7 @@ Partial Class SEC_PRG_SEC_USER_DETAIL
             'Call Proc_Populate_Box("IL_BRK_CLASS_LIST", Trim("001"), Me.cboRole)
             '    Call Proc_Populate_Box("IL_BRK_DETAIL_LIST", Trim(Me.txtCustID.Text), Me.cboTransList)
             txtPassExpDays.Text = 90
-            Me.txtPassExpDate.Text = Format(DateAdd(DateInterval.Day, CInt(txtPassExpDays.Text), DateTime.Now), "dd/MM/yyyy")
+            'Me.txtPassExpDate.Text = Format(DateAdd(DateInterval.Day, CInt(txtPassExpDays.Text), DateTime.Now), "dd/MM/yyyy")
 
             Dim UserRole As String = ""
             Try
@@ -402,9 +402,22 @@ Partial Class SEC_PRG_SEC_USER_DETAIL
             End If
         End If
 
+        If IsNumeric(txtPassExpDays.Text) Then
+            If Val(txtPassExpDays.Text) <= 0 Then
+                Me.lblMessage.Text = "Password Expiry Days must be greater than zero"
+                txtPassExpDays.Focus()
+                FirstMsg = "Javascript:alert('" & Me.lblMessage.Text & "')"
+                Exit Sub
+            End If
+        Else
+            Me.lblMessage.Text = "Password Expiry Days must be numeric"
+            txtPassExpDays.Focus()
+            FirstMsg = "Javascript:alert('" & Me.lblMessage.Text & "')"
+            Exit Sub
+        End If
 
 
-
+        Me.txtPassExpDate.Text = Format(DateAdd(DateInterval.Day, CInt(txtPassExpDays.Text), DateTime.Now), "dd/MM/yyyy")
 
         Dim myUserIDX As String = ""
         Try

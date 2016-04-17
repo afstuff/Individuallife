@@ -211,13 +211,15 @@
                                     runat="server"></asp:Label></td>
                 		    <td align="left" nowrap>
                                 <asp:textbox id="txtPassExpDays" MaxLength="11" Width="79px" 
-                                    runat="server" EnableViewState="true" Enabled="False" ></asp:textbox>
+                                    runat="server" EnableViewState="true" ></asp:textbox>
                 		    </td>
-                		    <td align="left" nowrap colspan="2" align="right"><asp:Label ID="lblCustEmail7" 
-                                    Text="Password Expiry Date:" runat="server"></asp:Label></td>
-                		    <td align="left" nowrap><asp:textbox id="txtPassExpDate" MaxLength="11" 
+                		    <td align="left" nowrap colspan="2" align="right">
+                                <asp:Label ID="lblCustEmail7" 
+                                    Text="Password Expiry Date:" runat="server" Visible="False"></asp:Label></td>
+                		    <td align="left" nowrap>
+                                <asp:textbox id="txtPassExpDate" MaxLength="11" 
                                     Width="99px" runat="server" EnableViewState="true" Enabled="False" 
-                                    Height="19px" ></asp:textbox>
+                                    Height="19px" Visible="False" ></asp:textbox>
                 		    </td>
     		            </tr>
                     

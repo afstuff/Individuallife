@@ -267,6 +267,12 @@
                                     &nbsp;<asp:Label ID="lblPrem_Rate_Per" Enabled="false" Text="Rate Per:" runat="server"></asp:Label>
                                     &nbsp;<asp:TextBox ID="txtPrem_Rate_Per" Visible="true" Enabled="false" MaxLength="5" Width="60px" ToolTip="" runat="server"></asp:TextBox>
                                 </td>
+                                <td align="left" valign="top" >
+                                    <asp:Label ID="lblDepositAmount" Enabled="False" Text="Deposit Amount:" 
+                                        runat="server"></asp:Label>
+                                    </td>
+                                <td align="left" valign="top" ><asp:TextBox ID="txtDepositAmount" runat="server"></asp:TextBox>
+                                </td>
                             </tr>
                             <tr>
                                 <td align="left" valign="top" colspan="4"><hr /></td>

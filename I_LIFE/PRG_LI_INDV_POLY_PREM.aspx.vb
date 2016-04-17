@@ -757,386 +757,416 @@ Partial Class I_LIFE_PRG_LI_INDV_POLY_PREM
 
             Call MOD_GEN.gnInitialize_Numeric(Me.txtPrem_Payable)
 
+            Dim PremiumInstallmet As Double
+            PremiumInstallmet = 0
+            If Trim(cboPrem_MOP_Type.SelectedValue = "W") Then
+                PremiumInstallmet = CDbl(txtPrem_Ann_Contrib_LC.Text) / 52
+            ElseIf Trim(cboPrem_MOP_Type.SelectedValue = "M") Then
+                PremiumInstallmet = CDbl(txtPrem_Mth_Contrib_LC.Text)
+            ElseIf Trim(cboPrem_MOP_Type.SelectedValue = "Q") Then
+                PremiumInstallmet = CDbl(txtPrem_Ann_Contrib_LC.Text) / 4
+            ElseIf Trim(cboPrem_MOP_Type.SelectedValue = "H") Then
+                PremiumInstallmet = CDbl(txtPrem_Ann_Contrib_LC.Text) / 2
+            ElseIf Trim(cboPrem_MOP_Type.SelectedValue = "S") Then
+                PremiumInstallmet = CDbl(txtPrem_Ann_Contrib_LC.Text)
+            ElseIf Trim(cboPrem_MOP_Type.SelectedValue = "A") Then
+                PremiumInstallmet = CDbl(txtPrem_Ann_Contrib_LC.Text)
+            End If
+
+            If IsNumeric(txtDepositAmount.Text) Then
+                If Val(txtDepositAmount.Text) < PremiumInstallmet Then
+                    Me.lblMsg.Text = "Deposit Amount must not be less than premium installment"
+                    txtDepositAmount.Focus()
+                    FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+                    Exit Sub
+                End If
+            Else
+                Me.lblMsg.Text = "Deposit Amount must be numeric"
+                txtDepositAmount.Focus()
+                FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+                Exit Sub
+            End If
 
 
         End If 'VALIDATION for DATA NOT OLD END
 
-        If Trim(Me.txtPrem_Rate_TypeNum.Text) = "N" Then
-            Me.txtPrem_Fixed_Rate.Text = "0.00"
-            Me.txtPrem_Fixed_Rate_PerNum.Text = "0"
-            Me.txtPrem_Rate.Text = "0.00"
-            Me.txtPrem_Rate_Per.Text = "0"
-        End If
-
-        If Trim(Me.txtPrem_Rate_TypeNum.Text) = "T" Then
-            Me.txtPrem_Fixed_Rate.Text = "0.00"
-            Me.txtPrem_Fixed_Rate_PerNum.Text = "1000"
-        End If
-
-        '============================================
-
-
-        'Me.lblMsg.Text = "About to submit data... "
-        'FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
-
-        'If RTrim(txtNum.Text) = "" Then
-        '    Me.txtNum.Text = MOD_GEN.gnGet_Serial_Und("GET_SN_IL_UNDW", Trim(strP_ID), Trim(Me.txtGroupNum.Text), "XXXX", "XXXX", "")
-        '    If Trim(txtNum.Text) = "" Or Trim(Me.txtNum.Text) = "0" Or Trim(Me.txtNum.Text) = "*" Then
-        '        Me.txtNum.Text = ""
-        '        Me.lblMessage.Text = "Sorry!. Unable to get the next record id. Please contact your service provider..."
-        '        FirstMsg = "Javascript:alert('" & Me.lblMessage.Text & "')"
-        '        Me.lblMessage.Text = "Status:"
-        '        Exit Sub
-        '    ElseIf Trim(Me.txtNum.Text) = "PARAM_ERR" Then
-        '        Me.txtNum.Text = ""
-        '        Me.lblMessage.Text = "Sorry!. Unable to get the next record id - INVALID PARAMETER(S) - " & Trim(strP_ID)
-        '        FirstMsg = "Javascript:alert('" & Me.lblMessage.Text & "')"
-        '        Me.lblMessage.Text = "Status:"
-        '        Exit Sub
-        '    ElseIf Trim(Me.txtNum.Text) = "DB_ERR" Then
-        '        Me.txtNum.Text = ""
-        '        Me.lblMessage.Text = "Sorry!. Unable to connect to database. Please contact your service provider..."
-        '        FirstMsg = "Javascript:alert('" & Me.lblMessage.Text & "')"
-        '        Me.lblMessage.Text = "Status:"
-        '        Exit Sub
-        '    ElseIf Trim(Me.txtNum.Text) = "ERR_ERR" Then
-        '        Me.txtNum.Text = ""
-        '        Me.lblMessage.Text = "Sorry!. Unable to get connection object. Please contact your service provider..."
-        '        FirstMsg = "Javascript:alert('" & Me.lblMessage.Text & "')"
-        '        Me.lblMessage.Text = "Status:"
-        '        Exit Sub
-        '    End If
-
-        'End If
-
-
-        '******************************************************
-        ' START CODES - CALCULATE SUM ASSURED FROM PREMIUM
-        '******************************************************
-
-        Select Case Trim(Me.txtPrem_Rate_Applied_On.Text)
-            Case "P"
-                Select Case UCase(Me.txtProduct_Num.Text)
-                    Case "F001", "F002"
-                    Case Else
-                        If Val(Trim(Me.txtPrem_SA_LC.Text)) = 0 And Val(Trim(Me.txtPrem_SA_FC.Text)) = 0 And _
-                           Val(Trim(Me.txtPrem_Life_Cover_SA_LC.Text)) = 0 And Val(Trim(Me.txtPrem_Life_Cover_SA_FC.Text)) = 0 Then
-                            Call Proc_DoCalc_Prem()
-                        End If
-                End Select
-        End Select
-
-        '******************************************************
-        ' END CODES - CALCULATE SUM ASSURED FROM PREMIUM
-        '******************************************************
-
-        Dim myUserIDX As String = ""
-        Try
-            myUserIDX = CType(Session("MyUserIDX"), String)
-        Catch ex As Exception
-            myUserIDX = ""
-        End Try
-
-
-        Dim mystrCONN As String = CType(Session("connstr"), String)
-        Dim objOLEConn As New OleDbConnection()
-        objOLEConn.ConnectionString = mystrCONN
-
-        Try
-            'open connection to database
-            objOLEConn.Open()
-        Catch ex As Exception
-            Me.lblMsg.Text = "Unable to connect to database. Reason: " & ex.Message
-            'FirstMsg = "Javascript:alert('" & Me.txtMsg.Text & "')"
-            objOLEConn = Nothing
-            Exit Sub
-        End Try
-
-
-        strTable = strTableName
-
-        strSQL = ""
-        strSQL = "SELECT TOP 1 * FROM " & strTable
-        strSQL = strSQL & " WHERE TBIL_POL_PRM_FILE_NO = '" & RTrim(txtFileNum.Text) & "'"
-        'If Val(LTrim(RTrim(Me.txtRecNo.Text))) <> 0 Then
-        '    strSQL = strSQL & " AND TBIL_POL_PRM_REC_ID = '" & Val(RTrim(txtRecNo.Text)) & "'"
-        'End If
-
-
-        Dim objDA As System.Data.OleDb.OleDbDataAdapter
-        objDA = New System.Data.OleDb.OleDbDataAdapter(strSQL, objOLEConn)
-        'or
-        'objDA.SelectCommand = New System.Data.OleDb.OleDbCommand(strSQL, objOleConn)
-
-        Dim m_cbCommandBuilder As System.Data.OleDb.OleDbCommandBuilder
-        m_cbCommandBuilder = New System.Data.OleDb.OleDbCommandBuilder(objDA)
-
-        Dim obj_DT As New System.Data.DataTable
-        'Dim m_rwContact As System.Data.DataRow
-        Dim intC As Integer = 0
-
-
-        Try
-
-            objDA.Fill(obj_DT)
-
-            If obj_DT.Rows.Count = 0 Then
-                '   Creating a new record
-
-                Dim drNewRow As System.Data.DataRow
-                drNewRow = obj_DT.NewRow()
-
-                drNewRow("TBIL_POL_PRM_MDLE") = RTrim("I")
-
-                drNewRow("TBIL_POL_PRM_FILE_NO") = RTrim(Me.txtFileNum.Text)
-                drNewRow("TBIL_POL_PRM_PROP_NO") = RTrim(Me.txtQuote_Num.Text)
-                'drNewRow("TBIL_POL_PRM_POLY_NO") = RTrim(Me.txtPolNum.Text)
-
-                drNewRow("TBIL_POL_PRM_PRDCT_CD") = RTrim(Me.txtProduct_Num.Text)
-                drNewRow("TBIL_POL_PRM_PLAN_CD") = RTrim(Me.txtPlan_Num.Text)
-                'drNewRow("TBIL_POL_PRM_COVER_CD") = RTrim(Me.txtCover_Num.Text)
-
-                drNewRow("TBIL_POL_PRM_PERIOD_YRS") = Val(Trim(Me.txtPrem_Period_Yr.Text))
-
-                If Trim(Me.txtPrem_Start_Date.Text) <> "" Then
-                    drNewRow("TBIL_POL_PRM_FROM") = dteStart
-                End If
-                If Trim(Me.txtPrem_End_Date.Text) <> "" Then
-                    drNewRow("TBIL_POL_PRM_TO") = dteEnd
-                End If
-
-                drNewRow("TBIL_POL_PRM_MODE_PAYT") = RTrim(Me.txtPrem_MOP_Type.Text)
-                drNewRow("TBIL_POL_PRM_MOP_RATE") = RTrim(Me.txtPrem_MOP_Rate.Text)
-
-                drNewRow("TBIL_POL_PRM_SA_CURRCY") = Trim(Me.txtPrem_SA_CurrencyCode.Text)
-                drNewRow("TBIL_POL_PRM_EXCHG_RATE") = RTrim(Me.txtPrem_Exchange_Rate.Text)
-
-                drNewRow("TBIL_POL_PRM_ANN_CONTRIB_LC") = Trim(Me.txtPrem_Ann_Contrib_LC.Text)
-                drNewRow("TBIL_POL_PRM_ANN_CONTRIB_FC") = Trim(Me.txtPrem_Ann_Contrib_FC.Text)
-                drNewRow("TBIL_POL_PRM_MTH_CONTRIB_LC") = Trim(Me.txtPrem_Mth_Contrib_LC.Text)
-                drNewRow("TBIL_POL_PRM_MTH_CONTRIB_FC") = Trim(Me.txtPrem_Mth_Contrib_FC.Text)
-
-
-                'new fields
-                drNewRow("TBIL_POL_PRM_LIFE_COVER") = Trim(Me.txtPrem_Life_CoverNum.Text)
-                drNewRow("TBIL_POL_SA_FROM_PRM") = Trim(Me.txtPrem_Is_SA_From_PremNum.Text)
-                drNewRow("TBIL_POL_PRM_RT_TAB_FIX") = Trim(Me.txtPrem_Rate_TypeNum.Text)
-                drNewRow("TBIL_POL_PRM_RT_FIXED") = Trim(Me.txtPrem_Fixed_Rate.Text)
-                drNewRow("TBIL_POL_PRM_RT_FIX_PER") = Trim(Me.txtPrem_Fixed_Rate_PerNum.Text)
-
-
-                drNewRow("TBIL_POL_PRM_SA_LC") = Trim(Me.txtPrem_SA_LC.Text)
-                drNewRow("TBIL_POL_PRM_SA_FC") = Trim(Me.txtPrem_SA_FC.Text)
-
-                drNewRow("TBIL_POL_PRM_LIFE_COVER_SA_LC") = Trim(Me.txtPrem_Life_Cover_SA_LC.Text)
-                drNewRow("TBIL_POL_PRM_LIFE_COVER_SA_FC") = Trim(Me.txtPrem_Life_Cover_SA_FC.Text)
-
-                drNewRow("TBIL_POL_PRM_FREE_COV_LMT_LC") = Trim(Me.txtPrem_Free_Cover_Lmt_LC.Text)
-                drNewRow("TBIL_POL_PRM_FREE_COV_LMT_FC") = Trim(Me.txtPrem_Free_Cover_Lmt_FC.Text)
-
-                drNewRow("TBIL_POL_PRM_RATE_CD") = RTrim(Me.txtPrem_Rate_Code.Text)
-                drNewRow("TBIL_POL_PRM_RATE") = RTrim(Me.txtPrem_Rate.Text)
-                drNewRow("TBIL_POL_PRM_RATE_PER") = RTrim(Me.txtPrem_Rate_Per.Text)
-
-                drNewRow("TBIL_POL_PRM_NO_INSTAL") = RTrim(Me.txtPrem_No_Instal.Text)
-
-                drNewRow("TBIL_POL_PRM_FREE_LIFECOVER_LMT_LC") = Trim(Me.txtPrem_Free_LiveCover_Lmt_LC.Text)
-                drNewRow("TBIL_POL_PRM_FREE_LIFECOVER_LMT_FC") = Trim(Me.txtPrem_Free_LiveCover_Lmt_FC.Text)
-
-                drNewRow("TBIL_POL_PRM_RT_APPLIED_ON") = Trim(Me.txtPrem_Rate_Applied_On.Text)
-
-                'new fields
-                drNewRow("TBIL_POL_PRM_RT_BONUS_CD") = Trim(Me.txtPrem_Bonus_YN.Text)
-                drNewRow("TBIL_POL_PRM_ALLOC_CD") = Trim(Me.txtPrem_Allocation_YN.Text)
-                drNewRow("TBIL_POL_PRM_SCH_TERM") = Trim(Me.txtPrem_School_Term.Text)
-                'drNewRow("TBIL_POL_PRM_FEE_PRD") = Val(Me.txtPrem_Sch_Fee_Prd.Text)
-
-                drNewRow("TBIL_POL_PRM_DISCNT_PCENT") = RTrim(Me.txtPrem_Discount_Rate.Text)
-                drNewRow("TBIL_POL_PRM_LOAD_PCENT") = RTrim(Me.txtPrem_Loading_Rate.Text)
-                drNewRow("TBIL_POL_PRM_ENROL_NO") = Val(txtPrem_Enrollee_Num.Text)
-
-
-                drNewRow("TBIL_POL_PRM_FLAG") = "A"
-                drNewRow("TBIL_POL_PRM_OPERID") = CType(myUserIDX, String)
-                drNewRow("TBIL_POL_PRM_KEYDTE") = Now
-
-                obj_DT.Rows.Add(drNewRow)
-                'obj_DT.AcceptChanges()
-                intC = objDA.Update(obj_DT)
-
-                drNewRow = Nothing
-
-                Me.lblMsg.Text = "New Record Saved to Database Successfully."
-
-            Else
-                '   Update existing record
-
-                'm_rwContact = m_dtContacts.Rows(0)
-                'm_rwContact("ContactName") = "Bob Brown"
-                'm_rwContact.AcceptChanges()
-                'm_dtContacts.AcceptChanges()
-                'Dim intC As Integer = m_daDataAdapter.Update(m_dtContacts)
-
-
-                With obj_DT
-                    .Rows(0)("TBIL_POL_PRM_FILE_NO") = RTrim(Me.txtFileNum.Text)
-                    .Rows(0)("TBIL_POL_PRM_PROP_NO") = RTrim(Me.txtQuote_Num.Text)
-                    '.Rows(0)("TBIL_POL_PRM_POLY_NO") = RTrim(Me.txtPolNum.Text)
-
-                    .Rows(0)("TBIL_POL_PRM_PRDCT_CD") = RTrim(Me.txtProduct_Num.Text)
-                    .Rows(0)("TBIL_POL_PRM_PLAN_CD") = RTrim(Me.txtPlan_Num.Text)
-                    '.Rows(0)("TBIL_POL_PRM_COVER_CD") = RTrim(Me.txtCover_Num.Text)
-
-                    .Rows(0)("TBIL_POL_PRM_PERIOD_YRS") = Val(Trim(Me.txtPrem_Period_Yr.Text))
-
-                    If Trim(Me.txtPrem_Start_Date.Text) <> "" Then
-                        .Rows(0)("TBIL_POL_PRM_FROM") = dteStart
-                    End If
-                    If Trim(Me.txtPrem_End_Date.Text) <> "" Then
-                        .Rows(0)("TBIL_POL_PRM_TO") = dteEnd
-                    End If
-
-                    .Rows(0)("TBIL_POL_PRM_SA_CURRCY") = Trim(Me.txtPrem_SA_CurrencyCode.Text)
-                    .Rows(0)("TBIL_POL_PRM_MOP_RATE") = RTrim(Me.txtPrem_MOP_Rate.Text)
-                    .Rows(0)("TBIL_POL_PRM_EXCHG_RATE") = RTrim(Me.txtPrem_Exchange_Rate.Text)
-
-                    .Rows(0)("TBIL_POL_PRM_ANN_CONTRIB_LC") = Trim(Me.txtPrem_Ann_Contrib_LC.Text)
-                    .Rows(0)("TBIL_POL_PRM_ANN_CONTRIB_FC") = Trim(Me.txtPrem_Ann_Contrib_FC.Text)
-                    .Rows(0)("TBIL_POL_PRM_MTH_CONTRIB_LC") = Trim(Me.txtPrem_Mth_Contrib_LC.Text)
-                    .Rows(0)("TBIL_POL_PRM_MTH_CONTRIB_FC") = Trim(Me.txtPrem_Mth_Contrib_FC.Text)
-
-                    'new fields
-                    .Rows(0)("TBIL_POL_PRM_LIFE_COVER") = Trim(Me.txtPrem_Life_CoverNum.Text)
-                    .Rows(0)("TBIL_POL_SA_FROM_PRM") = Trim(Me.txtPrem_Is_SA_From_PremNum.Text)
-                    .Rows(0)("TBIL_POL_PRM_RT_TAB_FIX") = Trim(Me.txtPrem_Rate_TypeNum.Text)
-                    .Rows(0)("TBIL_POL_PRM_RT_FIXED") = Trim(Me.txtPrem_Fixed_Rate.Text)
-                    .Rows(0)("TBIL_POL_PRM_RT_FIX_PER") = Trim(Me.txtPrem_Fixed_Rate_PerNum.Text)
-
-                    .Rows(0)("TBIL_POL_PRM_SA_LC") = Trim(Me.txtPrem_SA_LC.Text)
-                    .Rows(0)("TBIL_POL_PRM_SA_FC") = Trim(Me.txtPrem_SA_FC.Text)
-
-                    .Rows(0)("TBIL_POL_PRM_LIFE_COVER_SA_LC") = Trim(Me.txtPrem_Life_Cover_SA_LC.Text)
-                    .Rows(0)("TBIL_POL_PRM_LIFE_COVER_SA_FC") = Trim(Me.txtPrem_Life_Cover_SA_FC.Text)
-
-                    .Rows(0)("TBIL_POL_PRM_FREE_COV_LMT_LC") = Trim(Me.txtPrem_Free_Cover_Lmt_LC.Text)
-                    .Rows(0)("TBIL_POL_PRM_FREE_COV_LMT_FC") = Trim(Me.txtPrem_Free_Cover_Lmt_FC.Text)
-
-                    .Rows(0)("TBIL_POL_PRM_MODE_PAYT") = RTrim(Me.txtPrem_MOP_Type.Text)
-                    .Rows(0)("TBIL_POL_PRM_RATE_CD") = RTrim(Me.txtPrem_Rate_Code.Text)
-                    .Rows(0)("TBIL_POL_PRM_RATE") = RTrim(Me.txtPrem_Rate.Text)
-                    .Rows(0)("TBIL_POL_PRM_RATE_PER") = RTrim(Me.txtPrem_Rate_Per.Text)
-
-                    .Rows(0)("TBIL_POL_PRM_NO_INSTAL") = RTrim(Me.txtPrem_No_Instal.Text)
-
-                    .Rows(0)("TBIL_POL_PRM_FREE_LIFECOVER_LMT_LC") = Trim(Me.txtPrem_Free_LiveCover_Lmt_LC.Text)
-                    .Rows(0)("TBIL_POL_PRM_FREE_LIFECOVER_LMT_FC") = Trim(Me.txtPrem_Free_LiveCover_Lmt_FC.Text)
-
-                    .Rows(0)("TBIL_POL_PRM_RT_APPLIED_ON") = Trim(Me.txtPrem_Rate_Applied_On.Text)
-
-                    'new fields
-                    .Rows(0)("TBIL_POL_PRM_RT_BONUS_CD") = Trim(Me.txtPrem_Bonus_YN.Text)
-                    .Rows(0)("TBIL_POL_PRM_ALLOC_CD") = Trim(Me.txtPrem_Allocation_YN.Text)
-                    .Rows(0)("TBIL_POL_PRM_SCH_TERM") = Trim(Me.txtPrem_School_Term.Text)
-                    '.Rows(0)("TBIL_POL_PRM_FEE_PRD") = Val(Me.txtPrem_Sch_Fee_Prd.Text)
-
-                    .Rows(0)("TBIL_POL_PRM_DISCNT_PCENT") = RTrim(Me.txtPrem_Discount_Rate.Text)
-                    .Rows(0)("TBIL_POL_PRM_LOAD_PCENT") = RTrim(Me.txtPrem_Loading_Rate.Text)
-                    .Rows(0)("TBIL_POL_PRM_ENROL_NO") = Val(txtPrem_Enrollee_Num.Text)
-
-                    .Rows(0)("TBIL_POL_PRM_FLAG") = "C"
-                    '.Rows(0)("TBIL_POL_PRM_OPERID") = CType(myUserIDX, String)
-                    '.Rows(0)("TBIL_POL_PRM_KEYDTE") = Now
-                End With
-
-                'obj_DT.AcceptChanges()
-                intC = objDA.Update(obj_DT)
-
-                Me.lblMsg.Text = "Record Saved to Database Successfully."
-
+            If Trim(Me.txtPrem_Rate_TypeNum.Text) = "N" Then
+                Me.txtPrem_Fixed_Rate.Text = "0.00"
+                Me.txtPrem_Fixed_Rate_PerNum.Text = "0"
+                Me.txtPrem_Rate.Text = "0.00"
+                Me.txtPrem_Rate_Per.Text = "0"
             End If
 
+            If Trim(Me.txtPrem_Rate_TypeNum.Text) = "T" Then
+                Me.txtPrem_Fixed_Rate.Text = "0.00"
+                Me.txtPrem_Fixed_Rate_PerNum.Text = "1000"
+            End If
 
-            'Dim dataSet As System.Data.DataSet = New System.Data.DataSet
-
-            'm_daDataAdapter.Fill(dataSet, m_Tbl)
-            '' Insert Code to modify data in DataSet here 
-            ''   ...
-            ''   ...
-
-            ''m_cbCommandBuilder.GetInsertCommand()
-
-            'm_cbCommandBuilder.GetUpdateCommand()
-
-            ''m_cbCommandBuilder.GetDeleteCommand()
-
-            '' Without the OleDbCommandBuilder this line would fail.
-            'm_daDataAdapter.Update(dataSet, m_Tbl)
+            '============================================
 
 
-            '' If there is existing data, update it.
-            'If m_dtContacts.Rows.Count <> 0 Then
-            '    m_dtContacts.Rows(m_rowPosition)("ContactName") = strContactName
-            '    m_dtContacts.Rows(m_rowPosition)("State") = strState
-            '    m_daDataAdapter.Update(m_dtContacts)
-            'Else
-            '    '   Creating New Record
-            '    Dim drNewRow As System.Data.DataRow = m_dtContacts.NewRow()
-            '    drNewRow("ContactName") = strContactName
-            '    drNewRow("State") = strState
-            '    m_dtContacts.Rows.Add(drNewRow)
-            '    m_daDataAdapter.Update(m_dtContacts)
+            'Me.lblMsg.Text = "About to submit data... "
+            'FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+
+            'If RTrim(txtNum.Text) = "" Then
+            '    Me.txtNum.Text = MOD_GEN.gnGet_Serial_Und("GET_SN_IL_UNDW", Trim(strP_ID), Trim(Me.txtGroupNum.Text), "XXXX", "XXXX", "")
+            '    If Trim(txtNum.Text) = "" Or Trim(Me.txtNum.Text) = "0" Or Trim(Me.txtNum.Text) = "*" Then
+            '        Me.txtNum.Text = ""
+            '        Me.lblMessage.Text = "Sorry!. Unable to get the next record id. Please contact your service provider..."
+            '        FirstMsg = "Javascript:alert('" & Me.lblMessage.Text & "')"
+            '        Me.lblMessage.Text = "Status:"
+            '        Exit Sub
+            '    ElseIf Trim(Me.txtNum.Text) = "PARAM_ERR" Then
+            '        Me.txtNum.Text = ""
+            '        Me.lblMessage.Text = "Sorry!. Unable to get the next record id - INVALID PARAMETER(S) - " & Trim(strP_ID)
+            '        FirstMsg = "Javascript:alert('" & Me.lblMessage.Text & "')"
+            '        Me.lblMessage.Text = "Status:"
+            '        Exit Sub
+            '    ElseIf Trim(Me.txtNum.Text) = "DB_ERR" Then
+            '        Me.txtNum.Text = ""
+            '        Me.lblMessage.Text = "Sorry!. Unable to connect to database. Please contact your service provider..."
+            '        FirstMsg = "Javascript:alert('" & Me.lblMessage.Text & "')"
+            '        Me.lblMessage.Text = "Status:"
+            '        Exit Sub
+            '    ElseIf Trim(Me.txtNum.Text) = "ERR_ERR" Then
+            '        Me.txtNum.Text = ""
+            '        Me.lblMessage.Text = "Sorry!. Unable to get connection object. Please contact your service provider..."
+            '        FirstMsg = "Javascript:alert('" & Me.lblMessage.Text & "')"
+            '        Me.lblMessage.Text = "Status:"
+            '        Exit Sub
+            '    End If
+
             'End If
 
 
-            ''To access the first row of your DataTable like this:
-            'm_rwContact = m_dtContacts.Rows(0)
+            '******************************************************
+            ' START CODES - CALCULATE SUM ASSURED FROM PREMIUM
+            '******************************************************
 
-            ''To reference the value of a column, you can pass the column name to the DataRow like this:
-            '' Change the value of the column.
-            'm_rwContact("ContactName") = "Bob Brown"
+            Select Case Trim(Me.txtPrem_Rate_Applied_On.Text)
+                Case "P"
+                    Select Case UCase(Me.txtProduct_Num.Text)
+                        Case "F001", "F002"
+                        Case Else
+                            If Val(Trim(Me.txtPrem_SA_LC.Text)) = 0 And Val(Trim(Me.txtPrem_SA_FC.Text)) = 0 And _
+                               Val(Trim(Me.txtPrem_Life_Cover_SA_LC.Text)) = 0 And Val(Trim(Me.txtPrem_Life_Cover_SA_FC.Text)) = 0 Then
+                                Call Proc_DoCalc_Prem()
+                            End If
+                    End Select
+            End Select
 
-            ''   or
-            '' Get the value of the column.
-            'strContactName = m_rwContact("ContactName")
+            '******************************************************
+            ' END CODES - CALCULATE SUM ASSURED FROM PREMIUM
+            '******************************************************
+
+            Dim myUserIDX As String = ""
+            Try
+                myUserIDX = CType(Session("MyUserIDX"), String)
+            Catch ex As Exception
+                myUserIDX = ""
+            End Try
 
 
-            ''Deleting Record
-            '' If there is data, delete the current row.
-            'If m_dtContacts.Rows.Count <> 0 Then
-            '    m_dtContacts.Rows(m_rowPosition).Delete()
-            '    m_daDataAdapter.Update(m_dtContacts)
+            Dim mystrCONN As String = CType(Session("connstr"), String)
+            Dim objOLEConn As New OleDbConnection()
+            objOLEConn.ConnectionString = mystrCONN
+
+            Try
+                'open connection to database
+                objOLEConn.Open()
+            Catch ex As Exception
+                Me.lblMsg.Text = "Unable to connect to database. Reason: " & ex.Message
+                'FirstMsg = "Javascript:alert('" & Me.txtMsg.Text & "')"
+                objOLEConn = Nothing
+                Exit Sub
+            End Try
+
+
+            strTable = strTableName
+
+            strSQL = ""
+            strSQL = "SELECT TOP 1 * FROM " & strTable
+            strSQL = strSQL & " WHERE TBIL_POL_PRM_FILE_NO = '" & RTrim(txtFileNum.Text) & "'"
+            'If Val(LTrim(RTrim(Me.txtRecNo.Text))) <> 0 Then
+            '    strSQL = strSQL & " AND TBIL_POL_PRM_REC_ID = '" & Val(RTrim(txtRecNo.Text)) & "'"
             'End If
 
 
-        Catch ex As Exception
-            Me.lblMsg.Text = ex.Message.ToString
-            Exit Sub
-        End Try
+            Dim objDA As System.Data.OleDb.OleDbDataAdapter
+            objDA = New System.Data.OleDb.OleDbDataAdapter(strSQL, objOLEConn)
+            'or
+            'objDA.SelectCommand = New System.Data.OleDb.OleDbCommand(strSQL, objOleConn)
 
-        obj_DT.Dispose()
-        obj_DT = Nothing
+            Dim m_cbCommandBuilder As System.Data.OleDb.OleDbCommandBuilder
+            m_cbCommandBuilder = New System.Data.OleDb.OleDbCommandBuilder(objDA)
 
-        m_cbCommandBuilder.Dispose()
-        m_cbCommandBuilder = Nothing
-
-        If objDA.SelectCommand.Connection.State = ConnectionState.Open Then
-            objDA.SelectCommand.Connection.Close()
-        End If
-        objDA.Dispose()
-        objDA = Nothing
-
-        If objOLEConn.State = ConnectionState.Open Then
-            objOLEConn.Close()
-        End If
-        objOLEConn = Nothing
+            Dim obj_DT As New System.Data.DataTable
+            'Dim m_rwContact As System.Data.DataRow
+            Dim intC As Integer = 0
 
 
+            Try
 
-        Me.cmdNext.Enabled = True
+                objDA.Fill(obj_DT)
 
-        FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
+                If obj_DT.Rows.Count = 0 Then
+                    '   Creating a new record
 
-        'Call DoNew()
+                    Dim drNewRow As System.Data.DataRow
+                    drNewRow = obj_DT.NewRow()
+
+                    drNewRow("TBIL_POL_PRM_MDLE") = RTrim("I")
+
+                    drNewRow("TBIL_POL_PRM_FILE_NO") = RTrim(Me.txtFileNum.Text)
+                    drNewRow("TBIL_POL_PRM_PROP_NO") = RTrim(Me.txtQuote_Num.Text)
+                    'drNewRow("TBIL_POL_PRM_POLY_NO") = RTrim(Me.txtPolNum.Text)
+
+                    drNewRow("TBIL_POL_PRM_PRDCT_CD") = RTrim(Me.txtProduct_Num.Text)
+                    drNewRow("TBIL_POL_PRM_PLAN_CD") = RTrim(Me.txtPlan_Num.Text)
+                    'drNewRow("TBIL_POL_PRM_COVER_CD") = RTrim(Me.txtCover_Num.Text)
+
+                    drNewRow("TBIL_POL_PRM_PERIOD_YRS") = Val(Trim(Me.txtPrem_Period_Yr.Text))
+
+                    If Trim(Me.txtPrem_Start_Date.Text) <> "" Then
+                        drNewRow("TBIL_POL_PRM_FROM") = dteStart
+                    End If
+                    If Trim(Me.txtPrem_End_Date.Text) <> "" Then
+                        drNewRow("TBIL_POL_PRM_TO") = dteEnd
+                    End If
+
+                    drNewRow("TBIL_POL_PRM_MODE_PAYT") = RTrim(Me.txtPrem_MOP_Type.Text)
+                    drNewRow("TBIL_POL_PRM_MOP_RATE") = RTrim(Me.txtPrem_MOP_Rate.Text)
+
+                    drNewRow("TBIL_POL_PRM_SA_CURRCY") = Trim(Me.txtPrem_SA_CurrencyCode.Text)
+                    drNewRow("TBIL_POL_PRM_EXCHG_RATE") = RTrim(Me.txtPrem_Exchange_Rate.Text)
+
+                    drNewRow("TBIL_POL_PRM_ANN_CONTRIB_LC") = Trim(Me.txtPrem_Ann_Contrib_LC.Text)
+                    drNewRow("TBIL_POL_PRM_ANN_CONTRIB_FC") = Trim(Me.txtPrem_Ann_Contrib_FC.Text)
+                    drNewRow("TBIL_POL_PRM_MTH_CONTRIB_LC") = Trim(Me.txtPrem_Mth_Contrib_LC.Text)
+                    drNewRow("TBIL_POL_PRM_MTH_CONTRIB_FC") = Trim(Me.txtPrem_Mth_Contrib_FC.Text)
+
+
+                    'new fields
+                    drNewRow("TBIL_POL_PRM_LIFE_COVER") = Trim(Me.txtPrem_Life_CoverNum.Text)
+                    drNewRow("TBIL_POL_SA_FROM_PRM") = Trim(Me.txtPrem_Is_SA_From_PremNum.Text)
+                    drNewRow("TBIL_POL_PRM_RT_TAB_FIX") = Trim(Me.txtPrem_Rate_TypeNum.Text)
+                    drNewRow("TBIL_POL_PRM_RT_FIXED") = Trim(Me.txtPrem_Fixed_Rate.Text)
+                    drNewRow("TBIL_POL_PRM_RT_FIX_PER") = Trim(Me.txtPrem_Fixed_Rate_PerNum.Text)
+
+
+                    drNewRow("TBIL_POL_PRM_SA_LC") = Trim(Me.txtPrem_SA_LC.Text)
+                    drNewRow("TBIL_POL_PRM_SA_FC") = Trim(Me.txtPrem_SA_FC.Text)
+
+                    drNewRow("TBIL_POL_PRM_LIFE_COVER_SA_LC") = Trim(Me.txtPrem_Life_Cover_SA_LC.Text)
+                    drNewRow("TBIL_POL_PRM_LIFE_COVER_SA_FC") = Trim(Me.txtPrem_Life_Cover_SA_FC.Text)
+
+                    drNewRow("TBIL_POL_PRM_FREE_COV_LMT_LC") = Trim(Me.txtPrem_Free_Cover_Lmt_LC.Text)
+                    drNewRow("TBIL_POL_PRM_FREE_COV_LMT_FC") = Trim(Me.txtPrem_Free_Cover_Lmt_FC.Text)
+
+                    drNewRow("TBIL_POL_PRM_RATE_CD") = RTrim(Me.txtPrem_Rate_Code.Text)
+                    drNewRow("TBIL_POL_PRM_RATE") = RTrim(Me.txtPrem_Rate.Text)
+                    drNewRow("TBIL_POL_PRM_RATE_PER") = RTrim(Me.txtPrem_Rate_Per.Text)
+
+                    drNewRow("TBIL_POL_PRM_NO_INSTAL") = RTrim(Me.txtPrem_No_Instal.Text)
+
+                    drNewRow("TBIL_POL_PRM_FREE_LIFECOVER_LMT_LC") = Trim(Me.txtPrem_Free_LiveCover_Lmt_LC.Text)
+                    drNewRow("TBIL_POL_PRM_FREE_LIFECOVER_LMT_FC") = Trim(Me.txtPrem_Free_LiveCover_Lmt_FC.Text)
+
+                    drNewRow("TBIL_POL_PRM_RT_APPLIED_ON") = Trim(Me.txtPrem_Rate_Applied_On.Text)
+
+                    'new fields
+                    drNewRow("TBIL_POL_PRM_RT_BONUS_CD") = Trim(Me.txtPrem_Bonus_YN.Text)
+                    drNewRow("TBIL_POL_PRM_ALLOC_CD") = Trim(Me.txtPrem_Allocation_YN.Text)
+                    drNewRow("TBIL_POL_PRM_SCH_TERM") = Trim(Me.txtPrem_School_Term.Text)
+                    'drNewRow("TBIL_POL_PRM_FEE_PRD") = Val(Me.txtPrem_Sch_Fee_Prd.Text)
+
+                    drNewRow("TBIL_POL_PRM_DISCNT_PCENT") = RTrim(Me.txtPrem_Discount_Rate.Text)
+                    drNewRow("TBIL_POL_PRM_LOAD_PCENT") = RTrim(Me.txtPrem_Loading_Rate.Text)
+                    drNewRow("TBIL_POL_PRM_ENROL_NO") = Val(txtPrem_Enrollee_Num.Text)
+                drNewRow("TBIL_POL_PRM_DEPOSIT_AMT") = Val(txtDepositAmount.Text)
+
+
+                    drNewRow("TBIL_POL_PRM_FLAG") = "A"
+                    drNewRow("TBIL_POL_PRM_OPERID") = CType(myUserIDX, String)
+                    drNewRow("TBIL_POL_PRM_KEYDTE") = Now
+
+                    obj_DT.Rows.Add(drNewRow)
+                    'obj_DT.AcceptChanges()
+                    intC = objDA.Update(obj_DT)
+
+                    drNewRow = Nothing
+
+                    Me.lblMsg.Text = "New Record Saved to Database Successfully."
+
+                Else
+                    '   Update existing record
+
+                    'm_rwContact = m_dtContacts.Rows(0)
+                    'm_rwContact("ContactName") = "Bob Brown"
+                    'm_rwContact.AcceptChanges()
+                    'm_dtContacts.AcceptChanges()
+                    'Dim intC As Integer = m_daDataAdapter.Update(m_dtContacts)
+
+
+                    With obj_DT
+                        .Rows(0)("TBIL_POL_PRM_FILE_NO") = RTrim(Me.txtFileNum.Text)
+                        .Rows(0)("TBIL_POL_PRM_PROP_NO") = RTrim(Me.txtQuote_Num.Text)
+                        '.Rows(0)("TBIL_POL_PRM_POLY_NO") = RTrim(Me.txtPolNum.Text)
+
+                        .Rows(0)("TBIL_POL_PRM_PRDCT_CD") = RTrim(Me.txtProduct_Num.Text)
+                        .Rows(0)("TBIL_POL_PRM_PLAN_CD") = RTrim(Me.txtPlan_Num.Text)
+                        '.Rows(0)("TBIL_POL_PRM_COVER_CD") = RTrim(Me.txtCover_Num.Text)
+
+                        .Rows(0)("TBIL_POL_PRM_PERIOD_YRS") = Val(Trim(Me.txtPrem_Period_Yr.Text))
+
+                        If Trim(Me.txtPrem_Start_Date.Text) <> "" Then
+                            .Rows(0)("TBIL_POL_PRM_FROM") = dteStart
+                        End If
+                        If Trim(Me.txtPrem_End_Date.Text) <> "" Then
+                            .Rows(0)("TBIL_POL_PRM_TO") = dteEnd
+                        End If
+
+                        .Rows(0)("TBIL_POL_PRM_SA_CURRCY") = Trim(Me.txtPrem_SA_CurrencyCode.Text)
+                        .Rows(0)("TBIL_POL_PRM_MOP_RATE") = RTrim(Me.txtPrem_MOP_Rate.Text)
+                        .Rows(0)("TBIL_POL_PRM_EXCHG_RATE") = RTrim(Me.txtPrem_Exchange_Rate.Text)
+
+                        .Rows(0)("TBIL_POL_PRM_ANN_CONTRIB_LC") = Trim(Me.txtPrem_Ann_Contrib_LC.Text)
+                        .Rows(0)("TBIL_POL_PRM_ANN_CONTRIB_FC") = Trim(Me.txtPrem_Ann_Contrib_FC.Text)
+                        .Rows(0)("TBIL_POL_PRM_MTH_CONTRIB_LC") = Trim(Me.txtPrem_Mth_Contrib_LC.Text)
+                        .Rows(0)("TBIL_POL_PRM_MTH_CONTRIB_FC") = Trim(Me.txtPrem_Mth_Contrib_FC.Text)
+
+                        'new fields
+                        .Rows(0)("TBIL_POL_PRM_LIFE_COVER") = Trim(Me.txtPrem_Life_CoverNum.Text)
+                        .Rows(0)("TBIL_POL_SA_FROM_PRM") = Trim(Me.txtPrem_Is_SA_From_PremNum.Text)
+                        .Rows(0)("TBIL_POL_PRM_RT_TAB_FIX") = Trim(Me.txtPrem_Rate_TypeNum.Text)
+                        .Rows(0)("TBIL_POL_PRM_RT_FIXED") = Trim(Me.txtPrem_Fixed_Rate.Text)
+                        .Rows(0)("TBIL_POL_PRM_RT_FIX_PER") = Trim(Me.txtPrem_Fixed_Rate_PerNum.Text)
+
+                        .Rows(0)("TBIL_POL_PRM_SA_LC") = Trim(Me.txtPrem_SA_LC.Text)
+                        .Rows(0)("TBIL_POL_PRM_SA_FC") = Trim(Me.txtPrem_SA_FC.Text)
+
+                        .Rows(0)("TBIL_POL_PRM_LIFE_COVER_SA_LC") = Trim(Me.txtPrem_Life_Cover_SA_LC.Text)
+                        .Rows(0)("TBIL_POL_PRM_LIFE_COVER_SA_FC") = Trim(Me.txtPrem_Life_Cover_SA_FC.Text)
+
+                        .Rows(0)("TBIL_POL_PRM_FREE_COV_LMT_LC") = Trim(Me.txtPrem_Free_Cover_Lmt_LC.Text)
+                        .Rows(0)("TBIL_POL_PRM_FREE_COV_LMT_FC") = Trim(Me.txtPrem_Free_Cover_Lmt_FC.Text)
+
+                        .Rows(0)("TBIL_POL_PRM_MODE_PAYT") = RTrim(Me.txtPrem_MOP_Type.Text)
+                        .Rows(0)("TBIL_POL_PRM_RATE_CD") = RTrim(Me.txtPrem_Rate_Code.Text)
+                        .Rows(0)("TBIL_POL_PRM_RATE") = RTrim(Me.txtPrem_Rate.Text)
+                        .Rows(0)("TBIL_POL_PRM_RATE_PER") = RTrim(Me.txtPrem_Rate_Per.Text)
+
+                        .Rows(0)("TBIL_POL_PRM_NO_INSTAL") = RTrim(Me.txtPrem_No_Instal.Text)
+
+                        .Rows(0)("TBIL_POL_PRM_FREE_LIFECOVER_LMT_LC") = Trim(Me.txtPrem_Free_LiveCover_Lmt_LC.Text)
+                        .Rows(0)("TBIL_POL_PRM_FREE_LIFECOVER_LMT_FC") = Trim(Me.txtPrem_Free_LiveCover_Lmt_FC.Text)
+
+                        .Rows(0)("TBIL_POL_PRM_RT_APPLIED_ON") = Trim(Me.txtPrem_Rate_Applied_On.Text)
+
+                        'new fields
+                        .Rows(0)("TBIL_POL_PRM_RT_BONUS_CD") = Trim(Me.txtPrem_Bonus_YN.Text)
+                        .Rows(0)("TBIL_POL_PRM_ALLOC_CD") = Trim(Me.txtPrem_Allocation_YN.Text)
+                        .Rows(0)("TBIL_POL_PRM_SCH_TERM") = Trim(Me.txtPrem_School_Term.Text)
+                        '.Rows(0)("TBIL_POL_PRM_FEE_PRD") = Val(Me.txtPrem_Sch_Fee_Prd.Text)
+
+                        .Rows(0)("TBIL_POL_PRM_DISCNT_PCENT") = RTrim(Me.txtPrem_Discount_Rate.Text)
+                        .Rows(0)("TBIL_POL_PRM_LOAD_PCENT") = RTrim(Me.txtPrem_Loading_Rate.Text)
+                        .Rows(0)("TBIL_POL_PRM_ENROL_NO") = Val(txtPrem_Enrollee_Num.Text)
+                    .Rows(0)("TBIL_POL_PRM_DEPOSIT_AMT") = Val(txtDepositAmount.Text)
+                        .Rows(0)("TBIL_POL_PRM_FLAG") = "C"
+                        '.Rows(0)("TBIL_POL_PRM_OPERID") = CType(myUserIDX, String)
+                        '.Rows(0)("TBIL_POL_PRM_KEYDTE") = Now
+                    End With
+
+                    'obj_DT.AcceptChanges()
+                    intC = objDA.Update(obj_DT)
+
+                    Me.lblMsg.Text = "Record Saved to Database Successfully."
+
+                End If
+
+
+                'Dim dataSet As System.Data.DataSet = New System.Data.DataSet
+
+                'm_daDataAdapter.Fill(dataSet, m_Tbl)
+                '' Insert Code to modify data in DataSet here 
+                ''   ...
+                ''   ...
+
+                ''m_cbCommandBuilder.GetInsertCommand()
+
+                'm_cbCommandBuilder.GetUpdateCommand()
+
+                ''m_cbCommandBuilder.GetDeleteCommand()
+
+                '' Without the OleDbCommandBuilder this line would fail.
+                'm_daDataAdapter.Update(dataSet, m_Tbl)
+
+
+                '' If there is existing data, update it.
+                'If m_dtContacts.Rows.Count <> 0 Then
+                '    m_dtContacts.Rows(m_rowPosition)("ContactName") = strContactName
+                '    m_dtContacts.Rows(m_rowPosition)("State") = strState
+                '    m_daDataAdapter.Update(m_dtContacts)
+                'Else
+                '    '   Creating New Record
+                '    Dim drNewRow As System.Data.DataRow = m_dtContacts.NewRow()
+                '    drNewRow("ContactName") = strContactName
+                '    drNewRow("State") = strState
+                '    m_dtContacts.Rows.Add(drNewRow)
+                '    m_daDataAdapter.Update(m_dtContacts)
+                'End If
+
+
+                ''To access the first row of your DataTable like this:
+                'm_rwContact = m_dtContacts.Rows(0)
+
+                ''To reference the value of a column, you can pass the column name to the DataRow like this:
+                '' Change the value of the column.
+                'm_rwContact("ContactName") = "Bob Brown"
+
+                ''   or
+                '' Get the value of the column.
+                'strContactName = m_rwContact("ContactName")
+
+
+                ''Deleting Record
+                '' If there is data, delete the current row.
+                'If m_dtContacts.Rows.Count <> 0 Then
+                '    m_dtContacts.Rows(m_rowPosition).Delete()
+                '    m_daDataAdapter.Update(m_dtContacts)
+                'End If
+
+
+            Catch ex As Exception
+                Me.lblMsg.Text = ex.Message.ToString
+                Exit Sub
+            End Try
+
+            obj_DT.Dispose()
+            obj_DT = Nothing
+
+            m_cbCommandBuilder.Dispose()
+            m_cbCommandBuilder = Nothing
+
+            If objDA.SelectCommand.Connection.State = ConnectionState.Open Then
+                objDA.SelectCommand.Connection.Close()
+            End If
+            objDA.Dispose()
+            objDA = Nothing
+
+            If objOLEConn.State = ConnectionState.Open Then
+                objOLEConn.Close()
+            End If
+            objOLEConn = Nothing
+
+
+
+            Me.cmdNext.Enabled = True
+
+            FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "');"
+
+            'Call DoNew()
 
 
     End Sub
@@ -2131,6 +2161,9 @@ Skip_C001:
 
             Me.txtPrem_Ann_Contrib_LC.Text = RTrim(CType(objOLEDR("TBIL_POL_PRM_ANN_CONTRIB_LC") & vbNullString, String))
             Me.txtPrem_Ann_Contrib_FC.Text = RTrim(CType(objOLEDR("TBIL_POL_PRM_ANN_CONTRIB_FC") & vbNullString, String))
+
+            Me.txtDepositAmount.Text = RTrim(CType(objOLEDR("TBIL_POL_PRM_DEPOSIT_AMT") & vbNullString, String))
+
 
             Me.txtPrem_Mth_Contrib_LC.Text = RTrim(CType(objOLEDR("TBIL_POL_PRM_MTH_CONTRIB_LC") & vbNullString, String))
             Me.txtPrem_Mth_Contrib_FC.Text = RTrim(CType(objOLEDR("TBIL_POL_PRM_MTH_CONTRIB_FC") & vbNullString, String))
