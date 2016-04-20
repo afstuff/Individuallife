@@ -15,7 +15,7 @@ Partial Class I_LIFE_PRG_LI_UNDW_CODE
     Dim indRepo As IndLifeCodesRepository
     Dim updateFlag As Boolean
     Dim strKey As String
-    Dim indlife As CustodianLife.Model.IndLifeCodes
+    Dim indlife As CustodianLife.Model.LifeCodes
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not Page.IsPostBack Then
@@ -46,7 +46,7 @@ Partial Class I_LIFE_PRG_LI_UNDW_CODE
         If Not updateFlag Then 'if new record
 
             'create a new instance of the indlifecode object
-            indlife = New CustodianLife.Model.IndLifeCodes()
+            indlife = New CustodianLife.Model.LifeCodes()
             indRepo = New IndLifeCodesRepository()
             lblError.Visible = False
 
@@ -59,7 +59,7 @@ Partial Class I_LIFE_PRG_LI_UNDW_CODE
             indRepo.Save(indlife)
             Session("indlife") = indlife
         Else
-            indlife = CType(Session("indlife"), CustodianLife.Model.IndLifeCodes)
+            indlife = CType(Session("indlife"), CustodianLife.Model.LifeCodes)
             indRepo = CType(Session("indRepo"), IndLifeCodesRepository)
 
             indlife.CodeItem = txtCodeItem.Text

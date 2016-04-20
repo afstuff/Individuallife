@@ -35,11 +35,12 @@ Partial Class I_LIFE_PRG_LI_INDV_ENQUIRY
     Dim myarrData() As String
 
     Dim strErrMsg As String
-    Dim GenEnd_Date As Date
+    Dim GenEnd_Date, GenStart_Date, CurrentDate, CoverEndDate, Renew_Date, GracePeriodDate As Date
     Dim Eff_Date As String
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         ' Load data for the DropDownList control only once, when the 
         ' page is first loaded.
+        CurrentDate = Convert.ToDateTime(DoConvertToDbDateFormat(Format(DateTime.Now, "dd/MM/yyyy")))
         If Not (Page.IsPostBack) Then
             Call DoProc_CreateDataSource("IL_PRODUCT_CAT_LIST", Trim("I"), Me.cboProductClass)
             Me.lblMsg.Text = "Status:"
@@ -131,6 +132,7 @@ Partial Class I_LIFE_PRG_LI_INDV_ENQUIRY
             Exit Function
         End Try
 
+
         strSQL = "SPIL_GET_POLICY_ENQUIRY"
 
         Dim objOLECmd As OleDbCommand = New OleDbCommand(strSQL, objOLEConn)
@@ -143,131 +145,156 @@ Partial Class I_LIFE_PRG_LI_INDV_ENQUIRY
 
         Dim objOLEDR As OleDbDataReader
 
-        objOLEDR = objOLECmd.ExecuteReader()
-        If (objOLEDR.Read()) Then
-            strErrMsg = "true"
+        Try
+            objOLEDR = objOLECmd.ExecuteReader()
+            If (objOLEDR.Read()) Then
+                strErrMsg = "true"
 
-            Me.txtFileNum.Text = RTrim(CType(objOLEDR("TBIL_POLY_FILE_NO") & vbNullString, String))
-            'Call Proc_DDL_Get(Me.ddlGroup, RTrim(Me.txtGroupNum.Text))
-            Me.txtRecNo.Text = RTrim(CType(objOLEDR("TBIL_POLY_REC_ID") & vbNullString, String))
+                Me.txtFileNum.Text = RTrim(CType(objOLEDR("TBIL_POLY_FILE_NO") & vbNullString, String))
+                'Call Proc_DDL_Get(Me.ddlGroup, RTrim(Me.txtGroupNum.Text))
+                Me.txtRecNo.Text = RTrim(CType(objOLEDR("TBIL_POLY_REC_ID") & vbNullString, String))
 
-            Me.txtQuote_Num.Text = RTrim(CType(objOLEDR("TBIL_POLY_PROPSAL_NO") & vbNullString, String))
-            Me.txtPolNum.Text = RTrim(CType(objOLEDR("TBIL_POLY_POLICY_NO") & vbNullString, String))
+                Me.txtQuote_Num.Text = RTrim(CType(objOLEDR("TBIL_POLY_PROPSAL_NO") & vbNullString, String))
+                Me.txtPolNum.Text = RTrim(CType(objOLEDR("TBIL_POLY_POLICY_NO") & vbNullString, String))
 
-            Me.txtProductClass.Text = RTrim(CType(objOLEDR("TBIL_PRDCT_DTL_CAT") & vbNullString, String))
-            Call gnProc_DDL_Get(Me.cboProductClass, RTrim(CType(objOLEDR("TBIL_PRDCT_DTL_MDLE") & vbNullString, String)) & RTrim("=") & RTrim(Me.txtProductClass.Text))
-            Me.txtProduct_Name.Text = RTrim(CType(objOLEDR("TBIL_PRDCT_DTL_DESC") & vbNullString, String))
+                Me.txtProductClass.Text = RTrim(CType(objOLEDR("TBIL_PRDCT_DTL_CAT") & vbNullString, String))
+                Call gnProc_DDL_Get(Me.cboProductClass, RTrim(CType(objOLEDR("TBIL_PRDCT_DTL_MDLE") & vbNullString, String)) & RTrim("=") & RTrim(Me.txtProductClass.Text))
+                Me.txtProduct_Name.Text = RTrim(CType(objOLEDR("TBIL_PRDCT_DTL_DESC") & vbNullString, String))
 
 
-            If IsDate(objOLEDR("TBIL_POLY_PRPSAL_ISSUE_DATE")) Then
-                Me.txtProposalDate.Text = Format(CType(objOLEDR("TBIL_POLY_PRPSAL_ISSUE_DATE"), DateTime), "dd/MM/yyyy")
-            End If
-            If IsDate(objOLEDR("TBIL_POL_PRM_FROM")) Then
-                Me.txtCommenceDate.Text = Format(CType(objOLEDR("TBIL_POL_PRM_FROM"), DateTime), "dd/MM/yyyy")
-            End If
-            If IsDate(objOLEDR("TBIL_POL_PRM_TO")) Then
-                Me.txtMaturityDate.Text = Format(CType(objOLEDR("TBIL_POL_PRM_TO"), DateTime), "dd/MM/yyyy")
-                myarrData = Split(Trim(txtMaturityDate.Text), "/")
-                GenEnd_Date = CDate(Format(Val(myarrData(1)), "00") & "/" & Format(Val(myarrData(0)), "00") & "/" & Format(Val(myarrData(2)), "0000"))
-                If Trim(Me.txtRenewalDate.Text) = "" And Trim(Me.txtMaturityDate.Text) <> "" Then
-                    Me.txtRenewalDate.Text = Format(DateAdd(DateInterval.Day, 1, GenEnd_Date), "dd/MM/yyyy")
+                If IsDate(objOLEDR("TBIL_POLY_PRPSAL_ISSUE_DATE")) Then
+                    Me.txtProposalDate.Text = Format(CType(objOLEDR("TBIL_POLY_PRPSAL_ISSUE_DATE"), DateTime), "dd/MM/yyyy")
                 End If
-            End If
-            Me.txtAssuredName.Text = RTrim(CType(objOLEDR("TBIL_INSRD_NAME") & vbNullString, String))
-            Me.txtTelephone.Text = RTrim(CType(objOLEDR("TBIL_INSRD_PHONE_NO") & vbNullString, String))
-            Me.txtAddress.Text = RTrim(CType(objOLEDR("TBIL_INSRD_ADDRESS") & vbNullString, String))
-            Me.txtEmail.Text = RTrim(CType(objOLEDR("TBIL_INSRD_EMAIL") & vbNullString, String))
-
-            If Not IsDBNull(objOLEDR("TBIL_POL_PRM_SA_LC")) Then _
-                        txtSumAssured.Text = Format(objOLEDR("TBIL_POL_PRM_SA_LC"), "Standard")
-
-            If Not IsDBNull(objOLEDR("TBIL_POL_PRM_DTL_MOP_PRM_LC")) Then _
-                        txtPremAmt.Text = Format(objOLEDR("TBIL_POL_PRM_DTL_MOP_PRM_LC"), "Standard")
-
-            txtMop.Text = RTrim(CType(objOLEDR("TBIL_POL_PRM_MODE_PAYT") & vbNullString, String))
-            txtTenure.Text = RTrim(CType(objOLEDR("TBIL_POL_PRM_PERIOD_YRS") & vbNullString, String))
-
-            If Not IsDBNull(objOLEDR("TBIL_POLY_CUST_CODE")) Then
-                If CType(objOLEDR("TBIL_POLY_CUST_CODE") & vbNullString, String) <> "" Then
-                    Me.txtMarketerCode.Text = RTrim(CType(objOLEDR("TBIL_POLY_CUST_CODE") & vbNullString, String))
-                    Me.txtMarketerName.Text = RTrim(CType(objOLEDR("TBIL_CUST_DESC") & vbNullString, String))
-                    Me.txtMarketerPhone.Text = RTrim(CType(objOLEDR("MARKETER_PHONE_NO") & vbNullString, String))
-                    Me.txtMarketerAddress.Text = RTrim(CType(objOLEDR("MARKETER_ADDRESS") & vbNullString, String))
-                    Me.txtMarketerEmail.Text = RTrim(CType(objOLEDR("MARKETER_EMAIL") & vbNullString, String))
+                If IsDate(objOLEDR("TBIL_POL_PRM_FROM")) Then
+                    Me.txtCommenceDate.Text = Format(CType(objOLEDR("TBIL_POL_PRM_FROM"), DateTime), "dd/MM/yyyy")
+                    myarrData = Split(Trim(txtCommenceDate.Text), "/")
+                    GenStart_Date = CDate(Format(Val(myarrData(1)), "00") & "/" & Format(Val(myarrData(0)), "00") & "/" & Format(Val(myarrData(2)), "0000"))
                 End If
-            End If
-            If Not IsDBNull(objOLEDR("TBIL_POLY_AGCY_CODE")) Then
-                If CType(objOLEDR("TBIL_POLY_AGCY_CODE") & vbNullString, String) <> "" Then
-                    Me.txtMarketerCode.Text = RTrim(CType(objOLEDR("TBIL_POLY_AGCY_CODE") & vbNullString, String))
-                    Me.txtMarketerName.Text = RTrim(CType(objOLEDR("TBIL_AGCY_AGENT_NAME") & vbNullString, String))
-                    Me.txtMarketerPhone.Text = RTrim(CType(objOLEDR("AGENT_PHONE_NO") & vbNullString, String))
-                    Me.txtMarketerAddress.Text = RTrim(CType(objOLEDR("AGENT_ADDRESS") & vbNullString, String))
-                    Me.txtMarketerEmail.Text = RTrim(CType(objOLEDR("AGENT_EMAIL") & vbNullString, String))
+                If IsDate(objOLEDR("TBIL_POL_PRM_TO")) Then
+                    Me.txtMaturityDate.Text = Format(CType(objOLEDR("TBIL_POL_PRM_TO"), DateTime), "dd/MM/yyyy")
+                    myarrData = Split(Trim(txtMaturityDate.Text), "/")
+                    GenEnd_Date = CDate(Format(Val(myarrData(1)), "00") & "/" & Format(Val(myarrData(0)), "00") & "/" & Format(Val(myarrData(2)), "0000"))
+                    'If Trim(Me.txtRenewalDate.Text) = "" And Trim(Me.txtMaturityDate.Text) <> "" Then
+                    '    Me.txtRenewalDate.Text = Format(DateAdd(DateInterval.Day, 1, GenEnd_Date), "dd/MM/yyyy")
+                    'End If
                 End If
-            End If
+                Me.txtAssuredName.Text = RTrim(CType(objOLEDR("TBIL_INSRD_NAME") & vbNullString, String))
+                Me.txtTelephone.Text = RTrim(CType(objOLEDR("TBIL_INSRD_PHONE_NO") & vbNullString, String))
+                Me.txtAddress.Text = RTrim(CType(objOLEDR("TBIL_INSRD_ADDRESS") & vbNullString, String))
+                Me.txtEmail.Text = RTrim(CType(objOLEDR("TBIL_INSRD_EMAIL") & vbNullString, String))
 
-            Dim coverperiod As String
-            Dim CoverPeriodArray(2) As String
-            'Me.txtCoverPeriod.Text = RTrim(CType(objOLEDR("ReceiptCoverPeriod") & vbNullString, String))
-            coverperiod = RTrim(CType(objOLEDR("ReceiptCoverPeriod") & vbNullString, String))
+                If Not IsDBNull(objOLEDR("TBIL_POL_PRM_SA_LC")) Then _
+                            txtSumAssured.Text = Format(objOLEDR("TBIL_POL_PRM_SA_LC"), "Standard")
 
-            CoverPeriodArray = coverperiod.Split("To")
+                If Not IsDBNull(objOLEDR("TBIL_POL_PRM_DTL_MOP_PRM_LC")) Then _
+                            txtPremAmt.Text = Format(objOLEDR("TBIL_POL_PRM_DTL_MOP_PRM_LC"), "Standard")
 
-            Dim CoverFrom As String
-            Dim CoverTo As String
+                txtMop.Text = RTrim(CType(objOLEDR("TBIL_POL_PRM_MODE_PAYT") & vbNullString, String))
+                txtTenure.Text = RTrim(CType(objOLEDR("TBIL_POL_PRM_PERIOD_YRS") & vbNullString, String))
 
-            CoverFrom = Left(Trim(coverperiod), 10)
-            CoverTo = Right(Trim(coverperiod), 10)
+                If Not IsDBNull(objOLEDR("TBIL_POLY_CUST_CODE")) Then
+                    If CType(objOLEDR("TBIL_POLY_CUST_CODE") & vbNullString, String) <> "" Then
+                        Me.txtMarketerCode.Text = RTrim(CType(objOLEDR("TBIL_POLY_CUST_CODE") & vbNullString, String))
+                        Me.txtMarketerName.Text = RTrim(CType(objOLEDR("TBIL_CUST_DESC") & vbNullString, String))
+                        Me.txtMarketerPhone.Text = RTrim(CType(objOLEDR("MARKETER_PHONE_NO") & vbNullString, String))
+                        Me.txtMarketerAddress.Text = RTrim(CType(objOLEDR("MARKETER_ADDRESS") & vbNullString, String))
+                        Me.txtMarketerEmail.Text = RTrim(CType(objOLEDR("MARKETER_EMAIL") & vbNullString, String))
+                    End If
+                End If
+                If Not IsDBNull(objOLEDR("TBIL_POLY_AGCY_CODE")) Then
+                    If CType(objOLEDR("TBIL_POLY_AGCY_CODE") & vbNullString, String) <> "" Then
+                        Me.txtMarketerCode.Text = RTrim(CType(objOLEDR("TBIL_POLY_AGCY_CODE") & vbNullString, String))
+                        Me.txtMarketerName.Text = RTrim(CType(objOLEDR("TBIL_AGCY_AGENT_NAME") & vbNullString, String))
+                        Me.txtMarketerPhone.Text = RTrim(CType(objOLEDR("AGENT_PHONE_NO") & vbNullString, String))
+                        Me.txtMarketerAddress.Text = RTrim(CType(objOLEDR("AGENT_ADDRESS") & vbNullString, String))
+                        Me.txtMarketerEmail.Text = RTrim(CType(objOLEDR("AGENT_EMAIL") & vbNullString, String))
+                    End If
+                End If
 
-            If Trim(CoverFrom) <> Trim(CoverTo) Then
-                Me.txtCoverPeriod.Text = RTrim(CType(objOLEDR("ReceiptCoverPeriod") & vbNullString, String))
+                Dim coverperiod As String
+                Dim CoverPeriodArray(2) As String
+                'Me.txtCoverPeriod.Text = RTrim(CType(objOLEDR("ReceiptCoverPeriod") & vbNullString, String))
+                coverperiod = RTrim(CType(objOLEDR("ReceiptCoverPeriod") & vbNullString, String))
+
+                CoverPeriodArray = coverperiod.Split("To")
+
+                Dim CoverFrom As String
+                Dim CoverTo As String
+
+                CoverFrom = Left(Trim(coverperiod), 10)
+                CoverTo = Right(Trim(coverperiod), 10)
+
+                If Trim(CoverFrom) <> Trim(CoverTo) Then
+                    Me.txtCoverPeriod.Text = RTrim(CType(objOLEDR("ReceiptCoverPeriod") & vbNullString, String))
+                Else
+                    Me.txtCoverPeriod.Text = RTrim(CType(objOLEDR("ReceiptCoverPeriodByProplNo") & vbNullString, String))
+                End If
+                'For Renewal date
+                CoverTo = Right(Trim(Me.txtCoverPeriod.Text), 10)
+                myarrData = Split(Trim(CoverTo), ".")
+                CoverEndDate = CDate(Format(Val(myarrData(1)), "00") & "/" & Format(Val(myarrData(0)), "00") & "/" & Format(Val(myarrData(2)), "0000"))
+                If Trim(Me.txtRenewalDate.Text) = "" And Trim(Me.txtCoverPeriod.Text) <> "" Then
+                    Me.txtRenewalDate.Text = Format(DateAdd(DateInterval.Day, 1, CoverEndDate), "dd/MM/yyyy")
+                    myarrData = Split(Trim(txtRenewalDate.Text), "/")
+                    Renew_Date = CDate(Format(Val(myarrData(1)), "00") & "/" & Format(Val(myarrData(0)), "00") & "/" & Format(Val(myarrData(2)), "0000"))
+
+                    Me.txtGracePeriod.Text = Format(DateAdd(DateInterval.Day, 30, Renew_Date), "dd/MM/yyyy")
+                    myarrData = Split(Trim(txtGracePeriod.Text), "/")
+                    GracePeriodDate = CDate(Format(Val(myarrData(1)), "00") & "/" & Format(Val(myarrData(0)), "00") & "/" & Format(Val(myarrData(2)), "0000"))
+                End If
+
+                txtTotalPremDue.Text = Format(CalculateTotalPremDue(txtMop.Text, CDbl(txtPremAmt.Text), GenStart_Date, CurrentDate), "Standard")
+                PolicyStatus()
+                'GetReceiptCoverPeriod(txtPolNum.Text, mop, Me.txtEffDate.Text, mopContrib)
+
+
+
+                'GetReceiptCoverPeriod(txtPolNum.Text, mop, "2014-01-01", mopContrib)
+                Me.cmdNew_ASP.Enabled = True
+                Proc_DataBind()
+                txtPremOutstanding.Text = Format(CDbl(txtTotalPremDue.Text) - CDbl(txtTotalPremPaid.Text), "Standard")
+                strOPT = "2"
+                Me.lblMsg.Text = "Status: Record Retrieved"
+
+
             Else
-                Me.txtCoverPeriod.Text = RTrim(CType(objOLEDR("ReceiptCoverPeriodByProplNo") & vbNullString, String))
+                Select Case UCase(strP_TYPE)
+                    Case "NEW"
+                        'STRMENU_TITLE = "New Proposal"
+                        Me.lblPolNum.Enabled = False
+                        Me.txtPolNum.Enabled = False
+                        Me.cmdGetPol.Enabled = False
+                    Case "CHG"
+                        'STRMENU_TITLE = "Change Mode"
+                        Me.lblMsg.Text = "Sorry!. Unable to get record ..."
+                        FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+                        Me.txtFileNum.Text = ""
+                        Me.lblPolNum.Enabled = True
+                        Me.txtPolNum.Enabled = True
+                        Me.txtPolNum.Text = ""
+                        Me.cmdGetPol.Enabled = True
+                        'Call Proc_DoNew()
+                    Case "DEL"
+                        'STRMENU_TITLE = "Delete Mode"
+                        Me.lblMsg.Text = "Sorry!. Unable to get record ..."
+                        FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
+                        Me.txtFileNum.Text = ""
+                        Me.txtPolNum.Text = ""
+                        ' Call Proc_DoNew()
+                    Case Else
+                        'strP_TYPE = "NEW"
+                        'STRMENU_TITLE = "New Proposal"
+                End Select
+
+                strOPT = "1"
+                Me.lblMsg.Text = "Status: New Entry..."
+
             End If
-
-
-            'GetReceiptCoverPeriod(txtPolNum.Text, mop, Me.txtEffDate.Text, mopContrib)
-
-            'GetReceiptCoverPeriod(txtPolNum.Text, mop, "2014-01-01", mopContrib)
-            Me.cmdNew_ASP.Enabled = True
-            Proc_DataBind()
-            strOPT = "2"
-            Me.lblMsg.Text = "Status: Record Retrieved"
-
-        Else
-            Select Case UCase(strP_TYPE)
-                Case "NEW"
-                    'STRMENU_TITLE = "New Proposal"
-                    Me.lblPolNum.Enabled = False
-                    Me.txtPolNum.Enabled = False
-                    Me.cmdGetPol.Enabled = False
-                Case "CHG"
-                    'STRMENU_TITLE = "Change Mode"
-                    Me.lblMsg.Text = "Sorry!. Unable to get record ..."
-                    FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
-                    Me.txtFileNum.Text = ""
-                    Me.lblPolNum.Enabled = True
-                    Me.txtPolNum.Enabled = True
-                    Me.txtPolNum.Text = ""
-                    Me.cmdGetPol.Enabled = True
-                    'Call Proc_DoNew()
-                Case "DEL"
-                    'STRMENU_TITLE = "Delete Mode"
-                    Me.lblMsg.Text = "Sorry!. Unable to get record ..."
-                    FirstMsg = "Javascript:alert('" & Me.lblMsg.Text & "')"
-                    Me.txtFileNum.Text = ""
-                    Me.txtPolNum.Text = ""
-                    ' Call Proc_DoNew()
-                Case Else
-                    'strP_TYPE = "NEW"
-                    'STRMENU_TITLE = "New Proposal"
-            End Select
-
-            strOPT = "1"
-            Me.lblMsg.Text = "Status: New Entry..."
-
-        End If
-
+        Catch ex As Exception
+            Me.lblMsg.Text = ex.Message
+            Return strErrMsg
+            Exit Function
+        End Try
 
         ' dispose of open objects
         objOLECmd.Dispose()
@@ -599,11 +626,103 @@ Partial Class I_LIFE_PRG_LI_INDV_ENQUIRY
             objOLEConn.Close()
         End If
         objOLEConn = Nothing
-        'Dim P As Integer = 0
+        Dim P As Integer = 0
         'Dim C As Integer = 0
         'C = 0
-        'For P = 0 To Me.GridView1.Rows.Count - 1
-        '    C = C + 1
-        'Next
+        Dim TotalPremPaid = 0
+        If GridView1.Rows.Count > 0 Then
+            For P = 0 To Me.GridView1.Rows.Count - 1
+                TotalPremPaid += GridView1.Rows(0).Cells(3).Text
+            Next
+            txtTotalPremPaid.Text = Format(TotalPremPaid, "Standard")
+        End If
+    End Sub
+
+    Private Function CalculateTotalPremDue(ByVal mop As String, ByVal PremAmt As Double, ByVal StartDate As Date, ByVal CurrentDate As Date) As Double
+        Dim diff As Integer
+        Dim TotPremDue As Double
+        TotPremDue = 0.0
+        If mop = "M" Then
+            diff = DateDiff(DateInterval.Month, StartDate, CurrentDate)
+            TotPremDue = PremAmt * diff
+        ElseIf mop = "Q" Then
+            diff = DateDiff(DateInterval.Quarter, StartDate, CurrentDate)
+            TotPremDue = PremAmt * diff
+        ElseIf mop = "H" Then
+            diff = DateDiff(DateInterval.Month, StartDate, CurrentDate)
+            TotPremDue = PremAmt * (diff / 6)
+        ElseIf mop = "Y" Then
+            diff = DateDiff(DateInterval.Year, StartDate, CurrentDate)
+            TotPremDue = PremAmt * diff
+        ElseIf mop = "S" Then
+            diff = DateDiff(DateInterval.Year, StartDate, CurrentDate)
+            TotPremDue = PremAmt * diff
+        ElseIf mop = "A" Then
+            diff = DateDiff(DateInterval.Year, StartDate, CurrentDate)
+            TotPremDue = PremAmt * diff
+        ElseIf mop = "W" Then
+            diff = DateDiff(DateInterval.Month, StartDate, CurrentDate)
+            TotPremDue = PremAmt * (diff * 4)
+        End If
+        Return TotPremDue
+    End Function
+
+    Protected Sub GridView1_PageIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles GridView1.PageIndexChanged
+
+        '' Get the currently selected row imports the SelectedRow property.
+        'Dim row As GridViewRow = GridView1.SelectedRow
+
+        '' Display the required value from the selected row.
+        'Me.txtRecNo.Text = row.Cells(2).Text
+
+        ''Me.txtGroupNum.Text = row.Cells(3).Text
+        ''Call Proc_DDL_Get(Me.ddlGroup, RTrim(Me.txtGroupNum.Text))
+
+        ''Me.txtNum.Text = row.Cells(4).Text
+        ''Call Proc_DDL_Get(Me.ddlGroup, RTrim(Me.txtNum.Text))
+
+        'strStatus = Proc_DoOpenRecord(RTrim("FIL"), Me.txtFileNum.Text, Val(RTrim(Me.txtRecNo.Text)))
+
+        'lblMsg.Text = "You selected " & Me.txtFileNum.Text & " / " & Me.txtRecNo.Text & "."
+    End Sub
+
+    Protected Sub GridView1_RowDataBound(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewRowEventArgs) Handles GridView1.RowDataBound
+        'format fields
+        Dim ea As GridViewRowEventArgs = CType(e, GridViewRowEventArgs)
+        If (ea.Row.RowType = DataControlRowType.DataRow) Then
+            Dim drv As Date = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "TBFN_ACCT_CHQ_INWARD_DATE"))
+
+            If Not Convert.IsDBNull(drv) Then
+                Dim iParsedValue As Date = #2/4/2016#
+                If Date.TryParse(drv.ToString, iParsedValue) Then
+                    Dim cell As TableCell = ea.Row.Cells(7)
+                    If drv <> #1/1/2014# Then
+                        cell.Text = String.Format(System.Globalization.CultureInfo.CurrentCulture, "{0:dd/MM/yyyy}", New Object() {iParsedValue})
+                    Else
+                        cell.Text = ""
+                    End If
+                End If
+            End If
+        End If
+    End Sub
+    Private Sub PolicyStatus()
+        If CurrentDate <= GenEnd_Date Then
+            If CurrentDate = CoverEndDate Or CurrentDate <= Renew_Date Then
+                txtPolStatus.Text = "Inforce"
+            ElseIf CurrentDate > Renew_Date And CurrentDate <= GracePeriodDate Then
+                txtPolStatus.Text = "Grace"
+            Else
+                txtPolStatus.Text = "Lapsed"
+            End If
+        Else
+            txtPolStatus.Text = "Matured"
+        End If
+    End Sub
+
+    Protected Sub GridView1_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles GridView1.SelectedIndexChanged
+        Dim row As GridViewRow = GridView1.SelectedRow
+
+        ' Display the required value from the selected row.
+        Dim ReceiptNo = row.Cells(1).Text
     End Sub
 End Class

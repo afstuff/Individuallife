@@ -341,14 +341,14 @@ Partial Class I_LIFE_MENU_IL
                 'AddMenuItem("", "Policies Agents Report", "PRG_POLICIES_AGENTS_RPT.aspx") Only Individual
 
 
-                Dim myUserIDX As String = ""
+                Dim UserRole As String = ""
                 Try
-                    myUserIDX = CType(Session("MyUserIDX"), String)
+                    UserRole = CType(Session("MyUserRole"), String)
                 Catch ex As Exception
-                    myUserIDX = ""
+                    UserRole = ""
                 End Try
 
-                If myUserIDX = "SAli" Then
+                If UserRole = "Administrator" Or UserRole = "Data Manager" Then
                     AddMenuItem("", "Policies Agents Report", "RPT_LI_POLICY_AGENT.aspx") 'Include both Annuity and Individual
                 End If
 
