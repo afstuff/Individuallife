@@ -216,7 +216,7 @@ Partial Class I_LIFE_PRG_LI_INDV_ENQUIRY
                 'Me.txtCoverPeriod.Text = RTrim(CType(objOLEDR("ReceiptCoverPeriod") & vbNullString, String))
                 coverperiod = RTrim(CType(objOLEDR("ReceiptCoverPeriod") & vbNullString, String))
 
-                CoverPeriodArray = coverperiod.Split("To")
+                '  CoverPeriodArray = coverperiod.Split("To")
 
                 Dim CoverFrom As String
                 Dim CoverTo As String
@@ -230,23 +230,25 @@ Partial Class I_LIFE_PRG_LI_INDV_ENQUIRY
                     Me.txtCoverPeriod.Text = RTrim(CType(objOLEDR("ReceiptCoverPeriodByProplNo") & vbNullString, String))
                 End If
                 'For Renewal date
+                CoverFrom = Left(Trim(Me.txtCoverPeriod.Text), 10)
                 CoverTo = Right(Trim(Me.txtCoverPeriod.Text), 10)
-                myarrData = Split(Trim(CoverTo), ".")
-                CoverEndDate = CDate(Format(Val(myarrData(1)), "00") & "/" & Format(Val(myarrData(0)), "00") & "/" & Format(Val(myarrData(2)), "0000"))
-                If Trim(Me.txtRenewalDate.Text) = "" And Trim(Me.txtCoverPeriod.Text) <> "" Then
-                    Me.txtRenewalDate.Text = Format(DateAdd(DateInterval.Day, 1, CoverEndDate), "dd/MM/yyyy")
-                    myarrData = Split(Trim(txtRenewalDate.Text), "/")
-                    Renew_Date = CDate(Format(Val(myarrData(1)), "00") & "/" & Format(Val(myarrData(0)), "00") & "/" & Format(Val(myarrData(2)), "0000"))
+                If InStr(CoverFrom, ".") Then
+                    myarrData = Split(Trim(CoverTo), ".")
+                    CoverEndDate = CDate(Format(Val(myarrData(1)), "00") & "/" & Format(Val(myarrData(0)), "00") & "/" & Format(Val(myarrData(2)), "0000"))
+                    If Trim(Me.txtRenewalDate.Text) = "" And Trim(Me.txtCoverPeriod.Text) <> "" Then
+                        Me.txtRenewalDate.Text = Format(DateAdd(DateInterval.Day, 1, CoverEndDate), "dd/MM/yyyy")
+                        myarrData = Split(Trim(txtRenewalDate.Text), "/")
+                        Renew_Date = CDate(Format(Val(myarrData(1)), "00") & "/" & Format(Val(myarrData(0)), "00") & "/" & Format(Val(myarrData(2)), "0000"))
 
-                    Me.txtGracePeriod.Text = Format(DateAdd(DateInterval.Day, 30, Renew_Date), "dd/MM/yyyy")
-                    myarrData = Split(Trim(txtGracePeriod.Text), "/")
-                    GracePeriodDate = CDate(Format(Val(myarrData(1)), "00") & "/" & Format(Val(myarrData(0)), "00") & "/" & Format(Val(myarrData(2)), "0000"))
+                        Me.txtGracePeriod.Text = Format(DateAdd(DateInterval.Day, 30, Renew_Date), "dd/MM/yyyy")
+                        myarrData = Split(Trim(txtGracePeriod.Text), "/")
+                        GracePeriodDate = CDate(Format(Val(myarrData(1)), "00") & "/" & Format(Val(myarrData(0)), "00") & "/" & Format(Val(myarrData(2)), "0000"))
+                    End If
+                    PolicyStatus()
+                    'GetReceiptCoverPeriod(txtPolNum.Text, mop, Me.txtEffDate.Text, mopContrib)
                 End If
 
                 txtTotalPremDue.Text = Format(CalculateTotalPremDue(txtMop.Text, CDbl(txtPremAmt.Text), GenStart_Date, CurrentDate), "Standard")
-                PolicyStatus()
-                'GetReceiptCoverPeriod(txtPolNum.Text, mop, Me.txtEffDate.Text, mopContrib)
-
 
 
                 'GetReceiptCoverPeriod(txtPolNum.Text, mop, "2014-01-01", mopContrib)
@@ -650,7 +652,8 @@ Partial Class I_LIFE_PRG_LI_INDV_ENQUIRY
             TotPremDue = PremAmt * diff
         ElseIf mop = "H" Then
             diff = DateDiff(DateInterval.Month, StartDate, CurrentDate)
-            TotPremDue = PremAmt * (diff / 6)
+            diff = diff / 6
+            TotPremDue = PremAmt * diff
         ElseIf mop = "Y" Then
             diff = DateDiff(DateInterval.Year, StartDate, CurrentDate)
             TotPremDue = PremAmt * diff
@@ -706,10 +709,16 @@ Partial Class I_LIFE_PRG_LI_INDV_ENQUIRY
         End If
     End Sub
     Private Sub PolicyStatus()
+        Dim GracePeriodEnddate As Date
+        GracePeriodEnddate = DateAdd(DateInterval.Day, 30, GracePeriodDate)
         If CurrentDate <= GenEnd_Date Then
             If CurrentDate = CoverEndDate Or CurrentDate <= Renew_Date Then
                 txtPolStatus.Text = "Inforce"
-            ElseIf CurrentDate > Renew_Date And CurrentDate <= GracePeriodDate Then
+                ' ElseIf CurrentDate > Renew_Date And CurrentDate <= GracePeriodDate Then
+                'txtPolStatus.Text = "Grace"
+            ElseIf CurrentDate > Renew_Date And CurrentDate < GracePeriodDate Then
+                txtPolStatus.Text = "Renewal"
+            ElseIf CurrentDate <= GracePeriodEnddate Then
                 txtPolStatus.Text = "Grace"
             Else
                 txtPolStatus.Text = "Lapsed"

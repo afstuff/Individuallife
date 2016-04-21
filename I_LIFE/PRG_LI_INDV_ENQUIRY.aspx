@@ -463,7 +463,7 @@
                                                 ItemStyle-Width="120px" HeaderStyle-HorizontalAlign="Left" ConvertEmptyStringToNull="true" />--%>
                                             <asp:HyperLinkField DataTextField="TBFN_ACCT_DOC_NO" DataNavigateUrlFields="TBFN_ACCT_DOC_NO"
                                                 DataNavigateUrlFormatString="PRG_LI_INDV_RECEIPT.aspx?idd={0}" ItemStyle-Width="70px"
-                                                HeaderText="Receipt No" HeaderStyle-CssClass="DocNum" ItemStyle-CssClass="DocNum">
+                                                HeaderText="Receipt No" ItemStyle-CssClass="DocNum">
                                                 <ItemStyle CssClass="DocNum"></ItemStyle>
                                             </asp:HyperLinkField>
                                             <asp:BoundField ReadOnly="true" DataField="TBFN_ACCT_PAYER_PAYEE_NAME" HeaderText="Payee Name"
