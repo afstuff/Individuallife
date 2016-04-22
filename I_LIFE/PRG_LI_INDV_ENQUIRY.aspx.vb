@@ -47,9 +47,32 @@ Partial Class I_LIFE_PRG_LI_INDV_ENQUIRY
         End If
     End Sub
     Protected Sub cmdSearch_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdSearch.Click
-        If LTrim(RTrim(Me.txtSearch.Value)) = "Search..." Then
-        ElseIf LTrim(RTrim(Me.txtSearch.Value)) <> "" Then
-            Call gnProc_Populate_Box("IL_ASSURED_HELP_SP", "001", Me.cboSearch, RTrim(Me.txtSearch.Value))
+        'If LTrim(RTrim(Me.txtSearch.Value)) = "Search..." Then
+        '     ElseIf LTrim(RTrim(Me.txtSearch.Value)) <> "" Then
+        'ElseIf LTrim(RTrim(Me.txtSearch.Value)) <> "" Then
+        '    Call gnProc_Populate_Box("IL_ASSURED_HELP_SP", "001", Me.cboSearch, RTrim(Me.txtSearch.Value), )
+        'End If
+        lblMsg.Text = ""
+        cboSearch.Items.Clear()
+        Dim MyBirthDate As String
+        If Trim(Me.txtSearch.Value) = "Search..." Then
+
+        ElseIf Trim(txtDob.Value) = "dd/mm/yyyy" And Trim(Me.txtSearch.Value) <> "Search..." Then
+            Call gnProc_Populate_Box("IL_ASSURED_HELP_SP", "001", Me.cboSearch, Trim(Me.txtSearch.Value))
+        Else
+            Dim str() As String
+            str = DoDate_Process(txtDob.Value, txtDob)
+            If (str(2) = Nothing) Then
+                Dim errMsg = str(0).Insert(18, " Date of Birth, ")
+                lblMsg.Text = errMsg.Replace("Javascript:alert('", "").Replace("');", "")
+                lblMsg.Visible = True
+                txtDob.Focus()
+                Exit Sub
+            Else
+                myarrData = Split(Trim(txtDob.Value), "/")
+                MyBirthDate = myarrData(1) & "/" & myarrData(0) & "/" & myarrData(2)
+                Call gnProc_Populate_Box("IL_ASSURED_HELP_SP", "001", Me.cboSearch, Trim(Me.txtSearch.Value), MyBirthDate)
+            End If
         End If
     End Sub
     Protected Sub cboSearch_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboSearch.SelectedIndexChanged
@@ -557,7 +580,7 @@ Partial Class I_LIFE_PRG_LI_INDV_ENQUIRY
     End Sub
     Private Sub Proc_DataBind()
         'Me.cmdDelItem.Enabled = True
-
+        txtTotalPremPaid.Text = 0.0
         Dim mystrCONN As String = CType(Session("connstr"), String)
         Dim objOLEConn As New OleDbConnection(mystrCONN)
 

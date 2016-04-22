@@ -1407,7 +1407,7 @@ gnGet_SN_End:
 
 
     Public Sub gnPopulate_DropDownList(ByVal pvCODE As String, ByVal pvcboDDList As DropDownList, Optional ByVal pvSQL As String = "", _
-                                       Optional ByVal pvWhere As String = "", Optional ByVal pvDefault_Text As String = "** Select item **", Optional ByVal pvDefault_Value As String = "*")
+                                       Optional ByVal pvWhere As String = "", Optional ByVal pvDefault_Text As String = "** Select item **", Optional ByVal pvDefault_Value As String = "*", Optional ByVal pvWhere2 As String = "")
 
         Dim pvListItem = New ListItem
         Dim pvstrTableName As String = ""
@@ -1551,7 +1551,7 @@ gnGet_SN_End:
                 objOLECmd.CommandType = Data.CommandType.StoredProcedure
                 objOLECmd.Parameters.Add("p01", OleDbType.VarChar, 3).Value = RTrim("I")
                 objOLECmd.Parameters.Add("p02", OleDbType.VarChar, 50).Value = RTrim(pvWhere)
-                objOLECmd.Parameters.Add("p03", OleDbType.VarChar, 50).Value = RTrim(pvWhere)
+                objOLECmd.Parameters.Add("p03", OleDbType.VarChar, 50).Value = RTrim(pvWhere2)
             Case "AN_ASSURED_HELP_SP"
                 objOLECmd.Parameters.Clear()
                 objOLECmd.CommandType = Data.CommandType.StoredProcedure
@@ -1681,7 +1681,7 @@ gnGet_SN_End:
     End Sub
 
 
-    Public Sub gnProc_Populate_Box(ByVal pvCODE As String, ByVal pvTransType As String, ByVal pvcboList As DropDownList, Optional ByVal pvSearchValue As String = "")
+    Public Sub gnProc_Populate_Box(ByVal pvCODE As String, ByVal pvTransType As String, ByVal pvcboList As DropDownList, Optional ByVal pvSearchValue As String = "", Optional ByVal pvSearchValue2 As String = "")
         'Populate box with codes
 
         Dim strTable As String = ""
@@ -1894,7 +1894,7 @@ gnGet_SN_End:
                 strTable = "TBIL_POLICY_DET"
                 strSQL = ""
                 strSQL = RTrim("SPIL_GET_INSURED")
-                Call gnPopulate_DropDownList(pvCODE, pvcboList, strSQL, RTrim(pvSearchValue), "* select insured *", "*")
+                Call gnPopulate_DropDownList(pvCODE, pvcboList, strSQL, RTrim(pvSearchValue), "* select insured *", "*", pvSearchValue2)
 
             Case "AN_ASSURED_HELP_SP"
                 strTable = "TBIL_ANN_POLICY_DET"

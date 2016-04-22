@@ -137,7 +137,13 @@
                                 &nbsp;&nbsp;Find Insured Name:&nbsp;
                                 <input type="text" id="txtSearch" name="txtSearch" value="Search..." runat="server"
                                     onfocus="if (this.value == 'Search...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search...';}" />
-                                &nbsp;<asp:Button ID="cmdSearch" Text="Search" runat="server" />
+                                &nbsp;&nbsp;&nbsp;
+                                Date of Birth:&nbsp;
+                                <input type="text" id="txtDob" name="txtSearch" value="dd/mm/yyyy" 
+                                    runat="server" size="10"  onfocus="if (this.value == 'dd/mm/yyyy') {this.value = '';}" onblur="if (this.value == '') {this.value = 'dd/mm/yyyy';}" />
+                                &nbsp;
+                                <asp:Button ID="cmdSearch" Text="Search" runat="server" />
+                                
                                 &nbsp;<asp:DropDownList ID="cboSearch" AutoPostBack="true" Width="150px" runat="server">
                                 </asp:DropDownList>
                             </td>
