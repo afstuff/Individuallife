@@ -153,6 +153,10 @@ Partial Class I_LIFE_MENU_IL
                 AddMenuItem("", "Agents/Brokers Category Setup", "PRG_LI_BRK_CAT.aspx?optid=001&optd=Brokers_Agents_Category")
                 AddMenuItem("", "Agency/Brokers Details", "PRG_LI_BRK_DTL.aspx?optid=001&optd=Brokers_Agents_Details")
                 AddMenuItem("", "Marketers Codes Setup (Agencies)", "PRG_LI_MKT_CD.aspx?optid=001&optd=Marketers_Agency")
+
+                AddMenuItem("", "Agent Profile", "PRG_LI_AGENT_PROFILE.aspx")
+                AddMenuItem("", "Agent Hierarchy", "PRG_LI_AGENT_HIERARCHY.aspx")
+
                 AddMenuItem("", "Contractor Details", "")
                 AddMenuItem("", "", "") 'blank link
                 AddMenuItem("", "UNDER_LINE", "") 'blank link
