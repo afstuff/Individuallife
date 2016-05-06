@@ -111,6 +111,16 @@
         {
             text-decoration: underline;
         }
+         .SearchFont
+        {
+            font-size:10px;
+             padding:0px;
+        }
+         .SearchRow
+        {
+         height:10px !important;
+         padding:0px;
+        }
     </style>
 </head>
 <body onload="<%= FirstMsg %>">
@@ -495,6 +505,18 @@
                                     </asp:GridView>
                                 </div>
                             </td>
+                        </tr>
+                        <tr class="SearchRow">
+                            <td align="left" valign="top" class="SearchFont">
+                                Receipt Mode:</td>
+                            <td align="left" valign="top" colspan="3" class="SearchFont">
+                                T=Teller, C=Cash, Q=Cheque, D=Direct Payment</td>
+                        </tr>
+                        <tr class="SearchRow">
+                            <td align="left" valign="top" class="SearchFont">
+                                Receipt Type:</td>
+                            <td align="left" valign="top" colspan="3" class="SearchFont">
+                                P=Regular Premium, D=Premium Deposit</td>
                         </tr>
                     </table>
                 </td>

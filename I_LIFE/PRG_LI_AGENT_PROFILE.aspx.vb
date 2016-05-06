@@ -1460,9 +1460,9 @@ Partial Class I_LIFE_PRG_LI_AGENT_PROFILE
         End If
     End Sub
     Protected Sub cmdSearch_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdSearch.Click
-        If LTrim(RTrim(Me.txtDobSearch.Text)) = "" Then
-        ElseIf LTrim(RTrim(Me.txtDobSearch.Text)) <> "" Then
-            MySearchValue = txtDobSearch.Text
+        MySearchValue = ""
+        If LTrim(RTrim(Me.txtDobSearch.Text)) <> "" Then
+            'MySearchValue = txtDobSearch.Text
             Dim str() As String
             str = DoDate_Process(Trim(Me.txtDobSearch.Text), txtDobSearch)
             If (str(2) = Nothing) Then
@@ -1475,55 +1475,87 @@ Partial Class I_LIFE_PRG_LI_AGENT_PROFILE
                 'myarrData = Split(Trim(txtSearch.Value), "/")
                 MySearchValue = DoConvertToDbDateFormat(Trim(Me.txtDobSearch.Text))
             End If
-
-            cboSearch.Items.Clear()
-            cboSearch.Items.Add("* Select Agent *")
-            Dim dt As DataTable = SearchAgent(MySearchValue, Trim(txtAgtNameSearch.Text), Trim(txtEplatformSearch.Text), _
-                                              Trim(txtMobileSearch.Text)).Tables(0)
-            cboSearch.DataSource = dt
-            cboSearch.DataValueField = "MyFieldValue"
-            cboSearch.DataTextField = "MyFiledText"
-            cboSearch.DataBind()
         End If
+
+        cboSearch.Items.Clear()
+        cboSearch.Items.Add("* Select Agent *")
+        Dim dt As DataTable = SearchAgent(MySearchValue, Trim(txtAgtNameSearch.Text), Trim(txtEplatformSearch.Text), _
+                                          Trim(txtMobileSearch.Text)).Tables(0)
+        cboSearch.DataSource = dt
+        cboSearch.DataValueField = "MyFieldValue"
+        cboSearch.DataTextField = "MyFiledText"
+        cboSearch.DataBind()
     End Sub
     Private Function SearchAgent(ByVal dob As String, ByVal name As String, ByVal eplatform As String, ByVal mobile As String) As DataSet
-        Dim FieldName As String
-        'If (searchby = "dob") Then
-        '    FieldName = "TBIL_AGCY_AGENT_DOB"
-        'ElseIf (searchby = "name") Then
-        '    FieldName = "TBIL_AGCY_AGENT_NAME"
-        'ElseIf (searchby = "eplatform") Then
-        '    FieldName = "TBIL_AGCY_EPLAT_AGT_CODE"
-        'ElseIf (searchby = "mobile") Then
-        '    FieldName = "TBIL_AGENT_PHONE1"
-        'End If
         strTable = strTableName
         strSQL = ""
         strSQL = strSQL & "SELECT AG.TBIL_AGCY_NEW_AGENT_CD as MyFieldValue, AG.TBIL_AGCY_AGENT_NAME as MyFiledText"
         strSQL = strSQL & " FROM " & strTable & " as AG "
-        strSQL = strSQL & " WHERE AG.TBIL_AGCY_AGENT_DOB = '" & Convert.ToDateTime(RTrim(dob)) & "'"
 
-        If name <> "" And eplatform = "" And mobile = "" Then
+
+        If dob <> "" And name = "" And eplatform = "" And mobile = "" Then
+            strSQL = strSQL & " WHERE AG.TBIL_AGCY_AGENT_DOB = '" & Convert.ToDateTime(RTrim(dob)) & "'"
+
+        ElseIf name <> "" And dob = "" And eplatform = "" And mobile = "" Then
+            strSQL = strSQL & " WHERE AG.TBIL_AGCY_AGENT_NAME LIKE '%" & RTrim(name) & "%'"
+
+        ElseIf eplatform <> "" And dob = "" And name = "" And mobile = "" Then
+            strSQL = strSQL & " WHERE AG.TBIL_AGCY_EPLAT_AGT_CODE = '" & RTrim(eplatform) & "'"
+
+        ElseIf mobile <> "" And dob = "" And name = "" And eplatform = "" Then
+            strSQL = strSQL & " WHERE AG.TBIL_AGENT_PHONE1 = '" & RTrim(mobile) & "'"
+            '1st test end
+
+        ElseIf dob <> "" And name <> "" And eplatform = "" And mobile = "" Then
+            strSQL = strSQL & " WHERE AG.TBIL_AGCY_AGENT_DOB = '" & Convert.ToDateTime(RTrim(dob)) & "'"
             strSQL = strSQL & " AND AG.TBIL_AGCY_AGENT_NAME LIKE '%" & RTrim(name) & "%'"
 
-        ElseIf eplatform <> "" And name = "" And mobile = "" Then
+        ElseIf dob <> "" And eplatform <> "" And name = "" And mobile = "" Then
+            strSQL = strSQL & " WHERE AG.TBIL_AGCY_AGENT_DOB = '" & Convert.ToDateTime(RTrim(dob)) & "'"
             strSQL = strSQL & " AND AG.TBIL_AGCY_EPLAT_AGT_CODE = '" & RTrim(eplatform) & "'"
 
-        ElseIf mobile <> "" And name = "" And eplatform = "" Then
+        ElseIf dob <> "" And mobile <> "" And name = "" And eplatform = "" Then
+            strSQL = strSQL & " WHERE AG.TBIL_AGCY_AGENT_DOB = '" & Convert.ToDateTime(RTrim(dob)) & "'"
             strSQL = strSQL & " AND AG.TBIL_AGENT_PHONE1 = '" & RTrim(mobile) & "'"
 
-        ElseIf name <> "" And eplatform <> "" And mobile = "" Then
+
+        ElseIf name <> "" And eplatform <> "" And dob = "" And mobile = "" Then
+            strSQL = strSQL & " WHERE  AG.TBIL_AGCY_AGENT_NAME LIKE '%" & RTrim(name) & "%'"
+            strSQL = strSQL & " AND AG.TBIL_AGCY_EPLAT_AGT_CODE = '" & RTrim(eplatform) & "'"
+
+        ElseIf name <> "" And mobile <> "" And dob = "" And eplatform = "" Then
+            strSQL = strSQL & " WHERE  AG.TBIL_AGCY_AGENT_NAME LIKE '%" & RTrim(name) & "%'"
+            strSQL = strSQL & " AND AG.TBIL_AGENT_PHONE1 = '" & RTrim(mobile) & "'"
+
+
+        ElseIf eplatform <> "" And mobile <> "" And dob = "" And name = "" Then
+            strSQL = strSQL & " WHERE AG.TBIL_AGCY_EPLAT_AGT_CODE = '" & RTrim(eplatform) & "'"
+            strSQL = strSQL & " AND AG.TBIL_AGENT_PHONE1 = '" & RTrim(mobile) & "'"
+            '2nd test end
+ 
+        ElseIf dob <> "" And name <> "" And eplatform <> "" And mobile = "" Then
+            strSQL = strSQL & " WHERE AG.TBIL_AGCY_AGENT_DOB = '" & Convert.ToDateTime(RTrim(dob)) & "'"
             strSQL = strSQL & " AND AG.TBIL_AGCY_AGENT_NAME LIKE '%" & RTrim(name) & "%'"
             strSQL = strSQL & " AND AG.TBIL_AGCY_EPLAT_AGT_CODE = '" & RTrim(eplatform) & "'"
 
-        ElseIf name <> "" And mobile <> "" And eplatform = "" Then
+        ElseIf dob <> "" And name <> "" And mobile <> "" And eplatform = "" Then
+            strSQL = strSQL & " WHERE AG.TBIL_AGCY_AGENT_DOB = '" & Convert.ToDateTime(RTrim(dob)) & "'"
             strSQL = strSQL & " AND AG.TBIL_AGCY_AGENT_NAME LIKE '%" & RTrim(name) & "%'"
             strSQL = strSQL & " AND AG.TBIL_AGENT_PHONE1 = '" & RTrim(mobile) & "'"
 
-        ElseIf eplatform <> "" And mobile <> "" And name = "" Then
+        ElseIf dob <> "" And eplatform <> "" And mobile <> "" And name = "" Then
+            strSQL = strSQL & " WHERE AG.TBIL_AGCY_AGENT_DOB = '" & Convert.ToDateTime(RTrim(dob)) & "'"
             strSQL = strSQL & " AND AG.TBIL_AGCY_EPLAT_AGT_CODE = '" & RTrim(eplatform) & "'"
             strSQL = strSQL & " AND AG.TBIL_AGENT_PHONE1 = '" & RTrim(mobile) & "'"
-        ElseIf name <> "" And eplatform <> "" And mobile <> "" Then
+
+        ElseIf name <> "" And eplatform <> "" And mobile <> "" And dob = "" Then
+            strSQL = strSQL & " WHERE AG.TBIL_AGCY_AGENT_NAME LIKE '%" & RTrim(name) & "%'"
+            strSQL = strSQL & " AND AG.TBIL_AGCY_EPLAT_AGT_CODE = '" & RTrim(eplatform) & "'"
+            strSQL = strSQL & " AND AG.TBIL_AGENT_PHONE1 = '" & RTrim(mobile) & "'"
+            '3rd test end
+
+        ElseIf dob <> "" And name <> "" And eplatform <> "" And mobile <> "" Then
+            strSQL = strSQL & " WHERE AG.TBIL_AGCY_AGENT_DOB = '" & Convert.ToDateTime(RTrim(dob)) & "'"
             strSQL = strSQL & " AND AG.TBIL_AGCY_AGENT_NAME LIKE '%" & RTrim(name) & "%'"
             strSQL = strSQL & " AND AG.TBIL_AGCY_EPLAT_AGT_CODE = '" & RTrim(eplatform) & "'"
             strSQL = strSQL & " AND AG.TBIL_AGENT_PHONE1 = '" & RTrim(mobile) & "'"
@@ -1549,26 +1581,39 @@ Partial Class I_LIFE_PRG_LI_AGENT_PROFILE
         End Try
         Return Nothing
     End Function
-    'Private Function SearchAgent(ByVal searchby As String, ByVal searchval As String) As DataSet
-    '    Dim FieldName As String
-    '    If (searchby = "dob") Then
-    '        FieldName = "TBIL_AGCY_AGENT_DOB"
-    '    ElseIf (searchby = "name") Then
-    '        FieldName = "TBIL_AGCY_AGENT_NAME"
-    '    ElseIf (searchby = "eplatform") Then
-    '        FieldName = "TBIL_AGCY_EPLAT_AGT_CODE"
-    '    ElseIf (searchby = "mobile") Then
-    '        FieldName = "TBIL_AGENT_PHONE1"
-    '    End If
+
+
+    'Private Function SearchAgent(ByVal dob As String, ByVal name As String, ByVal eplatform As String, ByVal mobile As String) As DataSet
     '    strTable = strTableName
     '    strSQL = ""
-    '    strSQL = strSQL & "SELECT AG.TBIL_AGCY_AGENT_CD as MyFieldValue, AG.TBIL_AGCY_AGENT_NAME as MyFiledText"
+    '    strSQL = strSQL & "SELECT AG.TBIL_AGCY_NEW_AGENT_CD as MyFieldValue, AG.TBIL_AGCY_AGENT_NAME as MyFiledText"
     '    strSQL = strSQL & " FROM " & strTable & " as AG "
+    '    strSQL = strSQL & " WHERE AG.TBIL_AGCY_AGENT_DOB = '" & Convert.ToDateTime(RTrim(dob)) & "'"
 
-    '    If searchby <> "dob" Then
-    '        strSQL = strSQL & " WHERE AG." & FieldName & " LIKE '%" & RTrim(searchval) & "%'"
-    '    Else
-    '        strSQL = strSQL & " WHERE AG." & FieldName & " = '" & Convert.ToDateTime(RTrim(searchval)) & "'"
+    '    If name <> "" And eplatform = "" And mobile = "" Then
+    '        strSQL = strSQL & " AND AG.TBIL_AGCY_AGENT_NAME LIKE '%" & RTrim(name) & "%'"
+
+    '    ElseIf eplatform <> "" And name = "" And mobile = "" Then
+    '        strSQL = strSQL & " AND AG.TBIL_AGCY_EPLAT_AGT_CODE = '" & RTrim(eplatform) & "'"
+
+    '    ElseIf mobile <> "" And name = "" And eplatform = "" Then
+    '        strSQL = strSQL & " AND AG.TBIL_AGENT_PHONE1 = '" & RTrim(mobile) & "'"
+
+    '    ElseIf name <> "" And eplatform <> "" And mobile = "" Then
+    '        strSQL = strSQL & " AND AG.TBIL_AGCY_AGENT_NAME LIKE '%" & RTrim(name) & "%'"
+    '        strSQL = strSQL & " AND AG.TBIL_AGCY_EPLAT_AGT_CODE = '" & RTrim(eplatform) & "'"
+
+    '    ElseIf name <> "" And mobile <> "" And eplatform = "" Then
+    '        strSQL = strSQL & " AND AG.TBIL_AGCY_AGENT_NAME LIKE '%" & RTrim(name) & "%'"
+    '        strSQL = strSQL & " AND AG.TBIL_AGENT_PHONE1 = '" & RTrim(mobile) & "'"
+
+    '    ElseIf eplatform <> "" And mobile <> "" And name = "" Then
+    '        strSQL = strSQL & " AND AG.TBIL_AGCY_EPLAT_AGT_CODE = '" & RTrim(eplatform) & "'"
+    '        strSQL = strSQL & " AND AG.TBIL_AGENT_PHONE1 = '" & RTrim(mobile) & "'"
+    '    ElseIf name <> "" And eplatform <> "" And mobile <> "" Then
+    '        strSQL = strSQL & " AND AG.TBIL_AGCY_AGENT_NAME LIKE '%" & RTrim(name) & "%'"
+    '        strSQL = strSQL & " AND AG.TBIL_AGCY_EPLAT_AGT_CODE = '" & RTrim(eplatform) & "'"
+    '        strSQL = strSQL & " AND AG.TBIL_AGENT_PHONE1 = '" & RTrim(mobile) & "'"
     '    End If
     '    strSQL = strSQL & " ORDER BY RTRIM(ISNULL(AG.TBIL_AGCY_AGENT_NAME,''))"
 

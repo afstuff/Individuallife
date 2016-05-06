@@ -423,7 +423,11 @@ Partial Class I_LIFE_PRG_LI_INDV_ENQUIRY
         Me.txtMarketerPhone.Text = ""
         Me.txtMarketerAddress.Text = ""
         Me.txtMarketerEmail.Text = ""
-
+        Me.txtGracePeriod.Text = ""
+        Me.txtPolStatus.Text = ""
+        Me.txtTotalPremDue.Text = ""
+        Me.txtTotalPremPaid.Text = ""
+        Me.txtPremOutstanding.Text = ""
         cboProductClass.SelectedIndex = -1
 
         GridView1.DataSource = Nothing
@@ -733,15 +737,31 @@ Partial Class I_LIFE_PRG_LI_INDV_ENQUIRY
     End Sub
     Private Sub PolicyStatus()
         Dim GracePeriodEnddate As Date
-        GracePeriodEnddate = DateAdd(DateInterval.Day, 30, GracePeriodDate)
+        ' GracePeriodEnddate = DateAdd(DateInterval.Day, 30, GracePeriodDate)
+        'If CurrentDate <= GenEnd_Date Then
+        '    If CurrentDate = CoverEndDate Or CurrentDate <= Renew_Date Then
+        '        txtPolStatus.Text = "Inforce"
+        '        ' ElseIf CurrentDate > Renew_Date And CurrentDate <= GracePeriodDate Then
+        '        'txtPolStatus.Text = "Grace"
+        '    ElseIf CurrentDate > Renew_Date And CurrentDate < GracePeriodDate Then
+        '        txtPolStatus.Text = "Renewal"
+        '    ElseIf CurrentDate <= GracePeriodEnddate Then
+        '        txtPolStatus.Text = "Grace"
+        '    Else
+        '        txtPolStatus.Text = "Lapsed"
+        '    End If
+        'Else
+        '    txtPolStatus.Text = "Matured"
+        'End If
+
         If CurrentDate <= GenEnd_Date Then
-            If CurrentDate = CoverEndDate Or CurrentDate <= Renew_Date Then
+            If CurrentDate = CoverEndDate Or CurrentDate < Renew_Date Then
                 txtPolStatus.Text = "Inforce"
                 ' ElseIf CurrentDate > Renew_Date And CurrentDate <= GracePeriodDate Then
                 'txtPolStatus.Text = "Grace"
-            ElseIf CurrentDate > Renew_Date And CurrentDate < GracePeriodDate Then
+            ElseIf CurrentDate = Renew_Date Then
                 txtPolStatus.Text = "Renewal"
-            ElseIf CurrentDate <= GracePeriodEnddate Then
+            ElseIf CurrentDate > Renew_Date And CurrentDate <= GracePeriodDate Then
                 txtPolStatus.Text = "Grace"
             Else
                 txtPolStatus.Text = "Lapsed"
