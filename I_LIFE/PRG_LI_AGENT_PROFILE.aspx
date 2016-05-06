@@ -112,7 +112,6 @@
                                     
                                     <tr>
                                         <td align="center" colspan="4" valign="top">
-                                            &nbsp;&nbsp;<a href="#" onclick="javascript:JSDO_RETURN('PRG_LI_PROP_POLICY.aspx?menu=IL_QUOTE')">Go to Menu</a>
                                             &nbsp;&nbsp;<asp:Button ID="cmdPrev" CssClass="cmd_butt" Enabled="false" Text="«..Previous" runat="server" />
                                             &nbsp;&nbsp;<asp:button id="cmdNew_ASP" CssClass="cmd_butt" runat="server" text="New Data" OnClientClick="JSNew_ASP();"></asp:button>
                                             &nbsp;&nbsp;<asp:button id="cmdSave_ASP" CssClass="cmd_butt" runat="server" text="Save Data"></asp:button>
@@ -230,6 +229,8 @@
                                                 <td align="left" valign="top"><asp:Label ID="lblDOB" Text="Date of Birth:" runat="server"></asp:Label></td>
                                                 <td align="left" valign="top" colspan="1" >                                                    
                                                     <asp:TextBox ID="txtDOB" Width="119px" runat="server"></asp:TextBox>
+                                                    <asp:Label ID="lblTrans_Date_Format0" Text="dd/mm/yyyy" runat="server"></asp:Label>
+                                                    
                                                     </td>
                                                 <td align="left" valign="top" colspan="5" ><asp:Label ID="lblGender" Text="Gender:" runat="server"></asp:Label></td>
                                                 <td align="left" valign="top" colspan="1" >                                                    
@@ -553,7 +554,7 @@
                                         </td>
                                         <td align="left" valign="top" colspan="1">
                                                     <asp:TextBox ID="txtNaicomLicensePrinName" Enabled="true" 
-                                                MaxLength="25" Width="220px" runat="server" AutoPostBack="True"></asp:TextBox>
+                                                MaxLength="25" Width="220px" runat="server"></asp:TextBox>
                                         </td>
                                         <td align="left" valign="top" colspan="5">
                                             &nbsp;</td>
@@ -658,7 +659,7 @@
                                             <asp:Label ID="lblCommMode" 
                                                 Text="Commission Mode:" runat="server"></asp:Label></td>
                                         <td align="left" colspan="1" valign="top">
-                                                    <asp:DropDownList ID="cboCommMode" Width="150px" runat="server">
+                                                    <asp:DropDownList ID="cboCommMode" Width="119px" runat="server">
                                                         <asp:ListItem Value="*">Select</asp:ListItem>
                                                         <asp:ListItem>Yes</asp:ListItem>
                                                         <asp:ListItem>No</asp:ListItem>
@@ -672,10 +673,10 @@
                                         <td align="left" colspan="8" valign="top" class="myMenu_Title">other reference&nbsp;</td>
                                     </tr>
 
-                                    <tr style="display:none">
+                                    <tr>
                                         <td align="left" valign="top" >
                                             <asp:Label ID="lblOldAgentNo" 
-                                                Text="Branch Code:" runat="server"></asp:Label></td>
+                                                Text="Old Agent Code:" runat="server"></asp:Label></td>
                                         <td align="left" valign="top" colspan="1">
                                                     <asp:TextBox ID="txtOldAgentCode" Visible="true" Enabled="False"  Width="119px" 
                                                         runat="server"></asp:TextBox>

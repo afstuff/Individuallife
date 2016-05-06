@@ -77,6 +77,13 @@ Partial Class I_LIFE_PRG_LI_AGENT_PROFILE
             Call gnProc_Populate_Box("IL_CODE_LIST", "015", Me.cboGender)
             Call gnProc_Populate_Box("IL_CODE_LIST", "020", Me.cboMaritalStatus)
             Call gnPopulate_DropDownList("IL_MKT_REGION_LIST", Me.cboRegionName, strSQL, "", "(Select item)", "*")
+
+            'Call LoadLevelManger("1", "", Me.cboLvlMgrName1)
+            'Call LoadLevelManger("2", "", Me.cboLvlMgrName2)
+            'Call LoadLevelManger("3", "", Me.cboLvlMgrName3)
+            'Call LoadLevelManger("4", "", Me.cboLvlMgrName4)
+            'Call LoadLevelManger("5", "", Me.cboLvlMgrName5)
+
             Call DoNew()
         End If
 
@@ -121,11 +128,17 @@ Partial Class I_LIFE_PRG_LI_AGENT_PROFILE
         Call Proc_DDL_Get(Me.cboDesignation, RTrim("*"))
         Call Proc_DDL_Get(Me.cboRegionName, RTrim("*"))
 
+
+      ClearManagerLevels()
+        cboSupervisor_Search.Items.Clear()
+        cboSupervisor_Search.Items.Add("* Select Supervisor *")
+
         Call Proc_DDL_Get(Me.cboLvlMgrName1, RTrim("*"))
         Call Proc_DDL_Get(Me.cboLvlMgrName2, RTrim("*"))
         Call Proc_DDL_Get(Me.cboLvlMgrName3, RTrim("*"))
         Call Proc_DDL_Get(Me.cboLvlMgrName4, RTrim("*"))
         Call Proc_DDL_Get(Me.cboLvlMgrName5, RTrim("*"))
+        Call Proc_DDL_Get(Me.cboSupervisor_Search, RTrim("*"))
 
         Call Proc_DDL_Get(Me.cboQualification, RTrim("*"))
         Call Proc_DDL_Get(Me.cboProfile, RTrim("*"))
@@ -722,6 +735,7 @@ Partial Class I_LIFE_PRG_LI_AGENT_PROFILE
 
                 drNewRow("TBIL_AGENT_EMAIL1") = Trim(Me.txtAgtEmailId.Text)
                 drNewRow("TBIL_AGCY_AGENT_VEHICLE_TYPE") = Trim(Me.cboMobility.Text)
+                drNewRow("TBIL_AGCY_SETUP_DT") = Convert.ToDateTime(DoConvertToDbDateFormat(RTrim(Me.txtSetupDate.Text)))
                 drNewRow("TBIL_AGCY_ACTV_DT") = Convert.ToDateTime(DoConvertToDbDateFormat(RTrim(Me.txtActivatnDate.Text)))
                 drNewRow("TBIL_AGCY_EPLAT_AGT_CODE") = RTrim(Me.txtAgtCodeEPlat.Text)
                 drNewRow("TBIL_AGCY_AGENT_TITLE") = RTrim(Me.cboTitle.SelectedItem.Value)
@@ -734,7 +748,6 @@ Partial Class I_LIFE_PRG_LI_AGENT_PROFILE
                 drNewRow("TBIL_AGCY_REG_NAME") = RTrim(Me.cboRegionName.SelectedItem.Text)
 
                 drNewRow("TBIL_AGCY_AGENT_SUPERVISOR_CD") = RTrim(Me.txtSupervisor_Code.Text)
-                drNewRow("TBIL_AGCY_AGENT_SUPERVISOR_NAME") = RTrim(Me.txtSupervisor_Name.Text)
                 drNewRow("TBIL_AGCY_AGENT_LV1_MGR_CD") = lvlMrgCode1
                 drNewRow("TBIL_AGCY_AGENT_LV1_MGR_NAME") = lvlMrgName1
 
@@ -814,7 +827,7 @@ Partial Class I_LIFE_PRG_LI_AGENT_PROFILE
 
                     .Rows(0)("TBIL_AGENT_EMAIL1") = Trim(Me.txtAgtEmailId.Text)
                     .Rows(0)("TBIL_AGCY_AGENT_VEHICLE_TYPE") = Trim(Me.cboMobility.Text)
-
+                    .Rows(0)("TBIL_AGCY_SETUP_DT") = Convert.ToDateTime(DoConvertToDbDateFormat(RTrim(Me.txtSetupDate.Text)))
                     .Rows(0)("TBIL_AGCY_ACTV_DT") = Convert.ToDateTime(DoConvertToDbDateFormat(RTrim(Me.txtActivatnDate.Text)))
                     .Rows(0)("TBIL_AGCY_EPLAT_AGT_CODE") = RTrim(Me.txtAgtCodeEPlat.Text)
 
@@ -828,7 +841,7 @@ Partial Class I_LIFE_PRG_LI_AGENT_PROFILE
                     .Rows(0)("TBIL_AGCY_REG_NAME") = RTrim(Me.cboRegionName.SelectedItem.Text)
 
                     .Rows(0)("TBIL_AGCY_AGENT_SUPERVISOR_CD") = RTrim(Me.txtSupervisor_Code.Text)
-                    .Rows(0)("TBIL_AGCY_AGENT_SUPERVISOR_NAME") = RTrim(Me.txtSupervisor_Name.Text)
+
                     .Rows(0)("TBIL_AGCY_AGENT_LV1_MGR_CD") = lvlMrgCode1
                     .Rows(0)("TBIL_AGCY_AGENT_LV1_MGR_NAME") = lvlMrgName1
 
@@ -1244,6 +1257,10 @@ Partial Class I_LIFE_PRG_LI_AGENT_PROFILE
             Me.txtAgtLandLnHom.Text = RTrim(CType(objOLEDR("TBIL_AGENT_LANDLN_HOME") & vbNullString, String))
             Me.txtAgtLandLnOff.Text = RTrim(CType(objOLEDR("TBIL_AGENT_LANDLN_OFF") & vbNullString, String))
 
+            If IsDate(objOLEDR("TBIL_AGCY_SETUP_DT")) Then
+                Me.txtSetupDate.Text = Format(objOLEDR("TBIL_AGCY_SETUP_DT"), "dd/MM/yyyy")
+            End If
+
             If IsDate(objOLEDR("TBIL_AGCY_ACTV_DT")) Then
                 Me.txtActivatnDate.Text = Format(objOLEDR("TBIL_AGCY_ACTV_DT"), "dd/MM/yyyy")
             End If
@@ -1268,7 +1285,7 @@ Partial Class I_LIFE_PRG_LI_AGENT_PROFILE
 
 
             txtSupervisor_Code.Text = RTrim(CType(objOLEDR("TBIL_AGCY_AGENT_SUPERVISOR_CD") & vbNullString, String))
-            ' txtSupervisor_Name.Text = RTrim(CType(objOLEDR("TBIL_AGCY_AGENT_SUPERVISOR_NAME") & vbNullString, String))
+
             txtSupervisor_Name.Text = RTrim(CType(objOLEDR("SUPERVISOR") & vbNullString, String))
 
             li = New ListItem()
@@ -1580,6 +1597,7 @@ Partial Class I_LIFE_PRG_LI_AGENT_PROFILE
             If Me.cboSearch.SelectedIndex = -1 Or Me.cboSearch.SelectedIndex = 0 Or _
             Me.cboSearch.SelectedItem.Value = "" Or Me.cboSearch.SelectedItem.Value = "*" Then
             Else
+                ClearManagerLevels()
                 strStatus = Proc_OpenRecord(Me.cboSearch.SelectedItem.Value)
             End If
         Catch ex As Exception
@@ -1861,5 +1879,19 @@ Partial Class I_LIFE_PRG_LI_AGENT_PROFILE
         If objOLEConn.State = ConnectionState.Open Then
             objOLEConn.Close()
         End If
+    End Sub
+
+    Private Sub ClearManagerLevels()
+        cboLvlMgrName1.Items.Clear()
+        cboLvlMgrName1.Items.Add("Select")
+        cboLvlMgrName2.Items.Clear()
+        cboLvlMgrName2.Items.Add("Select")
+        cboLvlMgrName3.Items.Clear()
+        cboLvlMgrName3.Items.Add("Select")
+        cboLvlMgrName4.Items.Clear()
+        cboLvlMgrName4.Items.Add("Select")
+        cboLvlMgrName5.Items.Clear()
+        cboLvlMgrName5.Items.Add("Select")
+        cboSupervisor_Search.Items.Clear()
     End Sub
 End Class
