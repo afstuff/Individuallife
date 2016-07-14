@@ -222,6 +222,19 @@
     		            </tr>
                     
                 		<tr>
+    		                <td align="right" nowrap>
+                                <asp:Label ID="lblCustEmail8" Text="Status:" 
+                                    runat="server"></asp:Label></td>
+                		    <td align="left" nowrap>
+                                <asp:CheckBox ID="chkStatus" runat="server" />
+                		    </td>
+                		    <td align="left" nowrap colspan="2" align="right">
+                                <asp:Label ID="lblCustEmail9" Text="Uncheck to deactivate user" 
+                                    runat="server"></asp:Label></td>
+                		    <td align="left" nowrap>&nbsp;</td>
+    		            </tr>
+                    
+                		<tr>
     		                <td align="left" nowrap colspan="5" class="myMenu_Title"><asp:Label ID="lblCustEmail5" 
                                     Text="Login Detail:" runat="server"></asp:Label></td>
     		            </tr>

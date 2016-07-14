@@ -81,12 +81,12 @@
                 <td align="center" colspan="4" valign="top" class="td_menu">
                     <table align="center" border="0" cellpadding="1" cellspacing="1"  class="tbl_menu_new">
                         <tr>
-                            <td align="left" colspan="3" class="myheader"><%=STRPAGE_TITLE%></td>
+                            <td align="left" colspan="5" class="myheader"><%=STRPAGE_TITLE%></td>
                         </tr>
                 	    <tr>
-                	        <td align="left" nowrap colspan="2"><asp:Label id="lblMessage" Text="Staus:" runat="server" Font-Size="Small" ForeColor="Red" Font-Bold="True"></asp:Label>
+                	        <td align="left" nowrap colspan="3"><asp:Label id="lblMessage" Text="Staus:" runat="server" Font-Size="Small" ForeColor="Red" Font-Bold="True"></asp:Label>
                             </td>
-                            <td align="right" valign="top"> <asp:LinkButton ID="LnkBut_LogOff" runat="server" Text="LOG OFF" OnClientClick="return confirmLogout();"></asp:LinkButton>
+                            <td align="right" valign="top" colspan="2"> <asp:LinkButton ID="LnkBut_LogOff" runat="server" Text="LOG OFF" OnClientClick="return confirmLogout();"></asp:LinkButton>
                            
                                 &nbsp;<%=PageLinks%>&nbsp;
                             </td>
@@ -97,7 +97,7 @@
     		                <td align="right" nowrap class="style1">
                                 New                                 <asp:Label ID="lblPassword" 
                                     Text="Password:" runat="server"></asp:Label></td>
-                		    <td align="left" nowrap colspan="2" class="style1"><asp:textbox id="txtPassword" 
+                		    <td align="left" nowrap colspan="4" class="style1"><asp:textbox id="txtPassword" 
                                     MaxLength="11" Width="200px" runat="server" EnableViewState="true" 
                                     TextMode="Password" ></asp:textbox>
                 		        </td>
@@ -107,14 +107,30 @@
     		                <td align="right" nowrap class="style1">
                                 <asp:Label ID="lblConPassword" 
                                     Text="Confirm Password:" runat="server"></asp:Label></td>
-                		    <td align="left" nowrap colspan="2" class="style1"><asp:textbox id="txtConPassword" 
+                		    <td align="left" nowrap colspan="4" class="style1"><asp:textbox id="txtConPassword" 
                                     MaxLength="11" Width="200px" runat="server" EnableViewState="true" 
                                     TextMode="Password" ></asp:textbox>
                 		        </td>
     		            </tr>
                     
+                		<tr style="display:none;">
+    		                <td align="right" nowrap class="style1">
+                                <asp:Label ID="lblCustEmail6" Text="Password Expiry Days:" 
+                                    runat="server"></asp:Label></td>
+                		    <td align="left" nowrap class="style1">
+                                <asp:textbox id="txtPassExpDays" MaxLength="11" Width="47px" 
+                                    runat="server" EnableViewState="true" Enabled="False" ></asp:textbox>
+                		        <asp:Label ID="lblCustEmail7" 
+                                    Text="Password Expiry Date:" runat="server"></asp:Label>&nbsp;<asp:textbox id="txtPassExpDate" MaxLength="11" 
+                                    Width="99px" runat="server" EnableViewState="true" Enabled="False" 
+                                    Height="19px" ></asp:textbox>
+                		        </td>
+                		    <td align="left" nowrap colspan="2" class="style1">&nbsp;</td>
+                		    <td align="left" nowrap class="style1">&nbsp;</td>
+    		            </tr>
+                    
                     <tr>
-                        <td colspan="3">&nbsp;</td>
+                        <td colspan="5">&nbsp;</td>
                     </tr>
     		
                     </table>

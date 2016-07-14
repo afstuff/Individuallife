@@ -30,6 +30,8 @@ Partial Class SEC_PRG_SEC_USER_CHG_PASS
         STRPAGE_TITLE = "User Password Change - " & strP_DESC
         If Not (Page.IsPostBack) Then
             Call DoNew()
+            txtPassExpDays.Text = 90
+            Me.txtPassExpDate.Text = Format(DateAdd(DateInterval.Day, CInt(txtPassExpDays.Text), DateTime.Now), "dd/MM/yyyy")
         End If
     End Sub
     Protected Sub cmdSave_ASP_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdSave_ASP.Click
@@ -94,31 +96,27 @@ Partial Class SEC_PRG_SEC_USER_CHG_PASS
 
                 objDA.Fill(obj_DT)
 
-                If obj_DT.Rows.Count = 0 Then
+                If obj_DT.Rows.Count > 0 Then
                     '   Creating a new record
 
-                    Dim drNewRow As System.Data.DataRow
-                    drNewRow = obj_DT.NewRow()
-                    drNewRow("SEC_USER_PASSWORD") = EncryptNew(LTrim(Me.txtPassword.Text))
-                    'drNewRow("SEC_USER_FLAG") = "A"
-                    'drNewRow("SEC_USER_OPERID") = CType(myUserIDX, String)
-                    'drNewRow("SEC_USER_KEYDTE") = Now
+                    'Dim drNewRow As System.Data.DataRow
+                    'drNewRow = obj_DT.NewRow()
+                    'drNewRow("SEC_USER_PASSWORD") = EncryptNew(LTrim(Me.txtPassword.Text))
+                    'drNewRow("passwordexpirydays") = CInt(txtPassExpDays.Text)
+                    'drNewRow("passwordexpirydate") = Convert.ToDateTime(DoConvertToDbDateFormat(txtPassExpDate.Text))
 
-                    obj_DT.Rows.Add(drNewRow)
-                    intC = objDA.Update(obj_DT)
-                    drNewRow = Nothing
-                    Me.lblMessage.Text = "New Record Saved to Database Successfully."
+                    'obj_DT.Rows.Add(drNewRow)
+                    'intC = objDA.Update(obj_DT)
+                    'drNewRow = Nothing
+                    'Me.lblMessage.Text = "New Record Saved to Database Successfully."
 
-                Else
+                    'Else
                     '   Update existing record
                     With obj_DT
                         .Rows(0)("SEC_USER_PASSWORD") = EncryptNew(LTrim(Me.txtPassword.Text))
-                        .Rows(0)("SEC_USER_FLAG") = "C"
-                        '.Rows(0)("TBIL_CUST_OPERID") = CType(myUserIDX, String)
-                        '.Rows(0)("TBIL_CUST_KEYDTE") = Now
+                        .Rows(0)("passwordexpirydays") = CInt(txtPassExpDays.Text)
+                        .Rows(0)("passwordexpirydate") = Convert.ToDateTime(DoConvertToDbDateFormat(txtPassExpDate.Text))
                     End With
-
-                    'obj_DT.AcceptChanges()
                     intC = objDA.Update(obj_DT)
 
                     Me.lblMessage.Text = "Password changed successfully, please kindly re login."

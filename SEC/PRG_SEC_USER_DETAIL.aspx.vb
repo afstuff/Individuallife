@@ -52,7 +52,7 @@ Partial Class SEC_PRG_SEC_USER_DETAIL
             If UserRole <> "Administrator" Then
                 cmdSave_ASP.Visible = False
             End If
-
+            chkStatus.Checked = True
 
             li = New ListItem
             li.Text = "*** Select ***"
@@ -81,7 +81,7 @@ Partial Class SEC_PRG_SEC_USER_DETAIL
             cboRole.Items.Add("Officers")
             cboRole.Items.Add("Super User")
             cboRole.Items.Add("Supervisor")
-
+            cboRole.Items.Add("IT Contract Staff")
 
             Call Proc_DataBind()
             Call DoNew()
@@ -486,6 +486,7 @@ Partial Class SEC_PRG_SEC_USER_DETAIL
             Exit Sub
         End Try
 
+        Dim status As String
 
         strSQL = ""
         strSQL = "SELECT TOP 1 * FROM " & strTable
@@ -511,6 +512,12 @@ Partial Class SEC_PRG_SEC_USER_DETAIL
             If obj_DT.Rows.Count = 0 Then
                 '   Creating a new record
 
+                If chkStatus.Checked = True Then
+                    status = "A"
+                Else
+                    status = "X"
+                End If
+
                 Dim drNewRow As System.Data.DataRow
                 drNewRow = obj_DT.NewRow()
 
@@ -530,7 +537,7 @@ Partial Class SEC_PRG_SEC_USER_DETAIL
                 drNewRow("SEC_USER_EMAIL1") = Left(LTrim(Me.txtCustEmail01.Text), 49)
                 drNewRow("SEC_USER_EMAIL2") = Left(LTrim(Me.txtCustEmail02.Text), 49)
 
-                drNewRow("SEC_USER_FLAG") = "A"
+                drNewRow("SEC_USER_FLAG") = status
                 drNewRow("SEC_USER_OPERID") = CType(myUserIDX, String)
                 drNewRow("SEC_USER_KEYDTE") = Now
 
@@ -544,6 +551,11 @@ Partial Class SEC_PRG_SEC_USER_DETAIL
 
             Else
                 '   Update existing record
+                If chkStatus.Checked = True Then
+                    status = "C"
+                Else
+                    status = "X"
+                End If
                 With obj_DT
                     .Rows(0)("SEC_USER_ID") = RTrim(Me.txtUserID.Text)
                     .Rows(0)("SEC_USER_LOGIN") = RTrim(Me.txtLoginName.Text)
@@ -557,7 +569,7 @@ Partial Class SEC_PRG_SEC_USER_DETAIL
                     .Rows(0)("SEC_USER_PHONE2") = Left(LTrim(Me.txtCustPhone02.Text), 11)
                     .Rows(0)("SEC_USER_EMAIL1") = Left(LTrim(Me.txtCustEmail01.Text), 49)
                     .Rows(0)("SEC_USER_EMAIL2") = Left(LTrim(Me.txtCustEmail02.Text), 49)
-                    .Rows(0)("SEC_USER_FLAG") = "C"
+                    .Rows(0)("SEC_USER_FLAG") = status
                     '.Rows(0)("TBIL_CUST_OPERID") = CType(myUserIDX, String)
                     '.Rows(0)("TBIL_CUST_KEYDTE") = Now
                 End With
@@ -770,6 +782,11 @@ OnlyAdmin:
             Me.txtCustEmail01.Text = RTrim(CType(objOLEDR("SEC_USER_EMAIL1") & vbNullString, String))
             Me.txtCustEmail02.Text = RTrim(CType(objOLEDR("SEC_USER_EMAIL2") & vbNullString, String))
 
+            If RTrim(CType(objOLEDR("SEC_USER_FLAG") & vbNullString, String)) = "A" Or RTrim(CType(objOLEDR("SEC_USER_FLAG") & vbNullString, String)) = "C" Then
+                chkStatus.Checked = True
+            End If
+
+
 
             Me.txtGroup.Text = RTrim(CType(objOLEDR("SEC_USER_GROUP_CODE") & vbNullString, String))
 
@@ -798,29 +815,29 @@ OnlyAdmin:
             Me.txtName.Focus()
         End If
 
-            ' dispose of open objects
-            objOLECmd.Dispose()
+        ' dispose of open objects
+        objOLECmd.Dispose()
 
-            If objOLEDR.IsClosed = False Then
-                objOLEDR.Close()
-            End If
+        If objOLEDR.IsClosed = False Then
+            objOLEDR.Close()
+        End If
 
-            If objOLEConn.State = ConnectionState.Open Then
-                objOLEConn.Close()
-            End If
-            GoTo MyRtn_Ok
+        If objOLEConn.State = ConnectionState.Open Then
+            objOLEConn.Close()
+        End If
+        GoTo MyRtn_Ok
 
 myRtn_Err:
-            strErrMsg = Err.Number & " - " & Err.Description
+        strErrMsg = Err.Number & " - " & Err.Description
 MyRtn_Ok:
 
-            objOLECmd = Nothing
-            objOLEDR = Nothing
-            objOLEConn = Nothing
+        objOLECmd = Nothing
+        objOLEDR = Nothing
+        objOLEConn = Nothing
 
-            lblMessage.Text = strErrMsg
-            Proc_OpenRecord = strErrMsg
-            Return Proc_OpenRecord
+        lblMessage.Text = strErrMsg
+        Proc_OpenRecord = strErrMsg
+        Return Proc_OpenRecord
 
     End Function
 
